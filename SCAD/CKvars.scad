@@ -25,6 +25,7 @@ p2needlegrooveID=((needle2needle*p2number*p2needles)/PI);
 
 upper_surfaceH=5;  //thickness of upper rotating plate
 bottom_surface_motor_gearsH=6;  //thickness of geared rotating plate
+table_surface=5;  //thickness of plate of main table
 
 ////PART SETTINGS////
 
@@ -121,6 +122,20 @@ pMgrooveC3=44.25;       //top of groove at position 3 "top center"
 pMgrooveSlop=2;
 pMwallHextra=5.75;      //extra height above groove at heighest point
 
+//c2 geared plate
+c2t2t=6.858;
+c2width=50;
+c2gap=2;
+c2OD=(c2width*2)+(c2gap*2)+p2OD+(p3wiggle*2)+(p3wallW*2);
+c2ID=(c2gap*2)+p2OD+(p3wiggle*2)+(p3wallW*2);
+c2teeth=((c2OD*PI)/c2t2t);
+c2dipitch=c2teeth/(c2OD*PI);
+
+//c1
+c1H=table_surface;
+c1width=c2width+91.36;
+c1OD=c2OD+(c1width-c2width);
+
 //calculated settings
 
 centerlineD=p2ID+(p2W+(p3wiggle*2));
@@ -149,3 +164,4 @@ echo("Millimeters Between Needles:", PI*p2needlegrooveID/(p2number*p2needles));
 
 echo("OD of p3:", p3baseOD);
 
+echo("OD of c1:", c2OD+(c1width-c2width));
