@@ -1,6 +1,8 @@
 Circular knitic
 ===============
 
+Open Source Ecology's CircularKnitic project page: https://wiki.opensourceecology.org/wiki/OSE_CircularKnitic_v18.03
+
 Circular Knitic, an open hardware knitting machine. 
 * Project video: https://www.youtube.com/watch?v=-GFXAGRynNM
 * Instructables manual: www.instructables.com/id/Circular-Knitic/
