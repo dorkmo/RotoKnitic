@@ -22,7 +22,13 @@ translate([c1OD/2,0,0]){
         for(i=[1:p2needles*p2number]){
         rotate([0,0,(360/p2number/p2needles/2)-(360/p2number/p2needles*i)]){
         translate([-p2OD/2,-needleWidth/2,-0.01])
+            {
             cube([p2needlegrooveDepth,needleWidth,p3wallH+0.02]);
+                translate([0,needleWidth/2,0])
+            cylinder(h=c1H+2,d=needleWidth,$fn=36);
+                translate([p2needlegrooveDepth,needleWidth/2,0])
+            cylinder(h=c1H+2,d=needleWidth,$fn=36);
+        }
         }   //end rotate
     }   //end for
     
