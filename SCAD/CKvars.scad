@@ -42,10 +42,10 @@ connector0912W=8;
 connector0912HoleOD=3;   //hole diameter
 connector0912HoleC2C=17; //center of hole to center of other hole
 
-//BearringSmall1312_x_4.stl
+//p5 BearringSmall1312_x_4.stl
 bearingholderSmallB2C=5.5;  //from base of bearing holder to center of bearing
 bearingholderSmallBOD=10;   //Outside Diameter of bearing
-bearingholderSmallBID=5;    //Inside Diameter of bore hole of bearing
+bearingholderSmallBID=4.9;    //Inside Diameter of bore hole of bearing
 bearingholderSmallBW=4;     //Width of bearing
 
 //BearringZ
@@ -111,6 +111,20 @@ p4basegapW=5.09;
 p4clawW=9;
 p4holesnumber=3;
 p4holeH=5;
+
+//p5 small bearing holder
+p5wingW=7;
+p5wingL=27;
+p5wingH=3;
+p5bodyW=16;
+p5bodyL=25;
+p5bodyH=9.5;
+p5wiggleL=0.4;
+p5wiggleW=0.25;
+p5bearingfromwall=4.25;
+p5mountholeOD=3;
+p5mounthole2front=7;
+p5mounthole2back=5;
 
 //mountain
 pMwallT=7.5;  //min thickness from groove to back wall
