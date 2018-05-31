@@ -50,7 +50,7 @@ bearingholderSmallBW=4;     //Width of bearing
 
 //BearringZ
 bearingholderZBOD=10;   //Outside Diameter of bearing
-bearingholderZBID=5;    //Inside Diameter of bore hole of bearing
+bearingholderZBID=4.9;    //Inside Diameter of bore hole of bearing
 bearingholderZBW=4;     //Width of bearing
 bearingholderZB2C=(bearingholderZBOD/2)+upper_surfaceH+connector0912H+bottom_surface_motor_gearsH+bearingholderSmallB2C+(bearingholderSmallBOD/2);  //from base of bearing holder to center of bearing
 
@@ -125,6 +125,19 @@ p5bearingfromwall=4.25;
 p5mountholeOD=3;
 p5mounthole2front=7;
 p5mounthole2back=5;
+
+//p7 Z bearing holder
+p7baseW=16;
+p7baseL=23;
+p7baseH=4;
+p7wallW=3;
+p7mountH=8;
+p7mountL=13;
+p7mountholeOD=3;
+p7mounthole2edge=3.5;
+p7bearingfromfront=3;
+p7wiggleL=0.4;
+p7wiggleW=0.25;
 
 //mountain
 pMwallT=7.5;  //min thickness from groove to back wall
