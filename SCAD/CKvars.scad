@@ -95,7 +95,6 @@ p3baseID=p2ID-(p3wiggle*2)-(p3ridgeW2*2)-(p3baseholeScrewHeadD*2);
 p3baseOD=p2OD+(p3wiggle*2)+(p3wallW*2)+(p3wallchamfW*2)+(p3baseholeScrewHeadD*2); 
 
 //p4
-p4rampW=4;
 p4rampH=14.57;
 p4rampfromID=2.5;
 p4rampoverhangH=4;
@@ -107,10 +106,12 @@ p4rampC2transZ=3.82;
 p4baseH=11;
 p4basegapH=8;
 p4baseW=11.2;
-p4basegapW=5.09;
-p4clawW=9;
+p4basegapW=p2W+0.2; //5.09
+p4clawW=min((needle2needle-(nX*2)),9);
 p4holesnumber=3;
 p4holeH=5;
+p4rampW=max(min(p4clawW-3,4),2.5);
+echo("rampW", p4rampW);
 
 //p5 small bearing holder
 p5wingW=7;
