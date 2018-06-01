@@ -95,7 +95,7 @@ module CKp3(){
     
   //first and last holes
 
-        rotate([0,0,-firstcenter]){
+        rotate([0,0,-(360/p2number/p2needles)*2]){
         translate([((-centerlineD-(p3wallW*2)-((p2W+(p3wiggle*2)/2)))/2)-0.1,0,p2holeH+p3baseH])
             rotate([0,90,0]){
 
@@ -103,7 +103,7 @@ module CKp3(){
             }
         } 
         
-        rotate([0,0,-(360/(p3number))+firstcenter]){
+        rotate([0,0,-(360/(p3number))+((360/p2number/p2needles)*2)]){
         translate([((-centerlineD-(p3wallW*2)-((p2W+(p3wiggle*2)/2)))/2)-0.1,0,p2holeH+p3baseH])
             rotate([0,90,0]){
 

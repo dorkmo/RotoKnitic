@@ -4,7 +4,7 @@ CKp4();
 
 module CKp4(){
     
-    rez=360/p2number*2*2;
+    rez=p2number*p2needles*2;
     
     $fn=rez; //defines resolution of circles.
        

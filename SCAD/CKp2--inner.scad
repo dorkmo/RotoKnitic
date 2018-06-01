@@ -53,9 +53,9 @@ union(){
 
 echo(((((360/p2number/p2needles/2)/360*(p2OD*PI))-(needleWidth/2))/((360/p2number/p2needles/2)/360*(p2OD*PI)))*(360/p2number/p2needles/2));
         
-firstcenter=(((((360/p2number/p2needles/2)/360*(p2OD*PI))-(needleWidth/2))/((360/p2number/p2needles/2)/360*(p2OD*PI)))*(360/p2number/p2needles/2))/2;        
+//firstcenter=(((((360/p2number/p2needles/2)/360*(p2OD*PI))-(needleWidth/2))/((360/p2number/p2needles/2)/360*(p2OD*PI)))*(360/p2number/p2needles/2))/2; not using         
 
-        rotate([0,0,-firstcenter]){
+        rotate([0,0,-(360/p2number/p2needles)*2]){
         translate([-p2OD/2-0.2,0,p2holeH])
             rotate([0,90,0]){
                 union(){
@@ -67,7 +67,7 @@ firstcenter=(((((360/p2number/p2needles/2)/360*(p2OD*PI))-(needleWidth/2))/((360
             }
         } 
         
-        rotate([0,0,-360/p2number+firstcenter]){
+        rotate([0,0,-360/p2number+((360/p2number/p2needles)*2)]){
         translate([-p2OD/2-0.2,0,p2holeH])
             rotate([0,90,0]){
 union(){
