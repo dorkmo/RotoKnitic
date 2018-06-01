@@ -126,6 +126,20 @@ p5mountholeOD=3;
 p5mounthole2front=7;
 p5mounthole2back=5;
 
+//p6 big bearing holder
+p6wingW=30;
+p6wingL=25;
+p6wingH=3;
+p6bodyW=16;
+p6bodyL=25;
+p6bodyH=9.5;
+p6wiggleL=0.4;
+p6wiggleW=0.6;
+p6bearingfromwall=4.25;
+p6mountholeOD=3;
+p6mounthole2front=8;
+p6mounthole2side=3;
+
 //p7 Z bearing holder
 p7baseW=16;
 p7baseL=23;
