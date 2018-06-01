@@ -19,11 +19,11 @@ module CKp5(){
             difference(){
         cube([p5bodyW,p5bodyL,p5bodyH]);
         // bearing cutout 1
-                translate([((p5bodyW)/2)-((bearingholderZBOD+p5wiggleW)/2),p5bearingfromwall,0])
-            cube([bearingholderZBOD+p5wiggleW,bearingholderSmallBW+p5wiggleL,p5bodyH+0.1]);
+                translate([((p5bodyW)/2)-((bearingholderSmallBOD+p5wiggleW)/2),p5bearingfromwall,0])
+            cube([bearingholderSmallBOD+p5wiggleW,bearingholderSmallBW+p5wiggleL,p5bodyH+0.1]);
         // bearing cutout 2        
-                translate([((p5bodyW)/2)-((bearingholderZBOD+p5wiggleW)/2),p5bodyL-p5bearingfromwall-(bearingholderSmallBW+p5wiggleL),0])
-            cube([bearingholderZBOD+p5wiggleW,bearingholderSmallBW+p5wiggleL,p5bodyH+0.1]);
+                translate([((p5bodyW)/2)-((bearingholderSmallBOD+p5wiggleW)/2),p5bodyL-p5bearingfromwall-(bearingholderSmallBW+p5wiggleL),0])
+            cube([bearingholderSmallBOD+p5wiggleW,bearingholderSmallBW+p5wiggleL,p5bodyH+0.1]);
         // bore hole cutout
         translate([(p5bodyW)/2,-0.1,bearingholderSmallB2C])
                 rotate([270,0,0])
