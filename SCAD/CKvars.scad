@@ -131,6 +131,7 @@ p7baseW=16;
 p7baseL=23;
 p7baseH=4;
 p7wallW=3;
+p7braceW=3;
 p7mountH=8;
 p7mountL=13;
 p7mountholeOD=3;
