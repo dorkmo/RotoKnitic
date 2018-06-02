@@ -104,11 +104,6 @@ difference(){
   } //end union
   } //end rotate           
            
-//translate([((-centerlineD-(p3wallW*2)-((p2W+(p3wiggle*2)/2)))/2)-0.1,0,p2holeH+p3baseH])
-//  rotate([0,90,0]){
-//  cylinder(h=p2OD-p2ID+0.2, d=p2holeD,$fn=18);
-//  }
-  
     } // end rotate     
     } //end for
         
@@ -127,14 +122,6 @@ difference(){
   } //end union
   } //end rotate           
            
-//translate([((-centerlineD-(p3wallW*2)-((p2W+(p3wiggle*2)/2)))/2)-0.1,0,p2holeH+p3baseH])
-//  rotate([0,90,0]){
-//  cylinder(h=p2OD-p2ID+0.2, d=p2holeD,$fn=18);
-//  }
-  
-    } // end rotate     
-    } //end for
-        
         //end middle holes
 
 
