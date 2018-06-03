@@ -31,9 +31,9 @@ table_surface=5;  //thickness of plate of main table
 
 //plate 
 pPspace1=12; //? space from main table top to first plate
-pPplate1=6;  //thickness of geared plated
+pPplate1=bottom_surface_motor_gearsH;  //thickness of geared plated
 pPspace2=12; //space between geared plate and mountain plate
-pPplate2=5;
+pPplate2=upper_surfaceH;
 
 //"connector0912" connects upper_surface plate to bottom_surface geared plate
 connector0912H=12;
@@ -154,6 +154,12 @@ p7mounthole2edge=3.5;
 p7bearingfromfront=3;
 p7wiggleL=0.4;
 p7wiggleW=0.25;
+
+//p8
+p8baseW=8;
+p8baseL=25;
+p8holeD=3;
+p8holeend2C=4;
 
 //mountain
 pMwallT=7.5;  //min thickness from groove to back wall
