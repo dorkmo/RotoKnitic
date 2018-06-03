@@ -93,6 +93,10 @@ p3grooveW=nX+p3grooveWslop;
 p3clear=5;   //distance from top of p3 to needle flipper in down position
 p3baseID=p2ID-(p3wiggle*2)-(p3ridgeW2*2)-(p3baseholeScrewHeadD*2); 
 p3baseOD=p2OD+(p3wiggle*2)+(p3wallW*2)+(p3wallchamfW*2)+(p3baseholeScrewHeadD*2); 
+centerlineD=p2ID+(p2W+(p3wiggle*2));
+p3wallOD=centerlineD+(p3wallW*2)+((p2W+(p3wiggle*2)/2));
+p3wallID=centerlineD+((p2W+(p3wiggle*2)/2));
+
 
 //p4
 p4rampH=14.57;
@@ -155,11 +159,15 @@ p7bearingfromfront=3;
 p7wiggleL=0.4;
 p7wiggleW=0.25;
 
-//p8
+//p8 plate connector
 p8baseW=8;
 p8baseL=25;
 p8holeD=3;
 p8holeend2C=4;
+
+//p9 outer connector
+p9thickness=4;
+p9H=10;
 
 //mountain
 pMwallT=7.5;  //min thickness from groove to back wall
