@@ -21,6 +21,15 @@ needle2needle=8.414;  //default=14.35615
 //calculated diameter from inside edge of needles
 p2needlegrooveID=((needle2needle*p2number*p2needles)/PI);
 
+//number of sets of bearings mounted to geared plated
+c2bmounts=p3number;
+
+//number of plate connectors
+c2connectors=c2bmounts*3;
+
+//nnumber of Z bearing mounts
+c1zmounts=p3number;
+
 ////MATERIALS////
 
 upper_surfaceH=5;  //thickness of upper rotating plate
@@ -178,6 +187,14 @@ pMgrooveC2=nC+2;        //top of groove at position 2 "push down"
 pMgrooveC3=44.25;       //top of groove at position 3 "top center"
 pMgrooveSlop=2;
 pMwallHextra=5.75;      //extra height above groove at heighest point
+CKpMID=p2OD+2;  //inside diameter of main wall
+
+   /////////////////////////////////
+    CKpMgrooveOD=pMgroove+(CKpMID/2); //center to OD of groove
+    // is this supposed to be the radius? 
+    /////////////////////////////////
+
+echo((pMgroove*2)+CKpMID);
 
 //c2 geared plate
 c2t2t=6.858;
@@ -213,6 +230,14 @@ p2H=bottom_surface_motor_gearsH+bearingholderSmallB2C+(bearingholderSmallBOD/2)+
 p3wallH=bottom_surface_motor_gearsH+bearingholderSmallB2C+(bearingholderSmallBOD/2)+pMgrooveC2+nA-nB-nC-nF-p3clear;
 
 p2holeH=p3grooveH2+((p3wallH-p3grooveH2)/2);
+
+
+//c3
+c3ID=c2ID;
+c3OD=(((((CKpMID/2)+(pMgroove)+(connector0912L/2))-(c3ID/2))*2)*2)+c3ID;
+c3H=upper_surfaceH;
+
+echo("c3OD=", c3OD);
 
 ////SETTINGS OUTPUT ECHOS///
 

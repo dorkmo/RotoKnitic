@@ -3,13 +3,6 @@ include <CKvars.scad>;
 // Copyright 2010 D1plo1d
 // LGPL 2.1
 
-c2t2t=6.858;
-c2width=50;
-c2gap=2;
-c2OD=(c2width*2)+(c2gap*2)+p2OD+(p3wiggle*2)+(p3wallW*2);
-c2ID=(c2gap*2)+p2OD+(p3wiggle*2)+(p3wallW*2);
-c2teeth=((c2OD*PI)/c2t2t);
-c2dipitch=c2teeth/(c2OD*PI);
 
 gear(c2teeth,circular_pitch=false,diametral_pitch=c2dipitch,pressure_angle=87, clearance=0.01);
 

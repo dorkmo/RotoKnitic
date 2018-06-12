@@ -5,9 +5,8 @@ CKpM(); //mountain
 
     CKpMgrooveturnR=15; //radius of upper curved path in groove
     CKpMgrooveturnR2=8; //radius of lower curved path in groove
-    CKpMgrooveD=nC+pMgrooveSlop; //diamter of groove cut
-    CKpMID=p2OD+2;  //inside diameter of main wall
-    CKpMgrooveOD=pMgroove+(CKpMID/2); //center to OD of groove
+    CKpMgrooveD=nC+pMgrooveSlop; //Y plane diamter of groove cut
+ 
     CKpMp7X=5;  //half of length of plateu of groove. preferably whole number
     CKpMp3X=2.5;  //length of flat area of section 3
     CKpMcutRez=2; //cuts per degree
