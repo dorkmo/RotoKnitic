@@ -1,6 +1,11 @@
 include <CKvars.scad>;
+use <CKp8--plateconnector.scad>
 
 CKc3();
+
+//translate([0,0,c3H])
+//rotate([0,0,-90])
+//CKp8();
 
 module CKc3(){
     
