@@ -188,11 +188,10 @@ pMgrooveC3=44.25;       //top of groove at position 3 "top center"
 pMgrooveSlop=2;
 pMwallHextra=5.75;      //extra height above groove at heighest point
 CKpMID=p2OD+2;  //inside diameter of main wall
+pMH=pMwallHextra+pMgrooveC3; //total height of mountain
 
-   /////////////////////////////////
-    CKpMgrooveOD=pMgroove+(CKpMID/2); //center to OD of groove
-    // is this supposed to be the radius? 
-    /////////////////////////////////
+
+
 
 echo((pMgroove*2)+CKpMID);
 
@@ -238,6 +237,14 @@ c3OD=(((((CKpMID/2)+(pMgroove)+(connector0912L/2))-(c3ID/2))*2)*2)+c3ID;
 c3H=upper_surfaceH;
 
 echo("c3OD=", c3OD);
+
+pMID=c2ID;
+pMOD=c3OD;
+
+   /////////////////////////////////
+pMgrooveOR=pMgroove+(pMID/2); //center to OD of groove
+    // is this supposed to be the radius? 
+    /////////////////////////////////
 
 ////SETTINGS OUTPUT ECHOS///
 
