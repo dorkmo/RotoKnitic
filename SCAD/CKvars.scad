@@ -211,6 +211,8 @@ c1OD=c2OD+(c1width-c2width);
 
 //calculated settings
 
+rez=p2number*p2needles*2;
+
 centerlineD=p2ID+(p2W+(p3wiggle*2));
 
 p3grooveH1=bottom_surface_motor_gearsH+bearingholderSmallB2C+(bearingholderSmallBOD/2)+(pMgrooveSlop/2);
