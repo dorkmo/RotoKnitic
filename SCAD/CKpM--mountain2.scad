@@ -2,7 +2,7 @@ include <CKvars.scad>;
 
 CKpM(); //mountain
 
-    mult=200;                         //rough multiplier
+    mult=20;                         //rough multiplier
     grez=p2number*p2needles*2*mult;    //number of sides of groove path main circle
     gdeg=360/grez;                //groove rez in fractions of a degree
     glen=(pMID*PI)/rez;          //length of arc of each rez's fraction of a degree
@@ -24,10 +24,19 @@ CKpM(); //mountain
 
     CKpMp7X=5;  //half of length of plateu of groove. preferably whole number 
     CKpMd7=(CKpMp7X/glen); //number of degrees for entire groove7
-    grez7=CKpMd7/grez/(CKpMp7X/(pMID*PI));     //degrees of section 7 ?????????????
+    grez7=CKpMd7/grez/(CKpMp7X/(pMID*PI));     //degrees of section 7
     
     echo("CKpMd7", CKpMd7);
     echo("grez7", grez7);
+    
+    CKpMp6X=cos(CKpMcutA)*CKpMgrooveturnR;
+    CKpMd6=CKpMp6X/glen;
+    grez6=CKpMd6/grez/(CKpMp6X/(pMID*PI));     //degrees of section 7
+    
+    echo("CKpMp6X", CKpMp6X);
+    echo("CKpMd6", CKpMd6);
+    echo("grez6", grez6);
+    
     
 module CKpM(){
 translate([0,-p3wallOD/2,0]){
@@ -44,6 +53,13 @@ cylinder(d=pMID,h=pMH+1,$fn=rez);
             #cylinder($fn=CKpMcutcylRez,d=CKpMgrooveD,h=pMgrooveOR);
 
         }//end fors
+        
+        //6
+        for(i=[CKpMd7:grez6:CKpMd7+CKpMd6]){
+            translate([0,0,pMgrooveC3-(CKpMgrooveD/2)+(CKpMgrooveturnR*cos(asin(((i-CKpMd7)*(PI*CKpMID)/360)/CKpMgrooveturnR))-CKpMgrooveturnR)])  //need to fix
+            rotate([270,0,i])
+            #cylinder($fn=CKpMcutcylRez,d=CKpMgrooveD,h=pMgrooveOR);
+        } //end fors   
         
 } //end main difference
 } //end main translate
