@@ -2,14 +2,15 @@ include <CKvars.scad>;
 
 CKpM(); //mountain
 
-    grez=p2number*p2needles*5;    //number of sides of groove path main circle
+    mult=200;                         //rough multiplier
+    grez=p2number*p2needles*2*mult;    //number of sides of groove path main circle
     gdeg=360/grez;                //groove rez in fractions of a degree
-    glen=(pMID*PI)/grez;          //length of arc of each rez's fraction of a degree
+    glen=(pMID*PI)/rez;          //length of arc of each rez's fraction of a degree
     
-    echo(rez);
-    echo(grez);
-    echo(gdeg);
-    echo(glen);
+    echo("rez", rez);
+    echo("grez", grez);
+    echo("gdeg", gdeg);
+    echo("glen", glen);
     
     CKpMgrooveturnR=15; //radius of upper curved path in groove
     CKpMgrooveturnR2=8; //radius of lower curved path in groove
@@ -22,11 +23,11 @@ CKpM(); //mountain
     CKpMcutA=45;    //angle of cut path
 
     CKpMp7X=5;  //half of length of plateu of groove. preferably whole number 
-    CKpMd7=(CKpMp7X)/glen; //number of segments for groove7
-    gdeg7=gdeg/CKpMd7;     //degrees of section 7
+    CKpMd7=(CKpMp7X/glen); //number of degrees for entire groove7
+    grez7=CKpMd7/grez/(CKpMp7X/(pMID*PI));     //degrees of section 7 ?????????????
     
-    echo(CKpMd7);
-    echo(gdeg7);
+    echo("CKpMd7", CKpMd7);
+    echo("grez7", grez7);
     
 module CKpM(){
 translate([0,-p3wallOD/2,0]){
@@ -36,7 +37,7 @@ cylinder(d=pMOD,h=pMH,$fn=rez);
 cylinder(d=pMID,h=pMH+1,$fn=rez);    
 
         //7
-        for(i=[0:(gdeg7):CKpMd7]){
+        for(i=[0:(grez7):CKpMd7]){
 
             translate([0,0,pMgrooveC3-(CKpMgrooveD/2)])
             rotate([270,0,i])
