@@ -63,7 +63,6 @@ bearingholderZBID=4.9;    //Inside Diameter of bore hole of bearing
 bearingholderZBW=4;     //Width of bearing
 bearingholderZB2C=(bearingholderZBOD/2)+upper_surfaceH+connector0912H+bottom_surface_motor_gearsH+bearingholderSmallB2C+(bearingholderSmallBOD/2);  //from base of bearing holder to center of bearing
 
-
 //p2
 needleWidthslop=0.4;  //exta thickness
 needleWidth=nX+needleWidthslop;
@@ -105,7 +104,6 @@ p3baseOD=p2OD+(p3wiggle*2)+(p3wallW*2)+(p3wallchamfW*2)+(p3baseholeScrewHeadD*2)
 centerlineD=p2ID+(p2W+(p3wiggle*2));
 p3wallOD=centerlineD+(p3wallW*2)+((p2W+(p3wiggle*2)/2));
 p3wallID=centerlineD+((p2W+(p3wiggle*2)/2));
-
 
 //p4
 p4rampH=14.57;
@@ -190,9 +188,6 @@ pMwallHextra=5.75;      //extra height above groove at heighest point
 CKpMID=p2OD+2;  //inside diameter of main wall
 pMH=pMwallHextra+pMgrooveC3; //total height of mountain
 
-
-
-
 echo((pMgroove*2)+CKpMID);
 
 //c2 geared plate
@@ -231,7 +226,6 @@ p2H=bottom_surface_motor_gearsH+bearingholderSmallB2C+(bearingholderSmallBOD/2)+
 p3wallH=bottom_surface_motor_gearsH+bearingholderSmallB2C+(bearingholderSmallBOD/2)+pMgrooveC2+nA-nB-nC-nF-p3clear;
 
 p2holeH=p3grooveH2+((p3wallH-p3grooveH2)/2);
-
 
 //c3
 c3ID=c2ID;
