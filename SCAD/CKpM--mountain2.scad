@@ -20,7 +20,7 @@ CKpM(); //mountain
     CKpMcutRez=2; //cuts per degree
  //   CKpMcutDeg=(((CKpMp7X/2)*360/(PI*CKpMID))/CKpMp7X); //degrees per unit diameter
     CKpMcutcylRez=36;  //number of sides on groove cutting clylinder
-    CKpMcutA=40;    //angle of cut path
+    CKpMcutA=50;    //angle of cut path
 
     CKpMp7X=5;  //half of length of plateu of groove. preferably whole number 
     CKpMd7=(CKpMp7X/glen)*gdeg; //number of degrees for entire groove7
@@ -29,7 +29,7 @@ CKpM(); //mountain
     echo("CKpMd7", CKpMd7);
     echo("grez7", grez7);
     
-    CKpMp6X=cos(CKpMcutA)*CKpMgrooveturnR-(CKpMgrooveD/2);    //subtracting 2 helped? need to shrink radius to account for curve? 
+    CKpMp6X=cos(CKpMcutA)*CKpMgrooveturnR-(CKpMgrooveD/2); 
     CKpMd6=(CKpMp6X/glen)*gdeg;
     grez6=CKpMd6/grez/(CKpMp6X/(pMID*PI));     //degrees of section 7
     
@@ -37,7 +37,7 @@ CKpM(); //mountain
     echo("CKpMd6", CKpMd6);
     echo("grez6", grez6);
     
-    CKpMp5X=(pMgrooveC3-CKpMgrooveturnR+(CKpMp6X*tan(CKpMcutA)))/tan(CKpMcutA);
+    CKpMp5X=(pMgrooveC3+(CKpMgrooveD)-CKpMgrooveturnR+(CKpMp6X*tan(CKpMcutA)))/tan(CKpMcutA);
     CKpMd5=(CKpMp5X/glen)*gdeg;
     grez5=CKpMd5/grez/(CKpMp5X/(pMID*PI));     //degrees of section 7
     
@@ -53,7 +53,7 @@ cylinder(d=pMOD,h=pMH,$fn=rez);
 cylinder(d=pMID,h=pMH+1,$fn=rez);    
 
         //7
-        for(i=[0:(gdeg):CKpMd7]){
+        for(i=[0:grez7:CKpMd7]){
 
             translate([0,0,pMgrooveC3-(CKpMgrooveD/2)])
             rotate([270,0,i])
