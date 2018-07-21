@@ -229,12 +229,12 @@ module needlepathLEFT(){
         cylinder($fn=CKpMcutcylRez,d=CKpMgrooveD,h=CKpMgrooveOD);  
       } //end hull 2
   } //end for
+  
 //4
         for(i=[(CKpMd7+CKpMd6+CKpMd5)-(0.1):(0.2):(CKpMd7+CKpMd6+CKpMd5+CKpMd4)+(0.1)]){ 
-              
                        translate([0,0,(CKpMgrooveD/2)-(CKpMgrooveturnR2*cos(asin(((i-(CKpMd7+CKpMd6+CKpMd5)-(0.0))*(PI*CKpMID)/360)/CKpMgrooveturnR2))-CKpMgrooveturnR2)])
         rotate([270,0,((CKpMd7+CKpMd6+CKpMd5+CKpMd4)+(CKpMd7+CKpMd6+CKpMd5))-i])
-        cylinder($fn=CKpMcutcylRez,d=CKpMgrooveD,h=CKpMgrooveOD);
+        #cylinder($fn=CKpMcutcylRez,d=CKpMgrooveD,h=CKpMgrooveOD);
                
            }
                
