@@ -1,7 +1,13 @@
 include <CKvars.scad>;
 
+//TO DO//
+//*use cylinder for main shape, uniform thickness
+//*use cylinder wall thickness to calc mounting holes
+/////////
+
 CKpM(); //mountain
 
+    mult=2;
 
     CKpMgrooveturnR=15; //radius of upper curved path in groove
     CKpMgrooveturnR2=8; //radius of lower curved path in groove
@@ -11,15 +17,14 @@ CKpM(); //mountain
     CKpMp3X=2.5;  //length of flat area of section 3
     CKpMcutRez=2; //cuts per degree
     CKpMcutDeg=(((CKpMp7X/2)*360/(PI*CKpMID))/CKpMp7X); //degrees per unit diameter
-    CKpMcutcylRez=36;  //number of sides on groove cutting clylinder
+    CKpMcutcylRez=8;  //number of sides on groove cutting clylinder default=36
     CKpMcutA=45;    //angle of cut path
     
     //calc'd
     
         mi=(CKpMID*PI)/360;  //degrees in mm at CKpMID
     
-    echo("mi=");
-    echo(mi);
+    echo("mi=",mi);
     
     CKpMd7=round((CKpMp7X)*360/(PI*CKpMID)*10)/10;  //degrees around ID
     
@@ -75,7 +80,7 @@ CKpM(); //mountain
     echo(pMbwOD);
 
 module CKpM(){
-    
+    translate([0,-p3wallOD/2,0]){
     
     //test cube
 //    translate([-71.4,120,0])
@@ -115,6 +120,7 @@ mirror([1,0,0])
 pMsidetab();
 
 } //end main union
+} //end main translate
 } //end main module
 
 module pMsidetab(){
@@ -158,21 +164,21 @@ module needlepathLEFT(){
                 //odd
         translate([0,0,pMgrooveC3-(CKpMgrooveD/2)])
         rotate([270,0,i-(0.1)])
-        cylinder($fn=CKpMcutcylRez,d=CKpMgrooveD,h=CKpMgrooveOD);
+        cylinder($fn=CKpMcutcylRez,d=CKpMgrooveD,h=pMgrooveOR);
                 //even
         translate([0,0,pMgrooveC3-(CKpMgrooveD/2)])
         rotate([270,0,i])
-        cylinder($fn=CKpMcutcylRez,d=CKpMgrooveD,h=CKpMgrooveOD);
+        cylinder($fn=CKpMcutcylRez,d=CKpMgrooveD,h=pMgrooveOR);
             }//end hull 1
                 hull(){
                 //even
         translate([0,0,pMgrooveC3-(CKpMgrooveD/2)])
         rotate([270,0,i])
-        cylinder($fn=CKpMcutcylRez,d=CKpMgrooveD,h=CKpMgrooveOD);
+        cylinder($fn=CKpMcutcylRez,d=CKpMgrooveD,h=pMgrooveOR);
                 //odd
         translate([0,0,pMgrooveC3-(CKpMgrooveD/2)])
         rotate([270,0,i+(0.1)])
-        cylinder($fn=CKpMcutcylRez,d=CKpMgrooveD,h=CKpMgrooveOD);
+        cylinder($fn=CKpMcutcylRez,d=CKpMgrooveD,h=pMgrooveOR);
             }//end hull 2
             
         }//end fors
@@ -186,21 +192,21 @@ module needlepathLEFT(){
                 //odd
         translate([0,0,pMgrooveC3-(CKpMgrooveD/2)+(CKpMgrooveturnR*cos(asin(((i-CKpMd7-(0.1))*(PI*CKpMID)/360)/CKpMgrooveturnR))-CKpMgrooveturnR)])
         rotate([270,0,i-(0.1)])
-        cylinder($fn=CKpMcutcylRez,d=CKpMgrooveD,h=CKpMgrooveOD);
+        cylinder($fn=CKpMcutcylRez,d=CKpMgrooveD,h=pMgrooveOR);
                 //even
         translate([0,0,pMgrooveC3-(CKpMgrooveD/2)+(CKpMgrooveturnR*cos(asin(((i-CKpMd7)*(PI*CKpMID)/360)/CKpMgrooveturnR))-CKpMgrooveturnR)])
         rotate([270,0,i])
-        cylinder($fn=CKpMcutcylRez,d=CKpMgrooveD,h=CKpMgrooveOD);
+        cylinder($fn=CKpMcutcylRez,d=CKpMgrooveD,h=pMgrooveOR);
             }//end hull 1
                 hull(){
                 //even
         translate([0,0,pMgrooveC3-(CKpMgrooveD/2)+(CKpMgrooveturnR*cos(asin(((i-CKpMd7)*(PI*CKpMID)/360)/CKpMgrooveturnR))-CKpMgrooveturnR)])
         rotate([270,0,i])
-        cylinder($fn=CKpMcutcylRez,d=CKpMgrooveD,h=CKpMgrooveOD);
+        cylinder($fn=CKpMcutcylRez,d=CKpMgrooveD,h=pMgrooveOR);
                 //odd
         translate([0,0,pMgrooveC3-(CKpMgrooveD/2)+(CKpMgrooveturnR*cos(asin(((i-CKpMd7+(0.1))*(PI*CKpMID)/360)/CKpMgrooveturnR))-CKpMgrooveturnR)])
         rotate([270,0,i+(0.1)])
-        cylinder($fn=CKpMcutcylRez,d=CKpMgrooveD,h=CKpMgrooveOD);
+        cylinder($fn=CKpMcutcylRez,d=CKpMgrooveD,h=pMgrooveOR);
             }//end hull 2
             
         }//end fors
@@ -212,21 +218,21 @@ module needlepathLEFT(){
              //odd
         translate([0,0,pMgrooveC3-(CKpMgrooveD/2)+(CKpMgrooveturnR*cos(asin(((((CKpMd7+(CKpMd6))-(0.0))-CKpMd7)*(PI*CKpMID)/360)/CKpMgrooveturnR))-CKpMgrooveturnR)-((tan(CKpMcutA)*(i-0.1-(CKpMd7+CKpMd6))*mi))])
         rotate([270,0,i-(0.1)])
-        cylinder($fn=CKpMcutcylRez,d=CKpMgrooveD,h=CKpMgrooveOD);              
+        cylinder($fn=CKpMcutcylRez,d=CKpMgrooveD,h=pMgrooveOR);              
                  //even 
         translate([0,0,pMgrooveC3-(CKpMgrooveD/2)+(CKpMgrooveturnR*cos(asin(((((CKpMd7+(CKpMd6))-(0.0))-CKpMd7)*(PI*CKpMID)/360)/CKpMgrooveturnR))-CKpMgrooveturnR)-((tan(CKpMcutA)*(i-(CKpMd7+CKpMd6-0.0))*mi))])
         rotate([270,0,i])
-        cylinder($fn=CKpMcutcylRez,d=CKpMgrooveD,h=CKpMgrooveOD);
+        cylinder($fn=CKpMcutcylRez,d=CKpMgrooveD,h=pMgrooveOR);
           } //end hull 1
       hull(){
 //even
             translate([0,0,pMgrooveC3-(CKpMgrooveD/2)+(CKpMgrooveturnR*cos(asin(((((CKpMd7+(CKpMd6))-(0.0))-CKpMd7)*(PI*CKpMID)/360)/CKpMgrooveturnR))-CKpMgrooveturnR)-((tan(CKpMcutA)*(i-(CKpMd7+CKpMd6-0.0))*mi))])
         rotate([270,0,i])
-        cylinder($fn=CKpMcutcylRez,d=CKpMgrooveD,h=CKpMgrooveOD);
+        cylinder($fn=CKpMcutcylRez,d=CKpMgrooveD,h=pMgrooveOR);
     //odd
         translate([0,0,pMgrooveC3-(CKpMgrooveD/2)+(CKpMgrooveturnR*cos(asin(((((CKpMd7+(CKpMd6))-(0.0))-CKpMd7)*(PI*CKpMID)/360)/CKpMgrooveturnR))-CKpMgrooveturnR)-((tan(CKpMcutA)*(i+0.1-(CKpMd7+CKpMd6))*mi))])
         rotate([270,0,i+(0.1)])
-        cylinder($fn=CKpMcutcylRez,d=CKpMgrooveD,h=CKpMgrooveOD);  
+        cylinder($fn=CKpMcutcylRez,d=CKpMgrooveD,h=pMgrooveOR);  
       } //end hull 2
   } //end for
   
@@ -234,7 +240,7 @@ module needlepathLEFT(){
         for(i=[(CKpMd7+CKpMd6+CKpMd5)-(0.1):(0.2):(CKpMd7+CKpMd6+CKpMd5+CKpMd4)+(0.1)]){ 
                        translate([0,0,(CKpMgrooveD/2)-(CKpMgrooveturnR2*cos(asin(((i-(CKpMd7+CKpMd6+CKpMd5)-(0.0))*(PI*CKpMID)/360)/CKpMgrooveturnR2))-CKpMgrooveturnR2)])
         rotate([270,0,((CKpMd7+CKpMd6+CKpMd5+CKpMd4)+(CKpMd7+CKpMd6+CKpMd5))-i])
-        #cylinder($fn=CKpMcutcylRez,d=CKpMgrooveD,h=CKpMgrooveOD);
+        #cylinder($fn=CKpMcutcylRez,d=CKpMgrooveD,h=pMgrooveOR);
                
            }
                
@@ -247,21 +253,21 @@ module needlepathLEFT(){
                 //even
         translate([0,0,(CKpMgrooveD/2)])
         rotate([270,0,i-(0.1)])
-        cylinder($fn=CKpMcutcylRez,d=CKpMgrooveD,h=CKpMgrooveOD);
+        cylinder($fn=CKpMcutcylRez,d=CKpMgrooveD,h=pMgrooveOR);
                 //even
         translate([0,0,(CKpMgrooveD/2)])
         rotate([270,0,i])
-        cylinder($fn=CKpMcutcylRez,d=CKpMgrooveD,h=CKpMgrooveOD);
+        cylinder($fn=CKpMcutcylRez,d=CKpMgrooveD,h=pMgrooveOR);
             }//end hull 1
                 hull(){
                 //even
         translate([0,0,(CKpMgrooveD/2)])
         rotate([270,0,i])
-        cylinder($fn=CKpMcutcylRez,d=CKpMgrooveD,h=CKpMgrooveOD);
+        cylinder($fn=CKpMcutcylRez,d=CKpMgrooveD,h=pMgrooveOR);
                 //odd
         translate([0,0,(CKpMgrooveD/2)])
         rotate([270,0,i+(0.1)])
-        cylinder($fn=CKpMcutcylRez,d=CKpMgrooveD,h=CKpMgrooveOD);
+        cylinder($fn=CKpMcutcylRez,d=CKpMgrooveD,h=pMgrooveOR);
             }//end hull 2
             
         }//end fors    
@@ -274,21 +280,21 @@ module needlepathLEFT(){
                 //even
         translate([0,0,(CKpMgrooveD/2)-(CKpMgrooveturnR2*cos(asin(((i-(CKpMd7+CKpMd6+CKpMd5+CKpMd4+CKpMd3)-(0.1))*(PI*CKpMID)/360)/CKpMgrooveturnR2))-CKpMgrooveturnR2)])
         rotate([270,0,i-(0.1)])
-        cylinder($fn=CKpMcutcylRez,d=CKpMgrooveD,h=CKpMgrooveOD);
+        cylinder($fn=CKpMcutcylRez,d=CKpMgrooveD,h=pMgrooveOR);
                 //even
         translate([0,0,(CKpMgrooveD/2)-(CKpMgrooveturnR2*cos(asin(((i-(CKpMd7+CKpMd6+CKpMd5+CKpMd4+CKpMd3))*(PI*CKpMID)/360)/CKpMgrooveturnR2))-CKpMgrooveturnR2)])
         rotate([270,0,i])
-        cylinder($fn=CKpMcutcylRez,d=CKpMgrooveD,h=CKpMgrooveOD);
+        cylinder($fn=CKpMcutcylRez,d=CKpMgrooveD,h=pMgrooveOR);
             }//end hull 1
                 hull(){
                 //even
         translate([0,0,(CKpMgrooveD/2)-(CKpMgrooveturnR2*cos(asin(((i-(CKpMd7+CKpMd6+CKpMd5+CKpMd4+CKpMd3))*(PI*CKpMID)/360)/CKpMgrooveturnR2))-CKpMgrooveturnR2)])
         rotate([270,0,i])
-        cylinder($fn=CKpMcutcylRez,d=CKpMgrooveD,h=CKpMgrooveOD);
+        cylinder($fn=CKpMcutcylRez,d=CKpMgrooveD,h=pMgrooveOR);
                 //odd
         translate([0,0,(CKpMgrooveD/2)-(CKpMgrooveturnR2*cos(asin(((i-(CKpMd7+CKpMd6+CKpMd5+CKpMd4+CKpMd3)+(0.1))*(PI*CKpMID)/360)/CKpMgrooveturnR2))-CKpMgrooveturnR2)])
         rotate([270,0,i+(0.1)])
-        cylinder($fn=CKpMcutcylRez,d=CKpMgrooveD,h=CKpMgrooveOD);
+        cylinder($fn=CKpMcutcylRez,d=CKpMgrooveD,h=pMgrooveOR);
             }//end hull 2
             
         }//end fors
@@ -298,7 +304,7 @@ module needlepathLEFT(){
               
         translate([0,0,0])
         rotate([270,0,i])
-        cylinder($fn=CKpMcutcylRez,d=CKpMgrooveD,h=CKpMgrooveOD);
+        cylinder($fn=CKpMcutcylRez,d=CKpMgrooveD,h=pMgrooveOR);
           }
           cylinder($fn=180,d=CKpMID, h=pMH);  
       }
@@ -313,7 +319,7 @@ module needlepathLEFT(){
 
         translate([0,0,((CKpMgrooveD/2)+((sin(CKpMcutA)*CKpMgrooveturnR2)*360/(PI*CKpMID)))+((tan(CKpMcutA)*(i-(CKpMd7+CKpMd6+CKpMd5+CKpMd4+CKpMd3+CKpMd2-0.0))*mi))])
         rotate([270,0,i])
-        cylinder($fn=CKpMcutcylRez,d=CKpMgrooveD,h=CKpMgrooveOD);
+        cylinder($fn=CKpMcutcylRez,d=CKpMgrooveD,h=pMgrooveOR);
           }
           cylinder($fn=180,d=CKpMID, h=pMH);    
       } //end diff
@@ -323,7 +329,7 @@ module needlepathLEFT(){
               
         translate([0,0,0])
         rotate([270,0,i])
-        cylinder($fn=CKpMcutcylRez,d=CKpMgrooveD,h=CKpMgrooveOD);
+        cylinder($fn=CKpMcutcylRez,d=CKpMgrooveD,h=pMgrooveOR);
           }
           cylinder($fn=180,d=CKpMID, h=pMH);    
       } //end difference
