@@ -67,11 +67,19 @@ CKpM(); //mountain
     pMshelfX=25;  //length of shelf in mm
     pMshelfd=(pMshelfX/glen)*gdeg; //number of degrees for entire groove7
 
+    pMshelfHole2X=pMshelfX-(pMshelfBoltD*1.5);  //length of shelf in mm
+    pMshelfHole2d=(pMshelfHole2X/glen)*gdeg; //number of degrees for entire groove7
+
+
+
 module CKpM(){
     translate([0,-p3wallOD/2,0]){ //main translate
     difference(){
         translate([0,0,pMH/2])
-        cube([c2ID+(pMgroove*2)+(pMwallT*2),c2ID+(pMgroove*2)+(pMwallT*2),pMH], center=true);   
+        //main cube
+        translate([0,(c2ID+(pMgroove*2)+(pMwallT*2))/4,0])
+        cube([c2ID+(pMgroove*2)+(pMwallT*2),(c2ID+(pMgroove*2)+(pMwallT*2))/2,pMH], center=true);
+        //main ID cut
         cylinder(d=pMID,h=pMH+1,$fn=rez);
         
         //////
@@ -100,12 +108,34 @@ module CKpM(){
         translate([0,0,pPspace2+pPplate2+pMshelfH]){
         rotate([0,0,(pMd7+pMd6+pMd5+pMd4+pMd3+pMd2+pMd1-pMd0)])
         mirror([1,0,0])
+        minkowski(){
+        translate([pMshelfchamfR,0,pMshelfchamfR])    
         cube([pMID*4,pMID*4,pMH]);
+        sphere(r=pMshelfchamfR,$fn=100);
+        }
         mirror([1,0,0])
         rotate([0,0,(pMd7+pMd6+pMd5+pMd4+pMd3+pMd2+pMd1-pMd0)])
         mirror([1,0,0])
+        minkowski(){
+        translate([pMshelfchamfR,0,pMshelfchamfR])    
         cube([pMID*4,pMID*4,pMH]);
+        sphere(r=pMshelfchamfR,$fn=100);
         }
+        }
+        //
+        //////
+        
+       
+        //////
+        //mounting bolt holes
+        
+        rotate([0,0,(pMd7+pMd6+pMd5+pMd4+pMd3+pMd2+pMd1-pMd0+(pMshelfd/2))])
+        translate([0,(pMID/2)+(pMshelfBoltD)+pMgroove,0])
+        cylinder(d=pMshelfBoltD, h=pMH, $fn=36);
+        
+        rotate([0,0,(pMd7+pMd6+pMd5+pMd4+pMd3+pMd2+pMd1-pMd0+pMshelfHole2d)])
+        translate([0,(((c2ID+(pMgroove*2)+(pMwallT*2))/2)/cos((pMd7+pMd6+pMd5+pMd4+pMd3+pMd2+pMd1-pMd0+pMshelfHole2d)))-(pMshelfBoltD*1.5),0])
+        cylinder(d=pMshelfBoltD, h=pMH, $fn=36);
         
         
         
