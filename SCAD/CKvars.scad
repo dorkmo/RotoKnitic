@@ -187,6 +187,8 @@ pMgrooveSlop=2;
 pMwallHextra=5.75;      //extra height above groove at heighest point
 CKpMID=p2OD+2;  //inside diameter of main wall
 pMH=pMwallHextra+pMgrooveC3; //total height of mountain
+pMshelfH=4; //thickness of shelf resting on top of c3
+pMshelfchamfR=2; //radius of chamfer at join shelf/wall
 
 echo((pMgroove*2)+CKpMID);
 
@@ -235,7 +237,8 @@ c3H=upper_surfaceH;
 echo("c3OD=", c3OD);
 
 pMID=c2ID;
-pMOD=c3OD;
+pMODwall=c2ID+(pMgroove*2)+(pMwallT*2);
+pMODshelf=c3OD;
 
    /////////////////////////////////
 pMgrooveOR=pMgroove+(pMID/2); //center to OD of groove
