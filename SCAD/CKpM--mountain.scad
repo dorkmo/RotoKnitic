@@ -65,10 +65,13 @@ CKpM(); //mountain
     pMd0=1; //define later
     
     pMshelfX=25;  //length of shelf in mm
-    pMshelfd=(pMshelfX/glen)*gdeg; //number of degrees for entire groove7
+    pMshelfd=(pMshelfX/glen)*gdeg; //number of degrees of shelf
 
-    pMshelfHole2X=pMshelfX-(pMshelfBoltD*1.5);  //length of shelf in mm
-    pMshelfHole2d=(pMshelfHole2X/glen)*gdeg; //number of degrees for entire groove7
+    pMshelfHole1X=pMshelfchamfR+(pMshelfBoltD*1.5);  //distance to hole center from main body
+    pMshelfHole1d=(pMshelfHole1X/glen)*gdeg; //number of degrees from edge to hole center
+
+    pMshelfHole2X=pMshelfX-(pMshelfBoltD*1.5);  //distance to hole center from main body
+    pMshelfHole2d=(pMshelfHole2X/glen)*gdeg; //number of degrees from edge to hole center
 
 
 
@@ -129,7 +132,7 @@ module CKpM(){
         //////
         //mounting bolt holes
         
-        rotate([0,0,(pMd7+pMd6+pMd5+pMd4+pMd3+pMd2+pMd1-pMd0+(pMshelfd/2))])
+        rotate([0,0,(pMd7+pMd6+pMd5+pMd4+pMd3+pMd2+pMd1-pMd0+pMshelfHole1d)])
         translate([0,(pMID/2)+(pMshelfBoltD)+pMgroove,0])
         cylinder(d=pMshelfBoltD, h=pMH, $fn=36);
         

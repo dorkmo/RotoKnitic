@@ -188,7 +188,7 @@ pMwallHextra=5.75;      //extra height above groove at heighest point
 CKpMID=p2OD+2;  //inside diameter of main wall
 pMH=pMwallHextra+pMgrooveC3; //total height of mountain
 pMshelfH=4; //thickness of shelf resting on top of c3
-pMshelfchamfR=8; //radius of chamfer at join shelf/wall
+pMshelfchamfR=6; //radius of chamfer at join shelf/wall
 pMshelfBoltD=3;
 
 echo((pMgroove*2)+CKpMID);
