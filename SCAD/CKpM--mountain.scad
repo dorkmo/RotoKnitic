@@ -140,8 +140,16 @@ module CKpM(){
         translate([0,(((c2ID+(pMgroove*2)+(pMwallT*2))/2)/cos((pMd7+pMd6+pMd5+pMd4+pMd3+pMd2+pMd1-pMd0+pMshelfHole2d)))-(pMshelfBoltD*1.5),0])
         cylinder(d=pMshelfBoltD, h=pMH, $fn=36);
         
+        mirror([1,0,0]){
+        rotate([0,0,(pMd7+pMd6+pMd5+pMd4+pMd3+pMd2+pMd1-pMd0+pMshelfHole1d)])
+        translate([0,(pMID/2)+(pMshelfBoltD)+pMgroove,0])
+        cylinder(d=pMshelfBoltD, h=pMH, $fn=36);
         
-        
+        rotate([0,0,(pMd7+pMd6+pMd5+pMd4+pMd3+pMd2+pMd1-pMd0+pMshelfHole2d)])
+        translate([0,(((c2ID+(pMgroove*2)+(pMwallT*2))/2)/cos((pMd7+pMd6+pMd5+pMd4+pMd3+pMd2+pMd1-pMd0+pMshelfHole2d)))-(pMshelfBoltD*1.5),0])
+        cylinder(d=pMshelfBoltD, h=pMH, $fn=36);
+            
+        }
         //
         //////
         
