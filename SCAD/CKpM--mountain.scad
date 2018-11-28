@@ -11,15 +11,16 @@ CKpM(); //mountain
 
     mult=4;                //rough multiplier 5-30
     grez=rez*mult;          //number of sides of groove path main circle
-    gdeg=360/grez;          //groove rez in fractions of a degree
+    gdeg=360/grez;          //standard fraction of a degree per groove rez
     glen=(pMID*PI)/grez;    //length of arc of each rez's fraction of a degree
+    glnd=glen/gdeg;         //length of standard fraction of a degree
     
     echo("rez", rez);
     echo("grez", grez);
     echo("gdeg", gdeg);
     echo("glen", glen);
     
-    pMgrooveturnR=15; //radius of upper curved path in groove
+    pMgrooveturnR=20; //radius of upper curved path in groove
     pMgrooveturnR2=8; //radius of lower curved path in groove
     pMgrooveD=nC+pMgrooveSlop; //Y plane diamter of groove cut
  
@@ -27,7 +28,7 @@ CKpM(); //mountain
     pMcutRez=2; //cuts per degree
  //   CKpMcutDeg=(((CKpMp7X/2)*360/(PI*CKpMID))/CKpMp7X); //degrees per unit diameter
     pMcutcylRez=36;  //number of sides on groove cutting clylinder
-    pMcutA=45;    //angle of cut path
+    pMcutA=30;    //angle of cut path
 
     pMp7X=5;  //half of length of plateu of groove. preferably whole number 
     pMd7=(pMp7X/glen)*gdeg; //number of degrees for entire groove7
@@ -40,7 +41,7 @@ CKpM(); //mountain
     echo("pMd7", pMd7);
     echo("grez7", grez7);
     
-    pMp6X=cos(pMcutA)*pMgrooveturnR; 
+    pMp6X=cos(90-pMcutA)*pMgrooveturnR; 
     pMd6=(pMp6X/glen)*gdeg;
     grez6=pMd6/grez/(pMp6X/(pMID*PI));
     pMd6s=pMd7;
@@ -57,8 +58,8 @@ CKpM(); //mountain
     
     pMh5s=pMh6e;
     pMh5e=(pMgrooveD/2);
-    pMp5X=(pMh5s-pMh5e)*tan(pMcutA);
-    pMd5=(pMp5X/glen)*gdeg;
+    pMp5X=(pMh5s-pMh5e)*tan(90-pMcutA);
+    pMd5=pMp5X/glnd;
     grez5=pMd5/grez/(pMp5X/(pMID*PI));
     pMd5s=pMd7+pMd6;
     pMd5e=pMd7+pMd6+pMd5;
