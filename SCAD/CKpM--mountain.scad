@@ -4,7 +4,8 @@ include <CKvars.scad>;
 //*re do mounting tabs
 //*gut and redo main body geometry
 //*add integrated yarn feeder based on needle height
-/////////
+//*function func6 not right? working with 45 angle but not others
+///////
 
 CKpM(); //mountain
 
@@ -26,7 +27,7 @@ CKpM(); //mountain
     pMcutRez=2; //cuts per degree
  //   CKpMcutDeg=(((CKpMp7X/2)*360/(PI*CKpMID))/CKpMp7X); //degrees per unit diameter
     pMcutcylRez=36;  //number of sides on groove cutting clylinder
-    pMcutA=30;    //angle of cut path
+    pMcutA=45;    //angle of cut path
 
     pMp7X=5;  //half of length of plateu of groove. preferably whole number 
     pMd7=(pMp7X/glen)*gdeg; //number of degrees for entire groove7
@@ -171,6 +172,8 @@ module CKpM(){
         
     } //end main body diffference    
     
+    /////START GROOVE CUTS/////
+    
     //7    
     for(i=[pMd7s:gdeg:pMd7e]){
             translate([0,0,pMh7s])
@@ -180,14 +183,14 @@ module CKpM(){
     
     //6
     for(i=[pMd6s:gdeg:pMd6e]){
-            translate([0,0,func6(i)+pMh7s])
+            translate([0,0,pMh7s+func6(i)])
             rotate([270,0,i])
             cylinder($fn=pMcutcylRez,d=pMgrooveD,h=pMgrooveOR);
     }//end 6 for
     
     //5
     for(i=[pMd5s:gdeg:pMd5e]){
-            translate([0,0,-(sin(pMcutA)*i*glen/gdeg)-func6(pMd6e)+pMh7s])    /////needs work
+            translate([0,0,pMh7s+func6(pMd6e)-(tan(pMcutA)*(i-pMd5s)*glen/gdeg)])    /////needs work
             rotate([270,0,i]) 
             cylinder($fn=pMcutcylRez,d=pMgrooveD,h=pMgrooveOR);
     }//end 5 for
