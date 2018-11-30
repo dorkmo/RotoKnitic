@@ -14,11 +14,22 @@ CKpM(); //mountain
     gdeg=360/grez;          //standard fraction of a degree per groove rez
     glen=(pMID*PI)/grez;    //length of arc of each rez's fraction of a degree
     glnd=glen/gdeg;         //length of standard fraction of a degree
+
+    gcho=2*(pMID/2)*sin(gdeg/2);  //chord length of glnd
+    garc=gdeg*(pMID/2);           //arc length... too close to get to smaller digits that are diff?
+    
     
     echo("rez", rez);
     echo("grez", grez);
     echo("gdeg", gdeg);
     echo("glen", glen);
+    echo("glnd", glnd);
+    echo("gcho", gcho);
+    echo("garc", garc);
+
+    
+    echo("gcho/glen", gcho/glen);
+    
     
     pMgrooveturnR=20; //radius of upper curved path in groove
     pMgrooveturnR2=8; //radius of lower curved path in groove
@@ -28,7 +39,7 @@ CKpM(); //mountain
     pMcutRez=2; //cuts per degree
  //   CKpMcutDeg=(((CKpMp7X/2)*360/(PI*CKpMID))/CKpMp7X); //degrees per unit diameter
     pMcutcylRez=36;  //number of sides on groove cutting clylinder
-    pMcutA=30;    //angle of cut path
+    pMcutA=45;    //angle of cut path
 
     pMp7X=5;  //half of length of plateu of groove. preferably whole number 
     pMd7=(pMp7X/glen)*gdeg; //number of degrees for entire groove7
@@ -59,7 +70,7 @@ CKpM(); //mountain
     pMh5s=pMh6e;
     pMh5e=(pMgrooveD/2);
     pMp5X=(pMh5s-pMh5e)*tan(90-pMcutA);
-    pMd5=pMp5X/glnd;
+    pMd5=pMp5X/glnd;            //?too many degrees?
     grez5=pMd5/grez/(pMp5X/(pMID*PI));
     pMd5s=pMd7+pMd6;
     pMd5e=pMd7+pMd6+pMd5;
@@ -191,7 +202,7 @@ module CKpM(){
     
     //5
     for(i=[pMd5s:gdeg:pMd5e]){
-            translate([0,0,pMh7s+func6(pMd6e)-(tan(pMcutA)*(i-pMd5s)*glen/gdeg)])    /////needs work
+            translate([0,0,pMh7s+func6(pMd6e)-(tan(pMcutA)*(i-pMd5s)*glnd)])    /////needs work
             rotate([270,0,i]) 
             cylinder($fn=pMcutcylRez,d=pMgrooveD,h=pMgrooveOR);
     }//end 5 for
