@@ -5,9 +5,11 @@ include <CKvars.scad>;
 //*gut and redo main body geometry
 //*add integrated yarn feeder based on needle height
 //*function func6 not right? working with 45 angle but not others
+//*pMd4 not placing groove properly when not at 45 degrees
+//*pMd0 needs to be defined to make groove match with bottom of plate2
 ///////
 
-CKpM(); //mountain
+CKpM(); //render mountain
 
     mult=8;                //rough multiplier 5-30
     grez=rez*mult;          //number of sides of groove path main circle
@@ -23,11 +25,11 @@ CKpM(); //mountain
     echo("gdeg", gdeg);
     echo("glen", glen);
     echo("glnd", glnd);
-    echo("gcho", gcho);
-    echo("garc", garc);
+
+    echo("pMgrooveC3", pMgrooveC3);
     
-    pMgrooveturnR=15; //radius of upper curved path in groove 15
-    pMgrooveturnR2=15; //radius of lower curved path in groove 15
+    pMgrooveturnR=14; //radius of upper curved path in groove 15
+    pMgrooveturnR2=7; //radius of lower curved path in groove 7
     pMgrooveD=nC+pMgrooveSlop; //Y plane diamter of groove cut
  
     pMp3X=3;  //length of flat area of section 3
@@ -35,7 +37,6 @@ CKpM(); //mountain
     pMcutcylRez=36;  //number of sides on groove cutting clylinder
 
     pMcutA=45;    //angle of cut path
-
 
 //7
     pMp7X=15;  //half of length of plateu of groove. preferably whole number 
@@ -45,40 +46,22 @@ CKpM(); //mountain
     pMh7s=pMgrooveC3-(pMgrooveD/2);   //height of center of groove
     pMh7e=pMgrooveC3-(pMgrooveD/2);
     
-    echo("pMd7", pMd7);
-
 //6    
     pMp6X=cos(90-pMcutA)*pMgrooveturnR; 
     pMd6=pMp6X/glnd;
-    grez6=pMd6/grez/(pMp6X/(pMID*PI));
-    pMd6s=pMd7;
-    pMd6e=pMd7+pMd6;
+    pMd6s=pMd7e;
+    pMd6e=pMd7e+pMd6;
     function func6(i) = (pMgrooveturnR*cos(asin(((i-pMd6s)*(pMp6X/pMd6))/pMgrooveturnR))-pMgrooveturnR);
     pMh6s=pMh7e;
     pMh6e=pMh7e+func6(pMd6e);
-    
-    echo("pMp6X", pMp6X);
-    echo("pMd6", pMd6);
-    echo("grez6", grez6);
-     //CKpMp5X=(pMgrooveC3-(CKpMgrooveD/2)+(CKpMgrooveturnR*cos(asin(((CKpMd6)*(CKpMp6X/CKpMd6))/CKpMgrooveturnR))-CKpMgrooveturnR))/(1/cos(90-CKpMcutA));
-    //CKpMp5X=(pMgrooveC3-(sin(CKpMcutA)*CKpMgrooveturnR))*tan(CKpMcutA)
 
 //5    
     pMh5s=pMh6e;
-    pMh5e=0;        //(pMgrooveD/2)
+    pMh5e=0;
     pMp5X=(pMh5s-pMh5e)*tan(90-pMcutA);
-    pMd5=pMp5X/glnd;            //?too many degrees?
-    grez5=pMd5/grez/(pMp5X/(pMID*PI));
-    pMd5s=pMd7+pMd6;
-    pMd5e=pMd7+pMd6+pMd5;
-
-    
-    echo("pMgrooveC3", pMgrooveC3);
-    echo("pMp5X", pMp5X);
-    echo("pMd5", pMd5);
-    echo("grez5", grez5);    
-
-
+    pMd5=pMp5X/glnd;
+    pMd5s=pMd6e;
+    pMd5e=pMd6e+pMd5;
 
 //4    
     pMh4e=pMgrooveC2-(pMgrooveD/2);
@@ -86,27 +69,22 @@ CKpM(); //mountain
     pMp55X=(pMgrooveturnR2*tan(90-pMcutA))-(pMgrooveturnR2*sin(90-pMcutA))+(pMh4e/tan(90-pMcutA));
     pMd55=pMp55X/glnd;
 
-    pMp4X=cos(pMcutA)*pMgrooveturnR2;
-    pMd4=pMp4X/glnd;    
-    pMd4s=pMd7+pMd6+pMd5-pMd55;
-    pMd4e=pMd7+pMd6+pMd5-pMd55+pMd4;
+    pMp4X=cos(90-pMcutA)*pMgrooveturnR2;  /////////problem with non-45 angles, p55X?
+    pMd4=pMp4X/glnd;
+    pMd4s=pMd5e-pMd55;
+    pMd4e=pMd5e-pMd55+pMd4;
     function func4(i) = -(pMgrooveturnR2*cos(asin(((pMd4e-i)*(pMp4X/pMd4))/pMgrooveturnR2))-pMgrooveturnR2);
     pMh4s=func4(pMd4s);
 
 //3    
-    pMp3X=2.5;          //length of lower plateu of groove  2.5 
-    pMd3=pMp3X/glnd; //number of degrees for groove section 3
-    pMd3s=pMd4e;                          //degree turn to center of groove
-    pMd3e=pMd4e+pMd3;                       //highest degree turn for section 7
-    pMh3s=pMh4e;   //height of center of groove
+    pMp3X=2.5;            //length of lower plateu of groove  2.5 
+    pMd3=pMp3X/glnd;      //number of degrees for groove section 3
+    pMd3s=pMd4e;          //degree turn to center of groove
+    pMd3e=pMd4e+pMd3;     //highest degree turn for section 7
+    pMh3s=pMh4e;          //height of center of groove
     pMh3e=pMh4e;
 
 //2    
-
-    
-//    pMp55X=(pMgrooveturnR2*tan(90-pMcutA))-(pMgrooveturnR2*sin(90-pMcutA))+(pMh4e/tan(90-pMcutA));
-//    pMd55=pMp55X/glnd;
-
     pMp2X=cos(pMcutA)*pMgrooveturnR2;
     pMd2=pMp2X/glnd;    
     pMd2s=pMd3e;
@@ -117,14 +95,16 @@ CKpM(); //mountain
 
 //1
     pMh1s=pMh2e;
-    pMh1e=pMgrooveC1-(pMgrooveD/2);        //(pMgrooveD/2)
+    pMh1e=pMgrooveC1-(pMgrooveD/2);
     pMp1X=(pMh1e-pMh1s)*tan(90-pMcutA);
-    pMd1=pMp1X/glnd;            //?too many degrees?
+    pMd1=pMp1X/glnd;
     pMd1s=pMd2e;
     pMd1e=pMd2e+pMd1;
 
+//0
     pMd0=0; //define later
-    
+
+//mounting shelf and holes settings   
     pMshelfX=25;  //length of shelf in mm
     pMshelfd=(pMshelfX/glen)*gdeg; //number of degrees of shelf
 
@@ -133,8 +113,6 @@ CKpM(); //mountain
 
     pMshelfHole2X=pMshelfX-(pMshelfBoltD*1.5);  //distance to hole center from main body
     pMshelfHole2d=(pMshelfHole2X/glen)*gdeg; //number of degrees from edge to hole center
-
-
 
 module CKpM(){
     translate([0,-p3wallOD/2,0]){ //main translate
@@ -189,10 +167,8 @@ module CKpM(){
         //
         //////
         
-       
         //////
         //mounting bolt holes
-        
         rotate([0,0,(pMd7+pMd6+pMd5+pMd4+pMd3+pMd2+pMd1-pMd0+pMshelfHole1d)])
         translate([0,(pMID/2)+(pMshelfBoltD)+pMgroove,0])
         cylinder(d=pMshelfBoltD, h=pMH, $fn=36);
@@ -209,12 +185,10 @@ module CKpM(){
         rotate([0,0,(pMd7+pMd6+pMd5+pMd4+pMd3+pMd2+pMd1-pMd0+pMshelfHole2d)])
         translate([0,(((c2ID+(pMgroove*2)+(pMwallT*2))/2)/cos((pMd7+pMd6+pMd5+pMd4+pMd3+pMd2+pMd1-pMd0+pMshelfHole2d)))-(pMshelfBoltD*1.5),0])
         cylinder(d=pMshelfBoltD, h=pMH, $fn=36);
-            
-        }
-        //
-        //////
-        
-        
+        } //end mirror
+        //end of bolt holes
+        //////////////
+
     } //end main body diffference    
     
     /////START GROOVE CUTS/////
