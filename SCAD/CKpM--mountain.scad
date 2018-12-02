@@ -9,7 +9,7 @@ include <CKvars.scad>;
 
 CKpM(); //mountain
 
-    mult=4;                //rough multiplier 5-30
+    mult=8;                //rough multiplier 5-30
     grez=rez*mult;          //number of sides of groove path main circle
     gdeg=360/grez;          //standard fraction of a degree per groove rez
     glen=(pMID*PI)/grez;    //length of arc of each rez's fraction of a degree
@@ -26,11 +26,11 @@ CKpM(); //mountain
     echo("gcho", gcho);
     echo("garc", garc);
     
-    pMgrooveturnR=15; //radius of upper curved path in groove
-    pMgrooveturnR2=15; //radius of lower curved path in groove
+    pMgrooveturnR=15; //radius of upper curved path in groove 15
+    pMgrooveturnR2=15; //radius of lower curved path in groove 15
     pMgrooveD=nC+pMgrooveSlop; //Y plane diamter of groove cut
  
-    pMp3X=2.5;  //length of flat area of section 3
+    pMp3X=3;  //length of flat area of section 3
     pMcutRez=2; //cuts per degree
     pMcutcylRez=36;  //number of sides on groove cutting clylinder
 
@@ -242,53 +242,79 @@ module CKpM(){
     
     //4
     for(i=[pMd4s:gdeg:pMd4e]){
+        hull(){
             translate([0,0,func4(i)+pMh4e])
             rotate([270,0,i])
             cylinder($fn=pMcutcylRez,d=pMgrooveD,h=pMgrooveOR);
+        if(i<=pMd5e){
+            translate([0,0,pMh7s+func6(pMd6e)-(tan(pMcutA)*(i-pMd5s)*glnd)])
+            rotate([270,0,i]) 
+            cylinder($fn=pMcutcylRez,d=pMgrooveD,h=pMgrooveOR);
+        }
+        else{
+            translate([0,0,0])  
+            rotate([270,0,i]) 
+            cylinder($fn=pMcutcylRez,d=pMgrooveD,h=pMgrooveOR);    
+        }
+    } //end hull        
     }//end 4 for
 
     //3
     for(i=[pMd3s:gdeg:pMd3e]){
+        hull(){
             translate([0,0,pMh4e])
             rotate([270,0,i])
             cylinder($fn=pMcutcylRez,d=pMgrooveD,h=pMgrooveOR);
+        if(i<=pMd5e){
+            translate([0,0,pMh7s+func6(pMd6e)-(tan(pMcutA)*(i-pMd5s)*glnd)])
+            rotate([270,0,i]) 
+            cylinder($fn=pMcutcylRez,d=pMgrooveD,h=pMgrooveOR);
+        }
+        else{
+            translate([0,0,0])  
+            rotate([270,0,i]) 
+            cylinder($fn=pMcutcylRez,d=pMgrooveD,h=pMgrooveOR);    
+        }
+    } //end hull
     }//end 3 for    
 
-    //filler
-    for(i=[pMd5e:gdeg:pMd2s]){
-            translate([0,0,0])
-            rotate([270,0,i])
-            cylinder($fn=pMcutcylRez,d=pMgrooveD,h=pMgrooveOR);
-    }//end filler for  
-    
     //2    
     for(i=[pMd2s:gdeg:pMd2e]){
         hull(){
             translate([0,0,func2(i)+pMh2s])
             rotate([270,0,i])
             cylinder($fn=pMcutcylRez,d=pMgrooveD,h=pMgrooveOR);
-        
-            translate([0,0,0])    /////needs work
+        if(i<=pMd5e){
+            translate([0,0,pMh7s+func6(pMd6e)-(tan(pMcutA)*(i-pMd5s)*glnd)])
+            rotate([270,0,i]) 
+            cylinder($fn=pMcutcylRez,d=pMgrooveD,h=pMgrooveOR);
+        } //end if
+        else{        
+            translate([0,0,0])    
             rotate([270,0,i]) 
             cylinder($fn=pMcutcylRez,d=pMgrooveD,h=pMgrooveOR);       
-        }
+        } //end else
+    } //end hull
     }//end 2 for
     
     //1
     for(i=[pMd1s:gdeg:pMd1e]){
-        hull(){
-        
+        hull(){        
             translate([0,0,pMh2s+func2(pMd2e)+(tan(pMcutA)*(i-pMd1s)*glnd)])    /////needs work
             rotate([270,0,i]) 
             cylinder($fn=pMcutcylRez,d=pMgrooveD,h=pMgrooveOR);
-
-            translate([0,0,0])    /////needs work
+        if(i<=pMd5e){
+            translate([0,0,pMh7s+func6(pMd6e)-(tan(pMcutA)*(i-pMd5s)*glnd)])
+            rotate([270,0,i]) 
+            cylinder($fn=pMcutcylRez,d=pMgrooveD,h=pMgrooveOR);
+        } //end if
+        else{   
+            translate([0,0,0])  
             rotate([270,0,i]) 
             cylinder($fn=pMcutcylRez,d=pMgrooveD,h=pMgrooveOR);        
-        }
+        } //end else
+    }//end hull
     }//end 1 for
-    
-    
     
     } //end main translate
 } //end CKpM module
