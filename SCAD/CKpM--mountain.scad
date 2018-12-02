@@ -9,7 +9,7 @@ include <CKvars.scad>;
 
 CKpM(); //mountain
 
-    mult=2;                //rough multiplier 5-30
+    mult=4;                //rough multiplier 5-30
     grez=rez*mult;          //number of sides of groove path main circle
     gdeg=360/grez;          //standard fraction of a degree per groove rez
     glen=(pMID*PI)/grez;    //length of arc of each rez's fraction of a degree
@@ -27,14 +27,14 @@ CKpM(); //mountain
     echo("garc", garc);
     
     pMgrooveturnR=15; //radius of upper curved path in groove
-    pMgrooveturnR2=8; //radius of lower curved path in groove
+    pMgrooveturnR2=30; //radius of lower curved path in groove
     pMgrooveD=nC+pMgrooveSlop; //Y plane diamter of groove cut
  
     pMp3X=2.5;  //length of flat area of section 3
     pMcutRez=2; //cuts per degree
     pMcutcylRez=36;  //number of sides on groove cutting clylinder
 
-    pMcutA=25;    //angle of cut path
+    pMcutA=45;    //angle of cut path
 
 
 //7
@@ -79,12 +79,22 @@ CKpM(); //mountain
     echo("pMp5X", pMp5X);
     echo("pMd5", pMd5);
     echo("grez5", grez5);    
-    
+
+
+
+//4    
+    pMp55X=(pMgrooveturnR2*tan(90-pMcutA))-(pMgrooveturnR2*sin(90-pMcutA));
+    pMd55=pMp55X/glnd;
+
     pMp4X=cos(pMcutA)*pMgrooveturnR2;
-    pMd4=(pMp4X/glen)*gdeg;
-    grez4=pMd4/grez/(pMp4X/(pMID*PI));
-    pMd4s=pMd7+pMd6+pMd5;
-    pMd4e=pMd7+pMd6+pMd5+pMd4;
+    pMd4=pMp4X/glnd;    
+    pMd4s=pMd7+pMd6+pMd5-pMd55;
+    pMd4e=pMd7+pMd6+pMd5-pMd55+pMd4;
+    function func4(i) = -(pMgrooveturnR2*cos(asin(((pMd4e-i)*(pMp4X/pMd4))/pMgrooveturnR2))-pMgrooveturnR2);
+    pMh4s=func4(pMd4s);
+    pMh4e=0;
+    
+
     
     pMd3=1; //define later
     pMd2=1; //define later
@@ -186,11 +196,11 @@ module CKpM(){
     /////START GROOVE CUTS/////
     
     //7    
-//    for(i=[pMd7s:gdeg:pMd7e]){
-//            translate([0,0,pMh7s])
-//            rotate([270,0,i])
-//            cylinder($fn=pMcutcylRez,d=pMgrooveD,h=pMgrooveOR);
-//    }//end 7 for
+    for(i=[pMd7s:gdeg:pMd7e]){
+            translate([0,0,pMh7s])
+            rotate([270,0,i])
+            cylinder($fn=pMcutcylRez,d=pMgrooveD,h=pMgrooveOR);
+    }//end 7 for
     
     //6
     for(i=[pMd6s:gdeg:pMd6e]){
@@ -205,6 +215,14 @@ module CKpM(){
             rotate([270,0,i]) 
             cylinder($fn=pMcutcylRez,d=pMgrooveD,h=pMgrooveOR);
     }//end 5 for
+    
+    //4
+    for(i=[pMd4s:gdeg:pMd4e]){
+            translate([0,0,func4(i)])
+            rotate([270,0,i])
+            cylinder($fn=pMcutcylRez,d=pMgrooveD,h=pMgrooveOR);
+    }//end 6 for
+    
         
     } //end main translate
 } //end CKpM module
