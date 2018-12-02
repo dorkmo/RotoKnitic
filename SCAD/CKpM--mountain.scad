@@ -9,7 +9,7 @@ include <CKvars.scad>;
 
 CKpM(); //mountain
 
-    mult=4;                //rough multiplier 5-30
+    mult=2;                //rough multiplier 5-30
     grez=rez*mult;          //number of sides of groove path main circle
     gdeg=360/grez;          //standard fraction of a degree per groove rez
     glen=(pMID*PI)/grez;    //length of arc of each rez's fraction of a degree
@@ -18,7 +18,6 @@ CKpM(); //mountain
     gcho=2*(pMID/2)*sin(gdeg/2);  //chord length of glnd
     garc=gdeg*(pMID/2);           //arc length... too close to get to smaller digits that are diff?
     
-    
     echo("rez", rez);
     echo("grez", grez);
     echo("gdeg", gdeg);
@@ -26,23 +25,21 @@ CKpM(); //mountain
     echo("glnd", glnd);
     echo("gcho", gcho);
     echo("garc", garc);
-
     
-    echo("gcho/glen", gcho/glen);
-    
-    
-    pMgrooveturnR=20; //radius of upper curved path in groove
+    pMgrooveturnR=15; //radius of upper curved path in groove
     pMgrooveturnR2=8; //radius of lower curved path in groove
     pMgrooveD=nC+pMgrooveSlop; //Y plane diamter of groove cut
  
     pMp3X=2.5;  //length of flat area of section 3
     pMcutRez=2; //cuts per degree
- //   CKpMcutDeg=(((CKpMp7X/2)*360/(PI*CKpMID))/CKpMp7X); //degrees per unit diameter
     pMcutcylRez=36;  //number of sides on groove cutting clylinder
-    pMcutA=45;    //angle of cut path
 
-    pMp7X=5;  //half of length of plateu of groove. preferably whole number 
-    pMd7=(pMp7X/glen)*gdeg; //number of degrees for entire groove7
+    pMcutA=25;    //angle of cut path
+
+
+//7
+    pMp7X=15;  //half of length of plateu of groove. preferably whole number 
+    pMd7=pMp7X/glnd; //number of degrees for entire groove7
     grez7=pMd7/grez/(pMp7X/(pMID*PI));     //degrees of section 7
     pMd7s=0;                          //degree turn to center of groove
     pMd7e=pMd7;                       //highest degree turn for section 7
@@ -51,24 +48,26 @@ CKpM(); //mountain
     
     echo("pMd7", pMd7);
     echo("grez7", grez7);
-    
+
+//6    
     pMp6X=cos(90-pMcutA)*pMgrooveturnR; 
-    pMd6=(pMp6X/glen)*gdeg;
+    pMd6=pMp6X/glnd;
     grez6=pMd6/grez/(pMp6X/(pMID*PI));
     pMd6s=pMd7;
     pMd6e=pMd7+pMd6;
     function func6(i) = (pMgrooveturnR*cos(asin(((i-pMd6s)*(pMp6X/pMd6))/pMgrooveturnR))-pMgrooveturnR);
     pMh6s=pMh7e;
-    pMh6e=pMh7e-func6(pMd6e);
+    pMh6e=pMh7e+func6(pMd6e);
     
     echo("pMp6X", pMp6X);
     echo("pMd6", pMd6);
     echo("grez6", grez6);
      //CKpMp5X=(pMgrooveC3-(CKpMgrooveD/2)+(CKpMgrooveturnR*cos(asin(((CKpMd6)*(CKpMp6X/CKpMd6))/CKpMgrooveturnR))-CKpMgrooveturnR))/(1/cos(90-CKpMcutA));
     //CKpMp5X=(pMgrooveC3-(sin(CKpMcutA)*CKpMgrooveturnR))*tan(CKpMcutA)
-    
+
+//5    
     pMh5s=pMh6e;
-    pMh5e=(pMgrooveD/2);
+    pMh5e=0;        //(pMgrooveD/2)
     pMp5X=(pMh5s-pMh5e)*tan(90-pMcutA);
     pMd5=pMp5X/glnd;            //?too many degrees?
     grez5=pMd5/grez/(pMp5X/(pMID*PI));
@@ -187,11 +186,11 @@ module CKpM(){
     /////START GROOVE CUTS/////
     
     //7    
-    for(i=[pMd7s:gdeg:pMd7e]){
-            translate([0,0,pMh7s])
-            rotate([270,0,i])
-            cylinder($fn=pMcutcylRez,d=pMgrooveD,h=pMgrooveOR);
-    }//end 7 for
+//    for(i=[pMd7s:gdeg:pMd7e]){
+//            translate([0,0,pMh7s])
+//            rotate([270,0,i])
+//            cylinder($fn=pMcutcylRez,d=pMgrooveD,h=pMgrooveOR);
+//    }//end 7 for
     
     //6
     for(i=[pMd6s:gdeg:pMd6e]){
