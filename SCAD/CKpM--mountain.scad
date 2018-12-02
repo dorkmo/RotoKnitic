@@ -115,10 +115,15 @@ CKpM(); //mountain
     pMh2e=pMh3e+func2(pMd2s);
     pMh2s=pMh3e;
 
+//1
+    pMh1s=pMh2e;
+    pMh1e=pMgrooveC1-(pMgrooveD/2);        //(pMgrooveD/2)
+    pMp1X=(pMh1e-pMh1s)*tan(90-pMcutA);
+    pMd1=pMp1X/glnd;            //?too many degrees?
+    pMd1s=pMd2e;
+    pMd1e=pMd2e+pMd1;
 
-
-    pMd1=1; //define later
-    pMd0=1; //define later
+    pMd0=0; //define later
     
     pMshelfX=25;  //length of shelf in mm
     pMshelfd=(pMshelfX/glen)*gdeg; //number of degrees of shelf
@@ -248,13 +253,42 @@ module CKpM(){
             rotate([270,0,i])
             cylinder($fn=pMcutcylRez,d=pMgrooveD,h=pMgrooveOR);
     }//end 3 for    
+
+    //filler
+    for(i=[pMd5e:gdeg:pMd2s]){
+            translate([0,0,0])
+            rotate([270,0,i])
+            cylinder($fn=pMcutcylRez,d=pMgrooveD,h=pMgrooveOR);
+    }//end filler for  
     
     //2    
     for(i=[pMd2s:gdeg:pMd2e]){
+        hull(){
             translate([0,0,func2(i)+pMh2s])
             rotate([270,0,i])
             cylinder($fn=pMcutcylRez,d=pMgrooveD,h=pMgrooveOR);
-    }//end 6 for
+        
+            translate([0,0,0])    /////needs work
+            rotate([270,0,i]) 
+            cylinder($fn=pMcutcylRez,d=pMgrooveD,h=pMgrooveOR);       
+        }
+    }//end 2 for
+    
+    //1
+    for(i=[pMd1s:gdeg:pMd1e]){
+        hull(){
+        
+            translate([0,0,pMh2s+func2(pMd2e)+(tan(pMcutA)*(i-pMd1s)*glnd)])    /////needs work
+            rotate([270,0,i]) 
+            cylinder($fn=pMcutcylRez,d=pMgrooveD,h=pMgrooveOR);
+
+            translate([0,0,0])    /////needs work
+            rotate([270,0,i]) 
+            cylinder($fn=pMcutcylRez,d=pMgrooveD,h=pMgrooveOR);        
+        }
+    }//end 1 for
+    
+    
     
     } //end main translate
 } //end CKpM module
