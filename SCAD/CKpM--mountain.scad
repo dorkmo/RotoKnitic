@@ -11,7 +11,7 @@ include <CKvars.scad>;
 
 CKpM(); //render mountain
 
-    mult=8;                //rough multiplier 5-30
+    mult=10;                //rough multiplier 5-30
     grez=rez*mult;          //number of sides of groove path main circle
     gdeg=360/grez;          //standard fraction of a degree per groove rez
     glen=(pMID*PI)/grez;    //length of arc of each rez's fraction of a degree
@@ -102,11 +102,11 @@ CKpM(); //render mountain
     pMd1e=pMd2e+pMd1;
 
 //0
-    pMd0=0; //define later
+    pMd0=0;     //pMgrooveD/glnd; //define later
 
 //mounting shelf and holes settings   
     pMshelfX=25;  //length of shelf in mm
-    pMshelfd=(pMshelfX/glen)*gdeg; //number of degrees of shelf
+    pMshelfd=pMshelfX/glnd; //number of degrees of shelf
 
     pMshelfHole1X=pMshelfchamfR+(pMshelfBoltD*1.5);  //distance to hole center from main body
     pMshelfHole1d=(pMshelfHole1X/glen)*gdeg; //number of degrees from edge to hole center
@@ -127,11 +127,11 @@ module CKpM(){
         //////
         //angled cut ends
         //*need to calc exactly so height of path entrance matches bottom of top plate
-        rotate([0,0,(pMd7+pMd6+pMd5+pMd4+pMd3+pMd2+pMd1-pMd0+pMshelfd)])
+        rotate([0,0,(pMd7+pMd6+pMd5-pMd55+pMd4+pMd3+pMd2+pMd1-pMd0+pMshelfd)])
         mirror([1,0,0])
         cube([pMID*4,pMID*4,pMH]);
         mirror([1,0,0])
-        rotate([0,0,(pMd7+pMd6+pMd5+pMd4+pMd3+pMd2+pMd1-pMd0+pMshelfd)])
+        rotate([0,0,(pMd7+pMd6+pMd5-pMd55+pMd4+pMd3+pMd2+pMd1-pMd0+pMshelfd)])
         mirror([1,0,0])
         cube([pMID*4,pMID*4,pMH]);
         //
@@ -139,16 +139,16 @@ module CKpM(){
         
         //////
         //ends' angled cut with shelf
-        rotate([0,0,(pMd7+pMd6+pMd5+pMd4+pMd3+pMd2+pMd1-pMd0)])
+        rotate([0,0,(pMd7+pMd6+pMd5-pMd55+pMd4+pMd3+pMd2+pMd1-pMd0)])
         mirror([1,0,0])
         cube([pMID*4,pMID*4,pPspace2+pPplate2]);
         mirror([1,0,0])
-        rotate([0,0,(pMd7+pMd6+pMd5+pMd4+pMd3+pMd2+pMd1-pMd0)])
+        rotate([0,0,(pMd7+pMd6+pMd5-pMd55+pMd4+pMd3+pMd2+pMd1-pMd0)])
         mirror([1,0,0])
         cube([pMID*4,pMID*4,pPspace2+pPplate2]);
         
         translate([0,0,pPspace2+pPplate2+pMshelfH]){
-        rotate([0,0,(pMd7+pMd6+pMd5+pMd4+pMd3+pMd2+pMd1-pMd0)])
+        rotate([0,0,(pMd7+pMd6+pMd5-pMd55+pMd4+pMd3+pMd2+pMd1-pMd0)])
         mirror([1,0,0])
         minkowski(){
         translate([pMshelfchamfR,0,pMshelfchamfR])    
@@ -156,7 +156,7 @@ module CKpM(){
         sphere(r=pMshelfchamfR,$fn=100);
         }
         mirror([1,0,0])
-        rotate([0,0,(pMd7+pMd6+pMd5+pMd4+pMd3+pMd2+pMd1-pMd0)])
+        rotate([0,0,(pMd7+pMd6+pMd5-pMd55+pMd4+pMd3+pMd2+pMd1-pMd0)])
         mirror([1,0,0])
         minkowski(){
         translate([pMshelfchamfR,0,pMshelfchamfR])    
@@ -169,27 +169,27 @@ module CKpM(){
         
         //////
         //mounting bolt holes
-        rotate([0,0,(pMd7+pMd6+pMd5+pMd4+pMd3+pMd2+pMd1-pMd0+pMshelfHole1d)])
+        rotate([0,0,(pMd7+pMd6+pMd5-pMd55+pMd4+pMd3+pMd2+pMd1-pMd0+pMshelfHole1d)])
         translate([0,(pMID/2)+(pMshelfBoltD)+pMgroove,0])
         cylinder(d=pMshelfBoltD, h=pMH, $fn=36);
         
-        rotate([0,0,(pMd7+pMd6+pMd5+pMd4+pMd3+pMd2+pMd1-pMd0+pMshelfHole2d)])
-        translate([0,(((c2ID+(pMgroove*2)+(pMwallT*2))/2)/cos((pMd7+pMd6+pMd5+pMd4+pMd3+pMd2+pMd1-pMd0+pMshelfHole2d)))-(pMshelfBoltD*1.5),0])
+        rotate([0,0,(pMd7+pMd6+pMd5-pMd55+pMd4+pMd3+pMd2+pMd1-pMd0+pMshelfHole2d)])
+        translate([0,(((c2ID+(pMgroove*2)+(pMwallT*2))/2)/cos((pMd7+pMd6+pMd5-pMd55+pMd4+pMd3+pMd2+pMd1-pMd0+pMshelfHole2d)))-(pMshelfBoltD*1.5),0])
         cylinder(d=pMshelfBoltD, h=pMH, $fn=36);
         
         mirror([1,0,0]){
-        rotate([0,0,(pMd7+pMd6+pMd5+pMd4+pMd3+pMd2+pMd1-pMd0+pMshelfHole1d)])
+        rotate([0,0,(pMd7+pMd6+pMd5-pMd55+pMd4+pMd3+pMd2+pMd1-pMd0+pMshelfHole1d)])
         translate([0,(pMID/2)+(pMshelfBoltD)+pMgroove,0])
         cylinder(d=pMshelfBoltD, h=pMH, $fn=36);
         
-        rotate([0,0,(pMd7+pMd6+pMd5+pMd4+pMd3+pMd2+pMd1-pMd0+pMshelfHole2d)])
-        translate([0,(((c2ID+(pMgroove*2)+(pMwallT*2))/2)/cos((pMd7+pMd6+pMd5+pMd4+pMd3+pMd2+pMd1-pMd0+pMshelfHole2d)))-(pMshelfBoltD*1.5),0])
+        rotate([0,0,(pMd7+pMd6+pMd5-pMd55+pMd4+pMd3+pMd2+pMd1-pMd0+pMshelfHole2d)])
+        translate([0,(((c2ID+(pMgroove*2)+(pMwallT*2))/2)/cos((pMd7+pMd6+pMd5-pMd55+pMd4+pMd3+pMd2+pMd1-pMd0+pMshelfHole2d)))-(pMshelfBoltD*1.5),0])
         cylinder(d=pMshelfBoltD, h=pMH, $fn=36);
         } //end mirror
         //end of bolt holes
         //////////////
 
-    } //end main body diffference    
+//    } //end main body diffference    
     
     /////START GROOVE CUTS/////
     
@@ -289,6 +289,9 @@ module CKpM(){
         } //end else
     }//end hull
     }//end 1 for
+    
+        } //end main body diffference    //move line above grooves to see paths
+  
     
     } //end main translate
 } //end CKpM module
