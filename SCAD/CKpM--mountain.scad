@@ -7,6 +7,7 @@ include <CKvars.scad>;
 //*function func6 not right? working with 45 angle but not others
 //*pMd4 not placing groove properly when not at 45 degrees
 //*pMd0 needs to be defined to make groove match with bottom of plate2
+//*trim end, pMd0. test cube.
 ///////
 
 CKpM(); //render mountain
