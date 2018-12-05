@@ -191,6 +191,20 @@ module CKpM(){
 
 //    } //end main body diffference    
     
+            //left needle path cut
+needlepathLEFT();
+            
+        //right needle path cut
+mirror([1,0,0]) 
+needlepathLEFT();   
+    
+        } //end main body diffference    //move line above grooves to see paths
+    } //end main translate
+} //end CKpM module
+
+
+
+module needlepathLEFT(){
     /////START GROOVE CUTS/////
     
     //7    
@@ -288,10 +302,7 @@ module CKpM(){
             cylinder($fn=pMcutcylRez,d=pMgrooveD,h=pMgrooveOR);        
         } //end else
     }//end hull
-    }//end 1 for
+    }//end 1 for            
     
-        } //end main body diffference    //move line above grooves to see paths
-  
-    
-    } //end main translate
-} //end CKpM module
+}
+     
