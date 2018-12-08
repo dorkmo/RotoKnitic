@@ -127,15 +127,23 @@ module CKpM(){
         //main ID cut
         cylinder(d=pMID,h=pMH+1,$fn=rez);
         
+        //c3 groove - add cut in center of mountain for a little tab 1" wide?
+        translate([0,0,pPspace2-cWiggle])
+        difference(){
+            cylinder(d=c3OD,h=c3H+cWiggle,$fn=rez);
+            cylinder(d=(c2ID+(pMgroove*2)+(pMwallT*2)),h=c3H+cWiggle,$fn=rez);
+        }
+        
         //////
         //angled cut ends
-        //*need to calc exactly so height of path entrance matches bottom of top plate
+        //*need to calc pMd0 exactly so height of path entrance matches bottom of top plate
         rotate([0,0,(pMd7+pMd6+pMd5-pMd55+pMd4+pMd3+pMd2+pMd1-pMd0)])
         translate([-pMshelfX,0,0])
         mirror([1,0,0])
         cube([pMID*4,pMID*4,pMH]);
+        
         mirror([1,0,0])
-        rotate([0,0,(pMd7+pMd6+pMd5-pMd55+pMd4+pMd3+pMd2+pMd1-pMd0+pMshelfd)])
+        rotate([0,0,(pMd7+pMd6+pMd5-pMd55+pMd4+pMd3+pMd2+pMd1-pMd0+pMshelfd)]) //tweak like above
         mirror([1,0,0])
         cube([pMID*4,pMID*4,pMH]);
         //
