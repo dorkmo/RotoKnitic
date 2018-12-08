@@ -8,6 +8,7 @@ include <CKvars.scad>;
 //*pMd4 not placing groove properly when not at 45 degrees
 //*pMd0 needs to be defined to make groove match with bottom of plate2
 //*trim end, pMd0. test cube.
+//*cut groove in back side so that plate2 can sit in it
 ///////
 
 CKpM(); //render mountain
@@ -96,14 +97,15 @@ CKpM(); //render mountain
 
 //1
     pMh1s=pMh2e;
-    pMh1e=pMgrooveC1-(pMgrooveD/2);
+    pMh1e=pMgrooveC1-(pMgrooveD/2); //-(pMgrooveD/2)
     pMp1X=(pMh1e-pMh1s)*tan(90-pMcutA);
     pMd1=pMp1X/glnd;
     pMd1s=pMd2e;
     pMd1e=pMd2e+pMd1;
 
 //0
-    pMd0=0;     //pMgrooveD/glnd; //define later
+    pMp0X=pMgrooveD/2;  //pMgrooveD
+    pMd0=pMp0X/glnd;     //pMgrooveD/glnd; //define later
 
 //mounting shelf and holes settings   
     pMshelfX=25;  //length of shelf in mm
@@ -128,7 +130,8 @@ module CKpM(){
         //////
         //angled cut ends
         //*need to calc exactly so height of path entrance matches bottom of top plate
-        rotate([0,0,(pMd7+pMd6+pMd5-pMd55+pMd4+pMd3+pMd2+pMd1-pMd0+pMshelfd)])
+        rotate([0,0,(pMd7+pMd6+pMd5-pMd55+pMd4+pMd3+pMd2+pMd1-pMd0)])
+        translate([-pMshelfX,0,0])
         mirror([1,0,0])
         cube([pMID*4,pMID*4,pMH]);
         mirror([1,0,0])
@@ -305,5 +308,5 @@ module needlepathLEFT(){
     }//end hull
     }//end 1 for            
     
-}
+} //end left needle groove module
      

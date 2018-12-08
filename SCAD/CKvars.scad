@@ -32,7 +32,7 @@ c1zmounts=p3number;
 
 ////MATERIALS////
 
-upper_surfaceH=5;  //thickness of upper rotating plate
+upper_surfaceH=5;  //thickness of upper rotating plate  ///5
 bottom_surface_motor_gearsH=6;  //thickness of geared rotating plate
 table_surface=5;  //thickness of plate of main table
 
@@ -41,7 +41,7 @@ table_surface=5;  //thickness of plate of main table
 //plate 
 pPspace1=12; //? space from main table top to first plate
 pPplate1=bottom_surface_motor_gearsH;  //thickness of geared plated
-pPspace2=12; //space between geared plate and mountain plate
+pPspace2=12; //space between geared plate and mountain plate  //12
 pPplate2=upper_surfaceH;
 
 //"connector0912" connects upper_surface plate to bottom_surface geared plate
