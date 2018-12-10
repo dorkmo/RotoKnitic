@@ -13,6 +13,8 @@ include <CKvars.scad>;
 
 CKpM(); //render mountain
 
+
+/*
     mult=10;                //rough multiplier 5-30
     grez=rez*mult;          //number of sides of groove path main circle
     gdeg=360/grez;          //standard fraction of a degree per groove rez
@@ -117,6 +119,9 @@ CKpM(); //render mountain
     pMshelfHole2X=pMshelfX-(pMshelfBoltD*1.5);  //distance to hole center from main body
     pMshelfHole2d=(pMshelfHole2X/glen)*gdeg; //number of degrees from edge to hole center
 
+
+*/
+
 module CKpM(){
     translate([0,-p3wallOD/2,0]){ //main translate
     difference(){
@@ -127,12 +132,12 @@ module CKpM(){
         //main ID cut
         cylinder(d=pMID,h=pMH+1,$fn=rez);
         
-        //c3 groove - add cut in center of mountain for a little tab 1" wide?
-        translate([0,0,pPspace2-cWiggle])
-        difference(){
-            cylinder(d=c3OD,h=c3H+cWiggle,$fn=rez);
-            cylinder(d=(c2ID+(pMgroove*2)+(pMwallT*2)),h=c3H+cWiggle,$fn=rez);
-        }
+//        //c3 groove - add cut in center of mountain for a little tab 1" wide?
+//        translate([0,0,pPspace2-cWiggle])
+//        difference(){
+//            cylinder(d=c3OD,h=c3H+cWiggle,$fn=rez);
+//            cylinder(d=(c2ID+(pMgroove*2)+(pMwallT*2)),h=c3H+cWiggle,$fn=rez);
+//        }
         
         //////
         //angled cut ends

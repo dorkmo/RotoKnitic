@@ -1,6 +1,16 @@
 include <CKvars.scad>;
 use <CKp8--plateconnector.scad>
 
+//////
+//TODO
+//
+//*spacer mount holes should be further out from ID
+//*mounting holes for mountain tabs
+//*test place mountain for fit
+//*openbeam holes
+//
+//////
+
 CKc3();
 
 //translate([0,0,c3H])
@@ -25,25 +35,59 @@ translate([c3OD/2,0,0]){
         //plate connector holes
         for(i=[1:c2connectors]){
             rotate([0,0,((360/c2connectors)*i)]){
-        translate([0,(CKpMID/2)+(pMgroove),0]){
-            translate([-p8baseW/2,0,0]){
+                translate([0,(CKpMID/2)+(pMgroove),0]){
+                translate([-p8baseW/2,0,0]){
 
-            translate([p8baseW/2,p8holeend2C,-0.1])
-            cylinder(d=p8holeD,h=pPspace2+0.2,$fn=36);
+                translate([p8baseW/2,p8holeend2C,-0.1])
+                    cylinder(d=p8holeD,h=pPspace2+0.2,$fn=36);
 
-            translate([p8baseW/2,p8baseL-p8holeend2C,-0.1])
-            #cylinder(d=p8holeD,h=pPspace2+0.2,$fn=36);
-            } //end hole translate
-        } //end translate to ring
-    } //end rotate i
-} //end for
+                translate([p8baseW/2,p8baseL-p8holeend2C,-0.1])
+                    cylinder(d=p8holeD,h=pPspace2+0.2,$fn=36);
+                    } //end hole translate
+                } //end translate to ring
+            } //end rotate i
+        } //end for
         
         //mountain cutout
+        rotate([0,0,90])
+        #difference(){
+        translate([0,(c2ID+(pMgroove*2)+(pMwallT*2))/4,c3H/2])
+        cube([c2ID+(pMgroove*2)+(pMwallT*2),(c2ID+(pMgroove*2)+(pMwallT*2))/2,c3H], center=true);
+        //main ID cut
+
+        rotate([0,0,(pMd7+pMd6+pMd5-pMd55+pMd4+pMd3+pMd2+pMd1-pMd0)])
+        mirror([1,0,0])
+        cube([pMID*4,pMID*4,c3H]);
+        mirror([1,0,0])
+        rotate([0,0,(pMd7+pMd6+pMd5-pMd55+pMd4+pMd3+pMd2+pMd1-pMd0)])
+        mirror([1,0,0])
+        cube([pMID*4,pMID*4,c3H]);
+        }
+        
+        
         
         //makerbeam holes
         
         
     }  //end main difference
+/*
+        rotate([0,0,90])
+        #difference(){
+        translate([0,(c2ID+(pMgroove*2)+(pMwallT*2))/4,c3H/2])
+        cube([c2ID+(pMgroove*2)+(pMwallT*2),(c2ID+(pMgroove*2)+(pMwallT*2))/2,c3H], center=true);
+        //main ID cut
+
+        rotate([0,0,(pMd7+pMd6+pMd5-pMd55+pMd4+pMd3+pMd2+pMd1-pMd0)])
+        mirror([1,0,0])
+        cube([pMID*4,pMID*4,c3H]);
+        mirror([1,0,0])
+        rotate([0,0,(pMd7+pMd6+pMd5-pMd55+pMd4+pMd3+pMd2+pMd1-pMd0)])
+        mirror([1,0,0])
+        cube([pMID*4,pMID*4,c3H]);
+        }
+*/
+
+    
 }  //end main translate
 
 } //end CKc1 module
