@@ -36,7 +36,8 @@ module CKpM(){
         cube([pMID*4,pMID*4,pMH]);
         
         mirror([1,0,0])
-        rotate([0,0,(pMd7+pMd6+pMd5-pMd55+pMd4+pMd3+pMd2+pMd1-pMd0+pMshelfd)]) //tweak like above
+        rotate([0,0,(pMd7+pMd6+pMd5-pMd55+pMd4+pMd3+pMd2+pMd1-pMd0)]) //tweak like above
+        translate([-pMshelfX,0,0])
         mirror([1,0,0])
         cube([pMID*4,pMID*4,pMH]);
         //
@@ -71,37 +72,65 @@ module CKpM(){
         }
         //
         //////
+
+/*        
+        //////
+        // 45 degree shelf cut
+        translate([-(((c2ID+(pMgroove*2)+(pMwallT*2))/2*tan(pMd7+pMd6+pMd5-pMd55+pMd4+pMd3+pMd2+pMd1-pMd0))),
+        (c2ID+(pMgroove*2)+(pMwallT*2))/2,
+        pPspace2+pPplate2])
+        translate([0,0,0])
+        rotate([0,0,180])
+        #cube([pMID,pMID,pMH]);
+
+
+        mirror([1,0,0])
+        translate([-(((c2ID+(pMgroove*2)+(pMwallT*2))/2*tan(pMd7+pMd6+pMd5-pMd55+pMd4+pMd3+pMd2+pMd1-pMd0))),(c2ID+(pMgroove*2)+(pMwallT*2))/2,pPspace2+pPplate2])
+        rotate([0,0,135])
+        cube([pMID,pMID,pMH]);        
+        //
+        //////
+        */
         
         //////
         //mounting bolt holes
-        rotate([0,0,(pMd7+pMd6+pMd5-pMd55+pMd4+pMd3+pMd2+pMd1-pMd0+pMshelfHole1d)])
-        translate([0,(pMID/2)+(pMshelfBoltD)+pMgroove,0])
+        rotate([0,0,(pMd7+pMd6+pMd5-pMd55+pMd4+pMd3+pMd2+pMd1-pMd0)])
+        translate([
+        -(((pMshelfX-pMshelfchamfR)/2)+pMshelfchamfR),
+        (pMID/2)+(pMshelfBoltD)+pMgroove,
+        0])
         cylinder(d=pMshelfBoltD, h=pMH, $fn=36);
         
-        rotate([0,0,(pMd7+pMd6+pMd5-pMd55+pMd4+pMd3+pMd2+pMd1-pMd0+pMshelfHole2d)])
-        translate([0,(((c2ID+(pMgroove*2)+(pMwallT*2))/2)/cos((pMd7+pMd6+pMd5-pMd55+pMd4+pMd3+pMd2+pMd1-pMd0+pMshelfHole2d)))-(pMshelfBoltD*1.5),0])
+        rotate([0,0,(pMd7+pMd6+pMd5-pMd55+pMd4+pMd3+pMd2+pMd1-pMd0)])
+        translate([
+        -(((pMshelfX-pMshelfchamfR)/2)+pMshelfchamfR),
+        ((pMID/2)+(pMshelfBoltD)+pMgroove)+(((((c2ID+(pMgroove*2)+(pMwallT*2))/2)/cos(pMd7+pMd6+pMd5-pMd55+pMd4+pMd3+pMd2+pMd1-pMd0))-((pMID/2)+(pMshelfBoltD)+pMgroove))/1.5),
+        0])
         cylinder(d=pMshelfBoltD, h=pMH, $fn=36);
+                
         
         mirror([1,0,0]){
-        rotate([0,0,(pMd7+pMd6+pMd5-pMd55+pMd4+pMd3+pMd2+pMd1-pMd0+pMshelfHole1d)])
-        translate([0,(pMID/2)+(pMshelfBoltD)+pMgroove,0])
+        rotate([0,0,(pMd7+pMd6+pMd5-pMd55+pMd4+pMd3+pMd2+pMd1-pMd0)])
+        translate([-(((pMshelfX-pMshelfchamfR)/2)+pMshelfchamfR),(pMID/2)+(pMshelfBoltD)+pMgroove,0])
         cylinder(d=pMshelfBoltD, h=pMH, $fn=36);
         
-        rotate([0,0,(pMd7+pMd6+pMd5-pMd55+pMd4+pMd3+pMd2+pMd1-pMd0+pMshelfHole2d)])
-        translate([0,(((c2ID+(pMgroove*2)+(pMwallT*2))/2)/cos((pMd7+pMd6+pMd5-pMd55+pMd4+pMd3+pMd2+pMd1-pMd0+pMshelfHole2d)))-(pMshelfBoltD*1.5),0])
+        rotate([0,0,(pMd7+pMd6+pMd5-pMd55+pMd4+pMd3+pMd2+pMd1-pMd0)])
+        translate([-(((pMshelfX-pMshelfchamfR)/2)+pMshelfchamfR),(pMID/2)+(pMshelfBoltD)+pMgroove+(connector0912HoleC2C/2),0])
         cylinder(d=pMshelfBoltD, h=pMH, $fn=36);
+                
         } //end mirror
         //end of bolt holes
         //////////////
 
 //    } //end main body diffference    
     
+        ///////////////////GROOVE PATH/////////
             //left needle path cut
-needlepathLEFT();
+// needlepathLEFT();
             
         //right needle path cut
-mirror([1,0,0]) 
-needlepathLEFT();   
+// mirror([1,0,0]) 
+// needlepathLEFT();   
     
         } //end main body diffference    //move line above grooves to see paths
     } //end main translate

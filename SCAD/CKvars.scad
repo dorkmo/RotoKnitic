@@ -346,7 +346,7 @@ pMgrooveOR=pMgroove+(pMID/2); //center to OD of groove
     pMd0=pMp0X/glnd;     //pMgrooveD/glnd; //define later
 
 //mounting shelf and holes settings   
-    pMshelfX=25;  //length of shelf in mm
+    pMshelfX=15;  //length of shelf in mm
     pMshelfd=pMshelfX/glnd; //number of degrees of shelf
 
     pMshelfHole1X=pMshelfchamfR+(pMshelfBoltD*1.5);  //distance to hole center from main body
@@ -359,7 +359,7 @@ pMgrooveOR=pMgroove+(pMID/2); //center to OD of groove
 //END MOUNTAIN VARS
 ///////////////////////
 
-//c3
+//c3 - redo with extra mountian tab/shelf distance
 c3OD=((c2ID+(pMgroove*2)+(pMwallT*2))/cos(pMd7+pMd6+pMd5-pMd55+pMd4+pMd3+pMd2+pMd1-pMd0))+(p7mountL*2)+1;
 echo("c3OD=", c3OD);
 
