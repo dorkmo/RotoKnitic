@@ -94,7 +94,7 @@ module CKpM(){
         
         //////
         //mounting bolt holes
-        rotate([0,0,(pMd7+pMd6+pMd5-pMd55+pMd4+pMd3+pMd2+pMd1-pMd0)])
+        rotate([0,0,(pMd1e-pMd0)])
         translate([
         -(((pMshelfX-pMshelfchamfR)/2)+pMshelfchamfR),
         (pMID/2)+(pMshelfBoltD)+pMgroove,

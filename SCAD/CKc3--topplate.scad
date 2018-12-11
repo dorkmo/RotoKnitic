@@ -17,6 +17,8 @@ CKc3();
 //rotate([0,0,-90])
 //CKp8();
 
+echo((c3OD-c3ID)/2);
+
 module CKc3(){
     
     

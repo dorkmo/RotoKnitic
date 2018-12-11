@@ -360,7 +360,11 @@ pMgrooveOR=pMgroove+(pMID/2); //center to OD of groove
 ///////////////////////
 
 //c3 - redo with extra mountian tab/shelf distance
-c3OD=((c2ID+(pMgroove*2)+(pMwallT*2))/cos(pMd7+pMd6+pMd5-pMd55+pMd4+pMd3+pMd2+pMd1-pMd0))+(p7mountL*2)+1;
+c3OD=((((c2ID+(pMgroove*2)+(pMwallT*2))*tan(pMd7+pMd6+pMd5-pMd55+pMd4+pMd3+pMd2+pMd1-pMd0))+
+(pMshelfX/cos(pMd7+pMd6+pMd5-pMd55+pMd4+pMd3+pMd2+pMd1-pMd0)))
+/sin(pMd7+pMd6+pMd5-pMd55+pMd4+pMd3+pMd2+pMd1-pMd0))
++(p7mountL*2);
+
 echo("c3OD=", c3OD);
 
 pMODshelf=c3OD;
