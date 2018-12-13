@@ -30,13 +30,13 @@ module CKpM(){
         //////
         //angled cut ends
         //*need to calc pMd0 exactly so height of path entrance matches bottom of top plate
-        rotate([0,0,(pMd7+pMd6+pMd5-pMd55+pMd4+pMd3+pMd2+pMd1-pMd0)])
+        rotate([0,0,(pMd1e-pMd0)])
         translate([-pMshelfX,0,0])
         mirror([1,0,0])
         cube([pMID*4,pMID*4,pMH]);
         
         mirror([1,0,0])
-        rotate([0,0,(pMd7+pMd6+pMd5-pMd55+pMd4+pMd3+pMd2+pMd1-pMd0)]) //tweak like above
+        rotate([0,0,(pMd1e-pMd0)]) //tweak like above
         translate([-pMshelfX,0,0])
         mirror([1,0,0])
         cube([pMID*4,pMID*4,pMH]);
@@ -45,16 +45,16 @@ module CKpM(){
         
         //////
         //ends' angled cut with shelf
-        rotate([0,0,(pMd7+pMd6+pMd5-pMd55+pMd4+pMd3+pMd2+pMd1-pMd0)])
+        rotate([0,0,(pMd1e-pMd0)])
         mirror([1,0,0])
         cube([pMID*4,pMID*4,pPspace2+pPplate2]);
         mirror([1,0,0])
-        rotate([0,0,(pMd7+pMd6+pMd5-pMd55+pMd4+pMd3+pMd2+pMd1-pMd0)])
+        rotate([0,0,(pMd1e-pMd0)])
         mirror([1,0,0])
         cube([pMID*4,pMID*4,pPspace2+pPplate2]);
         
         translate([0,0,pPspace2+pPplate2+pMshelfH]){
-        rotate([0,0,(pMd7+pMd6+pMd5-pMd55+pMd4+pMd3+pMd2+pMd1-pMd0)])
+        rotate([0,0,(pMd1e-pMd0)])
         mirror([1,0,0])
         minkowski(){
         translate([pMshelfchamfR,0,pMshelfchamfR])    
@@ -62,7 +62,7 @@ module CKpM(){
         sphere(r=pMshelfchamfR,$fn=100);
         }
         mirror([1,0,0])
-        rotate([0,0,(pMd7+pMd6+pMd5-pMd55+pMd4+pMd3+pMd2+pMd1-pMd0)])
+        rotate([0,0,(pMd1e-pMd0)])
         mirror([1,0,0])
         minkowski(){
         translate([pMshelfchamfR,0,pMshelfchamfR])    
