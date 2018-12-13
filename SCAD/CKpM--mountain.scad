@@ -73,6 +73,26 @@ module CKpM(){
         //
         //////
 
+
+
+
+//////
+//45 shelf cut versions two        
+        
+        
+        rotate([0,0,(pMd1e-pMd0)])
+        translate([
+        -(((pMshelfX-pMshelfchamfR)/2)+pMshelfchamfR),
+        ((pMID/2)+(pMshelfBoltD)+pMgroove)+(((((c2ID+(pMgroove*2)+(pMwallT*2))/2)/cos(pMd1e-pMd0))-((pMID/2)+(pMshelfBoltD)+pMgroove))/1.5),
+        (pMH/2)])
+        rotate([0,0,-(pMd1e-pMd0)])
+        translate([-cos(45)*(((pMshelfX-pMshelfchamfR-pMshelfBoltD)/2)+(pMshelfBoltD/2)),sin(45)*(((pMshelfX-pMshelfchamfR-pMshelfBoltD)/2)+(pMshelfBoltD/2)),0])
+        rotate([0,0,-45]) 
+        translate([-pMID/2,0,0])
+        rotate([0,0,0]) //45
+        #cube([pMID,pMID,pMH],center=true);
+        
+
 /*        
         //////
         // 45 degree shelf cut
@@ -101,20 +121,20 @@ module CKpM(){
         0])
         cylinder(d=pMshelfBoltD, h=pMH, $fn=36);
         
-        rotate([0,0,(pMd7+pMd6+pMd5-pMd55+pMd4+pMd3+pMd2+pMd1-pMd0)])
+        rotate([0,0,(pMd1e-pMd0)])
         translate([
         -(((pMshelfX-pMshelfchamfR)/2)+pMshelfchamfR),
-        ((pMID/2)+(pMshelfBoltD)+pMgroove)+(((((c2ID+(pMgroove*2)+(pMwallT*2))/2)/cos(pMd7+pMd6+pMd5-pMd55+pMd4+pMd3+pMd2+pMd1-pMd0))-((pMID/2)+(pMshelfBoltD)+pMgroove))/1.5),
+        ((pMID/2)+(pMshelfBoltD)+pMgroove)+(((((c2ID+(pMgroove*2)+(pMwallT*2))/2)/cos(pMd1e-pMd0))-((pMID/2)+(pMshelfBoltD)+pMgroove))/1.5),
         0])
         cylinder(d=pMshelfBoltD, h=pMH, $fn=36);
                 
         
         mirror([1,0,0]){
-        rotate([0,0,(pMd7+pMd6+pMd5-pMd55+pMd4+pMd3+pMd2+pMd1-pMd0)])
+        rotate([0,0,(pMd1e-pMd0)])
         translate([-(((pMshelfX-pMshelfchamfR)/2)+pMshelfchamfR),(pMID/2)+(pMshelfBoltD)+pMgroove,0])
         cylinder(d=pMshelfBoltD, h=pMH, $fn=36);
         
-        rotate([0,0,(pMd7+pMd6+pMd5-pMd55+pMd4+pMd3+pMd2+pMd1-pMd0)])
+        rotate([0,0,(pMd1e-pMd0)])
         translate([-(((pMshelfX-pMshelfchamfR)/2)+pMshelfchamfR),(pMID/2)+(pMshelfBoltD)+pMgroove+(connector0912HoleC2C/2),0])
         cylinder(d=pMshelfBoltD, h=pMH, $fn=36);
                 
