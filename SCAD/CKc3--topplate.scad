@@ -37,15 +37,11 @@ translate([c3OD/2,0,0]){
         //plate connector holes
         for(i=[1:c2connectors]){
             rotate([0,0,((360/c2connectors)*i)]){
-                translate([0,(CKpMID/2)+(pMgroove),0]){
-                translate([-p8baseW/2,0,0]){
-
-                translate([p8baseW/2,p8holeend2C,-0.1])
-                    cylinder(d=p8holeD,h=pPspace2+0.2,$fn=36);
-
-                translate([p8baseW/2,p8baseL-p8holeend2C,-0.1])
-                    cylinder(d=p8holeD,h=pPspace2+0.2,$fn=36);
-                    } //end hole translate
+                translate([0,(pMID/2)+(pMgroove)+1+(p8baseL/2),0]){          
+                        translate([0,p8holeC2C/2,-0.1])
+                            cylinder(d=p8holeD,h=pPspace2+0.2,$fn=36);
+                        translate([0,-(p8holeC2C/2),-0.1])
+                            cylinder(d=p8holeD,h=pPspace2+0.2,$fn=36);
                 } //end translate to ring
             } //end rotate i
         } //end for

@@ -76,6 +76,12 @@ module CKpM(){
 
 
 
+
+//////
+        //try ....
+        //from (pMd1e-pMd0) at min wall thickness, cut 45 degrees
+
+
 //////
 //45 shelf cut versions two        
         
@@ -144,13 +150,13 @@ module CKpM(){
 
 //    } //end main body diffference    
     
-        ///////////////////GROOVE PATH/////////
-            //left needle path cut
-// needlepathLEFT();
+///////////////////GROOVE PATH/////////
+        //left needle path cut
+ needlepathLEFT();
             
         //right needle path cut
-// mirror([1,0,0]) 
-// needlepathLEFT();   
+ mirror([1,0,0]) 
+ needlepathLEFT();   
     
         } //end main body diffference    //move line above grooves to see paths
     } //end main translate

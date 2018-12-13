@@ -171,6 +171,7 @@ p8baseW=8;
 p8baseL=25;
 p8holeD=3;
 p8holeend2C=4;
+p8holeC2C=p8baseL-(p8holeend2C*2);
 
 //p9 outer connector
 p9thickness=4;
@@ -251,7 +252,7 @@ pMgrooveOR=pMgroove+(pMID/2); //center to OD of groove
 ////////////////////////
 
 
-    mult=10;                //rough multiplier 5-30
+    mult=20;                //rough multiplier 5-30
     grez=rez*mult;          //number of sides of groove path main circle
     gdeg=360/grez;          //standard fraction of a degree per groove rez
     glen=(pMID*PI)/grez;    //length of arc of each rez's fraction of a degree
@@ -279,7 +280,7 @@ pMgrooveOR=pMgroove+(pMID/2); //center to OD of groove
     pMcutA=45;    //angle of cut path
 
 //7
-    pMp7X=15;  //half of length of plateu of groove. preferably whole number 
+    pMp7X=3;  //half of length of plateu of groove. preferably whole number 
     pMd7=pMp7X/glnd; //number of degrees for entire groove7
     pMd7s=0;                          //degree turn to center of groove
     pMd7e=pMd7;                       //highest degree turn for section 7
