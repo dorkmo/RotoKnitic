@@ -1,5 +1,6 @@
 include <CKvars.scad>;
 use <CKp8--plateconnector.scad>
+use <CKpM--mountain.scad>
 
 //////
 //TODO
@@ -13,6 +14,11 @@ use <CKp8--plateconnector.scad>
 
 CKc3();
 
+translate([c3OD/2,0,0])
+translate([-p3wallOD/2,0,-12])
+rotate([0,0,90])
+CKpM();
+
 //translate([0,0,c3H])
 //rotate([0,0,-90])
 //CKp8();
@@ -25,7 +31,7 @@ module CKc3(){
     rez=p2number*p2needles*2;  //calculate desired rezolution
     $fn=rez; //defines resolution of circles.
     
-translate([c3OD/2,0,0]){            
+translate([c3OD/2,0,0]){     //[c3OD/2,0,0]       
     difference(){  
         
         union(){
@@ -53,11 +59,11 @@ translate([c3OD/2,0,0]){
         cube([c2ID+(pMgroove*2)+(pMwallT*2),(c2ID+(pMgroove*2)+(pMwallT*2))/2,c3H], center=true);
         //main ID cut
 
-        rotate([0,0,(pMd7+pMd6+pMd5-pMd55+pMd4+pMd3+pMd2+pMd1-pMd0)])
+        rotate([0,0,(pMd1e-pMd0)])
         mirror([1,0,0])
         cube([pMID*4,pMID*4,c3H]);
         mirror([1,0,0])
-        rotate([0,0,(pMd7+pMd6+pMd5-pMd55+pMd4+pMd3+pMd2+pMd1-pMd0)])
+        rotate([0,0,(pMd1e-pMd0)])
         mirror([1,0,0])
         cube([pMID*4,pMID*4,c3H]);
         }

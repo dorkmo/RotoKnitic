@@ -4,19 +4,19 @@
 include <CKneedleVars-KH260.scad>;  
 
 //number of "p2" parts around circle
-p2number=12;                //12                //36
+p2number=36;                //12                //36
 
 //number of needles mounted on each "p2" part
-p2needles=5;                //5                 //10
+p2needles=10;                //5                 //10
 
 //number of "p3" parts around circle
-p3number=4;                 //4                 //18
+p3number=18;                 //4                 //18
 
 //number of "p4" parts around circle
-p4number=4;                 //4                 //18
+p4number=18;                 //4                 //18
 
 //distance from the inside face of one needle to the next
-needle2needle=14.35615;     //default=14.35615  //try 8.414
+needle2needle=8.414;     //default=14.35615  //try 8.414
 
 //calculated diameter from inside edge of needles
 p2needlegrooveID=((needle2needle*p2number*p2needles)/PI);
@@ -361,10 +361,11 @@ pMgrooveOR=pMgroove+(pMID/2); //center to OD of groove
 ///////////////////////
 
 //c3 - redo with extra mountian tab/shelf distance
-c3OD=((((c2ID+(pMgroove*2)+(pMwallT*2))*tan(pMd7+pMd6+pMd5-pMd55+pMd4+pMd3+pMd2+pMd1-pMd0))+
-(pMshelfX/cos(pMd7+pMd6+pMd5-pMd55+pMd4+pMd3+pMd2+pMd1-pMd0)))
-/sin(pMd7+pMd6+pMd5-pMd55+pMd4+pMd3+pMd2+pMd1-pMd0))
+c3OD=((((c2ID+(pMgroove*2)+(pMwallT*2))/cos(pMd1e-pMd0))+(2*(pMshelfX*tan(pMd1e-pMd0)))  ));
+/*
+/sin(pMd1e-pMd0))
 +(p7mountL*2);
+*/
 
 echo("c3OD=", c3OD);
 

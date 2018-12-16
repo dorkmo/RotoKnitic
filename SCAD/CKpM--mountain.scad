@@ -73,6 +73,22 @@ module CKpM(){
         //
         //////
 
+//////
+//90 degree end cut test
+translate([((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0)),0,0])
+cube([pMID*4,pMID*4,pPspace2+pPplate2]); //below shelf
+translate([((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0)),0,pPspace2+pPplate2+pMshelfH])
+cube([pMID*4,pMID*4,pMH]); //above shelf
+translate([(((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0)))+pMshelfX,0,pPspace2+pPplate2])
+cube([pMID*4,pMID*4,pMH]); //of shelf
+translate([((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0)),((c2ID+(pMgroove*2)+(pMwallT*2))/2),0])
+rotate([0,0,-45])
+#cube([pMID*4,pMID*4,pMH]);        
+
+
+
+//end 90 cut
+///////        
 
 
 
@@ -84,8 +100,6 @@ module CKpM(){
 
 //////
 //45 shelf cut versions two        
-        
-        
         rotate([0,0,(pMd1e-pMd0)])
         translate([
         -(((pMshelfX-pMshelfchamfR)/2)+pMshelfchamfR),
@@ -97,26 +111,10 @@ module CKpM(){
         translate([-pMID/2,0,0])
         rotate([0,0,0]) //45
         #cube([pMID,pMID,pMH],center=true);
-        
-
-/*        
-        //////
-        // 45 degree shelf cut
-        translate([-(((c2ID+(pMgroove*2)+(pMwallT*2))/2*tan(pMd7+pMd6+pMd5-pMd55+pMd4+pMd3+pMd2+pMd1-pMd0))),
-        (c2ID+(pMgroove*2)+(pMwallT*2))/2,
-        pPspace2+pPplate2])
-        translate([0,0,0])
-        rotate([0,0,180])
-        #cube([pMID,pMID,pMH]);
+//end left side 45 cut
+//////
 
 
-        mirror([1,0,0])
-        translate([-(((c2ID+(pMgroove*2)+(pMwallT*2))/2*tan(pMd7+pMd6+pMd5-pMd55+pMd4+pMd3+pMd2+pMd1-pMd0))),(c2ID+(pMgroove*2)+(pMwallT*2))/2,pPspace2+pPplate2])
-        rotate([0,0,135])
-        cube([pMID,pMID,pMH]);        
-        //
-        //////
-        */
         
         //////
         //mounting bolt holes
@@ -151,13 +149,14 @@ module CKpM(){
 //    } //end main body diffference    
     
 ///////////////////GROOVE PATH/////////
+/*
         //left needle path cut
  needlepathLEFT();
             
         //right needle path cut
  mirror([1,0,0]) 
  needlepathLEFT();   
-    
+ */   
         } //end main body diffference    //move line above grooves to see paths
     } //end main translate
 } //end CKpM module
