@@ -4,19 +4,19 @@
 include <CKneedleVars-KH260.scad>;  
 
 //number of "p2" parts around circle
-p2number=36;                //12                //36
+p2number=12;                //12                //36
 
 //number of needles mounted on each "p2" part
-p2needles=10;                //5                 //10
+p2needles=5;                //5                 //10
 
 //number of "p3" parts around circle
-p3number=18;                 //4                 //18
+p3number=4;                 //4                 //18
 
 //number of "p4" parts around circle
-p4number=18;                 //4                 //18
+p4number=4;                 //4                 //18
 
 //distance from the inside face of one needle to the next
-needle2needle=8.414;     //default=14.35615  //try 8.414
+needle2needle=14.35615;     //default=14.35615  //try 8.414
 
 //calculated diameter from inside edge of needles
 p2needlegrooveID=((needle2needle*p2number*p2needles)/PI);
