@@ -12,6 +12,7 @@ CKpM(); //render mountain
 
 module CKpM(){
     translate([0,-p3wallOD/2,0]){ //main translate
+        union(){
     difference(){
         translate([0,0,pMH/2])
         //main cube
@@ -36,7 +37,7 @@ module CKpM(){
         cube([pMID*4,pMID*4,pMH]);
         
         mirror([1,0,0])
-        rotate([0,0,(pMd1e-pMd0)]) //tweak like above
+        rotate([0,0,(pMd1e-pMd0)])
         translate([-pMshelfX,0,0])
         mirror([1,0,0])
         cube([pMID*4,pMID*4,pMH]);
@@ -187,7 +188,47 @@ translate([-(sin(pMd1e-pMd0)*((pMID/2)+(pMshelfBoltD)+pMgroove)),(cos(pMd1e-pMd0
  mirror([1,0,0]) 
  needlepathLEFT();   
 
+
         } //end main body diffference    //move line above grooves to see paths
+    translate([0,0,pPspace2]){     
+  difference(){
+   
+        translate([0,(c2ID+(pMgroove*2)+(pMwallT*2))/4,(pPplate2/2)])
+        cube([c2ID+(pMgroove*2)+(pMwallT*2),(c2ID+(pMgroove*2)+(pMwallT*2))/2,pPplate2], center=true);
+
+        
+        cylinder(d=pMID,h=pPplate2,$fn=rez);
+
+        //90 degree cut
+        translate([((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0)),0,0])
+            cube([pMID*4,pMID*4,pPplate2]); //below shelf
+        mirror([1,0,0])
+        translate([((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0)),0,0])
+            cube([pMID*4,pMID*4,pPplate2]); //below shelf
+      
+        //cut to end of groove  flip 180
+        difference(){            
+        rotate([0,0,(pMd1e-pMd0)])
+        mirror([0,0,0])
+        cube([pMID*4,pMID*4,pPplate2]);
+        cube([pMID*4,pMID*4,pPplate2]);        
+            }
+        difference(){
+        mirror([1,0,0])
+        rotate([0,0,(pMd1e-pMd0)])
+        mirror([0,0,0])
+        cube([pMID*4,pMID*4,pPplate2]);
+        mirror([1,0,0])    
+        cube([pMID*4,pMID*4,pPplate2]);
+        }
+            
+                }//end diff
+        } //end translate
+        
+        
+        
+        
+    } //end main union
     } //end main translate
 } //end CKpM module
 
