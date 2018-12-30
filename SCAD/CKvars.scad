@@ -178,7 +178,7 @@ p9thickness=4;
 p9H=10;
 
 //mountain
-pMwallT=7.5;  //min thickness from groove to back wall
+pMwallT=9;  //min thickness from groove to back wall  //7.5  //10
 pMgroove=nH-nY-p3wallW+1;  //depth of groove
 pMgrooveAngle=45;
 pMgrooveC1=pPspace2;    //top of groove at position 1 "entrance"  pPspace2 ///////////
@@ -347,7 +347,7 @@ pMgrooveOR=pMgroove+(pMID/2); //center to OD of groove
     pMd0=pMp0X/glnd;     //pMgrooveD/glnd; //define later
 
 //mounting shelf and holes settings   
-    pMshelfX=15;  //length of shelf in mm
+    pMshelfX=pMshelfBoltD*3;  //length of shelf in mm
     pMshelfd=pMshelfX/glnd; //number of degrees of shelf
 
     pMshelfHole1X=pMshelfchamfR+(pMshelfBoltD*1.5);  //distance to hole center from main body

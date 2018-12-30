@@ -1,7 +1,6 @@
 include <CKvars.scad>;
 
 //TO DO//
-//*bring holes closer in
 //*add integrated yarn feeder based on needle height
 //*function func6 not right? working with 45 angle but not others
 //*pMd4 not placing groove properly when not at 45 degrees
@@ -21,19 +20,20 @@ difference(){
   cylinder(d=pMID,h=pMH+1,$fn=rez);
                 
 //////
-//angled cut ends
-rotate([0,0,(pMd1e-pMd0)])
-translate([-pMshelfX,0,0])
+//angled cut ends 
+rotate([0,0,atan((((((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0)))+(pMshelfX/2)))/((cos(pMd1e-pMd0)*((pMID/2)+(pMshelfBoltD)+pMgroove))))])  /////////////
+translate([-((pMshelfX)/2),0,0])
 mirror([1,0,0])
   cube([pMID*4,pMID*4,pMH]);
         
 mirror([1,0,0])
-rotate([0,0,(pMd1e-pMd0)])
-translate([-pMshelfX,0,0])
+rotate([0,0,atan((((((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0)))+(pMshelfX/2)))/((cos(pMd1e-pMd0)*((pMID/2)+(pMshelfBoltD)+pMgroove))))])
+translate([-((pMshelfX)/2),0,0])
 mirror([1,0,0])
   cube([pMID*4,pMID*4,pMH]);
 //
 //////
+
         
 //////
 //ends' angled cut with shelf
@@ -46,83 +46,82 @@ mirror([1,0,0])
   cube([pMID*4,pMID*4,pPspace2+pPplate2]);
 //
 //////
+   
 
 //////
-//90 degree end cut
+//shelf cuts
+
 translate([((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0)),0,0])
   cube([pMID*4,pMID*4,pPspace2+pPplate2]); //below shelf
 
-translate([(((sin(pMd1e-pMd0)*((pMID/2)+(pMshelfBoltD)+pMgroove)))+((cos(pMd1e-pMd0)*(((pMshelfX-pMshelfchamfR)/2)+pMshelfchamfR)))+((pMshelfX-pMshelfchamfR)/2)),0,pPspace2+pPplate2])
+mirror([1,0,0])    
+    translate([((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0)),0,0])
+  cube([pMID*4,pMID*4,pPspace2+pPplate2]); //below shelf
+        
+translate([(((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0)))+pMshelfX,0,pPspace2+pPplate2])
+  cube([pMID*4,pMID*4,pMH]); //of shelf
+mirror([1,0,0])    
+translate([(((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0)))+pMshelfX,0,pPspace2+pPplate2])
   cube([pMID*4,pMID*4,pMH]); //of shelf
 
-mirror([0,0,0])
-translate([(sin(pMd1e-pMd0)*((pMID/2))),0,pPspace2+pPplate2+pMshelfH])
+//chamfered cut
+mirror([1,0,0])
+translate([(((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0)))-pMshelfchamfR,0,pPspace2+pPplate2+pMshelfH])
 minkowski(){
   translate([pMshelfchamfR,0,pMshelfchamfR])    
     cube([pMID*4,pMID*4,pMH]);
   sphere(r=pMshelfchamfR,$fn=100);
 } //end minkowski
 
-        mirror([1,0,0])
-translate([-(cos(45)*((pMshelfX-pMshelfchamfR)/2)),sin(45)*((pMshelfX-pMshelfchamfR)/2),0])
-translate([-(sin(pMd1e-pMd0)*((pMID/2)+(pMshelfBoltD)+pMgroove)),(cos(pMd1e-pMd0)*((pMID/2)+(pMshelfBoltD)+pMgroove)),0])
-translate([-(cos(pMd1e-pMd0)*(((pMshelfX-pMshelfchamfR)/2)+pMshelfchamfR)),-(sin(pMd1e-pMd0)*(((pMshelfX-pMshelfchamfR)/2)+pMshelfchamfR)),0])
+//chamfered cut
+mirror([0,0,0])
+translate([(((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0)))-pMshelfchamfR,0,pPspace2+pPplate2+pMshelfH])
+minkowski(){
+  translate([pMshelfchamfR,0,pMshelfchamfR])    
+    cube([pMID*4,pMID*4,pMH]);
+  sphere(r=pMshelfchamfR,$fn=100);
+} //end minkowski
+
+translate([-(cos(45)*((pMshelfX)/2)),sin(45)*((pMshelfX)/2),0])
+translate([0,(cos(pMd1e-pMd0)*((pMID/2)+(pMshelfBoltD)+pMgroove)),0])
+translate([-((((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0)))+(pMshelfX/2)),0,0])
 translate([0,(((((c2ID+(pMgroove*2)+(pMwallT*2))/2)/cos(pMd1e-pMd0))-((pMID/2)+(pMshelfBoltD)+pMgroove))/1.5),0])
 rotate([0,0,-45])
 translate([-pMID/2,0,0])
-  cube([pMID,pMID,pMH],center=true);    
-//end 90 cut right
-///////        
-
-//////
-//90 degree end cut 2
-mirror([1,0,0]){
-translate([((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0)),0,0])
-  cube([pMID*4,pMID*4,pPspace2+pPplate2]); //below shelf
-translate([(((sin(pMd1e-pMd0)*((pMID/2)+(pMshelfBoltD)+pMgroove)))+((cos(pMd1e-pMd0)*(((pMshelfX-pMshelfchamfR)/2)+pMshelfchamfR)))+((pMshelfX-pMshelfchamfR)/2)),0,pPspace2+pPplate2])
-  cube([pMID*4,pMID*4,pMH]); //of shelf
-
-mirror([0,0,0])
-translate([(sin(pMd1e-pMd0)*((pMID/2))),0,pPspace2+pPplate2+pMshelfH])
-minkowski(){
-  translate([pMshelfchamfR,0,pMshelfchamfR])    
-    cube([pMID*4,pMID*4,pMH]);
-  sphere(r=pMshelfchamfR,$fn=100);
-} //end minkowski
+  cube([pMID,pMID,pMH],center=true);   
 
 mirror([1,0,0])
-translate([-(cos(45)*((pMshelfX-pMshelfchamfR)/2)),sin(45)*((pMshelfX-pMshelfchamfR)/2),0])
-translate([-(sin(pMd1e-pMd0)*((pMID/2)+(pMshelfBoltD)+pMgroove)),(cos(pMd1e-pMd0)*((pMID/2)+(pMshelfBoltD)+pMgroove)),0])
-translate([-(cos(pMd1e-pMd0)*(((pMshelfX-pMshelfchamfR)/2)+pMshelfchamfR)),-(sin(pMd1e-pMd0)*(((pMshelfX-pMshelfchamfR)/2)+pMshelfchamfR)),0])
+translate([-(cos(45)*((pMshelfX)/2)),sin(45)*((pMshelfX)/2),0])
+translate([0,(cos(pMd1e-pMd0)*((pMID/2)+(pMshelfBoltD)+pMgroove)),0])
+translate([-((((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0)))+(pMshelfX/2)),0,0])
 translate([0,(((((c2ID+(pMgroove*2)+(pMwallT*2))/2)/cos(pMd1e-pMd0))-((pMID/2)+(pMshelfBoltD)+pMgroove))/1.5),0])
 rotate([0,0,-45])
 translate([-pMID/2,0,0])
-  cube([pMID,pMID,pMH],center=true);    
+  cube([pMID,pMID,pMH],center=true);   
 
-}//end mirror
-//end 90 cut
+//shelf cuts
 ///////  
         
 //////
 //mounting bolt holes
             //1
-translate([-(sin(pMd1e-pMd0)*((pMID/2)+(pMshelfBoltD)+pMgroove)),(cos(pMd1e-pMd0)*((pMID/2)+(pMshelfBoltD)+pMgroove)),0])
-translate([-(cos(pMd1e-pMd0)*(((pMshelfX-pMshelfchamfR)/2)+pMshelfchamfR)),-(sin(pMd1e-pMd0)*(((pMshelfX-pMshelfchamfR)/2)+pMshelfchamfR)),0])
+translate([0,(cos(pMd1e-pMd0)*((pMID/2)+(pMshelfBoltD)+pMgroove)),0])
+translate([-((((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0)))+(pMshelfX/2)),0,0])
   cylinder(d=pMshelfBoltD, h=pMH, $fn=36);
             //2
-translate([-(sin(pMd1e-pMd0)*((pMID/2)+(pMshelfBoltD)+pMgroove)),(cos(pMd1e-pMd0)*((pMID/2)+(pMshelfBoltD)+pMgroove)),0])
-translate([-(cos(pMd1e-pMd0)*(((pMshelfX-pMshelfchamfR)/2)+pMshelfchamfR)),-(sin(pMd1e-pMd0)*(((pMshelfX-pMshelfchamfR)/2)+pMshelfchamfR)),0])
+translate([0,(cos(pMd1e-pMd0)*((pMID/2)+(pMshelfBoltD)+pMgroove)),0])
+translate([-((((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0)))+(pMshelfX/2)),0,0])
 translate([0,(((((c2ID+(pMgroove*2)+(pMwallT*2))/2)/cos(pMd1e-pMd0))-((pMID/2)+(pMshelfBoltD)+pMgroove))/1.5),0])
-  cylinder(d=pMshelfBoltD, h=pMH, $fn=36);
+  cylinder(d=pMshelfBoltD, h=pMH, $fn=36);  
                         
         mirror([1,0,0]){
             //1
-translate([-(sin(pMd1e-pMd0)*((pMID/2)+(pMshelfBoltD)+pMgroove)),(cos(pMd1e-pMd0)*((pMID/2)+(pMshelfBoltD)+pMgroove)),0])
-translate([-(cos(pMd1e-pMd0)*(((pMshelfX-pMshelfchamfR)/2)+pMshelfchamfR)),-(sin(pMd1e-pMd0)*(((pMshelfX-pMshelfchamfR)/2)+pMshelfchamfR)),0])
+translate([0,(cos(pMd1e-pMd0)*((pMID/2)+(pMshelfBoltD)+pMgroove)),0])
+translate([-((((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0)))+(pMshelfX/2)),0,0])
   cylinder(d=pMshelfBoltD, h=pMH, $fn=36);
             //2
-translate([-(sin(pMd1e-pMd0)*((pMID/2)+(pMshelfBoltD)+pMgroove)),(cos(pMd1e-pMd0)*((pMID/2)+(pMshelfBoltD)+pMgroove)),0])
-translate([-(cos(pMd1e-pMd0)*(((pMshelfX-pMshelfchamfR)/2)+pMshelfchamfR)),-(sin(pMd1e-pMd0)*(((pMshelfX-pMshelfchamfR)/2)+pMshelfchamfR)),0])
+translate([0,(cos(pMd1e-pMd0)*((pMID/2)+(pMshelfBoltD)+pMgroove)),0])
+translate([-((((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0)))+(pMshelfX/2)),0,0])
 translate([0,(((((c2ID+(pMgroove*2)+(pMwallT*2))/2)/cos(pMd1e-pMd0))-((pMID/2)+(pMshelfBoltD)+pMgroove))/1.5),0])
   cylinder(d=pMshelfBoltD, h=pMH, $fn=36);        
         } //end mirror
@@ -138,8 +137,12 @@ translate([0,(((((c2ID+(pMgroove*2)+(pMwallT*2))/2)/cos(pMd1e-pMd0))-((pMID/2)+(
         //right needle path cut
  mirror([1,0,0]) 
  needlepathLEFT();   
+        
 
 } //end main body diffference
+
+
+//////extra piece to square up shape
   translate([0,0,pPspace2]){     
     difference(){
  
@@ -173,11 +176,11 @@ translate([0,(((((c2ID+(pMgroove*2)+(pMwallT*2))/2)/cos(pMd1e-pMd0))-((pMID/2)+(
             
     }//end diff
   } //end translate
+////////end extra piece
         
 } //end main union
 } //end main translate
 } //end CKpM module
-
 
 
 module needlepathLEFT(){
