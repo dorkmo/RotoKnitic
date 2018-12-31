@@ -6,9 +6,9 @@ include <CKvars.scad>;
 //*pMd4 not placing groove properly when not at 45 degrees
 ///////
 
-CKpM(); //render mountain
+CKpM(1); //render mountain  1=w/ grove 0=w/o groove
 
-module CKpM(){
+module CKpM(G){
 translate([0,-p3wallOD/2,0]){ //main translate
 union(){
 difference(){
@@ -131,13 +131,14 @@ translate([0,(((((c2ID+(pMgroove*2)+(pMwallT*2))/2)/cos(pMd1e-pMd0))-((pMID/2)+(
     
 ///////////////////GROOVE PATH/////////
 
+if(G==1){
         //left needle path cut
  needlepathLEFT();
             
         //right needle path cut
  mirror([1,0,0]) 
  needlepathLEFT();   
-        
+}        
 
 } //end main body diffference
 
@@ -146,32 +147,32 @@ translate([0,(((((c2ID+(pMgroove*2)+(pMwallT*2))/2)/cos(pMd1e-pMd0))-((pMID/2)+(
   translate([0,0,pPspace2]){     
     difference(){
  
-      translate([0,(c2ID+(pMgroove*2)+(pMwallT*2))/4,(pPplate2/2)])
-        cube([c2ID+(pMgroove*2)+(pMwallT*2),(c2ID+(pMgroove*2)+(pMwallT*2))/2,pPplate2], center=true);
+      translate([0,(c2ID+(pMgroove*2)+(pMwallT*2))/4,((pPplate2+pMextman)/2)])
+        cube([c2ID+(pMgroove*2)+(pMwallT*2),(c2ID+(pMgroove*2)+(pMwallT*2))/2,pPplate2+pMextman], center=true);
       
-      cylinder(d=pMID,h=pPplate2,$fn=rez);
+      cylinder(d=pMID,h=pMH,$fn=rez);
 
       //90 degree cut
       translate([((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0)),0,0])
-        cube([pMID*4,pMID*4,pPplate2]); //below shelf
+        cube([pMID*4,pMID*4,pPplate2+pMextman]); //below shelf
       mirror([1,0,0])
       translate([((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0)),0,0])
-        cube([pMID*4,pMID*4,pPplate2]); //below shelf
+        cube([pMID*4,pMID*4,pPplate2+pMextman]); //below shelf
       
       //cut to end of groove
       difference(){            
-        rotate([0,0,(pMd1e-pMd0)])
+        rotate([0,0,(pMd1e-pMd0)-pMextman])
         mirror([0,0,0])
-          cube([pMID*4,pMID*4,pPplate2]);
-        cube([pMID*4,pMID*4,pPplate2]);        
+          cube([pMID*4,pMID*4,pPplate2+pMextman]);
+        cube([pMID*4,pMID*4,pPplate2+pMextman]);        
       }
       difference(){
         mirror([1,0,0])
-        rotate([0,0,(pMd1e-pMd0)])
+        rotate([0,0,(pMd1e-pMd0)-pMextman])
         mirror([0,0,0])
-          cube([pMID*4,pMID*4,pPplate2]);
+          cube([pMID*4,pMID*4,pPplate2+pMextman]);
         mirror([1,0,0])    
-          cube([pMID*4,pMID*4,pPplate2]);
+          cube([pMID*4,pMID*4,pPplate2+pMextman]);
       }
             
     }//end diff

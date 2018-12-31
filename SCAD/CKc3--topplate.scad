@@ -17,7 +17,7 @@ CKc3();
 translate([c3OD/2,0,0])
 translate([-p3wallOD/2,0,-12])
 rotate([0,0,90])
-CKpM();
+CKpM(0);
 
 //translate([0,0,c3H])
 //rotate([0,0,-90])
@@ -53,43 +53,47 @@ translate([c3OD/2,0,0]){     //[c3OD/2,0,0]
         } //end for
         
         //mountain cutout
-        rotate([0,0,90])
-        #difference(){
-        translate([0,(c2ID+(pMgroove*2)+(pMwallT*2))/4,c3H/2])
-        cube([c2ID+(pMgroove*2)+(pMwallT*2),(c2ID+(pMgroove*2)+(pMwallT*2))/2,c3H], center=true);
-        //main ID cut
+    rotate([0,0,90])
+    translate([-(((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0))),0,0])
+      cube([((((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0)))*2),((c2ID+(pMgroove*2)+(pMwallT*2))/2),c3H]);
 
-        rotate([0,0,(pMd1e-pMd0)])
-        mirror([1,0,0])
-        cube([pMID*4,pMID*4,c3H]);
-        mirror([1,0,0])
-        rotate([0,0,(pMd1e-pMd0)])
-        mirror([1,0,0])
-        cube([pMID*4,pMID*4,c3H]);
-        }
         
+        //////
+//mounting bolt holes
+        rotate([0,0,90]){
+            //1
+translate([0,(cos(pMd1e-pMd0)*((pMID/2)+(pMshelfBoltD)+pMgroove)),0])
+translate([-((((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0)))+(pMshelfX/2)),0,0])
+  cylinder(d=pMshelfBoltD, h=pMH, $fn=36);
+            //2
+translate([0,(cos(pMd1e-pMd0)*((pMID/2)+(pMshelfBoltD)+pMgroove)),0])
+translate([-((((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0)))+(pMshelfX/2)),0,0])
+translate([0,(((((c2ID+(pMgroove*2)+(pMwallT*2))/2)/cos(pMd1e-pMd0))-((pMID/2)+(pMshelfBoltD)+pMgroove))/1.5),0])
+  cylinder(d=pMshelfBoltD, h=pMH, $fn=36);  
+                        
+        mirror([1,0,0]){
+            //1
+translate([0,(cos(pMd1e-pMd0)*((pMID/2)+(pMshelfBoltD)+pMgroove)),0])
+translate([-((((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0)))+(pMshelfX/2)),0,0])
+  cylinder(d=pMshelfBoltD, h=pMH, $fn=36);
+            //2
+translate([0,(cos(pMd1e-pMd0)*((pMID/2)+(pMshelfBoltD)+pMgroove)),0])
+translate([-((((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0)))+(pMshelfX/2)),0,0])
+translate([0,(((((c2ID+(pMgroove*2)+(pMwallT*2))/2)/cos(pMd1e-pMd0))-((pMID/2)+(pMshelfBoltD)+pMgroove))/1.5),0])
+  cylinder(d=pMshelfBoltD, h=pMH, $fn=36);        
+        } //end mirror
+    } //end rotate
+//end of bolt holes
+//////////////
+    
+       
         
         
         //makerbeam holes
         
         
     }  //end main difference
-/*
-        rotate([0,0,90])
-        #difference(){
-        translate([0,(c2ID+(pMgroove*2)+(pMwallT*2))/4,c3H/2])
-        cube([c2ID+(pMgroove*2)+(pMwallT*2),(c2ID+(pMgroove*2)+(pMwallT*2))/2,c3H], center=true);
-        //main ID cut
 
-        rotate([0,0,(pMd7+pMd6+pMd5-pMd55+pMd4+pMd3+pMd2+pMd1-pMd0)])
-        mirror([1,0,0])
-        cube([pMID*4,pMID*4,c3H]);
-        mirror([1,0,0])
-        rotate([0,0,(pMd7+pMd6+pMd5-pMd55+pMd4+pMd3+pMd2+pMd1-pMd0)])
-        mirror([1,0,0])
-        cube([pMID*4,pMID*4,c3H]);
-        }
-*/
 
     
 }  //end main translate

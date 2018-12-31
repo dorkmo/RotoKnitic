@@ -356,17 +356,19 @@ pMgrooveOR=pMgroove+(pMID/2); //center to OD of groove
     pMshelfHole2X=pMshelfX-(pMshelfBoltD*1.5);  //distance to hole center from main body
     pMshelfHole2d=(pMshelfHole2X/glen)*gdeg; //number of degrees from edge to hole center
 
+    pMextman=0.0002; //increase size of filler piece to make part manifold correctly
 
 //END MOUNTAIN VARS
 ///////////////////////
 
 //c3 - redo with extra mountian tab/shelf distance
-c3OD=((((c2ID+(pMgroove*2)+(pMwallT*2))/cos(pMd1e-pMd0))+(2*(pMshelfX*tan(pMd1e-pMd0)))  ));
+c3OD=((pow((pow(((((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0)))+pMshelfX),2)+pow((((c2ID+(pMgroove*2)+(pMwallT*2))/2)),2)),1/2))*2)+(p7mountL*2);
 /*
-/sin(pMd1e-pMd0))
-+(p7mountL*2);
+MAX() of distance from mountain and distance from plate spacers bolts
 */
 
+echo("X", ((((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0)))+pMshelfX));
+echo("Y", ((c2ID+(pMgroove*2)+(pMwallT*2))/2));
 echo("c3OD=", c3OD);
 
 pMODshelf=c3OD;
