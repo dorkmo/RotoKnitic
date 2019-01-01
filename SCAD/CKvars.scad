@@ -362,10 +362,15 @@ pMgrooveOR=pMgroove+(pMID/2); //center to OD of groove
 ///////////////////////
 
 //c3 - redo with extra mountian tab/shelf distance
-c3OD=((pow((pow(((((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0)))+pMshelfX),2)+pow((((c2ID+(pMgroove*2)+(pMwallT*2))/2)),2)),1/2))*2)+(p7mountL*2);
-/*
-MAX() of distance from mountain and distance from plate spacers bolts
-*/
+c3OD=
+max(
+((pow((pow(((((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0)))+pMshelfX),2)+pow((((c2ID+(pMgroove*2)+(pMwallT*2))/2)),2)),1/2))*2)+(p7mountL*2)
+,
+(((pMID/2)+(pMgroove)+1+(p8baseL/2)+(p8holeC2C/2)+(p8holeD*1.25)+(p7mountL))*2)
+);
+
+//MAX() of distance from mountain, and distance from plate spacers bolts
+//need to consider tooth size on plate c2 ??
 
 echo("X", ((((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0)))+pMshelfX));
 echo("Y", ((c2ID+(pMgroove*2)+(pMwallT*2))/2));
