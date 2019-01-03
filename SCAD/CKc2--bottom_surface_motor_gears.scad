@@ -1,10 +1,15 @@
 include <CKvars.scad>;
+use <CKc3--topplate.scad>
 
 // Copyright 2010 D1plo1d
 // LGPL 2.1
 
-
+linear_extrude(height = 5){
 gear(c2teeth,circular_pitch=false,diametral_pitch=c2dipitch,pressure_angle=87, clearance=0.01);
+}
+
+translate([0,0,10])
+CKc3();
 
 //test_involute_curve();
 //test_gears();
