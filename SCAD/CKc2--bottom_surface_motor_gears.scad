@@ -1,6 +1,10 @@
 include <CKvars.scad>;
 use <CKc3--topplate.scad>
 
+
+    rez=p2number*p2needles*2;  //calculate desired rezolution
+    $fn=rez; //defines resolution of circles.
+
 pi=3.1415926535897932384626433832795;
 
 //solve for # of teeth and circ_pitch that gives proper tooth whole depth
@@ -16,16 +20,26 @@ echo("Tn",Tn);
 echo("pitch",180*(c3OD-(Td))/Tn);
 echo("pCir",pCir);
 
+//c3 for review
+//translate([0,0,10])
+//CKc3();
 
-translate([0,-c3OD/2,0])
+CKc2();
+
+module CKc2(){
+translate([0,-c3OD/2,0]){
+difference(){
 gear (circular_pitch=pCir,
 	gear_thickness = 5,
 	rim_thickness = 5,
 	hub_thickness = 5,
 	circles=0);
 
-translate([0,0,10])
-CKc3();
+
+cylinder(h=c3H+2,d=c3ID);  // donut hole
+}//end difference
+}//end main translate
+}//end module
 
 //==================================================
 // Bevel Gears:
