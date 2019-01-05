@@ -48,6 +48,7 @@ for(i=[1:c2connectors]){
     } //end rotate i
 } //end for
 
+    //small bearing holder
 for(i=[1:c2bmounts]){
     rotate([0,0,((360/c2connectors)/2)+((360/c2bmounts)*i)]){
         translate([0,(pMID/2)+(pMgroove)+1,0]){  //close enough?
@@ -69,7 +70,14 @@ for(i=[1:c2bmounts]){
     }//end translate - center X of holes
         }//end translate to ring
     }//end for rotate
-}//end for
+}//end small bearing holder for
+
+    //large bearing holder? - under mountain
+    rotate([0,0,-((360/c2connectors))]){
+translate([0,(pMID/2)+(pMgroove)+1,0]){  //close enough?
+cylinder(d=p6mountholeOD,h=c2H+0.1,$fn=36);
+}//end translate to ring
+    }//end rotate large bearing
 
 }//end difference
 }//end main translate
