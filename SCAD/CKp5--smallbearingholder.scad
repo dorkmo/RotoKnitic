@@ -8,12 +8,13 @@ module CKp5(){
         //wing left
         difference(){
         cube([p5wingW,p5wingL,p5wingH]);
-                //wing right holes
+                //wing left holes
             translate([p5wingW/2,p5mounthole2front,0])
                 cylinder(d=p5mountholeOD,h=p5wingH+0.1,$fn=36);
                 translate([p5wingW/2,p5wingL-p5mounthole2back,0])
                 cylinder(d=p5mountholeOD,h=p5wingH+0.1,$fn=36);
                     } //end wing left difference
+                    
         //body
         translate([p5wingW,0,0]){
             difference(){
@@ -30,6 +31,7 @@ module CKp5(){
                 cylinder(d=bearingholderSmallBID,h=p5bodyL+0.2,$fn=36);  
             } //end body difference
         } //end body translate
+        
         //wing right
         translate([p5wingW+p5bodyW,0,0]){
             difference(){

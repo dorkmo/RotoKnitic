@@ -8,11 +8,11 @@ pi=3.1415926535897932384626433832795;
 
 //solve for # of teeth and circ_pitch that gives proper tooth whole depth
 
-Td=5; //tooth depth-ish?
+Td=5; //tooth depth-ish? - used to calculate # teeth large gear and pitch
 
-Tn=floor(((-2*c3OD)/((c3OD-Td)-c3OD))-2); //number of teeth?
+Tn=floor(((-2*c3OD)/((c3OD-Td)-c3OD))-2); //number of teeth? - for big gear
 
-pCir=180*(c3OD-(Td))/Tn;
+pCir=180*(c3OD-(Td))/Tn; //circular pitch - use for both big and small gear
 
 echo("c3OD",c3OD);
 echo("Tn",Tn);
@@ -29,13 +29,48 @@ module CKc2(){
 translate([0,-c3OD/2,0]){
 difference(){
 gear (circular_pitch=pCir,
-	gear_thickness = 5,
-	rim_thickness = 5,
-	hub_thickness = 5,
+	gear_thickness = c2H,
+	rim_thickness = c2H,
+	hub_thickness = c2H,
 	circles=0);
 
-
 cylinder(h=c3H+2,d=c3ID);  // donut hole
+
+    //plate connector holes
+for(i=[1:c2connectors]){
+    rotate([0,0,((360/c2connectors)*i)]){
+        translate([0,(pMID/2)+(pMgroove)+1+(p8baseL/2),0]){          
+            translate([0,p8holeC2C/2,-0.1])
+                cylinder(d=p8holeD,h=c2H+0.2,$fn=36);
+            translate([0,-(p8holeC2C/2),-0.1])
+                cylinder(d=p8holeD,h=c2H+0.2,$fn=36);
+        } //end translate to ring
+    } //end rotate i
+} //end for
+
+for(i=[1:c2bmounts]){
+    rotate([0,0,((360/c2connectors)/2)+((360/c2bmounts)*i)]){
+        translate([0,(pMID/2)+(pMgroove)+1,0]){  //close enough?
+    //smallbearingholder holes
+                translate([-(p5wingW+p5bodyW+p5wingW)/2,0,0]){
+        translate([p5wingW+p5bodyW,0,0]){            
+        //wing right holes
+            translate([p5wingW/2,p5mounthole2front,0])
+                cylinder(d=p5mountholeOD,h=c2H+0.1,$fn=36);
+                translate([p5wingW/2,p5wingL-p5mounthole2back,0])
+                cylinder(d=p5mountholeOD,h=c2H+0.1,$fn=36);
+        } //end wing right translate  
+        
+        //wing left holes
+            translate([p5wingW/2,p5mounthole2front,0])
+                cylinder(d=p5mountholeOD,h=c2H+0.1,$fn=36);
+                translate([p5wingW/2,p5wingL-p5mounthole2back,0])
+                cylinder(d=p5mountholeOD,h=c2H+0.1,$fn=36);
+    }//end translate - center X of holes
+        }//end translate to ring
+    }//end for rotate
+}//end for
+
 }//end difference
 }//end main translate
 }//end module
