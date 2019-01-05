@@ -10,31 +10,92 @@ pi=3.1415926535897932384626433832795;
 
 //solve for # of teeth and circ_pitch that gives proper tooth whole depth
 
-Tn=floor(((-2*c3OD)/((c3OD-10)-c3OD))-2);
+c3gearTargetAddendum=5;
 
-echo("c3OD",c3OD);
-echo("Tn",Tn);
-echo("pitch",180*(c3OD-(5*2))/Tn);
+TargetNumber_of_teeth=floor(((c3OD-(c3gearTargetAddendum*2))*180/((c3OD-(c3gearTargetAddendum*2))*pi)));  //wrong
+
+echo("TargetNumber_of_teeth",TargetNumber_of_teeth);
 
 //CircularPitch = Distance from one face of a tooth to the corresponding face of an adjacent tooth on the same gear, measured along the pitch circle
 
-//target pitch diameter = ((c3OD-(c3gearTargetAddendum*2)))
+//target pitch diameter = ((c3OD-(c3gearTargetAddendum*2))*2)
+//target pitch circumference = ((c3OD-(c3gearTargetAddendum*2))*pi)
 
+
+/*
 // Simple Test:
-translate([c3OD/2,0,-5])
-gear (circular_pitch=180*(c3OD-(5*2))/Tn,
+gear (circular_pitch=700,
 	gear_thickness = 5,
 	rim_thickness = 5,
 	hub_thickness = 5,
 	circles=0);
+*/
 
-gear (circular_pitch=180*(c3OD-(5*2))/Tn,
-	gear_thickness = 5,
-	rim_thickness = 5,
-	hub_thickness = 5,
-	circles=0);
+c_pressure_angle=28;
+c_clearance = 0.2;
 
+d_OD=c3OD;
+d_ID=c3OD-10;  //calculate using OD of plate spacers later
+           
+defined=false;
+if(defined==false){
+    for(t=[0,1,10000]){
+        for(p=[0,0.1,((c3OD-(c3gearTargetAddendum*2))*pi)/4]){
+   
+	//Convert diametrial pitch to our native circular pitch
+	c_circular_pitch = p;
 
+	// Pitch diameter: Diameter of pitch circle.
+	c_pitch_diameter  =  t * c_circular_pitch / 180;
+	c_pitch_radius = c_pitch_diameter/2;
+	
+	// Base Circle
+	c_base_radius = c_pitch_radius*cos(c_pressure_angle);
+
+	// Diametrial pitch: Number of teeth per unit length.
+	c_pitch_diametrial = t / c_pitch_diameter;
+
+	// Addendum: Radial distance from pitch circle to outside circle.
+	c_addendum = 1/c_pitch_diametrial;
+
+	//Outer Circle
+	c_outer_radius = c_pitch_radius + c_addendum;
+
+	// Dedendum: Radial distance from pitch circle to root diameter
+	c_dedendum = c_addendum + c_clearance;
+
+	// Root diameter: Diameter of bottom of tooth spaces.
+	c_root_radius = c_pitch_radius - c_dedendum;            
+            
+    c_ID=c_root_radius*2;
+    
+    c_OD=c_outer_radius*2;       
+            
+    if((c_OD<d_OD){
+       if(c_ID<d_ID){
+           MaxT=t;
+           MaxP=p;
+        if(t>MaxT){
+        if(p>MaxP){
+        c_number_of_teeth=t;
+        c_circular_pitch=p;
+         Max_OD=c_OD;
+         Max_ID=c_ID;   
+            } //end max
+            } //end max
+
+       }
+   } 
+        }//end pitch
+        }//end for number of teeth
+defined=true;
+echo("d_OD",d_OD);
+echo("Max_OD",Max_OD);
+echo("d_ID",d_ID);
+echo("Max_ID",Max_ID);        
+echo("c_number_of_teeth",c_number_of_teeth);
+echo("c_circular_pitch",c_circular_pitch);        
+}//end main if
 
 
 //==================================================
@@ -42,8 +103,10 @@ gear (circular_pitch=180*(c3OD-(5*2))/Tn,
 // Two gears with the same cone distance, circular pitch (measured at the cone distance)
 // and pressure angle will mesh.
 
+/*
+
 module gear (
-	number_of_teeth=Tn,
+	number_of_teeth=70,
 	circular_pitch=false, diametral_pitch=false,
 	pressure_angle=28,
 	clearance = 0.2,
@@ -268,3 +331,4 @@ function involute (base_radius, involute_angle) =
 	base_radius*(sin (involute_angle) - involute_angle*pi/180*cos (involute_angle))
 ];
 
+*/
