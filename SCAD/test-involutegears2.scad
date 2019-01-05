@@ -1,6 +1,5 @@
 include <CKvars.scad>;
 
-
 // Parametric Involute Bevel and Spur Gears by GregFrost
 // It is licensed under the Creative Commons - GNU LGPL 2.1 license.
 // © 2010 by GregFrost, thingiverse.com/Amp
@@ -10,25 +9,27 @@ pi=3.1415926535897932384626433832795;
 
 //solve for # of teeth and circ_pitch that gives proper tooth whole depth
 
-Tn=floor(((-2*c3OD)/((c3OD-10)-c3OD))-2);
+Td=5; //tooth depth-ish?
+
+Tn=floor(((-2*c3OD)/((c3OD-Td)-c3OD))-2); //number of teeth?
 
 echo("c3OD",c3OD);
 echo("Tn",Tn);
-echo("pitch",180*(c3OD-(5*2))/Tn);
+echo("pitch",180*(c3OD-(Td))/Tn);
 
 //CircularPitch = Distance from one face of a tooth to the corresponding face of an adjacent tooth on the same gear, measured along the pitch circle
 
 //target pitch diameter = ((c3OD-(c3gearTargetAddendum*2)))
 
 // Simple Test:
-translate([c3OD/2,0,-5])
-gear (circular_pitch=180*(c3OD-(5*2))/Tn,
+translate([-c3OD/2,0,-5])
+gear (circular_pitch=180*(c3OD-(Td))/Tn,
 	gear_thickness = 5,
 	rim_thickness = 5,
 	hub_thickness = 5,
 	circles=0);
 
-gear (circular_pitch=180*(c3OD-(5*2))/Tn,
+gear (circular_pitch=180*(c3OD-(Td))/Tn,
 	gear_thickness = 5,
 	rim_thickness = 5,
 	hub_thickness = 5,
