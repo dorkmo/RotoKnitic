@@ -1,7 +1,6 @@
 include <CKvars.scad>;
 use <CKc3--topplate.scad>
 
-
     rez=p2number*p2needles*2;  //calculate desired rezolution
     $fn=rez; //defines resolution of circles.
 
@@ -40,6 +39,11 @@ cylinder(h=c3H+2,d=c3ID);  // donut hole
 }//end difference
 }//end main translate
 }//end module
+
+// Parametric Involute Bevel and Spur Gears by GregFrost
+// It is licensed under the Creative Commons - GNU LGPL 2.1 license.
+// © 2010 by GregFrost, thingiverse.com/Amp
+// http://www.thingiverse.com/thing:3575 and http://www.thingiverse.com/thing:3752
 
 //==================================================
 // Bevel Gears:

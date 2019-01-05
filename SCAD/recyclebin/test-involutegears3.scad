@@ -10,12 +10,6 @@ pi=3.1415926535897932384626433832795;
 
 //solve for # of teeth and circ_pitch that gives proper tooth whole depth
 
-c3gearTargetAddendum=5;
-
-TargetNumber_of_teeth=floor(((c3OD-(c3gearTargetAddendum*2))*180/((c3OD-(c3gearTargetAddendum*2))*pi)));  //wrong
-
-echo("TargetNumber_of_teeth",TargetNumber_of_teeth);
-
 //CircularPitch = Distance from one face of a tooth to the corresponding face of an adjacent tooth on the same gear, measured along the pitch circle
 
 //target pitch diameter = ((c3OD-(c3gearTargetAddendum*2))*2)
@@ -37,10 +31,9 @@ c_clearance = 0.2;
 d_OD=c3OD;
 d_ID=c3OD-10;  //calculate using OD of plate spacers later
            
-defined=false;
-if(defined==false){
+
     for(t=[0,1,10000]){
-        for(p=[0,0.1,((c3OD-(c3gearTargetAddendum*2))*pi)/4]){
+        for(p=[0,0.1,((c3OD-10)*pi)/4]){
    
 	//Convert diametrial pitch to our native circular pitch
 	c_circular_pitch = p;
@@ -71,32 +64,31 @@ if(defined==false){
     
     c_OD=c_outer_radius*2;       
             
-    if((c_OD<d_OD){
-       if(c_ID<d_ID){
-           MaxT=t;
-           MaxP=p;
-        if(t>MaxT){
-        if(p>MaxP){
-        c_number_of_teeth=t;
-        c_circular_pitch=p;
-         Max_OD=c_OD;
-         Max_ID=c_ID;   
+    if(c_OD<d_OD){
+    if(c_ID<d_ID){
+            MaxT=t;
+            MaxP=p;
+            if(t>MaxT){
+            if(p>MaxP){
+                c_number_of_teeth=t;
+                c_circular_pitch=p;
+                Max_OD=c_OD;
+                Max_ID=c_ID;   
             } //end max
             } //end max
 
-       }
-   } 
-        }//end pitch
-        }//end for number of teeth
-defined=true;
+    }// end c_ID if
+    }//end c_OD if
+}//end pitch for
+}//end number of teeth for
+
+       
 echo("d_OD",d_OD);
 echo("Max_OD",Max_OD);
 echo("d_ID",d_ID);
 echo("Max_ID",Max_ID);        
 echo("c_number_of_teeth",c_number_of_teeth);
-echo("c_circular_pitch",c_circular_pitch);        
-}//end main if
-
+echo("c_circular_pitch",c_circular_pitch); 
 
 //==================================================
 // Bevel Gears:
