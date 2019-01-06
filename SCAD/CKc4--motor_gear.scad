@@ -1,6 +1,11 @@
 include <CKvars.scad>;
 use <CKc3--topplate.scad>
 
+NEMAshaftOD=5;
+NEMAshaftCut=1;
+
+spurgearTn=16;
+
     rez=p2number*p2needles*2;  //calculate desired rezolution
     $fn=rez; //defines resolution of circles.
 
@@ -19,68 +24,25 @@ echo("Tn",Tn);
 echo("pitch",180*(c3OD-(Td))/Tn);
 echo("pCir",pCir);
 
-//c3 for review
-//translate([0,0,10])
-//CKc3();
 
 CKc2();
 
 module CKc2(){
-translate([0,-c3OD/2,0]){
+    union(){
 difference(){
 gear (circular_pitch=pCir,
 	gear_thickness = c2H,
 	rim_thickness = c2H,
 	hub_thickness = c2H,
 	circles=0);
-
-cylinder(h=c2H+2,d=c3ID);  // donut hole
-
-    //plate connector holes
-for(i=[1:c2connectors]){
-    rotate([0,0,((360/c2connectors)*i)]){
-        translate([0,(pMID/2)+(pMgroove)+1+(p8baseL/2),0]){          
-            translate([0,p8holeC2C/2,-0.1])
-                cylinder(d=p8holeD,h=c2H+0.2,$fn=36);
-            translate([0,-(p8holeC2C/2),-0.1])
-                cylinder(d=p8holeD,h=c2H+0.2,$fn=36);
-        } //end translate to ring
-    } //end rotate i
-} //end for
-
-    //small bearing holder
-for(i=[1:c2bmounts]){
-    rotate([0,0,((360/c2connectors)/2)+((360/c2bmounts)*i)]){
-        translate([0,(pMID/2)+(pMgroove)+1,0]){  //close enough?
-    //smallbearingholder holes
-                translate([-(p5wingW+p5bodyW+p5wingW)/2,0,0]){
-        translate([p5wingW+p5bodyW,0,0]){            
-        //wing right holes
-            translate([p5wingW/2,p5mounthole2front,0])
-                cylinder(d=p5mountholeOD,h=c2H+0.1,$fn=36);
-                translate([p5wingW/2,p5wingL-p5mounthole2back,0])
-                cylinder(d=p5mountholeOD,h=c2H+0.1,$fn=36);
-        } //end wing right translate  
-        
-        //wing left holes
-            translate([p5wingW/2,p5mounthole2front,0])
-                cylinder(d=p5mountholeOD,h=c2H+0.1,$fn=36);
-                translate([p5wingW/2,p5wingL-p5mounthole2back,0])
-                cylinder(d=p5mountholeOD,h=c2H+0.1,$fn=36);
-    }//end translate - center X of holes
-        }//end translate to ring
-    }//end for rotate
-}//end small bearing holder for
-
-    //large bearing holder? - under mountain
-    rotate([0,0,-((360/c2connectors))]){
-translate([0,(pMID/2)+(pMgroove)+1,0]){  //close enough?
-cylinder(d=p6mountholeOD,h=c2H+0.1,$fn=36);
-}//end translate to ring
-    }//end rotate large bearing
+   
+cylinder(h=c2H+2,d=NEMAshaftOD);  // donut hole
 
 }//end difference
-}//end main translate
+
+translate([(NEMAshaftOD/2)-NEMAshaftCut,-NEMAshaftOD/2,0])
+cube([NEMAshaftOD,NEMAshaftOD,c2H]);
+}//end union
 }//end module
 
 // Parametric Involute Bevel and Spur Gears by GregFrost
@@ -94,7 +56,7 @@ cylinder(d=p6mountholeOD,h=c2H+0.1,$fn=36);
 // and pressure angle will mesh.
 
 module gear (
-	number_of_teeth=Tn,
+	number_of_teeth=spurgearTn,
 	circular_pitch=false, diametral_pitch=false,
 	pressure_angle=28,
 	clearance = 0.2,
