@@ -4,16 +4,16 @@
 include <CKneedleVars-KH260.scad>;  
 
 //number of "p2" parts around circle
-p2number=12;                //12                //36
+p2number=36;                //12                //36
 
 //number of needles mounted on each "p2" part
 p2needles=5;                //5                 //10
 
 //number of "p3" parts around circle
-p3number=4;                 //4                 //18
+p3number=18;                 //4                 //18
 
 //number of "p4" parts around circle
-p4number=4;                 //4                 //18
+p4number=18;                 //4                 //18
 
 //distance from the inside face of one needle to the next
 needle2needle=14.35615;     //default=14.35615  //try 8.414
@@ -21,11 +21,6 @@ needle2needle=14.35615;     //default=14.35615  //try 8.414
 //calculated diameter from inside edge of needles
 p2needlegrooveID=((needle2needle*p2number*p2needles)/PI);
 
-//number of sets of bearings mounted to geared plated
-c2bmounts=p3number;
-
-//number of plate connectors
-c2connectors=c2bmounts*3;
 
 //nnumber of Z bearing mounts
 c1zmounts=p3number;
@@ -137,6 +132,8 @@ p5bearingfromwall=4.25;
 p5mountholeOD=3;
 p5mounthole2front=7;
 p5mounthole2back=5;
+p5boltHeadOD=5; //look up sales drawing - used to cut mountain
+p5boltHeadH=5;  //look up sales drawing - used to cut mountain
 
 //p6 big bearing holder
 p6wingW=30;
@@ -379,6 +376,25 @@ echo("Y", ((c2ID+(pMgroove*2)+(pMwallT*2))/2));
 echo("c3OD=", c3OD);
 
 pMODshelf=c3OD;
+
+pMarcL=((PI*c2ID)*((pMd1e-pMd0)*2)/360); //approx arc length of mountain - could get more accurate number
+
+echo("pMarcL",pMarcL);
+
+pMmaxNum=floor((PI*c2ID)/pMarcL); //max number of mountains around circumference
+
+echo("pMmaxNum",pMmaxNum);
+
+pMnum=floor(pMmaxNum/2);
+
+echo("pMnum",pMnum);
+
+//number of sets of bearings mounted to geared plated
+c2bmounts=pMnum;   //p3number
+
+//number of plate connectors
+c2connectors=c2bmounts*3; // need to tweak so does not overlap mountain footprint
+
 
 ////SETTINGS OUTPUT ECHOS///
 

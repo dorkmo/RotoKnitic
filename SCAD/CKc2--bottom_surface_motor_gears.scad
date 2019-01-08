@@ -1,4 +1,5 @@
 include <CKvars.scad>;
+use <CKpM--mountain.scad>
 use <CKc3--topplate.scad>
 
     rez=p2number*p2needles*2;  //calculate desired rezolution
@@ -23,10 +24,16 @@ echo("pCir",pCir);
 //translate([0,0,10])
 //CKc3();
 
+translate([0,-c3OD/2,0])
+translate([0,p3wallOD/2,c2H])
+CKpM(0);
+
 CKc2();
 
 module CKc2(){
+    
 translate([0,-c3OD/2,0]){
+rotate([0,0,-((360/c2connectors))])
 difference(){
 gear (circular_pitch=pCir,
 	gear_thickness = c2H,
@@ -36,8 +43,10 @@ gear (circular_pitch=pCir,
 
 cylinder(h=c2H+2,d=c3ID);  // donut hole
 
+//calculate number of holes to skip in for() using arc of mountain?
+
     //plate connector holes
-for(i=[1:c2connectors]){
+for(i=[2:c2connectors]){
     rotate([0,0,((360/c2connectors)*i)]){
         translate([0,(pMID/2)+(pMgroove)+1+(p8baseL/2),0]){          
             translate([0,p8holeC2C/2,-0.1])
@@ -50,7 +59,7 @@ for(i=[1:c2connectors]){
 
     //small bearing holder
 for(i=[1:c2bmounts]){
-    rotate([0,0,((360/c2connectors)/2)+((360/c2bmounts)*i)]){
+    rotate([0,0,-((360/c2connectors)/2)+((360/c2bmounts)*i)]){
         translate([0,(pMID/2)+(pMgroove)+1,0]){  //close enough?
     //smallbearingholder holes
                 translate([-(p5wingW+p5bodyW+p5wingW)/2,0,0]){
@@ -72,12 +81,28 @@ for(i=[1:c2bmounts]){
     }//end for rotate
 }//end small bearing holder for
 
-    //large bearing holder? - under mountain
-    rotate([0,0,-((360/c2connectors))]){
-translate([0,(pMID/2)+(pMgroove)+1,0]){  //close enough?
-cylinder(d=p6mountholeOD,h=c2H+0.1,$fn=36);
-}//end translate to ring
-    }//end rotate large bearing
+    //small bearing holder - under mountain
+    rotate([0,0,((360/c2connectors))]){
+        translate([0,(pMID/2)+(pMgroove)+1,0]){  //close enough?
+    //smallbearingholder holes
+                translate([-(p5wingW+p5bodyW+p5wingW)/2,0,0]){
+        translate([p5wingW+p5bodyW,0,0]){            
+        //wing right holes
+            translate([p5wingW/2,p5mounthole2front,0])
+                cylinder(d=p5mountholeOD,h=c2H+0.1,$fn=36);
+                translate([p5wingW/2,p5wingL-p5mounthole2back,0])
+                cylinder(d=p5mountholeOD,h=c2H+0.1,$fn=36);
+        } //end wing right translate  
+        
+        //wing left holes
+            translate([p5wingW/2,p5mounthole2front,0])
+                cylinder(d=p5mountholeOD,h=c2H+0.1,$fn=36);
+                translate([p5wingW/2,p5wingL-p5mounthole2back,0])
+                cylinder(d=p5mountholeOD,h=c2H+0.1,$fn=36);
+    }//end translate - center X of holes
+        }//end translate to ring
+    }//end rotate mountain bearing
+
 
 }//end difference
 }//end main translate

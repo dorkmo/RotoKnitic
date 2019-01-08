@@ -1,6 +1,10 @@
 include <CKvars.scad>;
 
-CKp6(); //small bearing holder
+//////////////////////
+Depricating part - using p5 small bearing holder in place of p6
+//////////////////////
+
+CKp6(); //large bearing holder
 
 module CKp6(){
     translate([-(p6wingW+p6bodyW+p6wingW)/2,0,0]){
@@ -12,6 +16,7 @@ module CKp6(){
             translate([p6mounthole2side,p6mounthole2front,0])
                 cylinder(d=p6mountholeOD,h=p6wingH+0.1,$fn=36);
                     } //end wing left difference
+
         //body
         translate([p6wingW,0,0]){
             difference(){
@@ -28,6 +33,7 @@ module CKp6(){
                 cylinder(d=bearingholderSmallBID,h=p6bodyL+0.2,$fn=36);  
             } //end body difference
         } //end body translate
+        
         //wing right
         translate([p6wingW+p6bodyW,0,0]){
             difference(){
