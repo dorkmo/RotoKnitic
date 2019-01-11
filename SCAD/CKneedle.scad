@@ -1,5 +1,5 @@
-//needle variable file you want to use
-include <CKneedleVars-KH260.scad>;
+//needle variable file is selected in CKvars.scad file
+include <CKvars.scad>;
 
 needle();
 
