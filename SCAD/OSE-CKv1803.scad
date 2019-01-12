@@ -22,8 +22,8 @@ rotate([90,0,0])
 needle();
 
 //mountain
-translate([0,-c3OD/2,0])
-translate([0,p3wallOD/2,-12])
+translate([0,0,0])  //-c3OD/2
+translate([0,p3wallOD/2,(pPspace1+pPplate1+pPspace2+pPplate2)-(pPspace2+pPplate2)])
 rotate([0,0,0])
 CKpM(0);
 
@@ -65,7 +65,8 @@ for(i=[1:p4number]){
 //p5
 for(i=[1:c2bmounts]){
     rotate([0,0,-((360/c2connectors)/2)+((360/c2bmounts)*i)]){
-        translate([0,(pMID/2)+(pMgroove)+1,0]){  //close enough?
+        translate([0,(pMID/2)+(pMgroove)+1,pPspace1]){  //close enough?
+            mirror([0,0,1])
 CKp5(); //small bearing holder
         }//end translate
     }//end rotate
@@ -73,15 +74,21 @@ CKp5(); //small bearing holder
 
 //p6 - depreicated?
 
-//p7
-CKp7(); //small bearing holder
+//p7 Z
+for(i=[1:c2bmounts]){
+    rotate([0,0,-((360/c2connectors)/2)+((360/c2bmounts)*i)]){
+        translate([0,(c3OD/2)+p7wallW-p7mountL,0]){  //close enough?
+CKp7();
+        }//end translate
+    }//end rotate
+}//end for
 
 //p8
 translate([0,0,pPspace1+pPplate1])
         for(i=[1:c2connectors]){
             rotate([0,0,((360/c2connectors)*i)]){
                 translate([0,(pMID/2)+(pMgroove)+1+(p8baseL/2),0]){          
-                        translate([0,p8holeC2C/2,-0.1])
+                        translate([0,-p8baseL/2,-0.1])
                         CKp8();
                 }//end translate
             }//end rotate
