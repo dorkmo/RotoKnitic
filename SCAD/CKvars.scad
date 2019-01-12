@@ -4,16 +4,16 @@
 include <CKneedleVars-KH260.scad>;  
 
 //number of "p2" parts around circle
-p2number=36;                //12                //36
+p2number=12;                //12                //36  ///36
 
 //number of needles mounted on each "p2" part
-p2needles=5;                //5                 //10
+p2needles=5;                //5                 //10  ///5
 
 //number of "p3" parts around circle
-p3number=18;                 //4                 //18
+p3number=4;                 //4                 //18  ///4
 
 //number of "p4" parts around circle
-p4number=18;                 //4                 //18
+p4number=4;                 //4                 //18  ///4
 
 //distance from the inside face of one needle to the next
 needle2needle=14.35615;     //default=14.35615  //try 8.414
@@ -34,7 +34,7 @@ table_surface=5;  //thickness of plate of main table
 ////PART SETTINGS////
 
 //plate 
-pPspace1=12; //? space from main table top to first plate
+pPspace1=12; //? space from main table top to first plate - calc w/ bearing holder height
 pPplate1=bottom_surface_motor_gearsH;  //thickness of geared plated
 pPspace2=12; //space between geared plate and mountain plate  //12
 pPplate2=upper_surfaceH;

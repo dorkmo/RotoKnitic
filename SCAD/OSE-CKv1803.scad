@@ -7,7 +7,7 @@ use <CKp2--inner.scad>;
 use <CKp3--outer.scad>;
 use <CKp4--yardHolder.scad>;
 use <CKp5--smallbearingholder.scad>;
-use <CKp6--bigbearingholder.scad>;
+//use <CKp6--bigbearingholder.scad>;
 use <CKp7--Zbearingholder.scad>;
 use <CKp8--plateconnector.scad>;
 use <CKp9--outerconnector.scad>;
@@ -28,12 +28,15 @@ rotate([0,0,0])
 CKpM(0);
 
 //c1
+translate([-c1OD/2,0,-c1H])
 CKc1();
 
 //c2
+translate([0,c3OD/2,pPspace1])
 CKc2();
 
 //c3
+translate([0,c3OD/2,pPspace1+pPplate1+pPspace2])
 CKc3();
 
 //c4 - motor gear
@@ -74,6 +77,7 @@ CKp5(); //small bearing holder
 CKp7(); //small bearing holder
 
 //p8
+translate([0,0,pPspace1+pPplate1])
         for(i=[1:c2connectors]){
             rotate([0,0,((360/c2connectors)*i)]){
                 translate([0,(pMID/2)+(pMgroove)+1+(p8baseL/2),0]){          
