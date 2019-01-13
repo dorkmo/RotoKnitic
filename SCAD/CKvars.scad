@@ -56,7 +56,7 @@ bearingholderSmallBW=4;     //Width of bearing
 bearingholderZBOD=10;   //Outside Diameter of bearing
 bearingholderZBID=4.9;    //Inside Diameter of bore hole of bearing
 bearingholderZBW=4;     //Width of bearing
-bearingholderZB2C=(bearingholderZBOD/2)+upper_surfaceH+connector0912H+bottom_surface_motor_gearsH+bearingholderSmallB2C+(bearingholderSmallBOD/2);  //from base of bearing holder to center of bearing
+bearingholderZB2C=(bearingholderZBOD/2)+pPspace1+pPplate1+pPspace2+pPplate2;  //from base of bearing holder to center of bearing
 
 //p2
 needleWidthslop=0.4;  //exta thickness

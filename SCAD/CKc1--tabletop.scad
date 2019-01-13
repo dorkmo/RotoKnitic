@@ -50,6 +50,28 @@ translate([c1OD/2,0,0]){
             }   //end rotate
         }    //end outer hole set for   
         
+        //Z bearing mount holes
+        for(i=[1:c2bmounts]){
+    rotate([0,0,((45)+((360/c2bmounts)*i))]){
+        translate([0,(c3OD/2)-((p7mountL-p7wallW)/2)-((bearingholderZBW+p7wiggleL)/2)-(p7wiggleL/2),0]){  //close enough?
+                translate([-p7baseW/2,0,0]){
+                // hole 1
+            translate([p7mounthole2edge,p7mounthole2edge,0])
+            cylinder(d=p7mountholeOD,h=c1H+0.1,$fn=36);        
+        // hole 2
+            translate([p7baseW-p7mounthole2edge,p7mounthole2edge,0])
+            cylinder(d=p7mountholeOD,h=c1H+0.1,$fn=36);
+        // hole 3
+            translate([p7mounthole2edge,p7baseL-p7mounthole2edge,0])
+            cylinder(d=p7mountholeOD,h=c1H+0.1,$fn=36);        
+        // hole 4
+            translate([p7baseW-p7mounthole2edge,p7baseL-p7mounthole2edge,0])
+            cylinder(d=p7mountholeOD,h=c1H+0.1,$fn=36);
+                }//end translate
+                }//end translate
+    }//end rotate
+}//end for
+        
     }  //end main difference
 }  //end main translate
 

@@ -76,8 +76,8 @@ CKp5(); //small bearing holder
 
 //p7 Z
 for(i=[1:c2bmounts]){
-    rotate([0,0,-((360/c2connectors)/2)+((360/c2bmounts)*i)]){
-        translate([0,(c3OD/2)+p7wallW-p7mountL,0]){  //close enough?
+    rotate([0,0,((45)+((360/c2bmounts)*i))]){
+        translate([0,(c3OD/2)-((p7mountL-p7wallW)/2)-((bearingholderZBW+p7wiggleL)/2)-(p7wiggleL/2),0]){  //close enough?
 CKp7();
         }//end translate
     }//end rotate
