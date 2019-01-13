@@ -34,9 +34,9 @@ table_surface=5;  //thickness of plate of main table
 ////PART SETTINGS////
 
 //plate 
-pPspace1=12; //? space from main table top to first plate - calc w/ bearing holder height
+pPspace1=12; //? space from main table top to first plate - calc w/ bearing holder height, stepper motor shaft length?
 pPplate1=bottom_surface_motor_gearsH;  //thickness of geared plated
-pPspace2=12; //space between geared plate and mountain plate  //12
+pPspace2=12; //space between geared plate and mountain plate, needle nC?  //12
 pPplate2=upper_surfaceH;
 
 //"connector0912" connects upper_surface plate to bottom_surface geared plate
@@ -58,7 +58,7 @@ bearingholderZBID=4.9;    //Inside Diameter of bore hole of bearing
 bearingholderZBW=4;     //Width of bearing
 bearingholderZB2C=(bearingholderZBOD/2)+pPspace1+pPplate1+pPspace2+pPplate2;  //from base of bearing holder to center of bearing
 
-//p2
+//p2 - inner needle wall holder
 needleWidthslop=0.4;  //exta thickness
 needleWidth=nX+needleWidthslop;
 p2needlegroovefromID=2.0;
@@ -74,7 +74,7 @@ p2holeCSD=4.01726;
 p2holeCSL=1.5;
 p2clear=0.5;  //distance above top of p4 from flipper in down position
 
-//p3
+//p3 - outer needle wall slide
 p3wiggle=0.1;
 p3baseH=3;
 p3wallW=(nH-nY)/2;  //half of needle butt
@@ -104,6 +104,7 @@ p3wallID=centerlineD+((p2W+(p3wiggle*2)/2));
 p4rampH=14.57;
 p4rampfromID=2.5;
 p4rampoverhangH=4;
+p4rsH=p4rampH-p4rampoverhangH;  //height of ramp surface
 p4rampfromOD=1.34;
 p4rampC1=10;
 p4rampC2=40;
@@ -177,11 +178,14 @@ p9H=10;
 //mountain
 pMwallT=9;  //min thickness from groove to back wall  //7.5  //10
 pMgroove=nH-nY-p3wallW+1;  //depth of groove
+pMgrooveSlop=2;  //height slop of groove
+pMgrooveD=nC+pMgrooveSlop; //Y plane diamter of groove cut 
 pMgrooveAngle=45;
 pMgrooveC1=pPspace2;    //top of groove at position 1 "entrance"  pPspace2 ///////////
 pMgrooveC2=nC+2;        //top of groove at position 2 "push down"  nC+2 ////////////
-pMgrooveC3=44.25;       //top of groove at position 3 "top center"
-pMgrooveSlop=2;
+threadthickness=0.25;    //approx used to leave space above p2
+pMgroovetravel=p2clear+(p4rampH+p4baseH-p4basegapH)-(nG+threadthickness)+nF;        //total travel of needle
+pMgrooveC3=pMgrooveC2+pMgroovetravel+(pMgrooveD-nC);       //top of groove at position 3 "top center" calc! //44.25
 pMwallHextra=5.75;      //extra height above groove at heighest point
 CKpMID=p2OD+2;  //inside diameter of main wall
 pMH=pMwallHextra+pMgrooveC3; //total height of mountain
@@ -226,7 +230,7 @@ p4basegapID=centerlineD-p4basegapW;
 //firstcenter=(((((360/p2number/p2needles/2)/360*(p2OD*PI))-(needleWidth/2))/((360/p2number/p2needles/2)/360*(p2OD*PI)))*(360/p2number/p2needles/2))/2;
 //doesnt work on narrow needle arrangement, moved to second gap
 
-p2H=bottom_surface_motor_gearsH+bearingholderSmallB2C+(bearingholderSmallBOD/2)+pMgrooveC3+nA-nB-nC-nF-p3baseH-(p4rampH+p4baseH-p4basegapH)-p2clear;;
+p2H=bottom_surface_motor_gearsH+bearingholderSmallB2C+(bearingholderSmallBOD/2)+pMgrooveC3+nA-nB-nC-nF-p3baseH-(p4rampH+p4baseH-p4basegapH)-p2clear;
 
 p3wallH=bottom_surface_motor_gearsH+bearingholderSmallB2C+(bearingholderSmallBOD/2)+pMgrooveC2+nA-nB-nC-nF-p3clear;
 
@@ -270,7 +274,6 @@ pMgrooveOR=pMgroove+(pMID/2); //center to OD of groove
     
     pMgrooveturnR=14; //radius of upper curved path in groove 15
     pMgrooveturnR2=7; //radius of lower curved path in groove 7
-    pMgrooveD=nC+pMgrooveSlop; //Y plane diamter of groove cut
  
     pMp3X=3;  //length of flat area of section 3
     pMcutRez=2; //cuts per degree
