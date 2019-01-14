@@ -24,9 +24,11 @@ echo("pCir",pCir);
 //translate([0,0,10])
 //CKc3();
 
+/*
 translate([0,-c3OD/2,0])
 translate([0,p3wallOD/2,c2H])
 CKpM(0);
+*/
 
 CKc2();
 

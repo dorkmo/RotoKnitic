@@ -18,6 +18,7 @@ use <CKc2--bottom_surface_motor_gears.scad>;
 use <CKc3--topplate.scad>;
 
 //needle
+translate([0,nX/2,0])
 rotate([90,0,0])
 needle();
 
@@ -58,13 +59,13 @@ for(i=[1:p3number]){
 //p4
 for(i=[1:p4number]){
     rotate([0,0,i*(360/p4number)])
-    translate([-(p4baseOD/2)+((p4baseW-p4basegapW)/2),0,p3baseH+p2H-p4basegapH])
+    translate([-(p4baseOD/2),0,p3baseH+p2H-p4basegapH])
     CKp4();
 }
 
 //p5
 for(i=[1:c2bmounts]){
-    rotate([0,0,-((360/c2connectors)/2)+((360/c2bmounts)*i)]){
+    rotate([0,0,((360/c2connectors)*1.5)+((360/c2bmounts)*i)]){
         translate([0,(pMID/2)+(pMgroove)+1,pPspace1]){  //close enough?
             mirror([0,0,1])
 CKp5(); //small bearing holder
@@ -73,7 +74,7 @@ CKp5(); //small bearing holder
 }//end for
 
     //small bearing holder - under mountain
-    rotate([0,0,((360/c2connectors))]){
+    rotate([0,0,0]){
         translate([0,(pMID/2)+(pMgroove)+1,pPspace1]){  //close enough?
             mirror([0,0,1])
 CKp5(); //small bearing holder

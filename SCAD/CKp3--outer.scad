@@ -2,6 +2,8 @@ include <CKvars.scad>;
 
 CKp3();
 
+echo("p3wallH",p3wallH);
+
 module CKp3(){
     
     rez=p2number*p2needles*2;
