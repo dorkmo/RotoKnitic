@@ -68,7 +68,7 @@ for(i=[1:c2bmounts]){
     rotate([0,0,((360/c2connectors)*1.5)+((360/c2bmounts)*i)]){
         translate([0,(pMID/2)+(pMgroove)+1,pPspace1]){  //close enough?
             mirror([0,0,1])
-CKp5(); //small bearing holder
+CKp5(1); //small bearing holder
         }//end translate
     }//end rotate
 }//end for
@@ -77,7 +77,7 @@ CKp5(); //small bearing holder
     rotate([0,0,0]){
         translate([0,(pMID/2)+(pMgroove)+1,pPspace1]){  //close enough?
             mirror([0,0,1])
-CKp5(); //small bearing holder
+CKp5(1); //small bearing holder
         }//end translate
     }//end rotate
 

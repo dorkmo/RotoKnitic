@@ -1,10 +1,26 @@
 include <CKvars.scad>;
 
-CKp5(); //small bearing holder
+CKp5(0); //small bearing holder
 
-module CKp5(){
+module CKp5(B){
     translate([-(p5wingW+p5bodyW+p5wingW)/2,0,0]){
     
+        //bearing
+if(B==1){
+  translate([(p5wingW+p5bodyW+p5wingW)/2,p5bearingfromwall+(p5wiggleL/2),bearingholderSmallB2C])
+  rotate([270,0,0])
+  difference(){
+    cylinder(d=bearingholderSmallBOD,h=bearingholderSmallBW, $fn=36);
+    cylinder(d=bearingholderSmallBID,h=bearingholderSmallBW, $fn=36);
+  }
+  translate([(p5wingW+p5bodyW+p5wingW)/2,p5bodyL-p5bearingfromwall-bearingholderSmallBW-(p5wiggleL/2),bearingholderSmallB2C])
+  rotate([270,0,0])
+  difference(){
+    cylinder(d=bearingholderSmallBOD,h=bearingholderSmallBW, $fn=36);
+    cylinder(d=bearingholderSmallBID,h=bearingholderSmallBW, $fn=36);
+  }
+} //end if
+        
         //wing left
         difference(){
         cube([p5wingW,p5wingL,p5wingH]);
