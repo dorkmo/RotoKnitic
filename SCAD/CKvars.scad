@@ -34,7 +34,6 @@ table_surface=5;  //thickness of plate of main table
 ////PART SETTINGS////
 
 //plate 
-pPspace1=12; //? space from main table top to first plate - calc w/ bearing holder height, stepper motor shaft length?
 pPplate1=bottom_surface_motor_gearsH;  //thickness of geared plated
 pPspace2=12; //space between geared plate and mountain plate, needle nC?  //12
 pPplate2=upper_surfaceH;
@@ -51,12 +50,15 @@ bearingholderSmallB2C=5.5;  //from base of bearing holder to center of bearing
 bearingholderSmallBOD=10;   //Outside Diameter of bearing
 bearingholderSmallBID=4.9;    //Inside Diameter of bore hole of bearing
 bearingholderSmallBW=4;     //Width of bearing
+bearingholderSmallgaproll=0.25; //extra space to leave below bearing for rolling
+bearingholderSmallgapclear=0.5; //extra space to leave above bearing inside holder
+
 
 //BearringZ
 bearingholderZBOD=10;   //Outside Diameter of bearing
 bearingholderZBID=4.9;    //Inside Diameter of bore hole of bearing
 bearingholderZBW=4;     //Width of bearing
-bearingholderZB2C=(bearingholderZBOD/2)+pPspace1+pPplate1+pPspace2+pPplate2;  //from base of bearing holder to center of bearing
+
 
 //p2 - inner needle wall holder
 needleWidthslop=0.4;  //exta thickness
@@ -124,17 +126,23 @@ echo("rampW", p4rampW);
 p5wingW=7;
 p5wingL=27;
 p5wingH=3;
-p5bodyW=16;
-p5bodyL=25;
-p5bodyH=9.5;
-p5wiggleL=0.4;
-p5wiggleW=0.25;
+p5bodyW=bearingholderSmallBOD+6;
+p5bodyL=bearingholderSmallBW+bearingholderSmallBW+17;
+p5bearCl=1.5; //distance from top of body to OD of bearing
+p5bodyH=bearingholderSmallgapclear+bearingholderSmallBOD-p5bearCl;
+p5wiggleL=0.4;  //clearnace around bearing
+p5wiggleW=0.25; //clearnace around bearing
 p5bearingfromwall=4.25;
-p5mountholeOD=3;
-p5mounthole2front=7;
-p5mounthole2back=5;
-p5boltHeadOD=5; //look up sales drawing - used to cut mountain
+p5mountholeOD=3;     //mounting bolt OD
+p5boltHeadOD=6; //look up sales drawing - used to cut mountain
 p5boltHeadH=5;  //look up sales drawing - used to cut mountain
+p5mounthole2front=(p5mountholeOD/2)+5.5;
+p5mounthole2back=(p5mountholeOD/2)+3.5;
+
+pPspace1=bearingholderSmallgap+bearingholderSmallBOD+bearingholderSmallgap; //? space from main table top to first plate - calc w/ bearing holder height, stepper motor shaft length?
+
+echo("pPspace1",pPspace1);
+
 
 //p6 big bearing holder
 p6wingW=30;
@@ -213,7 +221,11 @@ c1OD=c2OD+(c1width-c2width);
 
 cWiggle=0.1; //extra height on mountaint cutout for c3 to sit in
 
+/////////////////////
 //calculated settings
+/////////////////////
+
+bearingholderZB2C=(bearingholderZBOD/2)+pPspace1+pPplate1+pPspace2+pPplate2;  //from base of bearing holder to center of bearing
 
 rez=p2number*p2needles*2;
 
