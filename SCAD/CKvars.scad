@@ -139,7 +139,7 @@ p5boltHeadH=5;  //look up sales drawing - used to cut mountain
 p5mounthole2front=(p5mountholeOD/2)+5.5;
 p5mounthole2back=(p5mountholeOD/2)+3.5;
 
-pPspace1=bearingholderSmallgap+bearingholderSmallBOD+bearingholderSmallgap; //? space from main table top to first plate - calc w/ bearing holder height, stepper motor shaft length?
+pPspace1=bearingholderSmallgapclear+bearingholderSmallBOD+bearingholderSmallgaproll; //? space from main table top to first plate - calc w/ bearing holder height, stepper motor shaft length?
 
 echo("pPspace1",pPspace1);
 
