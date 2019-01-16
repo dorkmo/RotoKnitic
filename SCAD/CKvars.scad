@@ -57,7 +57,7 @@ bearingholderSmallgapclear=0.5; //extra space to leave above bearing inside hold
 //BearringZ
 bearingholderZBOD=10;   //Outside Diameter of bearing
 bearingholderZBID=4.9;    //Inside Diameter of bore hole of bearing
-bearingholderZBW=4;     //Width of bearing
+bearingholderZBW=4;     //Width of bearing  //4
 
 
 //p2 - inner needle wall holder
@@ -155,22 +155,24 @@ p6wiggleL=0.4;
 p6wiggleW=0.6;
 p6bearingfromwall=4.25;
 p6mountholeOD=3;
+p6mountholeHeadOD=5.68;  //OD of socket screw head
 p6mounthole2front=8;
 p6mounthole2side=3;
 
 //p7 Z bearing holder - need to tweak more for different size bearings
-p7baseW=bearingholderZBOD+6;  //16
-p7baseL=23;
 p7baseH=4;
 p7wallW=3;
-p7braceW=3;
-p7mountH=8;
-p7mountL=13;
+p7mountH=bearingholderZBOD-2;
 p7mountholeOD=3;
-p7mounthole2edge=3.5;
+p7mountholeHeadOD=5.68;
+p7mounthole2edge=4.5;
 p7bearingfromfront=3;
 p7wiggleL=0.4;
 p7wiggleW=0.25;
+p7baseW=bearingholderZBOD+8;  //16
+p7baseL=max((((p7bearingfromfront+bearingholderZBW+p7bearingfromfront)*2)+p7wallW),(p7mountholeHeadOD*2)+p7wallW,(p7mounthole2edge*2)+p7wallW);  //23
+p7mountL=(p7baseL-p7wallW)/2;  //13
+
 
 //p8 plate connector
 p8baseW=8;
