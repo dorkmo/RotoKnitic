@@ -44,15 +44,11 @@ module CKp7(B){
             translate([p7baseW-p7mounthole2edge,p7mounthole2edge,0])
             cylinder(d=p7mountholeOD,h=p7baseH+0.1,$fn=36);
         // hole 3
-            translate([p7mounthole2edge,p7baseL-p7mounthole2edge,0])
+            translate([p7baseW/2,p7baseL-p7mounthole2edge,0])
                 cylinder(d=p7mountholeOD,h=p7baseH+0.1,$fn=36);      
-            translate([p7mounthole2edge,p7baseL-p7mounthole2edge,p7baseH])
+            translate([p7baseW/2,p7baseL-p7mounthole2edge,p7baseH])
                 cylinder(d=p7mountholeHeadOD,h=bearingholderZB2C+(p7mountH/2),$fn=36);      
-        // hole 4
-            translate([p7baseW-p7mounthole2edge,p7baseL-p7mounthole2edge,0])
-            cylinder(d=p7mountholeOD,h=p7baseH+0.1,$fn=36);
-            translate([p7baseW-p7mounthole2edge,p7baseL-p7mounthole2edge,p7baseH])
-            cylinder(d=p7mountholeHeadOD,h=bearingholderZB2C+(p7mountH/2),$fn=36);
+
     
     } //end main difference
     
