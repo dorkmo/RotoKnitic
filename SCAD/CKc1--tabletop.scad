@@ -53,7 +53,7 @@ translate([c1OD/2,0,0]){
         //Z bearing mount holes
         for(i=[1:c2bmounts]){
     rotate([0,0,((45)+((360/c2bmounts)*i))]){
-        translate([0,(c3OD/2)-((p7mountL-p7wallW)/2)-((bearingholderZBW+p7wiggleL)/2)-(p7wiggleL/2),0]){  //close enough?
+        translate([0,(c3OD/2)-p7bearingfromfront-(p7wiggleL/2)-bearingholderZBW,0]){  //close enough?
                 translate([-p7baseW/2,0,0]){
                 // hole 1
             translate([p7mounthole2edge,p7mounthole2edge,0])
