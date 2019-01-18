@@ -78,7 +78,7 @@ p2clear=0.5;  //distance above top of p4 from flipper in down position
 
 //p3 - outer needle wall slide
 p3wiggle=0.1;
-p3baseH=3; //height of outer base
+p3baseH=3;
 p3wallW=(nH-nY)/2;  //half of needle butt
 p3baseholeD=3;
 p3baseholeScrewHeadD=5.68;
@@ -96,14 +96,11 @@ p3wallchamfH=3;
 p3grooveWslop=0.8;  //extra Width in needle groove
 p3grooveW=nX+p3grooveWslop;
 p3clear=5;   //distance from top of p3 to needle flipper in down position
-p3baseID2N=2; //clearance between baseID and needles
-p3baseID=p2OD+(p3baseID2N*2);
+p3baseID=p2ID-(p3wiggle*2)-(p3ridgeW2*2)-(p3baseholeScrewHeadD*2); 
 p3baseOD=p2OD+(p3wiggle*2)+(p3wallW*2)+(p3wallchamfW*2)+(p3baseholeScrewHeadD*2); 
 centerlineD=p2ID+(p2W+(p3wiggle*2));
 p3wallOD=centerlineD+(p3wallW*2)+((p2W+(p3wiggle*2)/2));
 p3wallID=centerlineD+((p2W+(p3wiggle*2)/2));
-p3base45W=p3ridgeW2+p3wiggle+p2W+p3wiggle+p3baseID2N;
-p3base45H=p3base45W;
 
 //p4
 p4rampH=14.57;

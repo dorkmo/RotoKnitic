@@ -24,13 +24,10 @@ module CKp3(){
     difference(){  
         union(){
     cylinder(h=p3baseH,d=p3baseOD);
-    cylinder(h=p3base45H,d=p3baseID);
         
-            //ridge
-            translate([0,0,p3base45H])
             difference(){
-                    cylinder(h=p3ridgeH,d=centerlineD-((p2W+(p3wiggle*2)/2)));
-                translate([0,0,0])
+                    cylinder(h=p3ridgeH+p3baseH,d=centerlineD-((p2W+(p3wiggle*2)/2)));
+                translate([0,0,p3baseH])
                 cylinder(h=p3ridgeH,d1=centerlineD-(p3ridgeW2*2)-((p2W+(p3wiggle*2)/2)),d2=centerlineD-(p3ridgeW1*2)-((p2W+(p3wiggle*2)/2)));
                 
             }
@@ -39,7 +36,10 @@ module CKp3(){
                                             translate([0,0,p3baseH])
                        cylinder(h=p3wallchamfH,d1=centerlineD+((p3wallchamfW+p3wallW)*2)+((p2W+(p3wiggle*2)/2)),d2=centerlineD+(p3wallW*2)+((p2W+(p3wiggle*2)/2)));
                     cylinder(h=p3wallchamfH+p3baseH,d=centerlineD+((p2W+(p3wiggle*2)/2)));
-                           }
+
+ 
+                
+            }
             
                                     difference(){
                                             
@@ -52,9 +52,7 @@ module CKp3(){
             
             
         } //end main union
-    cylinder(h=p3wallH,d=p3baseID-(p3base45W*2)+1);
-    cylinder(h=p3base45H,d1=p3baseID,d2=p3baseID-(p3base45W*2));
-        
+    cylinder(h=p3wallH,d=p3baseID);
     translate([-p3baseOD/2,-p3baseOD/2,0]){    
     cube([p3baseOD,p3baseOD/2,p3wallH]);
     }
@@ -82,6 +80,13 @@ module CKp3(){
     }
     
     //base mounting holes
+    
+        for(i=[1:p3baseholenumber]){
+        rotate([0,0,(((360/p3number/p3baseholenumber))/2)-((360/p3number/p3baseholenumber)*i)]){
+        translate([-(p3baseID/2)-p3baseholefromODID,0,0])
+   cylinder(h=p3baseH,d=p3baseholeD,$fn=18);
+        }
+    }
 
         for(i=[1:p3baseholenumber]){
         rotate([0,0,(((360/p3number/p3baseholenumber))/2)-((360/p3number/p3baseholenumber)*i)]){
