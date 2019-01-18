@@ -45,7 +45,7 @@ CKc3();
 //p2
 for(i=[1:p2number]){
     rotate([0,0,i*(360/p2number)])
-    translate([-p2OD/2,0,0])
+    translate([-p2OD/2,0,p3base45H])
     CKp2();
 }
 
@@ -58,8 +58,8 @@ for(i=[1:p3number]){
 
 //p4
 for(i=[1:p4number]){
-    rotate([0,0,i*(360/p4number)])
-    translate([-(p4baseOD/2),0,p3baseH+p2H-p4basegapH])
+    rotate([0,0,(360/p2number*p2needles/2)+(i*(360/p4number))])
+    translate([-(p4baseOD/2),0,p3base45H+p2H-p4basegapH])
     CKp4();
 }
 

@@ -33,6 +33,14 @@ translate([c1OD/2,0,0]){
     }   //end for
     
     //base mounting holes
+    
+        //inner holes
+        for(i=[1:p3baseholenumber*p3number]){
+            rotate([0,0,(((360/p3number/p3baseholenumber))/2)-((360/p3number/p3baseholenumber)*i)]){
+            translate([-(p3baseID/2)-p3baseholefromODID,0,0])
+                cylinder(h=c1H+2,d=p3baseholeD,$fn=18);
+        }   //end rotate
+    }   //end inner hole set for
 
         //outer holes
         for(i=[1:p3baseholenumber*p3number]){
