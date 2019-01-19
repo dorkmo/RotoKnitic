@@ -18,6 +18,8 @@ use <CKc2--bottom_surface_motor_gears.scad>;
 use <CKc3--topplate.scad>;
 
 //needle
+rotate([0,0,(360/p2number*p2needles/2)])
+translate([(-p3wallID/2)+(p2needlegrooveDepthslop/2),0,0])
 translate([0,nX/2,0])
 rotate([90,0,0])
 needle();

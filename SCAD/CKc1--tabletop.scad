@@ -11,7 +11,11 @@ translate([c1OD/2,0,0]){
     difference(){  
         
         union(){
-            cylinder(h=c1H,d=c1OD);
+//octogon
+   fudge = 1/cos(180/(8));
+   rotate([0,0,360/8/2])         
+   cylinder(h=c1H,r=(c1OD/2)*fudge,$fn=(8));
+//            cylinder(h=c1H,d=c1OD);
         } //end main union
         
         cylinder(h=c1H+2,d=p3baseID);  // donut hole

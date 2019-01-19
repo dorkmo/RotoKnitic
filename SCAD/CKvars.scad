@@ -104,6 +104,7 @@ p3wallOD=centerlineD+(p3wallW*2)+((p2W+(p3wiggle*2)/2));
 p3wallID=centerlineD+((p2W+(p3wiggle*2)/2));
 p3base45W=p3ridgeW2+p3wiggle+p2W+p3wiggle+p3baseID2N;
 p3base45H=p3base45W;
+p3needleholefactorW=2.25; //multiply width of needle tail hole in base by this
 
 //p4
 p4rampH=14.57;
