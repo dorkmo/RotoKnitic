@@ -2,7 +2,24 @@ include <CKvars.scad>;
 use <CKc3--topplate.scad>
 
 NEMAshaftOD=5;
-NEMAshaftCut=1;
+NEMAshaftCut=0.5;
+NEMAshaftL=20;   //length of shaft from motor face
+NEMAshaftFL=15;  //length of flat side of shaft
+
+NEMAboltHeadH=3;
+NEMAboltHeadOD=5.68;
+NEMAboltHexOD=2.87;
+NEMAfaceCricOD=22;
+
+NEMAsetboltL=8;  //length of M3 botl used for set screw
+NEMAsetboltOD=3;
+NEMAsetHeadOD=5.68;
+NEMAsqBoltW=5.5;
+NEMAsqBoltH=1.8;
+NEMAsqBoltSlop=0.25;
+
+p1H=pPspace1+pPplate1+1;
+
 
 spurgearTn=16;
 
@@ -24,25 +41,53 @@ echo("Tn",Tn);
 echo("pitch",180*(c3OD-(Td))/Tn);
 echo("pCir",pCir);
 
+mirror([0,0,1])
+CKp1();
 
-CKc2();
-
-module CKc2(){
+module CKp1(){
+    
+    difference(){
     union(){
 difference(){
 gear (circular_pitch=pCir,
-	gear_thickness = c2H,
-	rim_thickness = c2H,
-	hub_thickness = c2H,
+	gear_thickness = p1H,
+	rim_thickness = p1H,
+	hub_thickness = p1H,
 	circles=0);
    
-cylinder(h=c2H+2,d=NEMAshaftOD);  // donut hole
+cylinder(h=p1H+2,d=NEMAshaftOD);  // donut hole
+
+difference(){
+    cylinder(d=c3OD,h=pPspace1-1);
+    cylinder(d=NEMAfaceCricOD,h=pPspace1-1);
+}
+
+
 
 }//end difference
 
+//flat shaft face
+rotate([0,0,360/spurgearTn/2])
 translate([(NEMAshaftOD/2)-NEMAshaftCut,-NEMAshaftOD/2,0])
-cube([NEMAshaftOD,NEMAshaftOD,c2H]);
+cube([NEMAshaftOD,NEMAshaftOD,p1H]);
 }//end union
+
+//square nut hole
+rotate([0,0,360/spurgearTn/2])
+translate([(NEMAshaftOD/2)-NEMAshaftCut+1.5-(NEMAsqBoltSlop/2),-((NEMAsqBoltW+NEMAsqBoltSlop)/2),0])
+cube([NEMAsqBoltH+NEMAsqBoltSlop,NEMAsqBoltW+NEMAsqBoltSlop,pPspace1-1]);
+
+rotate([0,0,360/spurgearTn/2])
+translate([0,0,(pPspace1-1)/2])
+rotate([0,90,0])
+cylinder(d=NEMAsetboltOD,h=NEMAfaceCricOD/2);
+
+rotate([0,0,360/spurgearTn/2])
+translate([(NEMAshaftOD/2)-NEMAshaftCut+NEMAsetboltL-0.5,0,(pPspace1-1)/2])
+rotate([0,90,0])
+cylinder(d=NEMAsetHeadOD+1,h=NEMAfaceCricOD/2);
+
+}//end difference
 }//end module
 
 // Parametric Involute Bevel and Spur Gears by GregFrost

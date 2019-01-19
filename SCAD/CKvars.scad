@@ -7,7 +7,7 @@ include <CKneedleVars-KH260.scad>;
 p2number=12;                //12                //36  ///36
 
 //number of needles mounted on each "p2" part
-p2needles=5;                //5                 //10  ///5
+p2needles=6;                //5                 //10  ///5
 
 //number of "p3" parts around circle
 p3number=4;                 //4                 //18  ///4
