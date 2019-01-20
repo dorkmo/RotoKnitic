@@ -5,7 +5,7 @@ use <CKp1--motor_gear.scad>;
 CKc1();
 
 translate([(c1OD/2),0,c1H+1])
-rotate([0,0,360/8])
+rotate([0,0,360/8/2])
 translate([-(CKp1_pitch_radius+CKc2_pitch_radius),0,0])
 CKp1();
 
@@ -76,7 +76,7 @@ translate([c1OD/2,0,0]){
 }//end for
 
         //Stepper Mount
-rotate([0,0,360/8])
+rotate([0,0,360/8/2])
 translate([-(CKp1_pitch_radius+CKc2_pitch_radius),0,0]){
 translate([NEMAboltDis/2,NEMAboltDis/2,0])
     cylinder(d=NEMAboltOD,h=c1H);

@@ -43,7 +43,7 @@ translate([0,c3OD/2,pPspace1+pPplate1+pPspace2])
 CKc3();
 
 //p1 - motor gear
-rotate([0,0,360/8])
+rotate([0,0,360/8/2])
 translate([-(CKp1_pitch_radius+CKc2_pitch_radius),0,1])
 CKp1();
 
