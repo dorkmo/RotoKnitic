@@ -18,11 +18,37 @@ use <CKc2--bottom_surface_motor_gears.scad>;
 use <CKc3--topplate.scad>;
 
 //needle
-rotate([0,0,(360/p2number*p2needles/2)])
+rotate([0,0,(360/p2number*p2needles/2)]){
+    
+translate([0,0,-nB+(pPspace1+pPplate1)])
+rotate([0,0,(360/p2number*p2needles/2)*1])
 translate([(-p3wallID/2)+(p2needlegrooveDepthslop/2),0,0])
 translate([0,nX/2,0])
 rotate([90,0,0])
 needle();
+    
+translate([0,0,-nB+(pPspace1+pPplate1+pMgrooveC1-nC)])
+rotate([0,0,(360/p2number*p2needles/2)*1])
+translate([(-p3wallID/2)+(p2needlegrooveDepthslop/2),0,0])
+translate([0,nX/2,0])
+rotate([90,0,0])
+needle();
+
+translate([0,0,-nB+(pPspace1+pPplate1+pMgrooveC2-nC)])
+rotate([0,0,(360/p2number*p2needles/2)*2])
+translate([(-p3wallID/2)+(p2needlegrooveDepthslop/2),0,0])
+translate([0,nX/2,0])
+rotate([90,0,0])
+needle();
+
+translate([0,0,-nB+(pPspace1+pPplate1+pMgrooveC3)])
+rotate([0,0,(360/p2number*p2needles/2)*3])
+translate([(-p3wallID/2)+(p2needlegrooveDepthslop/2),0,0])
+translate([0,nX/2,0])
+rotate([90,0,0])
+needle();
+}
+
 
 //mountain
 translate([0,0,0])  //-c3OD/2
@@ -43,7 +69,7 @@ translate([0,c3OD/2,pPspace1+pPplate1+pPspace2])
 CKc3();
 
 //p1 - motor gear
-rotate([0,0,360/8/2])
+rotate([0,0,0])
 translate([-(CKp1_pitch_radius+CKc2_pitch_radius),0,1])
 CKp1();
 

@@ -30,7 +30,7 @@ cylinder(h=p1H+2,d=NEMAshaftOD);  // donut hole
 
 difference(){
     cylinder(d=c3OD,h=pPspace1-1);
-    cylinder(d=NEMAfaceCricOD,h=pPspace1-1);
+    cylinder(d=NEMAfaceCricOD+2,h=pPspace1-1);
 }
 
 

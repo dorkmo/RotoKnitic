@@ -31,6 +31,9 @@ upper_surfaceH=5;  //thickness of upper rotating plate  ///5
 bottom_surface_motor_gearsH=6;  //thickness of geared rotating plate
 table_surface=5;  //thickness of plate of main table
 
+woodbeamW=25.4; //table leg wood beam width
+woodbeamScrewOD=6.32;   // 1/4" screw hole
+
 ////PART SETTINGS////
 
 //plate 
@@ -71,6 +74,7 @@ NEMAboltHeadOD=5.68;
 NEMAboltHexOD=2.87;
 NEMAfaceCricOD=22;
 NEMAboltDis=31;
+NEMAmotorW=42;
 
 NEMAsetboltL=8;  //length of M3 botl used for set screw
 NEMAsetboltOD=3;
@@ -241,12 +245,6 @@ c2OD=(c2width*2)+(c2gap*2)+p2OD+(p3wiggle*2)+(p3wallW*2);
 c2ID=(c2gap*2)+p2OD+(p3wiggle*2)+(p3wallW*2);
 c2teeth=((c2OD*PI)/c2t2t);
 c2dipitch=c2teeth/(c2OD*PI);
-
-
-//c1
-c1H=table_surface;
-c1width=c2width+91.36;
-c1OD=c2OD+(c1width-c2width);
 
 cWiggle=0.1; //extra height on mountaint cutout for c3 to sit in
 
@@ -463,6 +461,11 @@ echo("c3OD",c3OD);
 echo("Tn",Tn);
 echo("pitch",180*(c3OD-(Td))/Tn);
 echo("pCir",pCir);
+
+//c1
+c1H=table_surface;
+c1width=c2width+91.36;
+c1OD=(CKp1_pitch_radius+CKc2_pitch_radius+(NEMAmotorW/2)+woodbeamW+2)*2;  // c2OD + (c1width-c2width);
 
 ////SETTINGS OUTPUT ECHOS///
 

@@ -5,7 +5,7 @@ use <CKp1--motor_gear.scad>;
 CKc1();
 
 translate([(c1OD/2),0,c1H+1])
-rotate([0,0,360/8/2])
+rotate([0,0,0])
 translate([-(CKp1_pitch_radius+CKc2_pitch_radius),0,0])
 CKp1();
 
@@ -48,7 +48,7 @@ translate([c1OD/2,0,0]){
     
     //base mounting holes
 
-        //outer holes
+        //p3 - "outer" holes
         for(i=[1:p3baseholenumber*p3number]){
             rotate([0,0,(((360/p3number/p3baseholenumber))/2)-((360/p3number/p3baseholenumber)*i)]){
             translate([-(p3baseOD/2)+p3baseholefromODID,0,0])
@@ -76,8 +76,9 @@ translate([c1OD/2,0,0]){
 }//end for
 
         //Stepper Mount
-rotate([0,0,360/8/2])
+rotate([0,0,0])
 translate([-(CKp1_pitch_radius+CKc2_pitch_radius),0,0]){
+cylinder(d=NEMAfaceCricOD+0.25,h=c1H);
 translate([NEMAboltDis/2,NEMAboltDis/2,0])
     cylinder(d=NEMAboltOD,h=c1H);
 translate([-NEMAboltDis/2,NEMAboltDis/2,0])
@@ -89,6 +90,20 @@ translate([-NEMAboltDis/2,-NEMAboltDis/2,0])
     
     
 }
+
+//mounting wood beams
+for(i=[1:8]){
+    rotate([0,0,360/8*i]){
+translate([-(c1OD/2)+(woodbeamW/2),0,0])
+cylinder(d=woodbeamScrewOD,h=c1H);
+translate([-(c1OD/2)+(woodbeamW/2),tan(360/8/2)*(-(c1OD/2)+(woodbeamW/2))+(woodbeamW),0])
+cylinder(d=woodbeamScrewOD,h=c1H);
+translate([-(c1OD/2)+(woodbeamW/2),tan(360/8/2)*((c1OD/2)-(woodbeamW/2))-(woodbeamW),0])
+cylinder(d=woodbeamScrewOD,h=c1H);
+
+    }
+    }
+        
         
     }  //end main difference
 }  //end main translate
