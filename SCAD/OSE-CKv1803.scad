@@ -2,7 +2,7 @@ include <CKvars.scad>;
 
 use <CKneedle.scad>;
 
-//use <CKp1.scad>;
+use <CKp1--motor_gear.scad>;
 use <CKp2--inner.scad>;
 use <CKp3--outer.scad>;
 use <CKp4--yardHolder.scad>;
@@ -42,7 +42,11 @@ CKc2();
 translate([0,c3OD/2,pPspace1+pPplate1+pPspace2])
 CKc3();
 
-//c4 - motor gear
+//p1 - motor gear
+
+translate([-(CKp1_pitch_radius+CKc2_pitch_radius),0,1])
+CKp1();
+
 
 //p2
 for(i=[1:p2number]){

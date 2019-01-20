@@ -1,8 +1,16 @@
 include <CKvars.scad>;
+use <CKc2--bottom_surface_motor_gears.scad>;
+use <CKp1--motor_gear.scad>;
 
 CKc1();
 
+translate([(c1OD/2)-(CKp1_pitch_radius+CKc2_pitch_radius),0,c1H+1])
+CKp1();
+
+
 module CKc1(){
+    
+echo("c2c of gears",CKp1_pitch_radius+CKc2_pitch_radius);    
     
     rez=p2number*p2needles*2;  //calculate desired rezolution
     $fn=rez; //defines resolution of circles.
@@ -64,6 +72,21 @@ translate([c1OD/2,0,0]){
                 }//end translate
     }//end rotate
 }//end for
+
+        //Stepper Mount
+
+translate([-(CKp1_pitch_radius+CKc2_pitch_radius),0,0]){
+translate([NEMAboltDis/2,NEMAboltDis/2,0])
+    cylinder(d=NEMAboltOD,h=c1H);
+translate([-NEMAboltDis/2,NEMAboltDis/2,0])
+    cylinder(d=NEMAboltOD,h=c1H);
+translate([NEMAboltDis/2,-NEMAboltDis/2,0])
+    cylinder(d=NEMAboltOD,h=c1H);
+translate([-NEMAboltDis/2,-NEMAboltDis/2,0])
+    cylinder(d=NEMAboltOD,h=c1H);
+    
+    
+}
         
     }  //end main difference
 }  //end main translate

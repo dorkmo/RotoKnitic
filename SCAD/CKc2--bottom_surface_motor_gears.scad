@@ -7,18 +7,6 @@ use <CKc3--topplate.scad>
 
 pi=3.1415926535897932384626433832795;
 
-//solve for # of teeth and circ_pitch that gives proper tooth whole depth
-
-Td=5; //tooth depth-ish? - used to calculate # teeth large gear and pitch
-
-Tn=floor(((-2*c3OD)/((c3OD-Td)-c3OD))-2); //number of teeth? - for big gear
-
-pCir=180*(c3OD-(Td))/Tn; //circular pitch - use for both big and small gear
-
-echo("c3OD",c3OD);
-echo("Tn",Tn);
-echo("pitch",180*(c3OD-(Td))/Tn);
-echo("pCir",pCir);
 
 //c3 for review
 //translate([0,0,10])
@@ -147,6 +135,8 @@ module gear (
 	pitch_diameter  =  number_of_teeth * circular_pitch / 180;
 	pitch_radius = pitch_diameter/2;
 	echo ("Teeth:", number_of_teeth, " Pitch radius:", pitch_radius);
+
+CKc2_pitch_radius=pitch_radius;
 
 	// Base Circle
 	base_radius = pitch_radius*cos(pressure_angle);
@@ -345,4 +335,3 @@ function involute (base_radius, involute_angle) =
 	base_radius*(cos (involute_angle) + involute_angle*pi/180*sin (involute_angle)),
 	base_radius*(sin (involute_angle) - involute_angle*pi/180*cos (involute_angle))
 ];
-

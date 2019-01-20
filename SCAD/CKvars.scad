@@ -59,6 +59,28 @@ bearingholderZBOD=10;   //Outside Diameter of bearing
 bearingholderZBID=4.9;    //Inside Diameter of bore hole of bearing
 bearingholderZBW=4;     //Width of bearing  //4
 
+//p1 - stepper gear
+NEMAshaftOD=5;
+NEMAshaftCut=0.5;
+NEMAshaftL=20;   //length of shaft from motor face
+NEMAshaftFL=15;  //length of flat side of shaft
+
+NEMAboltOD=3;
+NEMAboltHeadH=3;
+NEMAboltHeadOD=5.68;
+NEMAboltHexOD=2.87;
+NEMAfaceCricOD=22;
+NEMAboltDis=31;
+
+NEMAsetboltL=8;  //length of M3 botl used for set screw
+NEMAsetboltOD=3;
+NEMAsetHeadOD=5.68;
+NEMAsqNutW=5.5;
+NEMAsqNutH=1.8;
+NEMAsqNutSlop=0.25;
+
+
+spurgearTn=16;  //number of teeth on bull gear
 
 //p2 - inner needle wall holder
 needleWidthslop=0.4;  //exta thickness
@@ -147,6 +169,7 @@ pPspace1=bearingholderSmallgapclear+bearingholderSmallBOD+bearingholderSmallgapr
 
 echo("pPspace1",pPspace1);
 
+p1H=pPspace1+pPplate1+1;
 
 //p6 big bearing holder
 p6wingW=30;
@@ -416,6 +439,30 @@ c2bmounts=pMnum;   //p3number
 //number of plate connectors
 c2connectors=c2bmounts*3; // need to tweak so does not overlap mountain footprint
 
+
+    /////gear calcs/////
+
+//solve for # of teeth and circ_pitch that gives proper tooth whole depth
+Td=5; //tooth depth-ish? - used to calculate # teeth large gear and pitch
+
+Tn=floor(((-2*c3OD)/((c3OD-Td)-c3OD))-2); //number of teeth? - for big gear
+
+pCir=180*(c3OD-(Td))/Tn; //circular pitch - use for both big and small gear
+
+    CKp1_circular_pitch=pCir;
+    CKp1_number_of_teeth=spurgearTn;
+	CKp1_pitch_diameter  =  CKp1_number_of_teeth * CKp1_circular_pitch / 180;
+	CKp1_pitch_radius = CKp1_pitch_diameter/2;
+
+    CKc2_circular_pitch=pCir;
+    CKc2_number_of_teeth=Tn;
+	CKc2_pitch_diameter  =  CKc2_number_of_teeth * CKc2_circular_pitch / 180;
+	CKc2_pitch_radius = CKc2_pitch_diameter/2;
+
+echo("c3OD",c3OD);
+echo("Tn",Tn);
+echo("pitch",180*(c3OD-(Td))/Tn);
+echo("pCir",pCir);
 
 ////SETTINGS OUTPUT ECHOS///
 

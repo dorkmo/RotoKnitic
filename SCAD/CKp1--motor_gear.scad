@@ -7,45 +7,10 @@ use <CKc3--topplate.scad>
 //M3x8 Bolt https://www.fastenal.com/products/details/86002
 //////
 
-NEMAshaftOD=5;
-NEMAshaftCut=0.5;
-NEMAshaftL=20;   //length of shaft from motor face
-NEMAshaftFL=15;  //length of flat side of shaft
-
-NEMAboltHeadH=3;
-NEMAboltHeadOD=5.68;
-NEMAboltHexOD=2.87;
-NEMAfaceCricOD=22;
-
-NEMAsetboltL=8;  //length of M3 botl used for set screw
-NEMAsetboltOD=3;
-NEMAsetHeadOD=5.68;
-NEMAsqNutW=5.5;
-NEMAsqNutH=1.8;
-NEMAsqNutSlop=0.25;
-
-p1H=pPspace1+pPplate1+1;
-
-
-spurgearTn=16;
-
     rez=p2number*p2needles*2;  //calculate desired rezolution
     $fn=rez; //defines resolution of circles.
 
 pi=3.1415926535897932384626433832795;
-
-//solve for # of teeth and circ_pitch that gives proper tooth whole depth
-
-Td=5; //tooth depth-ish? - used to calculate # teeth large gear and pitch
-
-Tn=floor(((-2*c3OD)/((c3OD-Td)-c3OD))-2); //number of teeth? - for big gear
-
-pCir=180*(c3OD-(Td))/Tn; //circular pitch - use for both big and small gear
-
-echo("c3OD",c3OD);
-echo("Tn",Tn);
-echo("pitch",180*(c3OD-(Td))/Tn);
-echo("pCir",pCir);
 
 mirror([0,0,1])
 CKp1();
@@ -331,4 +296,3 @@ function involute (base_radius, involute_angle) =
 	base_radius*(cos (involute_angle) + involute_angle*pi/180*sin (involute_angle)),
 	base_radius*(sin (involute_angle) - involute_angle*pi/180*cos (involute_angle))
 ];
-
