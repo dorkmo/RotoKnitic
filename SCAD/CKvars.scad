@@ -153,21 +153,25 @@ p4rampW=max(min(p4clawW-3,4),2.5);
 echo("rampW", p4rampW);
 
 //p5 small bearing holder
+p5boltHeadOD=8; //look up sales drawing - used to cut mountain
+p5boltHeadH=3.65;  //look up sales drawing - used to cut mountain
+p5nutH=5;
+p5boltD=5;
+p5boltL=30;  //bolt to hold bearings
 p5wingW=7;
 p5wingL=27;
 p5wingH=3;
 p5bodyW=bearingholderSmallBOD+6;
-p5bodyL=bearingholderSmallBW+bearingholderSmallBW+17;
+p5bodyL=p5boltL-p5nutH-1;
 p5bearCl=1.5; //distance from top of body to OD of bearing
 p5bodyH=bearingholderSmallgapclear+bearingholderSmallBOD-p5bearCl;
 p5wiggleL=0.4;  //clearnace around bearing
 p5wiggleW=0.25; //clearnace around bearing
 p5bearingfromwall=4.25;
 p5mountholeOD=3;     //mounting bolt OD
-p5boltHeadOD=6; //look up sales drawing - used to cut mountain
-p5boltHeadH=5;  //look up sales drawing - used to cut mountain
 p5mounthole2front=(p5mountholeOD/2)+5.5;
 p5mounthole2back=(p5mountholeOD/2)+3.5;
+
 
 pPspace1=bearingholderSmallgapclear+bearingholderSmallBOD+bearingholderSmallgaproll; //? space from main table top to first plate - calc w/ bearing holder height, stepper motor shaft length?
 
@@ -408,6 +412,8 @@ max(
 ((pow((pow(((((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0)))+pMshelfX),2)+pow((((c2ID+(pMgroove*2)+(pMwallT*2))/2)),2)),1/2))*2)+(p7mountL*2)
 ,
 (((pMID/2)+(pMgroove)+1+(p8baseL/2)+(p8holeC2C/2)+(p8holeD*1.25)+(p7mountL))*2)
+,
+(p3baseOD+1+p5boltHeadH+p5boltL+1+p7bearingfromfront+(p7wiggleL/2)+bearingholderZBW)
 );
 
 //MAX() of distance from mountain, and distance from plate spacers bolts

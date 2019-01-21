@@ -1,6 +1,8 @@
 include <CKvars.scad>;
 
-CKp5(0); //small bearing holder
+CKp5(1); //small bearing holder
+
+
 
 module CKp5(B){
     translate([-(p5wingW+p5bodyW+p5wingW)/2,0,0]){
@@ -19,6 +21,20 @@ if(B==1){
     cylinder(d=bearingholderSmallBOD,h=bearingholderSmallBW, $fn=36);
     cylinder(d=bearingholderSmallBID,h=bearingholderSmallBW, $fn=36);
   }
+  
+  //bolt
+  translate([(p5wingW+p5bodyW+p5wingW)/2,0,bearingholderSmallB2C])
+rotate([-90,0,0])
+rotate([0,0,360/6/2])
+CKbolt(p5boltD,p5boltL,p5boltHeadH,p5boltHeadOD);
+
+  //bolt
+  translate([(p5wingW+p5bodyW+p5wingW)/2,p5bodyL,bearingholderSmallB2C])
+rotate([-90,0,0])
+rotate([0,0,360/6/2])
+CKnut(p5boltD,p5nutH,p5boltHeadOD);
+
+  
 } //end if
         
         //wing left
@@ -61,3 +77,27 @@ if(B==1){
         } //end wing right translate            
     } //end main translate
 } //end main module
+
+
+module CKbolt(D,BL,HH,HSD){  
+    cylinder(d=D,h=BL,$fn=32);
+
+    fudge = 1/cos(180/(6));
+   translate([0,0,-HH])
+   rotate([0,0,360/6/2])         
+   cylinder(h=HH,r=HSD/2*fudge,$fn=(6));
+    }
+    
+module CKnut(BD,H,SD){ 
+
+    fudge = 1/cos(180/(6));
+   difference(){ 
+
+   translate([0,0,0])
+   rotate([0,0,360/6/2])         
+   cylinder(h=H,r=SD/2*fudge,$fn=(6));
+
+    cylinder(d=BD,h=H,$fn=32);
+   }
+    }    
+    
