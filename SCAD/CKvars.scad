@@ -155,23 +155,21 @@ echo("rampW", p4rampW);
 //p5 small bearing holder
 p5boltHeadOD=8; //look up sales drawing - used to cut mountain
 p5boltHeadH=3.65;  //look up sales drawing - used to cut mountain
-p5nutH=5;
+p5nutH=0;
 p5boltD=5;
 p5boltL=30;  //bolt to hold bearings
 p5wingW=7;
-p5wingL=27;
+p5wingL=p5boltHeadH+p5boltL;
 p5wingH=3;
 p5bodyW=bearingholderSmallBOD+6;
-p5bodyL=p5boltL-p5nutH-1;
+p5bodyL=p5boltL-p5nutH;
 p5bearCl=1.5; //distance from top of body to OD of bearing
 p5bodyH=bearingholderSmallgapclear+bearingholderSmallBOD-p5bearCl;
 p5wiggleL=0.4;  //clearnace around bearing
 p5wiggleW=0.25; //clearnace around bearing
 p5bearingfromwall=4.25;
 p5mountholeOD=3;     //mounting bolt OD
-p5mounthole2front=(p5mountholeOD/2)+5.5;
-p5mounthole2back=(p5mountholeOD/2)+3.5;
-
+p5mountBoltHeadOD=5.68;
 
 pPspace1=bearingholderSmallgapclear+bearingholderSmallBOD+bearingholderSmallgaproll; //? space from main table top to first plate - calc w/ bearing holder height, stepper motor shaft length?
 
@@ -224,7 +222,7 @@ p9H=10;
 pMwallT=9;  //min thickness from groove to back wall  //7.5  //10
 pMgroove=nH-nY-p3wallW+1;  //depth of groove
 pMgrooveSlop=2;  //height slop of groove
-pMgrooveD=nC+pMgrooveSlop; //Y plane diamter of groove cut 
+pMgrooveD=nC+pMgrooveSlop; //Z plane diamter of groove cut 
 pMgrooveAngle=45;
 pMgrooveC1=pPspace2;    //top of groove at position 1 "entrance"  pPspace2 ///////////
 pMgrooveC2=nC+2;        //top of groove at position 2 "push down"  nC+2 ////////////
@@ -232,13 +230,10 @@ threadthickness=0.25;    //approx used to leave space above p2
 pMgroovetravel=p2clear+(p4rampH+p4baseH-p4basegapH)-(nG+threadthickness)+nF;        //total travel of needle
 pMgrooveC3=pMgrooveC2+pMgroovetravel+(pMgrooveD-nC);       //top of groove at position 3 "top center" calc! //44.25
 pMwallHextra=5.75;      //extra height above groove at heighest point
-CKpMID=p2OD+2;  //inside diameter of main wall
 pMH=pMwallHextra+pMgrooveC3; //total height of mountain
 pMshelfH=4; //thickness of shelf resting on top of c3
 pMshelfchamfR=6; //radius of chamfer at join shelf/wall
 pMshelfBoltD=3;
-
-echo((pMgroove*2)+CKpMID);
 
 //c2 geared plate - clean up below, not used to generate gear
 c2H=bottom_surface_motor_gearsH;
@@ -286,6 +281,7 @@ c3H=upper_surfaceH;
 
 pMID=c2ID;
 pMODwall=c2ID+(pMgroove*2)+(pMwallT*2);
+
 
 
    /////////////////////////////////
@@ -413,7 +409,7 @@ max(
 ,
 (((pMID/2)+(pMgroove)+1+(p8baseL/2)+(p8holeC2C/2)+(p8holeD*1.25)+(p7mountL))*2)
 ,
-(p3baseOD+1+p5boltHeadH+p5boltL+1+p7bearingfromfront+(p7wiggleL/2)+bearingholderZBW)
+((((p3baseOD/2)+1+p5wingL+1+p7bearingfromfront+(p7wiggleL/2)+bearingholderZBW))*2)
 );
 
 //MAX() of distance from mountain, and distance from plate spacers bolts
@@ -467,6 +463,16 @@ echo("c3OD",c3OD);
 echo("Tn",Tn);
 echo("pitch",180*(c3OD-(Td))/Tn);
 echo("pCir",pCir);
+
+
+p5mounthole2front=(p5mountBoltHeadOD/2)+Td;
+p5mounthole2back=
+max(
+(p5mountBoltHeadOD/2)+(((pMID+(pMgroove*2))-(p3baseOD+2))/2)
+,
+(p5mountBoltHeadOD/2)+4
+);
+
 
 //c1
 c1H=table_surface;

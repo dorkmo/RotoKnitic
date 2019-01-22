@@ -21,28 +21,28 @@ use <CKc3--topplate.scad>;
 rotate([0,0,(360/p2number*p2needles/2)]){
     
 translate([0,0,-nB+(pPspace1+pPplate1)])
-rotate([0,0,(360/p2number*p2needles/2)*1])
+rotate([0,0,(360/(p2number*p2needles))*1])
 translate([(-p3wallID/2)+(p2needlegrooveDepthslop/2),0,0])
 translate([0,nX/2,0])
 rotate([90,0,0])
 needle();
     
 translate([0,0,-nB+(pPspace1+pPplate1+pMgrooveC1-nC)])
-rotate([0,0,(360/p2number*p2needles/2)*1])
+rotate([0,0,(360/(p2number*p2needles))*2])
 translate([(-p3wallID/2)+(p2needlegrooveDepthslop/2),0,0])
 translate([0,nX/2,0])
 rotate([90,0,0])
 needle();
 
 translate([0,0,-nB+(pPspace1+pPplate1+pMgrooveC2-nC)])
-rotate([0,0,(360/p2number*p2needles/2)*2])
+rotate([0,0,(360/(p2number*p2needles))*3])
 translate([(-p3wallID/2)+(p2needlegrooveDepthslop/2),0,0])
 translate([0,nX/2,0])
 rotate([90,0,0])
 needle();
 
 translate([0,0,-nB+(pPspace1+pPplate1+pMgrooveC3)])
-rotate([0,0,(360/p2number*p2needles/2)*3])
+rotate([0,0,(360/(p2number*p2needles))*4])
 translate([(-p3wallID/2)+(p2needlegrooveDepthslop/2),0,0])
 translate([0,nX/2,0])
 rotate([90,0,0])
@@ -51,7 +51,7 @@ needle();
 
 
 //mountain
-translate([0,0,0])  //-c3OD/2
+translate([0,0,0])
 translate([0,p3wallOD/2,(pPspace1+pPplate1+pPspace2+pPplate2)-(pPspace2+pPplate2)])
 rotate([0,0,0])
 CKpM(0);
@@ -98,7 +98,7 @@ for(i=[1:p4number]){
 //p5
 for(i=[1:c2bmounts]){
     rotate([0,0,((360/c2connectors)*1.5)+((360/c2bmounts)*i)]){
-        translate([0,(pMID/2)+(pMgroove)+1,pPspace1]){  //close enough?
+        translate([0,(p3baseOD/2)+1,pPspace1]){ 
             mirror([0,0,1])
 CKp5(1); //small bearing holder
         }//end translate
@@ -107,7 +107,7 @@ CKp5(1); //small bearing holder
 
     //small bearing holder - under mountain
     rotate([0,0,0]){
-        translate([0,(pMID/2)+(pMgroove)+1,pPspace1]){  //close enough?
+        translate([0,(p3baseOD/2)+1,pPspace1]){
             mirror([0,0,1])
 CKp5(1); //small bearing holder
         }//end translate

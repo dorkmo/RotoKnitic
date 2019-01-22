@@ -4,18 +4,19 @@ CKp5(1); //small bearing holder
 
 
 
-module CKp5(B){
-    translate([-(p5wingW+p5bodyW+p5wingW)/2,0,0]){
+module CKp5(B){    
+    mirror([0,1,0]){
+    translate([-(p5wingW+p5bodyW+p5wingW)/2,-p5wingL,0]){
     
         //bearing
 if(B==1){
-  translate([(p5wingW+p5bodyW+p5wingW)/2,p5bearingfromwall+(p5wiggleL/2),bearingholderSmallB2C])
+  translate([(p5wingW+p5bodyW+p5wingW)/2,p5bearingfromwall+(p5wiggleL/2)+p5boltHeadH,bearingholderSmallB2C])
   rotate([270,0,0])
   difference(){
     cylinder(d=bearingholderSmallBOD,h=bearingholderSmallBW, $fn=36);
     cylinder(d=bearingholderSmallBID,h=bearingholderSmallBW, $fn=36);
   }
-  translate([(p5wingW+p5bodyW+p5wingW)/2,p5bodyL-p5bearingfromwall-bearingholderSmallBW-(p5wiggleL/2),bearingholderSmallB2C])
+  translate([(p5wingW+p5bodyW+p5wingW)/2,p5bodyL-p5bearingfromwall-bearingholderSmallBW-(p5wiggleL/2)+p5boltHeadH,bearingholderSmallB2C])
   rotate([270,0,0])
   difference(){
     cylinder(d=bearingholderSmallBOD,h=bearingholderSmallBW, $fn=36);
@@ -23,20 +24,22 @@ if(B==1){
   }
   
   //bolt
-  translate([(p5wingW+p5bodyW+p5wingW)/2,0,bearingholderSmallB2C])
+  translate([(p5wingW+p5bodyW+p5wingW)/2,p5boltHeadH,bearingholderSmallB2C])
 rotate([-90,0,0])
 rotate([0,0,360/6/2])
 CKbolt(p5boltD,p5boltL,p5boltHeadH,p5boltHeadOD);
 
-  //bolt
-  translate([(p5wingW+p5bodyW+p5wingW)/2,p5bodyL,bearingholderSmallB2C])
+  //nut
+  translate([(p5wingW+p5bodyW+p5wingW)/2,p5bodyL+p5boltHeadH,bearingholderSmallB2C])
 rotate([-90,0,0])
 rotate([0,0,360/6/2])
 CKnut(p5boltD,p5nutH,p5boltHeadOD);
 
   
 } //end if
-        
+
+difference(){
+union(){
         //wing left
         difference(){
         cube([p5wingW,p5wingL,p5wingH]);
@@ -48,7 +51,7 @@ CKnut(p5boltD,p5nutH,p5boltHeadOD);
                     } //end wing left difference
                     
         //body
-        translate([p5wingW,0,0]){
+        translate([p5wingW,p5boltHeadH,0]){
             difference(){
         cube([p5bodyW,p5bodyL,p5bodyH]);
         // bearing cutout 1
@@ -74,8 +77,18 @@ CKnut(p5boltD,p5nutH,p5boltHeadOD);
                 translate([p5wingW/2,p5wingL-p5mounthole2back,0])
                 cylinder(d=p5mountholeOD,h=p5wingH+0.1,$fn=36);
             } //end wing right difference
-        } //end wing right translate            
+        } //end wing right translate     
+    }
+       difference(){
+           translate([(-(((c3OD/2)-p7bearingfromfront-(p7wiggleL/2)-bearingholderZBW))/2)+((p5wingW+p5bodyW+p5wingW)/2),0,0])
+    cube([((c3OD/2)-p7bearingfromfront-(p7wiggleL/2)-bearingholderZBW),((c3OD/2)-p7bearingfromfront-(p7wiggleL/2)-bearingholderZBW),p5bodyH]);
+translate([(p5wingW+p5bodyW+p5wingW)/2,((c3OD/2)-p7bearingfromfront-(p7wiggleL/2)-bearingholderZBW)/2,0])
+            cylinder(d=((c3OD/2)-p7bearingfromfront-(p7wiggleL/2)-bearingholderZBW),h=p5bodyH,$fn=360);
+       }
+        
+    }//end body translate
     } //end main translate
+} //end mirror
 } //end main module
 
 
