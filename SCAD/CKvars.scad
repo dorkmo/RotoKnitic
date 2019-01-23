@@ -41,12 +41,14 @@ pPplate1=bottom_surface_motor_gearsH;  //thickness of geared plated
 pPspace2=12; //space between geared plate and mountain plate, needle nC?  //12
 pPplate2=upper_surfaceH;
 
+/*
 //"connector0912" connects upper_surface plate to bottom_surface geared plate
 connector0912H=12;
 connector0912L=25;
 connector0912W=8;
 connector0912HoleOD=3;   //hole diameter
 connector0912HoleC2C=17; //center of hole to center of other hole
+*/
 
 //p5 BearringSmall1312_x_4.stl
 bearingholderSmallB2C=5.5;  //from base of bearing holder to center of bearing
@@ -227,7 +229,7 @@ p8boltL=30;  //bolt to hold bearings
 
 p8baseW=8;
 p8holeD=p8boltD;
-
+p8H=pPspace2;
 
 echo("suggested boltL for spacer", ceil((upper_surfaceH+pPspace2+bottom_surface_motor_gearsH+p8nutH)/5)*5   );  //20,22,25,30 commonly availabble
 
@@ -501,7 +503,9 @@ max(
 
 //p8
 p8holeend2C=4;
+
 p8innerboltO2C=(c2ID/2)+pMgroove+1+p8holeend2C;   //radius of origin to center of inner bolt
+
 p8outerboltO2C=min(
 (c3OD/2)-p7bearingfromfront-(p7wiggleL/2)-bearingholderZBW-p7boltHeadH-1-(p8boltHeadOD/2)
 ,

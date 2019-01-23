@@ -37,13 +37,11 @@ cylinder(h=c2H+2,d=c3ID);  // donut hole
 
     //plate connector holes
 for(i=[2:c2connectors]){
-    rotate([0,0,((360/c2connectors)*i)]){
-        translate([0,(pMID/2)+(pMgroove)+1+(p8baseL/2),0]){          
-            translate([0,p8holeC2C/2,-0.1])
+    rotate([0,0,((360/c2connectors)*i)]){          
+            translate([0,p8innerboltO2C,-0.1])
                 cylinder(d=p8holeD,h=c2H+0.2,$fn=36);
-            translate([0,-(p8holeC2C/2),-0.1])
+            translate([0,p8outerboltO2C,-0.1])
                 cylinder(d=p8holeD,h=c2H+0.2,$fn=36);
-        } //end translate to ring
     } //end rotate i
 } //end for
 
