@@ -1,5 +1,42 @@
 include <CKvars.scad>;
 
+/*
+///////////////////
+use <CKneedle.scad>;
+rotate([0,0,(360/p2number*p2needles/2)]){
+    
+translate([0,0,-nB+(pPspace1+pPplate1)])
+rotate([0,0,(360/(p2number*p2needles))*1])
+translate([(p2needlegrooveDepthslop/2),0,0])
+translate([0,nX/2,0])
+rotate([90,0,0])
+needle();
+    
+translate([0,0,-nB+(pPspace1+pPplate1+pMgrooveC1-nC)])
+rotate([0,0,(360/(p2number*p2needles))*2])
+translate([(p2needlegrooveDepthslop/2),0,0])
+translate([0,nX/2,0])
+rotate([90,0,0])
+needle();
+
+translate([0,0,-nB+(pPspace1+pPplate1+pMgrooveC2-nC)])
+rotate([0,0,(360/(p2number*p2needles))*3])
+translate([(p2needlegrooveDepthslop/2),0,0])
+translate([0,nX/2,0])
+rotate([90,0,0])
+needle();
+
+translate([0,0,-nB+(pPspace1+pPplate1+pMgrooveC3-nC)])
+rotate([0,0,(360/(p2number*p2needles))*4])
+translate([(p2needlegrooveDepthslop/2),0,0])
+translate([0,nX/2,0])
+rotate([90,0,0])
+needle();
+}
+
+///////////////////
+*/
+
 CKp3();
 
 echo("p3wallH",p3wallH);
@@ -60,8 +97,8 @@ translate([-p3baseOD/2,0,0])
         //slots    
 for(i=[1:p2needles*(p2number/p3number)]){
   rotate([0,0,(360/p2number/p2needles/2)-(360/p2number/p2needles*i)]){
-  translate([((-centerlineD-(p3wallW*2)-((p2W+(p3wiggle*2)/2)))/2)-0.1,-p3grooveW/2,p3grooveH1])
-    cube([p3wallW+0.2,p3grooveW,p3grooveH2-p3grooveH1]);
+  translate([((-centerlineD-(p3wallW*2)-((p2W+(p3wiggle*2)/2)))/2)-0.1,-p3grooveW/2,p3grooveH1-p3grooveHslop])
+    cube([p3wallW+0.2,p3grooveW,p3grooveH2-p3grooveH1+(p3grooveHslop*2)]);
   }
 }
     

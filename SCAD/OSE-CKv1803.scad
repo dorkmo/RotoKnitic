@@ -18,7 +18,7 @@ use <CKc2--bottom_surface_motor_gears.scad>;
 use <CKc3--topplate.scad>;
 
 //needle
-rotate([0,0,(360/p2number*p2needles/2)]){
+rotate([0,0,(360/p2number*p2needles/2)*1.5]){
     
 translate([0,0,-nB+(pPspace1+pPplate1)])
 rotate([0,0,(360/(p2number*p2needles))*1])
@@ -41,7 +41,7 @@ translate([0,nX/2,0])
 rotate([90,0,0])
 needle();
 
-translate([0,0,-nB+(pPspace1+pPplate1+pMgrooveC3)])
+translate([0,0,-nB+(pPspace1+pPplate1+pMgrooveC3-nC)])
 rotate([0,0,(360/(p2number*p2needles))*4])
 translate([(-p3wallID/2)+(p2needlegrooveDepthslop/2),0,0])
 translate([0,nX/2,0])
@@ -120,7 +120,7 @@ for(i=[1:c2bmounts]){
     rotate([0,0,((45)+((360/c2bmounts)*i))]){
         translate([0,(c3OD/2)-p7bearingfromfront-(p7wiggleL/2)-bearingholderZBW,0]){  //close enough?
 //trans Y old : (c3OD/2)-((p7mountL-p7wallW)/2)-((bearingholderZBW+p7wiggleL)/2)-(p7wiggleL/2)
-CKp7();
+CKp7(1);
         }//end translate
     }//end rotate
 }//end for

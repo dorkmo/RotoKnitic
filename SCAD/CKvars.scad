@@ -119,6 +119,7 @@ p3wallchamfH=3;
 //p3wallH in calculations below
 //p3grooveH1 in calculations below
 //p3grooveH2 in calculations below
+p3grooveHslop=1;
 p3grooveWslop=0.8;  //extra Width in needle groove
 p3grooveW=nX+p3grooveWslop;
 p3clear=5;   //distance from top of p3 to needle flipper in down position
@@ -172,6 +173,7 @@ p5mountholeOD=3;     //mounting bolt OD
 p5mountBoltHeadOD=5.68;
 
 pPspace1=bearingholderSmallgapclear+bearingholderSmallBOD+bearingholderSmallgaproll; //? space from main table top to first plate - calc w/ bearing holder height, stepper motor shaft length?
+//made max of bearing holder, and p3wall45H?
 
 echo("pPspace1",pPspace1);
 
@@ -193,6 +195,14 @@ p6mounthole2front=8;
 p6mounthole2side=3;
 
 //p7 Z bearing holder - need to tweak more for different size bearings
+
+    //bearing bolt
+p7boltHeadOD=8; //look up sales drawing - used to cut mountain
+p7boltHeadH=3.65;  //look up sales drawing - used to cut mountain
+p7nutH=2.7;  //jam nut
+p7boltD=5;
+p7boltL=16;  //bolt to hold bearings
+
 p7baseH=4;
 p7wallW=3;
 p7mountH=bearingholderZBOD-2;
@@ -206,6 +216,7 @@ p7baseW=bearingholderZBOD+8;  //16
 p7baseL=max((((p7bearingfromfront+bearingholderZBW+p7bearingfromfront)*2)+p7wallW),(p7mountholeHeadOD*2)+p7wallW,(p7mounthole2edge*2)+p7wallW);  //23
 p7mountL=(p7baseL-p7wallW)/2;  //13
 
+echo("suggested bolt for Z bearing", ceil(((((p7baseL-p7wallW)/2)+p7wallW+p7nutH)/2))*2   );
 
 //p8 plate connector
 p8baseW=8;
@@ -257,8 +268,9 @@ rez=p2number*p2needles*2;
 
 centerlineD=p2ID+(p2W+(p3wiggle*2));
 
-p3grooveH1=bottom_surface_motor_gearsH+bearingholderSmallB2C+(bearingholderSmallBOD/2)+(pMgrooveSlop/2);
-p3grooveH2=p3grooveH1+pMgrooveC3+(pMgrooveSlop/2);
+
+p3grooveH1=pPspace1+pPplate1; //bottom of verticle groove in p3
+p3grooveH2=pPspace1+pPplate1+pMgrooveC3;  //top of groove in p3
 
 p4baseOD=centerlineD+p4baseW;
 p4baseID=centerlineD-p4baseW;
@@ -405,7 +417,7 @@ pMgrooveOR=pMgroove+(pMID/2); //center to OD of groove
 //c3 - redo with extra mountian tab/shelf distance
 c3OD=
 max(
-((pow((pow(((((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0)))+pMshelfX),2)+pow((((c2ID+(pMgroove*2)+(pMwallT*2))/2)),2)),1/2))*2)+(p7mountL*2)
+((pow((pow(((((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0)))+pMshelfX),2)+pow((((c2ID+(pMgroove*2)+(pMwallT*2))/2)),2)),1/2))*2)+((p7mountL+p7boltHeadH)*2)
 ,
 (((pMID/2)+(pMgroove)+1+(p8baseL/2)+(p8holeC2C/2)+(p8holeD*1.25)+(p7mountL))*2)
 ,

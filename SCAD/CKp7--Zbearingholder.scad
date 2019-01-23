@@ -61,5 +61,44 @@ if(B==1){
     cylinder(d=bearingholderSmallBID,h=bearingholderSmallBW, $fn=36);
   }
 } //end if
+
+
+  //bolt
+translate([p7baseW/2,0,bearingholderZB2C])
+rotate([-90,0,0])
+rotate([0,0,360/6])
+CKbolt(p7boltD,p7boltL,p7boltHeadH,p7boltHeadOD);
+
+  //nut
+translate([p7baseW/2,((p7baseL-p7wallW)/2)+p7wallW,bearingholderZB2C])
+rotate([-90,0,0])
+rotate([0,0,360/6])
+CKnut(p7boltD,p7nutH,p7boltHeadOD);
+
+
     } //end main translate
 } //end main module
+
+
+module CKbolt(D,BL,HH,HSD){  
+    cylinder(d=D,h=BL,$fn=32);
+
+    fudge = 1/cos(180/(6));
+   translate([0,0,-HH])
+   rotate([0,0,360/6/2])         
+   cylinder(h=HH,r=HSD/2*fudge,$fn=(6));
+    }
+    
+module CKnut(BD,H,SD){ 
+
+    fudge = 1/cos(180/(6));
+   difference(){ 
+
+   translate([0,0,0])
+   rotate([0,0,360/6/2])         
+   cylinder(h=H,r=SD/2*fudge,$fn=(6));
+
+    cylinder(d=BD,h=H,$fn=32);
+   }
+    }    
+    
