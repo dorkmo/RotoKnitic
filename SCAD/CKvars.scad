@@ -216,14 +216,20 @@ p7baseW=bearingholderZBOD+8;  //16
 p7baseL=max((((p7bearingfromfront+bearingholderZBW+p7bearingfromfront)*2)+p7wallW),(p7mountholeHeadOD*2)+p7wallW,(p7mounthole2edge*2)+p7wallW);  //23
 p7mountL=(p7baseL-p7wallW)/2;  //13
 
-echo("suggested bolt for Z bearing", ceil(((((p7baseL-p7wallW)/2)+p7wallW+p7nutH)/2))*2   );
+echo("suggested boltL for Z bearing", ceil(((((p7baseL-p7wallW)/2)+p7wallW+p7nutH)/2))*2   );
 
 //p8 plate connector
+p8boltHeadOD=5.68; //look up sales drawing - used to cut mountain
+p8boltHeadH=3;  //look up sales drawing - used to cut mountain
+p8nutH=4;  //jam nut
+p8boltD=3;
+p8boltL=30;  //bolt to hold bearings
+
 p8baseW=8;
-p8baseL=25;
-p8holeD=3;
-p8holeend2C=4;
-p8holeC2C=p8baseL-(p8holeend2C*2);
+p8holeD=p8boltD;
+
+
+echo("suggested boltL for spacer", ceil((upper_surfaceH+pPspace2+bottom_surface_motor_gearsH+p8nutH)/5)*5   );  //20,22,25,30 commonly availabble
 
 //p9 outer connector
 p9thickness=4;
@@ -419,10 +425,12 @@ c3OD=
 max(
 ((pow((pow(((((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0)))+pMshelfX),2)+pow((((c2ID+(pMgroove*2)+(pMwallT*2))/2)),2)),1/2))*2)+((p7mountL+p7boltHeadH)*2)
 ,
-(((pMID/2)+(pMgroove)+1+(p8baseL/2)+(p8holeC2C/2)+(p8holeD*1.25)+(p7mountL))*2)
-,
 ((((p3baseOD/2)+1+p5wingL+1+p7bearingfromfront+(p7wiggleL/2)+bearingholderZBW))*2)
 );
+
+//removed following, going to shrink p8 as needed
+//(((pMID/2)+(pMgroove)+1+(p8baseL/2)+(p8holeC2C/2)+(p8holeD*1.25)+(p7mountL))*2)
+
 
 //MAX() of distance from mountain, and distance from plate spacers bolts
 //need to consider tooth size on plate c2 ??
@@ -430,6 +438,11 @@ max(
 echo("X", ((((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0)))+pMshelfX));
 echo("Y", ((c2ID+(pMgroove*2)+(pMwallT*2))/2));
 echo("c3OD=", c3OD);
+
+
+
+
+
 
 pMODshelf=c3OD;
 
@@ -484,6 +497,20 @@ max(
 ,
 (p5mountBoltHeadOD/2)+4
 );
+
+
+//p8
+p8holeend2C=4;
+p8innerboltO2C=(c2ID/2)+pMgroove+1+p8holeend2C;   //radius of origin to center of inner bolt
+p8outerboltO2C=min(
+(c3OD/2)-p7bearingfromfront-(p7wiggleL/2)-bearingholderZBW-p7boltHeadH-1-(p8boltHeadOD/2)
+,
+CKc2_pitch_radius-(Td/2)-1-p8holeend2C
+);   //radius of origin to center of outer bolt
+
+p8holeC2C=p8outerboltO2C-p8innerboltO2C;  //p8baseL-(p8holeend2C*2)
+
+p8baseL=p8holeC2C+(p8holeend2C*2); //25
 
 
 //c1
