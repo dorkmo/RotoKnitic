@@ -38,8 +38,8 @@ woodbeamScrewOD=6.32;   // 1/4" screw hole
 
 //plate 
 pPplate1=bottom_surface_motor_gearsH;  //thickness of geared plated
-pPspace2=12; //space between geared plate and mountain plate, needle nC?  //12
 pPplate2=upper_surfaceH;
+
 
 /*
 //"connector0912" connects upper_surface plate to bottom_surface geared plate
@@ -102,7 +102,6 @@ p2OD=p2ID+(p2W*2);
 p2holeD=2;
 p2holeCSD=4.01726;
 p2holeCSL=1.5;
-p2clear=0.5;  //distance above top of p4 from flipper in down position
 
 //p3 - outer needle wall slide
 p3wiggle=0.1;
@@ -153,7 +152,14 @@ p4clawW=min((needle2needle-(nX*2)),9);
 p4holesnumber=3;
 p4holeH=5;
 p4rampW=max(min(p4clawW-3,4),2.5);
+p4clear=0.5;  //distance above top of p4 from flipper in down position
+
 echo("rampW", p4rampW);
+
+
+//space between rotating plates
+pPextra=1;   //extra room below nC at lowest point
+pPspace2=nC+(p4baseH-p4basegapH)+pPextra; //space between geared plate and mountain plate, needle nC?  //12
 
 //p5 small bearing holder
 p5boltHeadOD=8; //look up sales drawing - used to cut mountain
@@ -244,10 +250,10 @@ pMgrooveSlop=2;  //height slop of groove
 pMgrooveD=nC+pMgrooveSlop; //Z plane diamter of groove cut 
 pMgrooveAngle=45;
 pMgrooveC1=pPspace2;    //top of groove at position 1 "entrance"  pPspace2 ///////////
-pMgrooveC2=nC+2;        //top of groove at position 2 "push down"  nC+2 ////////////
+pMgrooveC2=nC+pPextra;        //top of groove at position 2 "push down"  nC+2 ////////////
 threadthickness=0.25;    //approx used to leave space above p2
-pMgroovetravel=p2clear+(p4rampH+p4baseH-p4basegapH)-(nG+threadthickness)+nF;        //total travel of needle
-pMgrooveC3=pMgrooveC2+pMgroovetravel+(pMgrooveD-nC);       //top of groove at position 3 "top center" calc! //44.25
+
+pMgrooveC3=pMgrooveC2+(pMgrooveD-nC)-(nG+threadthickness)+(p4baseH-p4basegapH)+p4rampH+p4clear+nF;       //top of groove at position 3 "top center" calc! //44.25
 pMwallHextra=5.75;      //extra height above groove at heighest point
 pMH=pMwallHextra+pMgrooveC3; //total height of mountain
 pMshelfH=4; //thickness of shelf resting on top of c3
@@ -288,7 +294,7 @@ p4basegapID=centerlineD-p4basegapW;
 //firstcenter=(((((360/p2number/p2needles/2)/360*(p2OD*PI))-(needleWidth/2))/((360/p2number/p2needles/2)/360*(p2OD*PI)))*(360/p2number/p2needles/2))/2;
 //doesnt work on narrow needle arrangement, moved to second gap
 
-p2H=pPspace1+pPplate1+pMgrooveC3+nA-nB-nC-nF-p3base45H-(p4rampH+p4baseH-p4basegapH)-p2clear;
+p2H=pPspace1+pPplate1+pMgrooveC2+(nA-nC-nB-nG)-threadthickness-p3base45H;
 
 p3wallH=pPspace1+pPplate1+pMgrooveC2+nA-nB-nC-nF-p3clear;
 
