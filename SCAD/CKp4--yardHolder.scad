@@ -127,7 +127,16 @@ difference(){
     } //end for
         
         //end middle holes
-        
+ 
+    //trim end       
+    if(p4number>1){
+    rotate([0,0,-(360/(p4baseOD*PI/p4endtrim))])
+ mirror([1,1,0])
+ #cube([p4baseOD/2,p4baseOD/2,p4rampH+p4baseH]);   
+    
+}
+    
+    
     } //end main difference
 } //end main translate
     

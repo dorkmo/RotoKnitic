@@ -26,7 +26,7 @@ module CKp2(){
     }
 
         rotate([0,0,-360/p2number/p2needles]){
-        translate([-p2OD/2-0.2,0,p2holeH])
+        translate([-p2OD/2-0.2,0,p2holeH-p3base45H])
             rotate([0,90,0]){
                 union(){
                     cylinder(h=p2OD-p2ID+0.2, d=p2holeD);
@@ -38,7 +38,7 @@ module CKp2(){
         }
                 
         rotate([0,0,-360/p2number/p2needles*(p2needles-1)]){
-        translate([-p2OD/2-0.2,0,p2holeH])
+        translate([-p2OD/2-0.2,0,p2holeH-p3base45H])
             rotate([0,90,0]){
                 union(){
                     cylinder(h=p2OD-p2ID+0.2, d=p2holeD);
@@ -55,7 +55,7 @@ echo(((((360/p2number/p2needles/2)/360*(p2OD*PI))-(needleWidth/2))/((360/p2numbe
 
 // 2nd hole
         rotate([0,0,-(360/p2number/p2needles)*2]){
-        translate([-p2OD/2-0.2,0,p2holeH])
+        translate([-p2OD/2-0.2,0,p2holeH-p3base45H])
             rotate([0,90,0]){
                 union(){
                     cylinder(h=p2OD-p2ID+0.2, d=p2holeD);
@@ -68,7 +68,7 @@ echo(((((360/p2number/p2needles/2)/360*(p2OD*PI))-(needleWidth/2))/((360/p2numbe
         
 //3rd hole
         rotate([0,0,-360/p2number+((360/p2number/p2needles)*2)]){
-        translate([-p2OD/2-0.2,0,p2holeH])
+        translate([-p2OD/2-0.2,0,p2holeH-p3base45H])
             rotate([0,90,0]){
                 union(){
                     cylinder(h=p2OD-p2ID+0.2, d=p2holeD);
@@ -94,11 +94,22 @@ echo(((((360/p2number/p2needles/2)/360*(p2OD*PI))-(needleWidth/2))/((360/p2numbe
         rotate([0,0,-(360/p2number/p2needles)*3]){
         translate([-p2OD/2-0.2,0,p2H-(p4basegapH-p4holeH)])
             rotate([0,90,0]){
-                cylinder(h=p2OD-p2ID+0.2, d=p2holeD);
+                #cylinder(h=p2OD-p2ID+0.2, d=p2holeD);
             }
         } 
 
         //end p4 mount holes
+
+
+//trim end of part
+
+if(p2number>1){
+    rotate([0,0,-(360/(p2OD*PI/p2endtrim))])
+ mirror([1,1,0])
+ #cube([p2OD/2,p2OD/2,p2wallH]);   
+    
+}
+
 
 } //end main difference
 } //end main translate    

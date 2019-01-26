@@ -102,6 +102,7 @@ p2OD=p2ID+(p2W*2);
 p2holeD=2;
 p2holeCSD=4.01726;
 p2holeCSL=1.5;
+p2endtrim=0.75;
 
 //p3 - outer needle wall slide
 p3wiggle=0.1;
@@ -131,8 +132,9 @@ centerlineD=p2ID+(p2W+(p3wiggle*2));
 p3wallOD=centerlineD+(p3wallW*2)+((p2W+(p3wiggle*2)/2));
 p3wallID=centerlineD+((p2W+(p3wiggle*2)/2));
 p3base45W=p3ridgeW2+p3wiggle+p2W+p3wiggle+p3baseID2N;
-p3base45H=p3base45W;
+p3base45H=p3base45W; //height of 45 degree overhang
 p3needleholefactorW=2.25; //multiply width of needle tail hole in base by this
+p3endtrim=0.75;
 
 //p4
 p4rampH=14.57;
@@ -152,7 +154,8 @@ p4clawW=min((needle2needle-(nX*2)),9);
 p4holesnumber=3;
 p4holeH=5;
 p4rampW=max(min(p4clawW-3,4),2.5);
-p4clear=0.5;  //distance above top of p4 from flipper in down position
+p4clear=0.5;  //distance above top of p4 from flipper in down position //need to fix -0.5?
+p4endtrim=0.75;
 
 echo("rampW", p4rampW);
 
@@ -251,7 +254,7 @@ pMgrooveD=nC+pMgrooveSlop; //Z plane diamter of groove cut
 pMgrooveAngle=45;
 pMgrooveC1=pPspace2;    //top of groove at position 1 "entrance"  pPspace2 ///////////
 pMgrooveC2=nC+pPextra;        //top of groove at position 2 "push down"  nC+2 ////////////
-threadthickness=0.25;    //approx used to leave space above p2
+threadthickness=0.5;    //approx used to leave space above p2
 
 pMgrooveC3=pMgrooveC2+(pMgrooveD-nC)-(nG+threadthickness)+(p4baseH-p4basegapH)+p4rampH+p4clear+nF;       //top of groove at position 3 "top center" calc! //44.25
 pMwallHextra=5.75;      //extra height above groove at heighest point
@@ -298,7 +301,7 @@ p2H=pPspace1+pPplate1+pMgrooveC2+(nA-nC-nB-nG)-threadthickness-p3base45H;
 
 p3wallH=pPspace1+pPplate1+pMgrooveC2+nA-nB-nC-nF-p3clear;
 
-p2holeH=p3grooveH2+((p3wallH-p3grooveH2)/2);
+p2holeH=p3grooveH2+((p3wallH-p3grooveH2)/2);  //hight from table top
 
 //c3
 c3ID=c2ID;

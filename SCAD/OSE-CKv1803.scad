@@ -18,7 +18,7 @@ use <CKc2--bottom_surface_motor_gears.scad>;
 use <CKc3--topplate.scad>;
 
 //needle
-rotate([0,0,(360/p2number*p2needles/2)*1.5]){
+rotate([0,0,(360/p2number*p2needles/2)]){
     
 translate([0,0,-nB+(pPspace1+pPplate1)])
 rotate([0,0,(360/(p2number*p2needles))*1])
@@ -41,7 +41,7 @@ translate([0,nX/2,0])
 rotate([90,0,0])
 needle();
 
-translate([0,0,-nB+(pPspace1+pPplate1+pMgrooveC3-nC)])
+translate([0,0,-nB+(pPspace1+pPplate1+pMgrooveC3-nC-(pMgrooveD-nC))])
 rotate([0,0,(360/(p2number*p2needles))*4])
 translate([(-p3wallID/2)+(p2needlegrooveDepthslop/2),0,0])
 translate([0,nX/2,0])
@@ -80,7 +80,7 @@ for(i=[1:p3number]){
 //p9 - connector for p3
 for(i=[1:p3number]){
     rotate([0,0,i*(360/p3number)])
-    translate([-p3baseOD/2,0,(p2holeH+p3baseH)+(p9H/2)])
+    translate([-p3wallOD/2,0,(p2holeH)-(p9H/2)])
     rotate([0,0,180])
     CKp9();
 }//end for
@@ -88,7 +88,7 @@ for(i=[1:p3number]){
 
 //p4 - yard holder at top
 for(i=[1:p4number]){
-    rotate([0,0,(360/p2number*p2needles/2)+(i*(360/p4number))])
+    rotate([0,0,-((360/p2number/p2needles)*3.5)+(i*(360/p4number))])
     translate([-(p4baseOD/2),0,p3base45H+p2H-p4basegapH])
     CKp4();
 }
