@@ -102,7 +102,7 @@ p2OD=p2ID+(p2W*2);
 p2holeD=2;
 p2holeCSD=4.01726;
 p2holeCSL=1.5;
-p2endtrim=0.75;
+p2endtrim=0.5;
 
 //p3 - outer needle wall slide
 p3wiggle=0.1;
@@ -134,7 +134,7 @@ p3wallID=centerlineD+((p2W+(p3wiggle*2)/2));
 p3base45W=p3ridgeW2+p3wiggle+p2W+p3wiggle+p3baseID2N;
 p3base45H=p3base45W; //height of 45 degree overhang
 p3needleholefactorW=2.25; //multiply width of needle tail hole in base by this
-p3endtrim=0.75;
+p3endtrim=0.5;
 
 //p4
 p4rampH=14.57;
@@ -155,7 +155,7 @@ p4holesnumber=3;
 p4holeH=5;
 p4rampW=max(min(p4clawW-3,4),2.5);
 p4clear=0.5;  //distance above top of p4 from flipper in down position //need to fix -0.5?
-p4endtrim=0.75;
+p4endtrim=0.5;
 
 echo("rampW", p4rampW);
 

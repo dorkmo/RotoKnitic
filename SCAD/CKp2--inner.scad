@@ -106,7 +106,7 @@ echo(((((360/p2number/p2needles/2)/360*(p2OD*PI))-(needleWidth/2))/((360/p2numbe
 if(p2number>1){
     rotate([0,0,-(360/(p2OD*PI/p2endtrim))])
  mirror([1,1,0])
- #cube([p2OD/2,p2OD/2,p2wallH]);   
+ #cube([p2OD/2,p2OD/2,p2H]);   
     
 }
 
