@@ -29,6 +29,12 @@ c1steppersnumber=1;  //number of stepper motors driving the gear
 
 ////MATERIALS////
 
+//thread feeder stand above mountain
+TF=1;    //  0=none  1=angle iron  2=makerbeamm
+
+aaX=10;
+aaT=1;
+
 upper_surfaceH=5;  //thickness of upper rotating plate  ///5
 bottom_surface_motor_gearsH=6;  //thickness of geared rotating plate
 table_surface=5;  //thickness of plate of main table

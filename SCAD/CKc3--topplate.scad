@@ -16,7 +16,7 @@ CKc3();
 
 /*
 translate([0,-c3OD/2,0])
-translate([0,p3wallOD/2,-12])
+translate([0,p3wallOD/2,-pPspace2])
 rotate([0,0,0])
 CKpM(0);
 */
@@ -43,7 +43,7 @@ translate([0,-c3OD/2,0]){     //[c3OD/2,0,0]
         cylinder(h=c3H+2,d=c3ID);  // donut hole
  
         //plate connector holes
-        for(i=[1:c2connectors]){
+        for(i=[1:c2connectors-1]){
             rotate([0,0,((360/c2connectors)*i)]){
           
                         translate([0,p8innerboltO2C,-0.1])

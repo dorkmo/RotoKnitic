@@ -144,7 +144,7 @@ CKp5(1); //small bearing holder
 
 //p8
 translate([0,0,pPspace1+pPplate1])
-        for(i=[1:c2connectors]){
+        for(i=[1:c2connectors-1]){
             rotate([0,0,((360/c2connectors)*i)]){
                 translate([0,(pMID/2)+(pMgroove)+1+(p8baseL/2),0]){          
                         translate([0,-p8baseL/2,-0.1])

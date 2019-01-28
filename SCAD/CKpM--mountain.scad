@@ -1,14 +1,16 @@
 include <CKvars.scad>;
 
+use <mb10.scad>;
+
 //TO DO//
 //*add integrated yarn feeder based on needle height
 //*function func6 not right? working with 45 angle but not others
 //*pMd4 not placing groove properly when not at 45 degrees
 ///////
 
-CKpM(1); //render mountain  1=w/ grove 0=w/o groove
+CKpM(0,TF); //render mountain  1=w/ grove 0=w/o groove
 
-module CKpM(G){
+module CKpM(G,TF){
 translate([0,-p3wallOD/2,0]){ //main translate
 union(){
 difference(){
@@ -204,7 +206,33 @@ if(G==1){
   } //end translate
 ////////end extra piece
 
+//Thread Feeder Stand
 
+if(TF==1){  //angle iron, corner option
+    translate([0,10-aaT,0])
+    difference(){
+        cube([aaX,aaX,100]);
+        cube([aaX-aaT,aaX-aaT,100]);
+        cube([aaX-aaT,aaX,pMH+1]);  //manually cut piece
+        translate([aaX-aaT,aaX-aaT,0])
+        cube([aaT,aaT,pMH+1]);  //manually cut piece
+        
+        
+    }
+    
+    
+}
+
+  if(TF==2){   //MakerBeam Option
+      translate([0,10,0])
+      MB10(100);      
+
+      translate([0,10,0])
+      MB10(100);
+  }
+  
+  
+  
   
 } //end main union
 } //end main translate
