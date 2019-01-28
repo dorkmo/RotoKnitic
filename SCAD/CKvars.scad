@@ -31,7 +31,7 @@ c1steppersnumber=1;  //number of stepper motors driving the gear
 
 //thread feeder stand above mountain
 TF=1;    //  0=none  1=angle iron  2=makerbeamm
-
+TFW=60;
 aaX=10;
 aaT=1;
 

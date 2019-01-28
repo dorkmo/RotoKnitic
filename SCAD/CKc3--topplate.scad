@@ -2,6 +2,8 @@ include <CKvars.scad>;
 use <CKp8--plateconnector.scad>
 use <CKpM--mountain.scad>
 
+use <mb10.scad>;
+
 //////
 //TODO
 //
@@ -101,6 +103,15 @@ translate([0,(((((c2ID+(pMgroove*2)+(pMwallT*2))/2)/cos(pMd1e-pMd0))-((pMID/2)+(
         
         //makerbeam holes
         
+    if(TF==2){
+translate([(TFW/2)-(10/2),((c2ID+(pMgroove*2)+(pMwallT*2))/2)+(10/2),0])
+
+        cylinder(d=3, h=pMH, $fn=36);
+
+mirror([1,0,0])
+    translate([(TFW/2)-(10/2),((c2ID+(pMgroove*2)+(pMwallT*2))/2)+(10/2),0])
+        cylinder(d=3, h=pMH, $fn=36);
+    }
         
     }  //end main difference
 

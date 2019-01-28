@@ -8,9 +8,9 @@ use <mb10.scad>;
 //*pMd4 not placing groove properly when not at 45 degrees
 ///////
 
-CKpM(0,TF); //render mountain  1=w/ grove 0=w/o groove
+CKpM(0,TF,1); //render mountain  1=w/ grove 0=w/o groove
 
-module CKpM(G,TF){
+module CKpM(G,TF,RenderBeam){
 translate([0,-p3wallOD/2,0]){ //main translate
 union(){
 difference(){
@@ -209,25 +209,64 @@ if(G==1){
 //Thread Feeder Stand
 
 if(TF==1){  //angle iron, corner option
-    translate([0,10-aaT,0])
+    translate([-(aaX/2)+(TFW/2)-(aaX/2),((c2ID+(pMgroove*2)+(pMwallT*2))/2)-(aaX-aaT),pMH])
+    difference(){
+cube([aaX-aaT,aaX-aaT,aaX+1]);
+translate([0,aaX/2,(aaX/2)+1])
+        rotate([0,90,0])
+cylinder(d=3,h=aaX,$fn=36);
+translate([aaX-aaT,aaX-aaT,(aaX+1)/2])
+rotate([0,0,45])
+        cube([2,2,aaX+1],center=true);
+translate([0,0,(aaX+1)])
+rotate([0,45,45])
+        #cube([2,3,3],center=true);
+    }
+
+mirror([1,0,0])
+    translate([-(aaX/2)+(TFW/2)-(aaX/2),((c2ID+(pMgroove*2)+(pMwallT*2))/2)-(aaX-aaT),pMH])
+    difference(){
+cube([aaX-aaT,aaX-aaT,aaX+1]);
+translate([0,aaX/2,(aaX/2)+1])
+        rotate([0,90,0])
+cylinder(d=3,h=aaX,$fn=36);
+translate([aaX-aaT,aaX-aaT,(aaX+1)/2])
+rotate([0,0,45])
+        cube([2,2,aaX+1],center=true);
+translate([0,0,(aaX+1)])
+rotate([0,45,45])
+        #cube([2,3,3],center=true);
+    }
+
+//need to trim off bottom (pPspace1+pPplate1)
+if(RenderBeam==1){
+    translate([-(aaX/2)+(TFW/2)-(aaX/2),((c2ID+(pMgroove*2)+(pMwallT*2))/2)-(aaX-aaT),0])
     difference(){
         cube([aaX,aaX,100]);
         cube([aaX-aaT,aaX-aaT,100]);
-        cube([aaX-aaT,aaX,pMH+1]);  //manually cut piece
+        cube([aaX,aaX-aaT,pMH+1]);  //manually cut piece
         translate([aaX-aaT,aaX-aaT,0])
         cube([aaT,aaT,pMH+1]);  //manually cut piece
-        
-        
-    }
+    } //end angle iron
+
+mirror(1,0,0)
+    translate([-(aaX/2)+(TFW/2)-(aaX/2),((c2ID+(pMgroove*2)+(pMwallT*2))/2)-(aaX-aaT),0])
+    difference(){
+        cube([aaX,aaX,100]);
+        cube([aaX-aaT,aaX-aaT,100]);
+        cube([aaX,aaX-aaT,pMH+1]);  //manually cut piece
+        translate([aaX-aaT,aaX-aaT,0])
+        cube([aaT,aaT,pMH+1]);  //manually cut piece
+    } //end angle iron
     
-    
+}
 }
 
   if(TF==2){   //MakerBeam Option
-      translate([0,10,0])
+      translate([(TFW/2)-(10/2),((c2ID+(pMgroove*2)+(pMwallT*2))/2)+(10/2),0])
       MB10(100);      
 
-      translate([0,10,0])
+      translate([-(TFW/2)+(10/2),((c2ID+(pMgroove*2)+(pMwallT*2))/2)+(10/2),0])
       MB10(100);
   }
   
