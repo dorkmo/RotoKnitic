@@ -85,7 +85,7 @@ for(i=[1:p3number]){
 //p9 - connector for p3
 for(i=[1:p3number]){
     rotate([0,0,i*(360/p3number)])
-    translate([-p3wallOD/2,0,(p2holeH)-(p9H/2)])
+    translate([-(p3wallID+(p3upperwallW*2))/2,0,(p2holeH)-(p9H/2)])
     rotate([0,0,180])
     CKp9();
 }//end for

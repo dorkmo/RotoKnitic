@@ -25,6 +25,8 @@ p2needlegrooveID=((needle2needle*p2number*p2needles)/PI);
 //nnumber of Z bearing mounts
 c1zmounts=p3number;
 
+c1steppersnumber=1;  //number of stepper motors driving the gear
+
 ////MATERIALS////
 
 upper_surfaceH=5;  //thickness of upper rotating plate  ///5
@@ -108,6 +110,7 @@ p2endtrim=0.5;
 p3wiggle=0.1;
 p3baseH=3; //height of outer base
 p3wallW=(nH-nY)/2;  //half of needle butt
+p3upperwallW=3;
 p3baseholeD=3;
 p3baseholeScrewHeadD=5.68;
 p3baseholefromODID=p3baseholeScrewHeadD/2;
@@ -154,7 +157,7 @@ p4clawW=min((needle2needle-(nX*2)),9);
 p4holesnumber=3;
 p4holeH=5;
 p4rampW=max(min(p4clawW-3,4),2.5);
-p4clear=0.5;  //distance above top of p4 from flipper in down position //need to fix -0.5?
+p4clear=-0.5;  //distance above top of p4 from flipper in down position //need to fix -0.5?
 p4endtrim=0.5;
 
 echo("rampW", p4rampW);
@@ -243,7 +246,7 @@ p8H=pPspace2;
 echo("suggested boltL for spacer", ceil((upper_surfaceH+pPspace2+bottom_surface_motor_gearsH+p8nutH)/5)*5   );  //20,22,25,30 commonly availabble
 
 //p9 outer connector
-p9thickness=4;
+p9thickness=2;
 p9H=10;
 
 //mountain

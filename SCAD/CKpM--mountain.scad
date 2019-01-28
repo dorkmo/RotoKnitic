@@ -143,21 +143,21 @@ if(G==1){
 ////////        
 //space for smallbearingholder bolt heads  
   
-        translate([0,(pMID/2)+(pMgroove)+1,0]){  //close enough?
+        translate([0,((p3baseOD/2)+1),0]){  //close enough?
     //smallbearingholder holes
                 translate([-(p5wingW+p5bodyW+p5wingW)/2,0,0]){
         translate([p5wingW+p5bodyW,0,0]){            
         //wing right holes
-            translate([p5wingW/2,p5mounthole2front,0])
+            translate([p5wingW/2,p5mounthole2back,0])
                 cylinder(d=p5boltHeadOD,h=p5boltHeadH+0.1,$fn=36);
-                translate([p5wingW/2,p5wingL-p5mounthole2back,0])
+                translate([p5wingW/2,p5wingL-p5mounthole2front,0])
                 cylinder(d=p5boltHeadOD,h=p5boltHeadH+0.1,$fn=36);
         } //end wing right translate  
         
         //wing left holes
-            translate([p5wingW/2,p5mounthole2front,0])
+            translate([p5wingW/2,p5mounthole2back,0])
                 cylinder(d=p5boltHeadOD,h=p5boltHeadH+0.1,$fn=36);
-                translate([p5wingW/2,p5wingL-p5mounthole2back,0])
+                translate([p5wingW/2,p5wingL-p5mounthole2front,0])
                 cylinder(d=p5boltHeadOD,h=p5boltHeadH+0.1,$fn=36);
     }//end translate - center X of holes
         }//end translate to ring

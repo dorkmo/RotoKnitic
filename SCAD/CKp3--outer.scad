@@ -94,6 +94,17 @@ translate([-p3baseOD/2,0,0])
   cube([p3baseOD,p3baseOD/2,p3wallH]);        
 }
 
+
+//thin wall
+translate([0,0,p3grooveH2])
+    difference(){
+    cylinder(d=p3wallOD,h=p3wallH);
+    cylinder(d=p3wallID+(p3upperwallW*2),h=p3wallH);
+    cylinder(d1=p3wallOD,d2=p3wallID+(p3upperwallW*2),h=p2holeH-(p9H/2)-p3grooveH2-1);
+        
+    }
+
+
         //slots    
 for(i=[1:p2needles*(p2number/p3number)]){
   rotate([0,0,(360/p2number/p2needles/2)-(360/p2number/p2needles*i)]){

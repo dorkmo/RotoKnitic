@@ -8,46 +8,46 @@ module CKp9(){
     
     $fn=rez;
     
-    translate([-p3wallOD/2,0,0]){
+    translate([-(p3wallID+(p3upperwallW*2))/2,0,0]){
         
 
         
         difference(){
 
-            cylinder(h=p9H,d=p3wallOD+p9thickness);            
-            cylinder(h=p9H,d=p3wallOD);
+            cylinder(h=p9H,d=p3wallID+(p3upperwallW*2)+(p9thickness*2));            
+            cylinder(h=p9H,d=p3wallID+(p3upperwallW*2));
 
           //first and last holes
         rotate([0,0,-(360/p2number/p2needles)*2]){
-        translate([(p3wallOD/2)-0.1,0,p9H/2])
+        translate([0,0,p9H/2])
             rotate([0,90,0]){
-                #cylinder(h=p9thickness+0.2, d=p2holeD, $fn=18);
+                cylinder(h=(p3wallID+(p3upperwallW*2))+1, d=p2holeD, $fn=18);
             }
         } 
         
         rotate([0,0,((360/p2number/p2needles)*2)]){
-        translate([(p3wallOD/2)-0.1,0,p9H/2])
+        translate([0,0,p9H/2])
             rotate([0,90,0]){
 
-                cylinder(h=p9thickness+0.2, d=p2holeD, $fn=18);
+                cylinder(h=(p3wallID+(p3upperwallW*2))+1, d=p2holeD, $fn=18);
             }
         } 
      //end first and last holes
         
        //outer holes
                  rotate([0,0,(-360/p2number/p2needles)]){
-                translate([(p3wallOD/2)-0.1,0,p9H/2])
+                translate([0,0,p9H/2])
             rotate([0,90,0]){
 
-                cylinder(h=p9thickness+0.2, d=p2holeD, $fn=18);
+                cylinder(h=(p3wallID+(p3upperwallW*2))+1, d=p2holeD, $fn=18);
             }
         } 
         
                          rotate([0,0,(360/p2number/p2needles)]){
-                translate([(p3wallOD/2)-0.1,0,p9H/2])
+                translate([0,0,p9H/2])
             rotate([0,90,0]){
 
-                cylinder(h=p9thickness+0.2, d=p2holeD, $fn=18);
+                cylinder(h=(p3wallID+(p3upperwallW*2))+1, d=p2holeD, $fn=18);
             }
         } 
 
