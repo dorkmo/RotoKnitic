@@ -34,6 +34,10 @@ TF=1;    //  0=none  1=angle iron  2=makerbeamm
 TFW=60;
 aaX=10;
 aaT=1;
+aaboltD=3;
+aaboltHD=5.68;
+aaboltHH=3;
+aanutH=4;
 
 upper_surfaceH=5;  //thickness of upper rotating plate  ///5
 bottom_surface_motor_gearsH=6;  //thickness of geared rotating plate
@@ -549,3 +553,10 @@ echo("Millimeters Between Needles:", PI*p2needlegrooveID/(p2number*p2needles));
 echo("OD of p3:", p3baseOD);
 
 echo("OD of c1:", c2OD+(c1width-c2width));
+
+
+/////BOM COUNT///////
+
+if(TF==1){
+echo("Thread Feeder Mount Bolt: (2)", (ceil(((((pMID/2)-(cos(pMd4s)*(pMID/2)))+pMwallT+pMgroove)-(sin(pMd4s)*(aaboltHD))-2-aaboltHH+aaT+aanutH)/2)*2) );
+}

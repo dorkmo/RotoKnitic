@@ -8,7 +8,12 @@ use <mb10.scad>;
 //*pMd4 not placing groove properly when not at 45 degrees
 ///////
 
-CKpM(1,TF,1); //render mountain  1=w/ grove 0=w/o groove
+//values CKpM(X,X,X) defined as follows:
+//render needle path groove 1 == yes, 0 == no
+//render thread feeder stand using  0=none  1=angle iron  2=makerbeamm
+//render beam and angle of the feed holder yes == 1, no == 0
+CKpM(1,1,1); 
+
 
 module CKpM(G,TF,RenderBeam){
 translate([0,-p3wallOD/2,0]){ //main translate
@@ -173,9 +178,36 @@ if(G==1){
 if(RenderBeam==1){
 
 //translate([sin(pMd4s)*(pMID/2),(pMID/2),pPspace2+pPplate2+(aaX)])
-translate([sin(pMd4s)*(pMID/2),(c2ID+(pMgroove*2)+(pMwallT*2))/2,pPspace2+pPplate2+(aaX)])
+translate([sin(pMd4s)*(pMID/2),(c2ID+(pMgroove*2)+(pMwallT*2))/2,(pPspace2+pPplate2+1)+(aaboltHD/2)+bearingholderZBOD])
 rotate([90,0,0])
-#cylinder(d=3,h=(c2ID+(pMgroove*2)+(pMwallT*2))/2,$fn=36);
+cylinder(d=aaboltD,h=(c2ID+(pMgroove*2)+(pMwallT*2))/2,$fn=36);
+
+//(((pMID/2)-(cos(pMd4s)*(pMID/2)))+pMwallT)
+//(sin(pMd4s)*(aaboltHD))
+
+//translate([sin(pMd4s)*(pMID/2),((c2ID+(pMgroove*2)+(pMwallT*2))/2)-(((pMID/2)-(cos(pMd4s)*(pMID/2)))+pMwallT+pMgroove)+(sin(pMd4s)*(aaboltHD)),0])
+//    #cylinder(d=1,h=pMH);
+
+//((c2ID+(pMgroove*2)+(pMwallT*2))/2)-pMwallT
+//((c2ID+(pMgroove*2)+(pMwallT*2))/2)-(((pMID/2)-(cos(pMd4s)*(pMID/2)))+pMwallT+pMgroove)+(sin(pMd4s)*(aaboltHD))    
+
+
+translate([sin(pMd4s)*(pMID/2),((c2ID+(pMgroove*2)+(pMwallT*2))/2)-((((pMID/2)-(cos(pMd4s)*(pMID/2)))+pMwallT+pMgroove)-(sin(pMd4s)*(aaboltHD))-2-aaboltHH),(pPspace2+pPplate2+1)+(aaboltHD/2)+bearingholderZBOD])
+rotate([90,0,0])
+#cylinder(d=aaboltHD+0.5,h=(c2ID+(pMgroove*2)+(pMwallT*2))/2,$fn=36);
+     
+    
+mirror([1,0,0]){
+translate([sin(pMd4s)*(pMID/2),(c2ID+(pMgroove*2)+(pMwallT*2))/2,(pPspace2+pPplate2+1)+(aaboltHD/2)+bearingholderZBOD])
+rotate([90,0,0])
+cylinder(d=aaboltD,h=(c2ID+(pMgroove*2)+(pMwallT*2))/2,$fn=36);
+translate([sin(pMd4s)*(pMID/2),((c2ID+(pMgroove*2)+(pMwallT*2))/2)-((((pMID/2)-(cos(pMd4s)*(pMID/2)))+pMwallT+pMgroove)-(sin(pMd4s)*(aaboltHD))-2-aaboltHH),(pPspace2+pPplate2+1)+(aaboltHD/2)+bearingholderZBOD])
+rotate([90,0,0])
+cylinder(d=aaboltHD+0.5,h=(c2ID+(pMgroove*2)+(pMwallT*2))/2,$fn=36);
+
+} //end mirror    
+    
+    
 } //end if
 
 } //end main body diffference
@@ -220,7 +252,7 @@ rotate([90,0,0])
 //Thread Feeder Stand
 
 if(TF==1){  //angle iron, corner option
-    translate([-(aaX/2)+(TFW/2)-(aaX/2),((c2ID+(pMgroove*2)+(pMwallT*2))/2)-(aaX-aaT),pMH])
+    translate([(sin(pMd4s)*(pMID/2))-(aaX/2),((c2ID+(pMgroove*2)+(pMwallT*2))/2)-(aaX-aaT),pMH])
     difference(){
 cube([aaX-aaT,aaX-aaT,aaX+1]);
 translate([0,aaX/2,(aaX/2)+1])
@@ -231,11 +263,11 @@ rotate([0,0,45])
         cube([2,2,aaX+1],center=true);
 translate([0,0,(aaX+1)])
 rotate([0,45,45])
-        #cube([2,3,3],center=true);
+        cube([2,3,3],center=true);
     }
 
 mirror([1,0,0])
-    translate([-(aaX/2)+(TFW/2)-(aaX/2),((c2ID+(pMgroove*2)+(pMwallT*2))/2)-(aaX-aaT),pMH])
+    translate([(sin(pMd4s)*(pMID/2))-(aaX/2),((c2ID+(pMgroove*2)+(pMwallT*2))/2)-(aaX-aaT),pMH])
     difference(){
 cube([aaX-aaT,aaX-aaT,aaX+1]);
 translate([0,aaX/2,(aaX/2)+1])
@@ -250,28 +282,36 @@ rotate([0,45,45])
     }
 
 if(RenderBeam==1){
-    translate([(sin(pMd4s)*(pMID/2))-(aaX/2),((c2ID+(pMgroove*2)+(pMwallT*2))/2)-(aaX-aaT),pPspace1+pPplate1+1])
+    translate([(sin(pMd4s)*(pMID/2))-(aaX/2),((c2ID+(pMgroove*2)+(pMwallT*2))/2)-(aaX-aaT),pPspace2+pPplate2+1])
     difference(){
         cube([aaX,aaX,pMgrooveC3+nA-nC-nB+aaX]);  //cube 
         cube([aaX-aaT,aaX-aaT,pMgrooveC3+nA-nC-nB+aaX]);
-        cube([aaX,aaX-aaT,pMH-(pPspace1+pPplate1)]);  //manually cut piece
+        cube([aaX,aaX-aaT,pMH-(pPspace2+pPplate2)]);  //manually cut piece
         translate([aaX-aaT,aaX-aaT,0])
-        cube([aaT,aaT,pMH-(pPspace1+pPplate1)]);  //manually cut piece
-        translate([aaX-aaT,aaX/2,pMH-(pPspace1+pPplate1)+(aaX/2)])
+        cube([aaT,aaT,pMH-(pPspace2+pPplate2)]);  //manually cut piece
+        translate([aaX-aaT,aaX/2,pMH-(pPspace2+pPplate2)+(aaX/2)])
         rotate([0,90,0])
             #cylinder(d=3,h=aaT,$fn=36);
+                translate([aaX/2,aaX,(aaboltHD/2)+bearingholderZBOD])
+        rotate([90,0,0])
+            #cylinder(d=3,h=aaT,$fn=36);
+        //pPspace2+pPplate2+(aaX)])
+//rotate([90,0,0])
     } //end angle iron
 
 mirror(1,0,0)
-    translate([-(aaX/2)+(TFW/2)-(aaX/2),((c2ID+(pMgroove*2)+(pMwallT*2))/2)-(aaX-aaT),pPspace1+pPplate1+1])
+    translate([(sin(pMd4s)*(pMID/2))-(aaX/2),((c2ID+(pMgroove*2)+(pMwallT*2))/2)-(aaX-aaT),pPspace2+pPplate2+1])
     difference(){
         cube([aaX,aaX,pMgrooveC3+nA-nC-nB+aaX]);  //cube 
         cube([aaX-aaT,aaX-aaT,pMgrooveC3+nA-nC-nB+aaX]);
-        cube([aaX,aaX-aaT,pMH-(pPspace1+pPplate1)]);  //manually cut piece
+        cube([aaX,aaX-aaT,pMH-(pPspace2+pPplate2)]);  //manually cut piece
         translate([aaX-aaT,aaX-aaT,0])
-        cube([aaT,aaT,pMH-(pPspace1+pPplate1)]);  //manually cut piece
-        translate([aaX-aaT,aaX/2,pMH-(pPspace1+pPplate1)+(aaX/2)])
+        cube([aaT,aaT,pMH-(pPspace2+pPplate2)]);  //manually cut piece
+        translate([aaX-aaT,aaX/2,pMH-(pPspace2+pPplate2)+(aaX/2)])
         rotate([0,90,0])
+            #cylinder(d=3,h=aaT,$fn=36);
+                translate([aaX/2,aaX,(aaboltHD/2)+bearingholderZBOD])
+        rotate([90,0,0])
             #cylinder(d=3,h=aaT,$fn=36);
     } //end angle iron    
 }
