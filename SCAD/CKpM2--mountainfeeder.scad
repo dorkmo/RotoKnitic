@@ -12,7 +12,88 @@ use <mb10.scad>;
 //render needle path groove 1 == yes, 0 == no
 //render thread feeder stand using  0=none  1=angle iron  2=makerbeamm
 //render beam and angle of the feed holder yes == 1, no == 0
-CKpM(1,1,1); 
+translate([0,0,-(pMgrooveC3+nA-nC-nB+aaX-5)])
+CKpM(0,1,1); 
+
+CKpM2();
+
+
+pM2D=(((((sin(pMd4s)*(pMID/2))-(aaX/2)-(pM2mink/2)))*(((sin(pMd4s)*(pMID/2))-(aaX/2)-(pM2mink/2))))/(pM2H-pM2fH))+(pM2H-pM2fH);
+//pM2D=(((((sin(pMd4s)*(pMID/2)+2)))*(((sin(pMd4s)*(pMID/2)+2))))/(pM2H-pM2fH))+(pM2H-pM2fH);
+
+module CKpM2(){
+    
+    difference(){
+    union(){
+translate([0,-p3wallOD/2,]){ //main translate
+        translate([(sin(pMd4s)*(pMID/2))-(aaX/2),((c2ID+(pMgroove*2)+(pMwallT*2))/2)-(aaX-aaT),0])
+    difference(){
+    minkowski(){
+    difference(){
+        cube([aaX,aaX,pM2H]);  //cube 
+        cube([aaX-aaT,aaX-aaT,pM2H]);
+        
+    } //end angle iron
+cylinder(d=pM2mink,h=0.01, $fn=36);
+ } //end minkowski
+ 
+
+     }//end difference
+
+minkowski(){
+difference(){
+ translate([-(sin(pMd4s)*(pMID/2))+(aaX/2)+(0),((c2ID+(pMgroove*2)+(pMwallT*2))/2),0])
+    cube([((sin(pMd4s)*(pMID/2))-(aaX/2)-(0))*2,aaT,pM2H]);
+ translate([0,((c2ID+(pMgroove*2)+(pMwallT*2))/2),(pM2D/2)+pM2fH])
+rotate([270,0,0])
+    // AP == PB == ((sin(pMd4s)*(pMID/2))-(aaX/2)-(pM2mink/2))
+    // CP == pM2H-pM2fH
+    // DIAMETER == CD == (((AP)*(PB))/(CP))+(CP)
+    // pM2D=(((((sin(pMd4s)*(pMID/2))-(aaX/2)-(pM2mink/2)))*(((sin(pMd4s)*(pMID/2))-(aaX/2)-(pM2mink/2))))/(pM2H-pM2fH))+(pM2H-pM2fH)
+    
+#cylinder(d=pM2D,h=aaT,$fn=360);
+ 
+} //end difference
+cylinder(d=pM2mink-1,h=0.01, $fn=36);
+} //end minkowski
+
+} //end translate
+} //end main union
+
+translate([0,-p3wallOD/2,]){
+
+     translate([(sin(pMd4s)*(pMID/2))-(aaX/2),((c2ID+(pMgroove*2)+(pMwallT*2))/2)-(aaX-aaT),0]){
+ translate([-pM2mink,-pM2mink,pM2H])
+#        cube([aaX+(3*2),aaX+(3*2),1]);  //cube 
+ 
+ 
+ translate([-(pM2slop/2),-(pM2slop/2),0])
+     difference(){
+        cube([aaX+(pM2slop),aaX+(pM2slop),pM2H]);  //cube 
+        cube([aaX-aaT-(pM2slop/4),aaX-aaT-(pM2slop/4),pM2H]);
+     }
+         
+     } //end difference
+
+mirror([1,0,0])     
+          translate([(sin(pMd4s)*(pMID/2))-(aaX/2),((c2ID+(pMgroove*2)+(pMwallT*2))/2)-(aaX-aaT),0]){
+ translate([-pM2mink,-pM2mink,pM2H])
+#        cube([aaX+(3*2),aaX+(3*2),1]);  //cube 
+ 
+ 
+ translate([-(pM2slop/2),-(pM2slop/2),0])
+     difference(){
+        cube([aaX+(pM2slop),aaX+(pM2slop),pM2H]);  //cube 
+        cube([aaX-aaT-(pM2slop/4),aaX-aaT-(pM2slop/4),pM2H]);
+     }
+         
+     } //end difference
+     
+ } //end cut translate
+ 
+} //end main difference
+
+} //end module
 
 
 module CKpM(G,TF,RenderBeam){
@@ -252,6 +333,8 @@ cylinder(d=aaboltHD+0.5,h=(c2ID+(pMgroove*2)+(pMwallT*2))/2,$fn=36);
 //Thread Feeder Stand
 
 if(TF==1){  //angle iron, corner option
+    
+    //mounting cube on top
     translate([(sin(pMd4s)*(pMID/2))-(aaX/2),((c2ID+(pMgroove*2)+(pMwallT*2))/2)-(aaX-aaT),pMH])
     difference(){
 cube([aaX-aaT,aaX-aaT,aaX+1]);
@@ -314,8 +397,8 @@ mirror(1,0,0)
         rotate([90,0,0])
             #cylinder(d=3,h=aaT,$fn=36);
     } //end angle iron    
-} //end if render beam
-} //end if thread feeder style angle iron
+}
+}
 
   if(TF==2){   //MakerBeam Option
       translate([(TFW/2)-(10/2),((c2ID+(pMgroove*2)+(pMwallT*2))/2)+(10/2),0])
@@ -323,7 +406,7 @@ mirror(1,0,0)
 
       translate([-(TFW/2)+(10/2),((c2ID+(pMgroove*2)+(pMwallT*2))/2)+(10/2),0])
       MB10(100);
-  }  //end if thread feeder style maker beam
+  }
   
   
   

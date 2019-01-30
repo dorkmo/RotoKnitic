@@ -7,7 +7,7 @@ include <CKneedleVars-KH260.scad>;
 p2number=12;                //12                //36  ///36
 
 //number of needles mounted on each "p2" part
-p2needles=6;                //5                 //10  ///5
+p2needles=5;                //5                 //10  ///5
 
 //number of "p3" parts around circle
 p3number=4;                 //4                 //18  ///4
@@ -32,12 +32,19 @@ c1steppersnumber=1;  //number of stepper motors driving the gear
 //thread feeder stand above mountain
 TF=1;    //  0=none  1=angle iron  2=makerbeamm
 TFW=60;
-aaX=10;
+aaX=15;
 aaT=1;
 aaboltD=3;
 aaboltHD=5.68;
 aaboltHH=3;
 aanutH=4;
+aasqNutW=5.5;
+aasqNutH=1.8;
+aasqNutSlop=0.25;
+pM2slop=0.25;
+pM2H=aaX*3;
+pM2mink=4;
+pM2fH=10;
 
 upper_surfaceH=5;  //thickness of upper rotating plate  ///5
 bottom_surface_motor_gearsH=6;  //thickness of geared rotating plate
