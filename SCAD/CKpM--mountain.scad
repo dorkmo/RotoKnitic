@@ -1,6 +1,7 @@
 include <CKvars.scad>;
 
 use <mb10.scad>;
+use <CKpM2--mountainfeeder.scad>;
 
 //TO DO//
 //*add integrated yarn feeder based on needle height
@@ -314,6 +315,12 @@ mirror(1,0,0)
         rotate([90,0,0])
             #cylinder(d=3,h=aaT,$fn=36);
     } //end angle iron    
+    
+translate([0,0,-nB+(pPspace1+pPplate1+pMgrooveC3-nC-(pMgrooveD-nC))+nA-nE-((tipcylD+tipHole+tipcylD)/2)-2])    
+mirror([0,0,1])
+translate([0,0,tipOpenX/2])
+CKpM2();
+    
 } //end if render beam
 } //end if thread feeder style angle iron
 

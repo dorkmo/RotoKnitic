@@ -23,11 +23,6 @@ CKpM2();
 pM2Dc1=(((((sin(pMd4s)*(pMID/2))-(aaX/2)-(0)))*(((sin(pMd4s)*(pMID/2))-(aaX/2)-(0))))/(pM2H-pM2fH))+(pM2H-pM2fH);
 //pM2D=(((((sin(pMd4s)*(pMID/2)+2)))*(((sin(pMd4s)*(pMID/2)+2))))/(pM2H-pM2fH))+(pM2H-pM2fH);
 
-
-tipHole=1.5;
-tipOpenX=10;
-tipcylD=1.5;
-
 //pM2Dc2=(((((((((sin(pMd4s)*(pMID/2))-(aaX/2)-(0)))*2)-(tipOpenX+((tipcylD*1.5)/2))-(pM2mink/4))/2)*((((((sin(pMd4s)*(pMID/2))-(aaX/2)-(0)))*2)-(tipOpenX+((tipcylD*1.5)/2))-(pM2mink/4))/2))/(pM2H-tipOpenX))+(pM2H-tipOpenX);
 
 //((((((sin(pMd4s)*(pMID/2))-(aaX/2)-(0)))*2)-(tipOpenX+((tipcylD*1.5)/2))-(pM2mink/4))/2)

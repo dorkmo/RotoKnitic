@@ -45,6 +45,9 @@ pM2slop=0.25;
 pM2H=aaX*3;
 pM2mink=4;
 pM2fH=10;
+tipHole=1.5;
+tipOpenX=10;
+tipcylD=1.5;
 
 upper_surfaceH=5;  //thickness of upper rotating plate  ///5
 bottom_surface_motor_gearsH=6;  //thickness of geared rotating plate

@@ -158,7 +158,7 @@ translate([0,0,pPspace1+pPplate1])
 translate([0,0,0])
 translate([0,p3wallOD/2,(pPspace1+pPplate1+pPspace2+pPplate2)-(pPspace2+pPplate2)])
 rotate([0,0,0])
-CKpM(0);
+CKpM(0,1,1);
 
 
     } //end rotate
