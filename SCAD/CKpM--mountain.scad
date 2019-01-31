@@ -13,7 +13,7 @@ use <CKpM2--mountainfeeder.scad>;
 //render needle path groove 1 == yes, 0 == no
 //render thread feeder stand using  0=none  1=angle iron  2=makerbeamm
 //render beam and angle of the feed holder yes == 1, no == 0
-CKpM(1,1,1); 
+CKpM(0,1,1); 
 
 
 module CKpM(G,TF,RenderBeam){
@@ -316,7 +316,7 @@ mirror(1,0,0)
             #cylinder(d=3,h=aaT,$fn=36);
     } //end angle iron    
     
-translate([0,0,-nB+(pPspace1+pPplate1+pMgrooveC3-nC-(pMgrooveD-nC))+nA-nE-((tipcylD+tipHole+tipcylD)/2)-2])    
+translate([0,p3wallOD/2,-nB+(pPspace1+pPplate1+pMgrooveC3-nC-(pMgrooveD-nC))+nA-nE-((tipcylD+tipHole+tipcylD)/2)-2])    
 mirror([0,0,1])
 translate([0,0,tipOpenX/2])
 CKpM2();

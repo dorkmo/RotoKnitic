@@ -161,6 +161,14 @@ rotate([0,0,0])
 CKpM(0,1,1);
 
 
+//((360/(p2number*p2needles))*3)-((360/p2number/p2needles)*3.5)+((360/p4number))
+translate([0,0,-nB+(pPspace1+pPplate1+pMgrooveC3-nC-(pMgrooveD-nC))])
+rotate([0,0,-90])
+translate([(-p3wallID/2)+(p2needlegrooveDepthslop/2),0,0])
+translate([0,nX/2,0])
+rotate([90,0,0])
+needle();
+
     } //end rotate
     //END ROTATING SECTION
     //////////////////////
