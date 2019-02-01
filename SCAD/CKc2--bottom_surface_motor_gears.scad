@@ -18,6 +18,7 @@ translate([0,p3wallOD/2,c2H])
 CKpM(0);
 */
 
+projection(cut = false)
 CKc2();
 
 module CKc2(){

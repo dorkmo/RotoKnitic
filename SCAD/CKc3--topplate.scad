@@ -14,6 +14,7 @@ use <mb10.scad>;
 //
 //////
 
+projection(cut = false)
 CKc3();
 
 /*

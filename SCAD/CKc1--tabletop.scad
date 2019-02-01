@@ -2,6 +2,7 @@ include <CKvars.scad>;
 use <CKc2--bottom_surface_motor_gears.scad>;
 use <CKp1--motor_gear.scad>;
 
+projection(cut = false)
 CKc1();
 
 /*
