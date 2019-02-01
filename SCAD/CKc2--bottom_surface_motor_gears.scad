@@ -51,6 +51,7 @@ for(i=[2:c2connectors]){
 for(i=[1:c2bmounts]){
     rotate([0,0,-((360/c2connectors)/2)+((360/c2bmounts)*i)]){
         translate([0,((p3baseOD/2)+1),0]){ 
+            
     //smallbearingholder holes
                 translate([-(p5wingW+p5bodyW+p5wingW)/2,0,0]){
         translate([p5wingW+p5bodyW,0,0]){            
@@ -71,9 +72,11 @@ for(i=[1:c2bmounts]){
     }//end for rotate
 }//end small bearing holder for
 
+
     //small bearing holder - under mountain
     rotate([0,0,((360/c2connectors))]){
-        translate([0,(pMID/2)+(pMgroove)+1,0]){  //close enough?
+        translate([0,(p3baseOD/2)+1,0]){  //close enough?
+            
     //smallbearingholder holes
                 translate([-(p5wingW+p5bodyW+p5wingW)/2,0,0]){
         translate([p5wingW+p5bodyW,0,0]){            
