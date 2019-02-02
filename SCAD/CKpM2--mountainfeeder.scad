@@ -1,43 +1,39 @@
 include <CKvars.scad>;
 
+
+use <CKneedle.scad>;
 use <CKpM--mountain.scad>;
 use <mb10.scad>;
-
-//TO DO//
-//*add integrated yarn feeder based on needle height
-//*function func6 not right? working with 45 angle but not others
-//*pMd4 not placing groove properly when not at 45 degrees
-///////
-
-//values CKpM(X,X,X) defined as follows:
-//render needle path groove 1 == yes, 0 == no
-//render thread feeder stand using  0=none  1=angle iron  2=makerbeamm
-//render beam and angle of the feed holder yes == 1, no == 0
-mirror([0,0,1])
-translate([0,0,-(pMgrooveC3+nA-nC-nB+aaX-5)])
-CKpM(0,1,1); 
 
 CKpM2();
 
 
+M2tipY=tipOpenX/2;
+M2tipZ=(((tipOpenX/2)-(nE/2))*2)+tipHole+(tipcylD/2);
+M2tiptopC=(((tipOpenX/2)-(nE/2))*2)+tipHole+(tipcylD/2);
+
+M2inX=((((sin(pMd4s)*(pMID/2))-(aaX/2)-(0)))*2);
+M2inY=(((c2ID+(pMgroove*2)+(pMwallT*2))/2))-((p3wallID/2)-(p2needlegrooveDepthslop/2))-M2tipY;
+M2inZ=pM2H;
+M2backwallOD=((c2ID+(pMgroove*2)+(pMwallT*2))/2)+aaT;
+
 pM2Dc1=(((((sin(pMd4s)*(pMID/2))-(aaX/2)-(0)))*(((sin(pMd4s)*(pMID/2))-(aaX/2)-(0))))/(pM2H-pM2fH))+(pM2H-pM2fH);
-//pM2D=(((((sin(pMd4s)*(pMID/2)+2)))*(((sin(pMd4s)*(pMID/2)+2))))/(pM2H-pM2fH))+(pM2H-pM2fH);
-
-//pM2Dc2=(((((((((sin(pMd4s)*(pMID/2))-(aaX/2)-(0)))*2)-(tipOpenX+((tipcylD*1.5)/2))-(pM2mink/4))/2)*((((((sin(pMd4s)*(pMID/2))-(aaX/2)-(0)))*2)-(tipOpenX+((tipcylD*1.5)/2))-(pM2mink/4))/2))/(pM2H-tipOpenX))+(pM2H-tipOpenX);
-
-//((((((sin(pMd4s)*(pMID/2))-(aaX/2)-(0)))*2)-(tipOpenX+((tipcylD*1.5)/2))-(pM2mink/4))/2)
 
 pM2Dc2=(((((((((sin(pMd4s)*(pMID/2))-(aaX/2)-(0)))*2)-(tipOpenX+((tipcylD*1.5)/2))-(pM2mink/4))/2))*(((((((sin(pMd4s)*(pMID/2))-(aaX/2)-(0)))*2)-(tipOpenX+((tipcylD*1.5)/2))-(pM2mink/4))/2)))/((pM2H-tipOpenX)))+((pM2H-tipOpenX));
-
-//(((((sin(pMd4s)*(pMID/2))-(aaX/2)-(0)))*(((sin(pMd4s)*(pMID/2))-(aaX/2)-(0))))/(pM2H-pM2fH))+(pM2H-pM2fH);
-
 
 module CKpM2(){
     
     difference(){
     union(){
-translate([0,-p3wallOD/2,]){ //main translate
+translate([0,-p3wallOD/2,0]){ //main translate
 
+translate([0,0,-nA+(nE*2)])
+translate([0,0,-nB+(pPspace1+pPplate1+pMgrooveC3-nC-(pMgrooveD-nC))])
+rotate([0,0,-90])
+translate([(-p3wallID/2)+(p2needlegrooveDepthslop/2),0,0])
+translate([0,nX/2,0])
+rotate([90,0,0])
+needle();
 
         translate([(sin(pMd4s)*(pMID/2))-(aaX/2),((c2ID+(pMgroove*2)+(pMwallT*2))/2)-(aaX-aaT),0])
     difference(){
@@ -60,10 +56,48 @@ cylinder(d=pM2mink,h=0.01, $fn=36);
         cube([aaX-aaT,aaX-aaT,pM2H]);
         
     } //end angle iron
-cylinder(d=pM2mink,h=0.01, $fn=36);
+cylinder(d=pM2mink,h=0.01, $fn=18);
  } //end minkowski
      }//end difference
-
+     
+     minkowski(){
+     difference(){
+     
+         //main wall between supports 
+     translate([-M2inX/2,((c2ID+(pMgroove*2)+(pMwallT*2))/2)+aaT,0])
+ mirror([0,1,0])
+     cube([M2inX,M2inY,M2inZ]);    
+     
+         //right side cylinder cut
+     translate([M2inX/2,M2backwallOD-M2inY,0])    
+     resize([M2inX-(tipOpenX),(M2inY-aaT)*2])
+    #cylinder(d=200,h=pM2H,$fn=36);
+         
+         //left side cylinder cut
+         mirror([1,0,0])
+     translate([M2inX/2,M2backwallOD-M2inY,0])    
+     resize([M2inX-(tipOpenX),(M2inY-aaT)*2])
+    #cylinder(d=200,h=pM2H,$fn=36);
+         
+         //main cylinder cut
+translate([0,M2backwallOD,M2inZ])
+rotate([90,0,0])
+              resize([M2inX,(M2inZ-M2tiptopC)*2])
+    #cylinder(d=200,h=M2inY,$fn=36);
+    
+    translate([0,M2backwallOD-M2inY,0])
+              hull(){
+     cylinder(d=tipOpenX,h=pM2H);    
+         translate([0,((((((c2ID+(pMgroove*2)+(pMwallT*2))/2))-(p2OD/2)+(tipOpenX/2))*2)/2)/4,0])
+     cylinder(d=tipOpenX,h=pM2H,$fn=36);    
+         
+     }
+         
+         }//end diff
+         
+         //cylinder(d=pM2mink,$fn=8,h=0.01);
+     } //end mink
+/*
 minkowski(){
 difference(){
  translate([-(sin(pMd4s)*(pMID/2))+(aaX/2)+(0),((c2ID+(pMgroove*2)+(pMwallT*2))/2),0])
@@ -78,112 +112,22 @@ rotate([270,0,0])
 #cylinder(d=pM2Dc1,h=aaT,$fn=360);
  
 } //end difference
-cylinder(d=pM2mink-1,h=0.01, $fn=36);
+//cylinder(d=pM2mink-1,h=0.01, $fn=36);
 } //end minkowski
 
 
-//((tipOpenX+(tipcylD*1.5))/2)
-
-//curved wall
-translate([(((sin(pMd4s)*(pMID/2))-(aaX/2)-(0)))-((tipcylD*1.5)/2)
-,(p2OD/2)+aaT,0]){
-minkowski(){
-    difference(){
-resize([
-        ((((sin(pMd4s)*(pMID/2))-(aaX/2)-(0)))*2)-(tipOpenX+((tipcylD*1.5)/2))-(pM2mink/4)
-        ,((((c2ID+(pMgroove*2)+(pMwallT*2))/2))-(p2OD/2))*2
-        ])
-    cylinder(d=200,h=pM2H,$fn=360);
-
-resize([
-        ((((sin(pMd4s)*(pMID/2))-(aaX/2)-(0)))*2)-(tipOpenX+((tipcylD*1.5)/2))-(pM2mink/4)-(aaT*2)
-        ,(((((c2ID+(pMgroove*2)+(pMwallT*2))/2))-(p2OD/2))*2)-(aaT*2)
-        ])
-    cylinder(d=200,h=pM2H,$fn=360);
-        
-        translate([0,-((((((c2ID+(pMgroove*2)+(pMwallT*2))/2))-(p2OD/2))*2))/2,0])
-        #cube([
-        (((((sin(pMd4s)*(pMID/2))-(aaX/2)-(0)))*2)-(tipOpenX+((tipcylD*1.5)/2))-(pM2mink/4))/2
-        ,(((((c2ID+(pMgroove*2)+(pMwallT*2))/2))-(p2OD/2))*2)
-        ,pM2H
-        ]);
-
-        translate([-(((((sin(pMd4s)*(pMID/2))-(aaX/2)-(0)))*2)-(tipOpenX+((tipcylD*1.5)/2))-(pM2mink/4))/2,-((((((c2ID+(pMgroove*2)+(pMwallT*2))/2))-(p2OD/2))*2))/2,0])
-        #cube([
-        (((((sin(pMd4s)*(pMID/2))-(aaX/2)-(0)))*2)-(tipOpenX+((tipcylD*1.5)/2))-(pM2mink/4))
-        ,(((((c2ID+(pMgroove*2)+(pMwallT*2))/2))-(p2OD/2))*2)/2
-        ,pM2H
-        ]);
-
-
-translate([-pM2Dc2/2,0,tipOpenX+(pM2Dc2/2)])
-rotate([270,0,0])
-#cylinder(d=pM2Dc2,h=((((((c2ID+(pMgroove*2)+(pMwallT*2))/2))-(p2OD/2))*2))/2,$fn=360);
-
-
-    } //end difference
-    
-    cylinder(d=pM2mink/3,h=0.01, $fn=18);
-} //end minkowski
-} //end translate
-// end verticle support
-
-//curved wall
-mirror([1,0,0])
-translate([(((sin(pMd4s)*(pMID/2))-(aaX/2)-(0)))-((tipcylD*1.5)/2)
-,(p2OD/2)+aaT,0]){
-minkowski(){
-    difference(){
-resize([
-        ((((sin(pMd4s)*(pMID/2))-(aaX/2)-(0)))*2)-(tipOpenX+((tipcylD*1.5)/2))-(pM2mink/4)
-        ,((((c2ID+(pMgroove*2)+(pMwallT*2))/2))-(p2OD/2))*2
-        ])
-    cylinder(d=200,h=pM2H,$fn=360);
-
-resize([
-        ((((sin(pMd4s)*(pMID/2))-(aaX/2)-(0)))*2)-(tipOpenX+((tipcylD*1.5)/2))-(pM2mink/4)-(aaT*2)
-        ,(((((c2ID+(pMgroove*2)+(pMwallT*2))/2))-(p2OD/2))*2)-(aaT*2)
-        ])
-    cylinder(d=200,h=pM2H,$fn=360);
-        
-        translate([0,-((((((c2ID+(pMgroove*2)+(pMwallT*2))/2))-(p2OD/2))*2))/2,0])
-        #cube([
-        (((((sin(pMd4s)*(pMID/2))-(aaX/2)-(0)))*2)-(tipOpenX+((tipcylD*1.5)/2))-(pM2mink/4))/2
-        ,(((((c2ID+(pMgroove*2)+(pMwallT*2))/2))-(p2OD/2))*2)
-        ,pM2H
-        ]);
-
-        translate([-(((((sin(pMd4s)*(pMID/2))-(aaX/2)-(0)))*2)-(tipOpenX+((tipcylD*1.5)/2))-(pM2mink/4))/2,-((((((c2ID+(pMgroove*2)+(pMwallT*2))/2))-(p2OD/2))*2))/2,0])
-        #cube([
-        (((((sin(pMd4s)*(pMID/2))-(aaX/2)-(0)))*2)-(tipOpenX+((tipcylD*1.5)/2))-(pM2mink/4))
-        ,(((((c2ID+(pMgroove*2)+(pMwallT*2))/2))-(p2OD/2))*2)/2
-        ,pM2H
-        ]);
-
-
-translate([-pM2Dc2/2,0,tipOpenX+(pM2Dc2/2)])
-rotate([270,0,0])
-#cylinder(d=pM2Dc2,h=((((((c2ID+(pMgroove*2)+(pMwallT*2))/2))-(p2OD/2))*2))/2,$fn=360);
-
-
-    } //end difference
-    
-    cylinder(d=pM2mink/3,h=0.01, $fn=18);
-} //end minkowski
-} //end translate
-// end verticle support
 
 
 //flat base section
-translate([0,(p2OD/2)+aaT,0]){
+translate([0,(p2OD/2)+aaT+(tipOpenX/2),0]){
     difference(){
         translate([-(((sin(pMd4s)*(pMID/2))-(aaX/2)-(0))*2)/2,0,0])
-        cube([((sin(pMd4s)*(pMID/2))-(aaX/2)-(0))*2,(((((c2ID+(pMgroove*2)+(pMwallT*2))/2))-(p2OD/2))*2)/2,3]);
+        cube([((sin(pMd4s)*(pMID/2))-(aaX/2)-(0))*2,(((((c2ID+(pMgroove*2)+(pMwallT*2))/2))-(p2OD/2)+(tipOpenX/2))*2)/2,3]);
         
-        translate([(((sin(pMd4s)*(pMID/2))-(aaX/2)-(0)))-((tipcylD*1.5)/2),0,0])
+        translate([(((sin(pMd4s)*(pMID/2))-(aaX/2)-(0)))-((tipcylD*1.5)/2),(tipOpenX/2),0])
         resize([
         ((((sin(pMd4s)*(pMID/2))-(aaX/2)-(0)))*2)-(tipOpenX+((tipcylD*1.5)/2))-(pM2mink/4)-(aaT*2)
-        ,(((((c2ID+(pMgroove*2)+(pMwallT*2))/2))-(p2OD/2))*2)-(aaT*2)
+        ,(((((c2ID+(pMgroove*2)+(pMwallT*2))/2))-(p2OD/2)+(tipOpenX/2))*2)-(aaT*2)
         ])
     #cylinder(d=200,h=pM2H,$fn=360);
 
@@ -191,17 +135,23 @@ mirror([1,0,0])
         translate([(((sin(pMd4s)*(pMID/2))-(aaX/2)-(0)))-((tipcylD*1.5)/2),0,0])
         resize([
         ((((sin(pMd4s)*(pMID/2))-(aaX/2)-(0)))*2)-(tipOpenX+((tipcylD*1.5)/2))-(pM2mink/4)-(aaT*2)
-        ,(((((c2ID+(pMgroove*2)+(pMwallT*2))/2))-(p2OD/2))*2)-(aaT*2)
+        ,(((((c2ID+(pMgroove*2)+(pMwallT*2))/2))-(p2OD/2)+(tipOpenX/2))*2)-(aaT*2)
         ])
     #cylinder(d=200,h=pM2H,$fn=360);
      
      hull(){
      cylinder(d=tipOpenX,h=pM2H);    
-         translate([0,((((((c2ID+(pMgroove*2)+(pMwallT*2))/2))-(p2OD/2))*2)/2)/4,0])
+         translate([0,((((((c2ID+(pMgroove*2)+(pMwallT*2))/2))-(p2OD/2)+(tipOpenX/2))*2)/2)/4,0])
      cylinder(d=tipOpenX,h=pM2H,$fn=36);    
          
      }
      
+     
+ translate([0,((c2ID+(pMgroove*2)+(pMwallT*2))/2),(pM2Dc1/2)+pM2fH])
+rotate([270,0,0])
+
+    
+#cylinder(d=pM2Dc1,h=(((((c2ID+(pMgroove*2)+(pMwallT*2))/2))-(p2OD/2)+(tipOpenX/2))*2)/2,$fn=360);
         
     } //end difference
 
@@ -209,63 +159,25 @@ mirror([1,0,0])
 //end flat base section
 
 
-
-
-
-
-/*
-//tip try 1
-tipHole=1.5;
-translate([-5,p2OD/2,0]){
-difference(){
-hull(){
-    cube([10,1,10]);
-    translate([5,-4,5])
-    rotate([90,0,0])
-    cylinder(d=tipHole+2,h=1,$fn=36);    
-}
-hull(){
-    translate([2,1,2])
-    cube([6,1,6]);
-    translate([5,-4,5])
-    rotate([90,0,0])
-    cylinder(d=tipHole,h=1,$fn=36);    
-}
-
-} //end tip difference
-difference(){
-translate([0,0,1])
-rotate([0,90,0])
-cylinder(d=2.8282,h=10,$fn=360);
-
-translate([0,-3,0])
-cube([10,4,3]);
-translate([0,-3,-3])
-cube([10,8,3]);
-
-} //end bottom roller diff
-
-} //end tip translate
-//end tip try 1
 */
 
 //tip try 2
 tipHole=1.5;
 tipOpenX=10;
 tipcylD=1.5;
-translate([0,p2OD/2,0]){
+translate([0,M2backwallOD-M2inY,0]){  //(p2OD/2)+(tipOpenX/2)
 
 hull(){
     translate([tipOpenX/2,0,0])
-    cylinder(d=tipcylD*1.5, h=tipOpenX, $fn=36);
+    cylinder(d=tipcylD*1.5, h=M2tiptopC, $fn=36);
     translate([(tipcylD/2)+(tipHole/2),-(tipOpenX/2)+1,(tipOpenX/2)-(nE/2)])
-    cylinder(d=tipcylD,h=nE,$fn=36);    
+    cylinder(d=tipcylD,h=(tipcylD/2)+tipHole+(tipcylD/2),$fn=36);    
 }
 
 mirror([1,0,0])
 hull(){
     translate([tipOpenX/2,0,0])
-    cylinder(d=tipcylD*1.5, h=tipOpenX, $fn=36);
+    cylinder(d=tipcylD*1.5, h=M2tiptopC, $fn=36);
     translate([(tipcylD/2)+(tipHole/2),-(tipOpenX/2)+1,(tipOpenX/2)-(nE/2)])
     cylinder(d=tipcylD,h=nE,$fn=36);    
 }
@@ -300,6 +212,8 @@ cylinder(d=tipcylD*1.5,h=tipOpenX+(tipcylD*1.5),$fn=36);
 } //end translate
 } //end main union
 
+
+//cut slot for angle iron in sliding section
 translate([0,-p3wallOD/2,]){
 
      translate([(sin(pMd4s)*(pMID/2))-(aaX/2),((c2ID+(pMgroove*2)+(pMwallT*2))/2)-(aaX-aaT),0]){
