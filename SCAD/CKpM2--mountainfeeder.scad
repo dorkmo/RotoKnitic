@@ -14,7 +14,7 @@ M2tiptopC=(((tipOpenX/2)-(nE/2))*2)+tipHole+(tipcylD/2);
 
 M2inX=((((sin(pMd4s)*(pMID/2))-(aaX/2)-(0)))*2);
 M2inY=(((c2ID+(pMgroove*2)+(pMwallT*2))/2))-((p3wallID/2)-(p2needlegrooveDepthslop/2))-M2tipY;
-M2inZ=pM2H;
+M2inZ=pM2H-pM2mink;
 M2backwallOD=((c2ID+(pMgroove*2)+(pMwallT*2))/2)+aaT;
 
 pM2Dc1=(((((sin(pMd4s)*(pMID/2))-(aaX/2)-(0)))*(((sin(pMd4s)*(pMID/2))-(aaX/2)-(0))))/(pM2H-pM2fH))+(pM2H-pM2fH);
@@ -27,6 +27,7 @@ module CKpM2(){
     union(){
 translate([0,-p3wallOD/2,0]){ //main translate
 
+/*
 translate([0,0,-nA+(nE*2)])
 translate([0,0,-nB+(pPspace1+pPplate1+pMgrooveC3-nC-(pMgrooveD-nC))])
 rotate([0,0,-90])
@@ -34,7 +35,7 @@ translate([(-p3wallID/2)+(p2needlegrooveDepthslop/2),0,0])
 translate([0,nX/2,0])
 rotate([90,0,0])
 needle();
-
+*/
         translate([(sin(pMd4s)*(pMID/2))-(aaX/2),((c2ID+(pMgroove*2)+(pMwallT*2))/2)-(aaX-aaT),0])
     difference(){
     minkowski(){
@@ -43,7 +44,7 @@ needle();
         cube([aaX-aaT,aaX-aaT,pM2H]);
         
     } //end angle iron
-cylinder(d=pM2mink,h=0.01, $fn=36);
+cylinder(d=pM2mink,h=0.01, $fn=72);
  } //end minkowski
      }//end difference
  
@@ -64,38 +65,38 @@ cylinder(d=pM2mink,h=0.01, $fn=18);
      difference(){
      
          //main wall between supports 
-     translate([-M2inX/2,((c2ID+(pMgroove*2)+(pMwallT*2))/2)+aaT,0])
+     translate([-M2inX/2,((c2ID+(pMgroove*2)+(pMwallT*2))/2)+aaT,pM2mink/2])
  mirror([0,1,0])
      cube([M2inX,M2inY,M2inZ]);    
      
          //right side cylinder cut
      translate([M2inX/2,M2backwallOD-M2inY,0])    
      resize([M2inX-(tipOpenX),(M2inY-aaT)*2])
-    #cylinder(d=200,h=pM2H,$fn=36);
+    cylinder(d=200,h=pM2H,$fn=72);
          
          //left side cylinder cut
          mirror([1,0,0])
      translate([M2inX/2,M2backwallOD-M2inY,0])    
      resize([M2inX-(tipOpenX),(M2inY-aaT)*2])
-    #cylinder(d=200,h=pM2H,$fn=36);
+    cylinder(d=200,h=pM2H,$fn=72);
          
          //main cylinder cut
 translate([0,M2backwallOD,M2inZ])
 rotate([90,0,0])
               resize([M2inX,(M2inZ-M2tiptopC)*2])
-    #cylinder(d=200,h=M2inY,$fn=36);
+    cylinder(d=200,h=M2inY,$fn=72);
     
     translate([0,M2backwallOD-M2inY,0])
               hull(){
      cylinder(d=tipOpenX,h=pM2H);    
          translate([0,((((((c2ID+(pMgroove*2)+(pMwallT*2))/2))-(p2OD/2)+(tipOpenX/2))*2)/2)/4,0])
-     cylinder(d=tipOpenX,h=pM2H,$fn=36);    
+     cylinder(d=tipOpenX,h=pM2H,$fn=72);    
          
      }
          
          }//end diff
          
-         //cylinder(d=pM2mink,$fn=8,h=0.01);
+         sphere(d=pM2mink,$fn=10);
      } //end mink
 /*
 minkowski(){
@@ -168,18 +169,18 @@ tipcylD=1.5;
 translate([0,M2backwallOD-M2inY,0]){  //(p2OD/2)+(tipOpenX/2)
 
 hull(){
-    translate([tipOpenX/2,0,0])
-    cylinder(d=tipcylD*1.5, h=M2tiptopC, $fn=36);
+    translate([tipOpenX/2,0,(tipcylD*1.5/2)])
+    cylinder(d=tipcylD*1.5, h=M2tiptopC-(tipcylD*1.5/2), $fn=36);
     translate([(tipcylD/2)+(tipHole/2),-(tipOpenX/2)+1,(tipOpenX/2)-(nE/2)])
     cylinder(d=tipcylD,h=(tipcylD/2)+tipHole+(tipcylD/2),$fn=36);    
 }
 
 mirror([1,0,0])
 hull(){
-    translate([tipOpenX/2,0,0])
-    cylinder(d=tipcylD*1.5, h=M2tiptopC, $fn=36);
+    translate([tipOpenX/2,0,(tipcylD*1.5/2)])
+    cylinder(d=tipcylD*1.5, h=M2tiptopC-(tipcylD*1.5/2), $fn=36);
     translate([(tipcylD/2)+(tipHole/2),-(tipOpenX/2)+1,(tipOpenX/2)-(nE/2)])
-    cylinder(d=tipcylD,h=nE,$fn=36);    
+    cylinder(d=tipcylD,h=(tipcylD/2)+tipHole+(tipcylD/2),$fn=36);    
 }
 
 hull(){
@@ -187,17 +188,19 @@ translate([-nE/2,-(tipOpenX/2),(tipOpenX/2)-(nE/2)])
 rotate([0,90,0])
 cylinder(d=nG,h=nE,$fn=36);    
 
+translate([0,-tipcylD*1.5/2,tipcylD*1.5/2])
 translate([-(tipOpenX+(tipcylD*1.5))/2,0,0])
-rotate([0,90,0])    
-cylinder(d=tipcylD*1.5,h=tipOpenX+(tipcylD*1.5),$fn=36);    
+rotate([0,90,0])
+rotate([0,0,45/2])    
+cylinder(d=tipcylD*1.5,h=tipOpenX+(tipcylD*1.5),$fn=8);    
 }
 
 translate([0,0,(((tipOpenX/2)-(nE/2))*2)+tipHole+(tipcylD/2)])
 mirror([0,0,1])
 hull(){
-translate([-nE/2,-(tipOpenX/2),(tipOpenX/2)-(nE/2)])
+translate([-nE/2,-(tipOpenX/2)+nG,(tipOpenX/2)-(nE/2)-nG])
 rotate([0,90,0])
-cylinder(d=nG,h=nE,$fn=36);    
+cylinder(d=nG,h=nE,$fn=36);     //change from nG to something else?
 
 translate([-(tipOpenX+(tipcylD*1.5))/2,0,0])
 rotate([0,90,0])    
