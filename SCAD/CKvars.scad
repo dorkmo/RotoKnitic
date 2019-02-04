@@ -48,8 +48,9 @@ pM2fH=10;
 tipHole=1.5;
 tipOpenX=10;
 tipOpenZ=10;
-tipcylD=1.75;
+tipcylD=1.75;  //1.5
 tipcy2D=tipcylD*1.5;
+
 
 upper_surfaceH=6.35;  //thickness of upper rotating plate  ///5  //6.35= 1/4"inch
 bottom_surface_motor_gearsH=6.35;  //thickness of geared rotating plate
@@ -555,6 +556,16 @@ p8baseL=p8holeC2C+(p8holeend2C*2); //25
 c1H=table_surface;
 c1width=c2width+91.36;
 c1OD=(CKp1_pitch_radius+CKc2_pitch_radius+(NEMAmotorW/2)+woodbeamW+2)*2;  // c2OD + (c1width-c2width);
+
+//thread feeder
+M2tipY=tipOpenX/2;  //pM2mink
+M2tipZ=(((tipOpenX/2)-(nE/2))*2)+tipHole+(tipcylD/2);
+M2tiptopC=(((tipOpenX/2)-(nE/2))*2)+tipHole+(tipcylD/2)-(pM2mink/4);
+M2inX=((((sin(pMd4s)*(pMID/2))-(aaX/2)-(0)))*2);
+M2inY=(((c2ID+(pMgroove*2)+(pMwallT*2))/2))-((p3wallID/2)-(p2needlegrooveDepthslop/2))-M2tipY;
+M2inZ=pM2H-pM2mink;
+M2backwallOD=((c2ID+(pMgroove*2)+(pMwallT*2))/2)+aaT;
+
 
 ////SETTINGS OUTPUT ECHOS///
 

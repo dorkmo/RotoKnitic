@@ -1,24 +1,11 @@
 include <CKvars.scad>;
 
-
 use <CKneedle.scad>;
 use <CKpM--mountain.scad>;
 use <mb10.scad>;
 
+translate([0,0,-pM2mink/8/2])
 CKpM2();
-
-
-M2tipY=tipOpenX/2;  //pM2mink
-
-M2tipZ=(((tipOpenX/2)-(nE/2))*2)+tipHole+(tipcylD/2);
-M2tiptopC=(((tipOpenX/2)-(nE/2))*2)+tipHole+(tipcylD/2)-(pM2mink/4);
-
-M2inX=((((sin(pMd4s)*(pMID/2))-(aaX/2)-(0)))*2);
-M2inY=(((c2ID+(pMgroove*2)+(pMwallT*2))/2))-((p3wallID/2)-(p2needlegrooveDepthslop/2))-M2tipY;
-M2inZ=pM2H-pM2mink;
-M2backwallOD=((c2ID+(pMgroove*2)+(pMwallT*2))/2)+aaT;
-
-
 
 module CKpM2(){
     
@@ -101,9 +88,7 @@ rotate([90,0,0])
 
 
 //tip try 2
-tipHole=1.5;
-tipOpenX=10;
-tipcylD=1.5;
+
 translate([0,M2backwallOD-M2inY,0]){  //(p2OD/2)+(tipOpenX/2)
 
 hull(){
@@ -125,21 +110,60 @@ hull(){
     cylinder(d=tipcylD,h=(tipcylD/2)+tipHole+(tipcylD/2),$fn=36);    
 }
 
+
+
+
 hull(){
-//bottom front    
-translate([-(tipcylD+tipHole+tipcylD)/2,-(tipOpenX/2),((tipOpenZ-tipHole)/2)-(tipcylD/2)])
+//bottom front   
+translate([-(tipcylD+tipHole+tipcylD)/2,-(tipOpenX/2)+(tipcylD/2),((tipOpenZ-tipHole)/2)-(tipcylD/2)])
 rotate([0,90,0])
 cylinder(d=tipcylD,h=tipcylD+tipHole+tipcylD,$fn=36);    
+    //center sphere bottom back
+    translate([cos(90)*((tipOpenX/2)-((pM2mink-tipcylD)/2)),(tipOpenX/2)-(sin(90)*(tipOpenX/2)*0.5),tipcy2D/2])    
+    translate([0,-tipOpenX/2,0])
+    translate([1/4,0,0])
+    sphere(d=tipcy2D,$fn=8);
+//center sphere bottom back
+mirror([1,0,0])
+    translate([cos(90)*((tipOpenX/2)-((pM2mink-tipcylD)/2)),(tipOpenX/2)-(sin(90)*(tipOpenX/2)*0.5),tipcy2D/2])    
+    translate([0,-tipOpenX/2,0])
+    translate([1/4,0,0])
+    sphere(d=tipcy2D,$fn=8);
+} //end full
 
+for(i=[0:90]){
+hull(){
 //bottom back
-translate([0,-tipcylD*1.5/2,tipcylD*1.5/2])
-translate([-(tipOpenX/2),0,0])
+    translate([cos(i)*((tipOpenX/2)-((pM2mink-tipcylD)/2)),(tipOpenX/2)-(sin(i)*(tipOpenX/2)*0.5),tipcy2D/2])    
+    translate([0,-tipOpenX/2,0])
+    translate([1/4,0,0])
+    sphere(d=tipcy2D,$fn=8);
+//bottom front
+translate([((tipcylD+tipHole+tipcylD)/2)-0.1,-(tipOpenX/2)+(tipcylD/2),((tipOpenZ-tipHole)/2)-(tipcylD/2)])
 rotate([0,90,0])
-rotate([0,0,45/2])    
-cylinder(d=tipcylD*1.5,h=tipOpenX,$fn=8);    
-}
+cylinder(d=tipcylD,h=0.1,$fn=36);     //change from nG to something else?
+} //end hull
+} //end for
 
-//hull(){
+mirror([1,0,0])
+for(i=[0:90]){
+hull(){
+//bottom back
+    translate([cos(i)*((tipOpenX/2)-((pM2mink-tipcylD)/2)),(tipOpenX/2)-(sin(i)*(tipOpenX/2)*0.5),tipcy2D/2])    
+    translate([0,-tipOpenX/2,0])
+    translate([1/4,0,0])
+    sphere(d=tipcy2D,$fn=8);
+//bottom front
+translate([((tipcylD+tipHole+tipcylD)/2)-0.1,-(tipOpenX/2)+(tipcylD/2),((tipOpenZ-tipHole)/2)-(tipcylD/2)])
+rotate([0,90,0])
+cylinder(d=tipcylD,h=0.1,$fn=36);     //change from nG to something else?
+} //end hull
+} //end for
+
+
+
+
+
 
 hull(){
 //top front
@@ -176,9 +200,6 @@ rotate([0,90,0])
 cylinder(d=tipcylD,h=0.1,$fn=36);     //change from nG to something else?
 
 
-//translate([-1/2,0,0])
-//rotate([90,0,90])  
-//cylinder(d=tipcy2D,h=1,$fn=36);    
 } //end hull
 } //end for
 
@@ -198,32 +219,9 @@ translate([((tipcylD+tipHole+tipcylD)/2)-0.1,-(tipOpenX/2)+(tipcylD/2),tipOpenZ-
 rotate([0,90,0])
 cylinder(d=tipcylD,h=0.1,$fn=36);     //change from nG to something else?
 
-
-//translate([-1/2,0,0])
-//rotate([90,0,90])  
-//cylinder(d=tipcy2D,h=1,$fn=36);    
+  
 } //end hull
 } //end for
-
-
-//translate([-tipOpenX/2,0,tipOpenZ-(tipcy2D/2)])
-//rotate([0,90,0])    
-//cylinder(d=tipcy2D,h=tipOpenX,$fn=36);    
-
-/*
-translate([0,0,tipOpenZ-(tipcy2D/2)])
-minkowski(){
-difference(){
-resize([tipOpenX,tipOpenX/2])    
-cylinder(d=tipOpenX,h=0.01);
-resize([tipOpenX-0.1,(tipOpenX-0.1)/2])
-cylinder(d=tipOpenX-0.1,h=0.01);
-translate([-tipOpenX/2,0,0])
-cube([tipOpenX,tipOpenX,0.01]);
-} //end diff
-sphere(d=tipcy2D,$fn=36);
-} //end mink
-*/
 
 
 hull(){
@@ -231,7 +229,6 @@ hull(){
     translate([0,-tipOpenX/2,tipOpenZ])
     translate([1/4,0,0])
     sphere(d=tipcy2D,$fn=18);
-    
     
            translate([tipOpenX/2,((((((c2ID+(pMgroove*2)+(pMwallT*2))/2))-(p2OD/2)+(tipOpenX/2))*2)/2)/4,tipOpenZ-(pM2mink/2)])
          sphere(d=pM2mink,$fn=10);
@@ -243,11 +240,31 @@ hull(){
     translate([1/4,0,0])
     sphere(d=tipcy2D,$fn=18);
     
-    
            translate([tipOpenX/2,((((((c2ID+(pMgroove*2)+(pMwallT*2))/2))-(p2OD/2)+(tipOpenX/2))*2)/2)/4,tipOpenZ-(pM2mink/2)])
          sphere(d=pM2mink,$fn=10);
 }
 
+
+//bottom fade to wall
+hull(){
+    translate([cos(0)*((tipOpenX/2)-((pM2mink-tipcylD)/2)),(tipOpenX/2)-(sin(0)*(tipOpenX/2)*0.5),tipcy2D/2])    
+    translate([0,-tipOpenX/2,0])
+    translate([1/4,0,0])
+    sphere(d=tipcy2D,$fn=8);
+    
+           translate([tipOpenX/2,((((((c2ID+(pMgroove*2)+(pMwallT*2))/2))-(p2OD/2)+(tipOpenX/2))*2)/2)/4,(pM2mink/2)])
+         sphere(d=pM2mink,$fn=10);
+}
+mirror([1,0,0])
+hull(){
+    translate([cos(0)*((tipOpenX/2)-((pM2mink-tipcylD)/2)),(tipOpenX/2)-(sin(0)*(tipOpenX/2)*0.5),tipcy2D/2])    
+    translate([0,-tipOpenX/2,0])
+    translate([1/4,0,0])
+    sphere(d=tipcy2D,$fn=8);
+    
+           translate([tipOpenX/2,((((((c2ID+(pMgroove*2)+(pMwallT*2))/2))-(p2OD/2)+(tipOpenX/2))*2)/2)/4,(pM2mink/2)])
+         sphere(d=pM2mink,$fn=10);
+}
 
 
 } //end tip translate
@@ -289,6 +306,10 @@ mirror([1,0,0])
      } //end difference
      
  } //end cut translate
+
+translate([-M2inX*2,-M2inY*2,0])
+cube([M2inX*4,M2inY*4,pM2mink/8/2]);
+
  
 } //end main difference
 
