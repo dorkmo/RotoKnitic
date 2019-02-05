@@ -316,7 +316,11 @@ mirror(1,0,0)
             #cylinder(d=3,h=aaT,$fn=36);
     } //end angle iron    
     
-translate([0,p3wallOD/2,-nB+(pPspace1+pPplate1+pMgrooveC3-nC-(pMgrooveD-nC))+nA-nE-((tipcylD+tipHole+tipcylD)/2)-2])    
+translate([
+    0,
+    p3wallOD/2,
+    -nB+(pPspace1+pPplate1+pMgrooveC3-nC-(pMgrooveD-nC))+nA-((tipOpenZ-tipHole)/2)-tipcylD-nG
+    ])    
 mirror([0,0,1])
 translate([0,0,tipOpenX/2])
 CKpM2();

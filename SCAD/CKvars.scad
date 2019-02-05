@@ -31,7 +31,7 @@ c1steppersnumber=1;  //number of stepper motors driving the gear
 
 //thread feeder stand above mountain
 TF=1;    //  0=none  1=angle iron  2=makerbeamm
-TFW=60;
+TFW=60;  //distance between outside edge of makerbream
 aaX=15;
 aaT=1;
 aaboltD=3;
@@ -51,6 +51,7 @@ tipOpenZ=10;
 tipcylD=1.75;  //1.5
 tipcy2D=tipcylD*1.5;
 
+//-(tipOpenX/2)+(tipcylD/2)
 
 upper_surfaceH=6.35;  //thickness of upper rotating plate  ///5  //6.35= 1/4"inch
 bottom_surface_motor_gearsH=6.35;  //thickness of geared rotating plate
@@ -562,7 +563,7 @@ M2tipY=tipOpenX/2;  //pM2mink
 M2tipZ=(((tipOpenX/2)-(nE/2))*2)+tipHole+(tipcylD/2);
 M2tiptopC=(((tipOpenX/2)-(nE/2))*2)+tipHole+(tipcylD/2)-(pM2mink/4);
 M2inX=((((sin(pMd4s)*(pMID/2))-(aaX/2)-(0)))*2);
-M2inY=(((c2ID+(pMgroove*2)+(pMwallT*2))/2))-((p3wallID/2)-(p2needlegrooveDepthslop/2))-M2tipY;
+M2inY=(((c2ID+(pMgroove*2)+(pMwallT*2))/2))-((p3wallID/2)-(p2needlegrooveDepthslop/2))-(nD-nY);  //(M2tipY) //(nD-nY) //tipcylD/2
 M2inZ=pM2H-pM2mink;
 M2backwallOD=((c2ID+(pMgroove*2)+(pMwallT*2))/2)+aaT;
 

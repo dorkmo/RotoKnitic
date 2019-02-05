@@ -7,21 +7,21 @@ use <mb10.scad>;
 translate([0,0,-pM2mink/8/2])
 CKpM2();
 
-module CKpM2(){
-    
-    difference(){
-    union(){
-translate([0,-p3wallOD/2,0]){ //main translate
-
-/*
-translate([0,0,-nA+(nE*2)])
+translate([0,-p3wallOD/2,0]) //main translate
+translate([0,0,-nA])
 translate([0,0,-nB+(pPspace1+pPplate1+pMgrooveC3-nC-(pMgrooveD-nC))])
 rotate([0,0,-90])
 translate([(-p3wallID/2)+(p2needlegrooveDepthslop/2),0,0])
 translate([0,nX/2,0])
 rotate([90,0,0])
 needle();
-*/
+
+module CKpM2(){
+    
+    difference(){
+    union(){
+translate([0,-p3wallOD/2,0]){ //main translate
+
         translate([(sin(pMd4s)*(pMID/2))-(aaX/2),((c2ID+(pMgroove*2)+(pMwallT*2))/2)-(aaX-aaT),0])
     difference(){
     minkowski(){
