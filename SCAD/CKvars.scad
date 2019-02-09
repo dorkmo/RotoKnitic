@@ -16,7 +16,7 @@ p3number=4;                 //4                 //18  ///4    //4
 p4number=4;                 //4                 //18  ///4    //4
 
 //distance from the inside face of one needle to the next
-needle2needle=14.35615;     //default=14.35615  //try 8.414   //14.35615
+needle2needle=14.35615;     //default=14.35615  //try 8.414   //13.5334
 
 //calculated diameter from inside edge of needles
 p2needlegrooveID=((needle2needle*p2number*p2needles)/PI);
@@ -129,6 +129,8 @@ p2holeD=2;
 p2holeCSD=4.01726;
 p2holeCSL=1.5;
 p2endtrim=0.5;
+
+echo("p2ID", p2ID);
 
 //p3 - outer needle wall slide
 p3wiggle=0.1;
@@ -499,6 +501,11 @@ echo("pMnum",pMnum);
 //number of sets of bearings mounted to geared plated
 c2bmounts=pMnum;   //p3number
 
+p7number=max(
+c2bmounts,
+4
+);
+
 //number of plate connectors
 c2connectors=c2bmounts*3; // need to tweak so does not overlap mountain footprint
 
@@ -557,6 +564,7 @@ p8baseL=p8holeC2C+(p8holeend2C*2); //25
 c1H=table_surface;
 c1width=c2width+91.36;
 c1OD=(CKp1_pitch_radius+CKc2_pitch_radius+(NEMAmotorW/2)+woodbeamW+2)*2;  // c2OD + (c1width-c2width);
+c1zOD=(((c3OD/2)-p7bearingfromfront-(p7wiggleL/2)-bearingholderZBW+(p7baseL-p7mounthole2edge))+woodbeamW+2)*2; //outside diameter of plate at Z mounts
 
 //thread feeder
 M2tipY=tipOpenX/2;  //pM2mink
