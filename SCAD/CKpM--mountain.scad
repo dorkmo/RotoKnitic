@@ -12,8 +12,9 @@ use <CKpM2--mountainfeeder.scad>;
 //values CKpM(X,X,X) defined as follows:
 //render needle path groove 1 == yes, 0 == no
 //render thread feeder stand using  0=none  1=angle iron  2=makerbeamm
-//render beam and angle of the feed holder yes == 1, no == 0
-CKpM(0,1,1); 
+//render beam angle of the feed holder yes == 1, no == 0
+rotate([-90,0,0])
+CKpM(1,1,0); 
 
 
 module CKpM(G,TF,RenderBeam){
@@ -176,7 +177,7 @@ if(G==1){
 ////////
 //hole for optional angle iron thread feeder mount        
 
-if(RenderBeam==1){
+if(TF==1){
 
 //translate([sin(pMd4s)*(pMID/2),(pMID/2),pPspace2+pPplate2+(aaX)])
 translate([sin(pMd4s)*(pMID/2),(c2ID+(pMgroove*2)+(pMwallT*2))/2,(pPspace2+pPplate2+1)+(aaboltHD/2)+bearingholderZBOD])

@@ -36,7 +36,7 @@ needle();
 
 ///////////////////
 */
-
+translate([-p3baseOD/2,0,0])
 CKp3();
 
 echo("p3wallH",p3wallH);

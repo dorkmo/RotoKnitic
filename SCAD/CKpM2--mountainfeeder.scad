@@ -7,6 +7,7 @@ use <mb10.scad>;
 translate([0,0,-pM2mink/8/2])
 CKpM2();
 
+/*
 translate([0,-p3wallOD/2,0]) //main translate
 translate([0,0,-nA])
 translate([0,0,-nB+(pPspace1+pPplate1+pMgrooveC3-nC-(pMgrooveD-nC))])
@@ -15,6 +16,7 @@ translate([(-p3wallID/2)+(p2needlegrooveDepthslop/2),0,0])
 translate([0,nX/2,0])
 rotate([90,0,0])
 needle();
+*/
 
 module CKpM2(){
     
@@ -25,12 +27,17 @@ translate([0,-p3wallOD/2,0]){ //main translate
         translate([(sin(pMd4s)*(pMID/2))-(aaX/2),((c2ID+(pMgroove*2)+(pMwallT*2))/2)-(aaX-aaT),0])
     difference(){
     minkowski(){
+        union(){
     difference(){
         cube([aaX,aaX,pM2H]);  //cube 
         cube([aaX-aaT,aaX-aaT,pM2H]);
         
     } //end angle iron
-cylinder(d=pM2mink,h=0.01, $fn=72);
+  translate([0,aaX,0])  
+    #cube([aaX,aasqNutH+3,pM2H]);
+
+} //end union
+sphere(d=pM2mink, $fn=10);  //,h=0.01  $fn=72
  } //end minkowski
      }//end difference
  
@@ -38,14 +45,21 @@ cylinder(d=pM2mink,h=0.01, $fn=72);
         translate([(sin(pMd4s)*(pMID/2))-(aaX/2),((c2ID+(pMgroove*2)+(pMwallT*2))/2)-(aaX-aaT),0])
     difference(){
     minkowski(){
+        union(){
     difference(){
         cube([aaX,aaX,pM2H]);  //cube 
         cube([aaX-aaT,aaX-aaT,pM2H]);
         
     } //end angle iron
-cylinder(d=pM2mink,h=0.01, $fn=18);
+  translate([0,aaX,0])  
+    #cube([aaX,aasqNutH+3,pM2H]);
+
+} //end union
+sphere(d=pM2mink, $fn=10);  //,h=0.01  $fn=72
  } //end minkowski
      }//end difference
+     
+     
      
      minkowski(){
      difference(){
@@ -271,6 +285,7 @@ hull(){
 //end tip try 2
 
 
+
 } //end translate
 } //end main union
 
@@ -280,7 +295,7 @@ translate([0,-p3wallOD/2,]){
 
      translate([(sin(pMd4s)*(pMID/2))-(aaX/2),((c2ID+(pMgroove*2)+(pMwallT*2))/2)-(aaX-aaT),0]){
  translate([-pM2mink,-pM2mink,pM2H])
-#        cube([aaX+(3*2),aaX+(3*2),1]);  //cube 
+#        cube([aaX+(3*2),aaX+(3*2),pM2mink]);  //cube 
  
  
  translate([-(pM2slop/2),-(pM2slop/2),0])
@@ -288,13 +303,32 @@ translate([0,-p3wallOD/2,]){
         cube([aaX+(pM2slop),aaX+(pM2slop),pM2H]);  //cube 
         cube([aaX-aaT-(pM2slop/4),aaX-aaT-(pM2slop/4),pM2H]);
      }
-         
+      
+  
+  translate([(aaX/2)-((aasqNutW+NEMAsqNutSlop)/2),aaX,0])  
+ #cube([aasqNutW+NEMAsqNutSlop,aasqNutH+NEMAsqNutSlop,aasqNutW+NEMAsqNutSlop+2]);
+ 
+ translate([(aaX/2),aaX,2+(aasqNutW+NEMAsqNutSlop)/2])  
+     rotate([270,0,0])
+ #cylinder(d=aaboltD,h=aaX,$fn=36);    
+     
+     translate([0,0,pM2H])
+     mirror([0,0,1]){
+       translate([(aaX/2)-((aasqNutW+NEMAsqNutSlop)/2),aaX,0])  
+ #cube([aasqNutW+NEMAsqNutSlop,aasqNutH+NEMAsqNutSlop,aasqNutW+NEMAsqNutSlop+2]);
+ 
+ translate([(aaX/2),aaX,2+(aasqNutW+NEMAsqNutSlop)/2])  
+     rotate([270,0,0])
+ #cylinder(d=aaboltD,h=aaX,$fn=36);  
+     
+     }
+     
      } //end difference
 
 mirror([1,0,0])     
           translate([(sin(pMd4s)*(pMID/2))-(aaX/2),((c2ID+(pMgroove*2)+(pMwallT*2))/2)-(aaX-aaT),0]){
  translate([-pM2mink,-pM2mink,pM2H])
-#        cube([aaX+(3*2),aaX+(3*2),1]);  //cube 
+#        cube([aaX+(3*2),aaX+(3*2),pM2mink]);  //cube 
  
  
  translate([-(pM2slop/2),-(pM2slop/2),0])
@@ -302,13 +336,39 @@ mirror([1,0,0])
         cube([aaX+(pM2slop),aaX+(pM2slop),pM2H]);  //cube 
         cube([aaX-aaT-(pM2slop/4),aaX-aaT-(pM2slop/4),pM2H]);
      }
+     
+     
+       translate([(aaX/2)-((aasqNutW+NEMAsqNutSlop)/2),aaX,0])  
+ #cube([aasqNutW+NEMAsqNutSlop,aasqNutH+NEMAsqNutSlop,aasqNutW+NEMAsqNutSlop+2]);
+ 
+ translate([(aaX/2),aaX,2+(aasqNutW+NEMAsqNutSlop)/2])  
+     rotate([270,0,0])
+ #cylinder(d=aaboltD,h=aaX,$fn=36);    
+     
+     translate([0,0,pM2H])
+     mirror([0,0,1]){
+       translate([(aaX/2)-((aasqNutW+NEMAsqNutSlop)/2),aaX,0])  
+ #cube([aasqNutW+NEMAsqNutSlop,aasqNutH+NEMAsqNutSlop,aasqNutW+NEMAsqNutSlop+2]);
+ 
+ translate([(aaX/2),aaX,2+(aasqNutW+NEMAsqNutSlop)/2])  
+     rotate([270,0,0])
+ #cylinder(d=aaboltD,h=aaX,$fn=36);  
+     
+     }
          
      } //end difference
      
+     
+     
  } //end cut translate
 
-translate([-M2inX*2,-M2inY*2,0])
-cube([M2inX*4,M2inY*4,pM2mink/8/2]);
+translate([-M2inX*2,-M2inY*2,pM2mink/8/2])
+mirror([0,0,1]) 
+cube([M2inX*4,M2inY*4,pM2mink]);
+
+translate([-M2inX*2,-M2inY*2,pM2H])
+cube([M2inX*4,M2inY*4,pM2mink]);
+
 
  
 } //end main difference

@@ -54,14 +54,14 @@ needle();
 
 
 //c1
-translate([-c1OD/2,0,-c1H])
+translate([0,0,-c1H])
 CKc1();
 
 
 
 //p1 - motor gear
 rotate([0,0,0])
-translate([-(CKp1_pitch_radius+CKc2_pitch_radius),0,1])
+translate([0,-(CKp1_pitch_radius+CKc2_pitch_radius),1])
 CKp1();
 
 
@@ -102,14 +102,26 @@ for(i=[1:p4number]){
 
 
 //p7 Z
-for(i=[1:c2bmounts]){
-    rotate([0,0,((45)+((360/c2bmounts)*i))]){
+        for(i=[0:(p7number/2)-1]){
+    rotate([0,0,45-((90/((p7number/2)-1))*i)]){
         translate([0,(c3OD/2)-p7bearingfromfront-(p7wiggleL/2)-bearingholderZBW,0]){  //close enough?
 //trans Y old : (c3OD/2)-((p7mountL-p7wallW)/2)-((bearingholderZBW+p7wiggleL)/2)-(p7wiggleL/2)
 CKp7(1);
         }//end translate
     }//end rotate
 }//end for
+
+mirror([0,1,0])
+        for(i=[0:(p7number/2)-1]){
+    rotate([0,0,45-((90/((p7number/2)-1))*i)]){
+        translate([0,(c3OD/2)-p7bearingfromfront-(p7wiggleL/2)-bearingholderZBW,0]){  //close enough?
+//trans Y old : (c3OD/2)-((p7mountL-p7wallW)/2)-((bearingholderZBW+p7wiggleL)/2)-(p7wiggleL/2)
+CKp7(1);
+        }//end translate
+    }//end rotate
+}//end for
+
+
 
 //////////////////
 //ROTATING SECTION

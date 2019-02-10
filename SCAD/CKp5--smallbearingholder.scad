@@ -1,6 +1,6 @@
 include <CKvars.scad>;
 
-CKp5(1); //small bearing holder
+CKp5(0); //small bearing holder
 
 
 

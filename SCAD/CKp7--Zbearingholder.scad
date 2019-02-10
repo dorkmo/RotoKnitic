@@ -1,6 +1,7 @@
 include <CKvars.scad>;
 
-CKp7(1); //small bearing holder
+rotate([0,90,0])
+CKp7(0); //small bearing holder
 
 module CKp7(B){
     translate([-p7baseW/2,0,0]){
@@ -60,7 +61,6 @@ if(B==1){
     cylinder(d=bearingholderSmallBOD,h=bearingholderSmallBW, $fn=36);
     cylinder(d=bearingholderSmallBID,h=bearingholderSmallBW, $fn=36);
   }
-} //end if
 
 
   //bolt
@@ -74,6 +74,8 @@ translate([p7baseW/2,((p7baseL-p7wallW)/2)+p7wallW,bearingholderZB2C])
 rotate([-90,0,0])
 rotate([0,0,360/6])
 CKnut(p7boltD,p7nutH,p7boltHeadOD);
+
+} //end if
 
 
     } //end main translate

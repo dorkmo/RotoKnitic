@@ -16,7 +16,7 @@ p3number=4;                 //4                 //18  ///4    //4
 p4number=4;                 //4                 //18  ///4    //4
 
 //distance from the inside face of one needle to the next
-needle2needle=14.35615;     //default=14.35615  //try 8.414   //13.5334
+needle2needle=13.5334;     //default=14.35615  //try 8.414   //13.5334
 
 //calculated diameter from inside edge of needles
 p2needlegrooveID=((needle2needle*p2number*p2needles)/PI);
@@ -25,15 +25,15 @@ p2needlegrooveID=((needle2needle*p2number*p2needles)/PI);
 //nnumber of Z bearing mounts
 c1zmounts=p3number;
 
-c1steppersnumber=1;  //number of stepper motors driving the gear
+c1steppersnumber=2;  //number of stepper motors driving the gear
 
 ////MATERIALS////
 
 //thread feeder stand above mountain
 TF=1;    //  0=none  1=angle iron  2=makerbeamm
 TFW=60;  //distance between outside edge of makerbream
-aaX=15;
-aaT=1;
+aaX=12.7;   //12.7 = 1/2in
+aaT=1.5875;    //1.5875 = 1/16in
 aaboltD=3;
 aaboltHD=5.68;
 aaboltHH=3;
@@ -196,7 +196,7 @@ pPspace2=nC+(p4baseH-p4basegapH)+pPextra; //space between geared plate and mount
 //p5 small bearing holder
 p5boltHeadOD=8; //look up sales drawing - used to cut mountain
 p5boltHeadH=3.65;  //look up sales drawing - used to cut mountain
-p5nutH=0;
+p5nutH=5;
 p5boltD=5;
 p5boltL=30;  //bolt to hold bearings
 p5wingW=7;
@@ -499,12 +499,16 @@ pMnum=floor(pMmaxNum/2);
 echo("pMnum",pMnum);
 
 //number of sets of bearings mounted to geared plated
-c2bmounts=pMnum;   //p3number
+c2bmounts=pMnum;   //p3number  //probably should be higher
 
-p7number=max(
-c2bmounts,
+echo("c2bmounts",c2bmounts);
+
+p7number=(ceil(max(
+c2bmounts*1.3,
 4
-);
+)/4))*4;
+
+echo("p7number", p7number);
 
 //number of plate connectors
 c2connectors=c2bmounts*3; // need to tweak so does not overlap mountain footprint
@@ -562,16 +566,32 @@ p8baseL=p8holeC2C+(p8holeend2C*2); //25
 
 //c1
 c1H=table_surface;
-c1width=c2width+91.36;
+c1width=c2width+91.36;  //depricated?
 c1OD=(CKp1_pitch_radius+CKc2_pitch_radius+(NEMAmotorW/2)+woodbeamW+2)*2;  // c2OD + (c1width-c2width);
 c1zOD=(((c3OD/2)-p7bearingfromfront-(p7wiggleL/2)-bearingholderZBW+(p7baseL-p7mounthole2edge))+woodbeamW+2)*2; //outside diameter of plate at Z mounts
+c1W=max(
+c1OD*(-ceil(1/(floor( (2-c1steppersnumber)*(c1steppersnumber/(2/c1steppersnumber)) )+1))+1)
+,
+c3OD
+);
+
+test=1;
+
+echo("floor",
+(-ceil(1/(floor( (2-c1steppersnumber)*(c1steppersnumber/(2/c1steppersnumber)) )+1))+1)
+);  //if there are more than 2 steppers = 1
+
+echo("c3OD",c3OD);
+
+echo("c1W",c1W);
+
 
 //thread feeder
 M2tipY=tipOpenX/2;  //pM2mink
 M2tipZ=(((tipOpenX/2)-(nE/2))*2)+tipHole+(tipcylD/2);
 M2tiptopC=(((tipOpenX/2)-(nE/2))*2)+tipHole+(tipcylD/2)-(pM2mink/4);
 M2inX=((((sin(pMd4s)*(pMID/2))-(aaX/2)-(0)))*2);
-M2inY=(((c2ID+(pMgroove*2)+(pMwallT*2))/2))-((p3wallID/2)-(p2needlegrooveDepthslop/2))-(nD-nY);  //(M2tipY) //(nD-nY) //tipcylD/2
+M2inY=(((c2ID+(pMgroove*2)+(pMwallT*2))/2))-((p3wallID/2)-(p2needlegrooveDepthslop/2))-(nD-nY)-nD;  //(M2tipY) //(nD-nY) //tipcylD/2
 M2inZ=pM2H-pM2mink;
 M2backwallOD=((c2ID+(pMgroove*2)+(pMwallT*2))/2)+aaT;
 

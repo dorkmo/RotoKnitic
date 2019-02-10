@@ -13,6 +13,7 @@ use <mb10.scad>;
 //*openbeam holes
 //
 //////
+TF=2;  //2 for optional maker beam holes
 
 projection(cut = false)
 CKc3();
