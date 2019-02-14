@@ -53,9 +53,9 @@ tipcy2D=tipcylD*1.5;
 
 //-(tipOpenX/2)+(tipcylD/2)
 
-upper_surfaceH=6.35;  //thickness of upper rotating plate  ///5  //6.35= 1/4"inch
-bottom_surface_motor_gearsH=6.35;  //thickness of geared rotating plate
-table_surface=6.35;  //thickness of plate of main table
+upper_surfaceH=3.175;  //thickness of upper rotating plate  ///5  //6.35= 1/4"inch
+bottom_surface_motor_gearsH=3.175;  //thickness of geared rotating plate
+table_surface=3.175;  //thickness of plate of main table
 
 woodbeamW=25.4; //table leg wood beam width
 woodbeamScrewOD=6.32;   // 1/4" screw hole
