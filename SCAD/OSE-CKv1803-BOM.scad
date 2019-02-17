@@ -24,83 +24,57 @@ echo("Needles:", p2number*p2needles);
 
 
 //c1
-//translate([0,0,-c1H])
-//CKc1();
-
+//Wood Mount Screws
+echo("c1 Wood Screws","Size:",woodbeamScrewOD,"x",c1H+6,"mm","Count:",(16));
+  
+echo("c1 Stepper Socket Cap Screws","Size: M",NEMAboltOD,"x",c1H+4,"mm","Count:",(c1steppersnumber*4));
 
 
 //p1 - motor gear
-//rotate([0,0,0])
-//translate([0,-(CKp1_pitch_radius+CKc2_pitch_radius),1])
-//CKp1();
-
-
+echo("p1 Bolts","Size: M",NEMAsetboltOD,"x",NEMAsetboltL,"mm","Count:",(c1steppersnumber));
+//M3 Base Nuts
+echo("p1 Square Nuts","Size: M",NEMAsetboltOD,"Count:",(c1steppersnumber));
 
 //p2 - inner wall needle guide
-//for(i=[1:p2number]){
-//    rotate([0,0,i*(360/p2number)])
-//    translate([-p2OD/2,0,p3base45H])
-//    CKp2();
-//}
-
-
+//see p3
 
 //p3 - outer wall
-//for(i=[1:p3number]){
-//    rotate([0,0,i*(360/p3number)])
-//    translate([-p3baseOD/2,0,0])
-//    CKp3();
-//}
+
+//M3 Base Bolts - 12
+echo("p3 Bolts","Size: M",p3baseholeD,"x",ceil((p3baseH+table_surface+p3baseholeD+1)/2)*2,"mm","Count:",(p3number*p3baseholenumber));
+//M3 Base Nuts
+echo("p3 Nuts","Size: M",p3baseholeD,"Count:",(p3number*p3baseholenumber));
+
+
+echo("p3/p9 Socket Cap Screws","Size: M",p2holeD,"x",p3upperwallW+p2W-p2holeCSL+p9thickness+p2holeD,"mm","Count:",p3number*4);
+echo("p3/p2 Socket Cap Screws","Size: M",p2holeD,"x",p3upperwallW+p2W-p2holeCSL+p2holeD,"mm","Count:",(p2number*2)-(p3number*2));
+
 
 //p9 - connector for p3
-//for(i=[1:p3number]){
-//    rotate([0,0,i*(360/p3number)])
-//    translate([-(p3wallID+(p3upperwallW*2))/2,0,(p2holeH)-(p9H/2)])
-//    rotate([0,0,180])
-//    CKp9();
-//}//end for
-
-
+//see p3
 
 //p4 - yard holder at top
-//for(i=[1:p4number]){
-//    rotate([0,0,-((360/p2number/p2needles)*3.5)+(i*(360/p4number))])
-//    translate([-(p4baseOD/2),0,p3base45H+p2H-p4basegapH])
-//    CKp4();
-//}
+//M2 Socket Cap Srews
+echo("p4 Socket Cap Screws","Size: M",p2holeD,"x",((p4baseOD-p4baseID)/2)-p2holeCSL,"mm","Count:",p2number*2);
+
 
 //p7 Z
-//M3 Base Bolts
-echo("p7 Size: M",p7mountholeOD,"x",ceil((p7baseH+table_surface+p7mountholeOD-0.25)/2)*2,"mm","Count:",(p7number*3));
+//M3 Base Bolts - 12
+echo("p7 Bolts","Size: M",p7mountholeOD,"x",ceil((p7baseH+table_surface+p7mountholeOD-0.25)/2)*2,"mm","Count:",(p7number*3));
 //M3 Base Nuts
+echo("p7 Nuts","Size: M",p7mountholeOD,"Count:",(p7number*3));
+
+////////////////lock nut size?
+
 
 //M5 Bearing Mount Bolt
+echo("p7 Bearing Bolts","Size: M",p7boltD,"x",p7boltL,"mm","Count:",p7number);
 
 //M5 Bearing Mount Nut
+echo("p7 Bearing Nuts","Size: M",p7boltD,"Count:",p7number);
 
 //Bearing  (bore 5mm x 10mm x 4mm)
-echo("Bearing","Bore:",bearingholderZBID,"x","OD:",bearingholderZBOD,"x","Width:",bearingholderZBW,"Count:",(p7number*3));
-//NTN WBC5-10ZZ
-
-//        for(i=[0:(p7number/2)-1]){
-//    rotate([0,0,45-((90/((p7number/2)-1))*i)]){
-//        translate([0,(c3OD/2)-p7bearingfromfront-(p7wiggleL/2)-bearingholderZBW,0]){  //close enough?
-//trans Y old : (c3OD/2)-((p7mountL-p7wallW)/2)-((bearingholderZBW+p7wiggleL)/2)-(p7wiggleL/2)
-//CKp7(1);
-//        }//end translate
-//    }//end rotate
-//}//end for
-
-//mirror([0,1,0])
-//        for(i=[0:(p7number/2)-1]){
-//    rotate([0,0,45-((90/((p7number/2)-1))*i)]){
-//        translate([0,(c3OD/2)-p7bearingfromfront-(p7wiggleL/2)-bearingholderZBW,0]){  //close enough?
-//trans Y old : (c3OD/2)-((p7mountL-p7wallW)/2)-((bearingholderZBW+p7wiggleL)/2)-(p7wiggleL/2)
-//CKp7(1);
-//        }//end translate
-//    }//end rotate
-//}//end for
-
+echo("p7 Bearings","Bore:",bearingholderZBID,"x","OD:",bearingholderZBOD,"x","Width:",bearingholderZBW,"Count:",(p7number));
 
 
 //////////////////
