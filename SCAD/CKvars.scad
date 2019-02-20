@@ -263,7 +263,7 @@ p8boltHeadOD=5.68; //look up sales drawing - used to cut mountain
 p8boltHeadH=3;  //look up sales drawing - used to cut mountain
 p8nutH=4;  //jam nut
 p8boltD=3;
-p8boltL=30;  //bolt to hold bearings
+p8boltL=30;  //bolt to hold bearings  ????
 
 p8baseW=8;
 p8holeD=p8boltD;

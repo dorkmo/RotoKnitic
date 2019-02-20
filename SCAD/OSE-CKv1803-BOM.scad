@@ -91,52 +91,25 @@ echo("p7 Bearings","Bore:",bearingholderZBID,"x","OD:",bearingholderZBOD,"x","Wi
 //CKc3();
 
 //p5 - small bearing holder
-//for(i=[1:c2bmounts]){
-//    rotate([0,0,((360/c2connectors)*1.5)+((360/c2bmounts)*i)]){
-//        translate([0,(p3baseOD/2)+1,pPspace1]){ 
-//            mirror([0,0,1])
-//CKp5(1); //small bearing holder
-//        }//end translate
-//    }//end rotate
-//}//end for
+//M3 mounts
+echo("p5 Mount Bolts","Size: M",p5mountholeOD,"x",ceil((p5wingH+bottom_surface_motor_gearsH+p5mountholeOD-0.25)/2)*2,"mm","Count:",(c2bmounts*4));
+//M5 bearing bolt
+echo("p5 Bearing Bolts","Size: M",p5boltD,"x",p5boltL,"mm","Count:",(c2bmounts));
 
-    //small bearing holder - under mountain
-//    rotate([0,0,0]){
-//        translate([0,(p3baseOD/2)+1,pPspace1]){
-//            mirror([0,0,1])
-//CKp5(1); //small bearing holder
-//        }//end translate
-//    }//end rotate
 
 //p8
-//translate([0,0,pPspace1+pPplate1])
-//        for(i=[1:c2connectors-1]){
-//            rotate([0,0,((360/c2connectors)*i)]){
-//                translate([0,(pMID/2)+(pMgroove)+1+(p8baseL/2),0]){          
-//                        translate([0,-p8baseL/2,-0.1])
-//                        CKp8();
-//                }//end translate
-//            }//end rotate
-//        }//end for
+//M3
+echo("p8 Mount Bolts","Size: M",p8boltD,"x",ceil((upper_surfaceH+p8H+bottom_surface_motor_gearsH+p8nutH)/2)*2,"mm","Count:",((c2connectors-1)*2));
+
 
 
 //mountain
-//translate([0,0,0])
-//translate([0,p3wallOD/2,(pPspace1+pPplate1+pPspace2+pPplate2)-(pPspace2+pPplate2)])
-//rotate([0,0,0])
-//CKpM(0,1,1);
+echo("pM Top Plate Connector","Size: M",pMshelfBoltD,"x",ceil((pMshelfH+pMshelfBoltD)/2)*2,"mm","Count:",4);
 
+    //If using angle iron
+//Bolt Through Mountain
+echo("pM angle iron Mount Bolts","Size: M",p8boltD,"x",ceil((((((pMID/2)-(cos(pMd4s)*(pMID/2)))+pMwallT+pMgroove)-(sin(pMd4s)*(aaboltHD))-2-aaboltHH)+p8boltD+aaT)/2)*2,"mm","Count:",2);
+//Bolt Through Peg
+echo("pM angle iron TopMount Bolts","Size: M",p8boltD,"x",ceil((aaX+p8boltD)/2)*2,"mm","Count:",2);
 
-//((360/(p2number*p2needles))*3)-((360/p2number/p2needles)*3.5)+((360/p4number))
-//translate([0,0,-nB+(pPspace1+pPplate1+pMgrooveC3-nC-(pMgrooveD-nC))])
-//rotate([0,0,-90])
-//translate([(-p3wallID/2)+(p2needlegrooveDepthslop/2),0,0])
-//translate([0,nX/2,0])
-//rotate([90,0,0])
-//needle();
-
-//    } //end rotate
-    //END ROTATING SECTION
-    //////////////////////
-    
     
