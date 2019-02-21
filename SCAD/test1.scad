@@ -1,7 +1,7 @@
 include <CKvars.scad>;
 p2Gap=(p2W+(p3wiggle*2));
 
-translate([-p2Gap,0,-p3ridgeH])
+translate([-p2Gap-1,0,-p3ridgeH])
 cube([1,1,p3ridgeH])
 
 echo(
@@ -25,21 +25,24 @@ sitDeg=((atan((nH-nY-(nC/2))/(nB+(nC/2))))+(asin((nC/2)/(sqrt((nH-nY-(nC/2))*(nH
 
 sitH=(p2Gap- ( (sin(sitDeg)*(sin(sitDeg)*nY))  +  (cos(sitDeg)*nY)  ))/tan(sitDeg);
 
+/*
 trvH=min(
 ((p2Gap- ( (sin(i)*(sin(i)*nY))  +  (cos(i)*nY)  ))/tan(i))
 ,
 nH
 );
+*/
 
-translate([0,0,-sitH])
+translate([0,0,0])
 for(i=[0:0.1:sitDeg]){
 translate([0,0,
-min(
-((p2Gap- ( (sin(i)*(sin(i)*nY))  +  (cos(i)*nY)  ))/tan(i))
-,
-nH
-)
-])
+    -
+    min(
+    ((p2Gap- ( (sin(sitDeg-i)*(sin(sitDeg-i)*nY))  +  (cos(sitDeg-i)*nY)  ))/tan(sitDeg-i))
+    ,
+    (nB/1.5)  //could replace with groove p3 groove height
+    )
+    ])
 rotate([0,-sitDeg+i,0])
 translate([(nH)-(nC/2),0,nB+(nC/2)])
 union(){
