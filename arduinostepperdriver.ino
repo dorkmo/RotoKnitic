@@ -1,3 +1,5 @@
+//alternate code https://www.arduino.cc/en/Reference/StepperExample
+
 #include <Stepper.h>
  
 int enA  = 9;  // Enable pin 1 on Motor Control Shield  
