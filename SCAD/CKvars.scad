@@ -295,10 +295,10 @@ pMshelfBoltD=3;
 //c2 geared plate - clean up below, not used to generate gear
 c2H=bottom_surface_motor_gearsH;
 c2t2t=6.858;
-c2width=50;
-c2gap=2;
+c2width=50;  //depricated?
+c2gap=0.3;  //gap between c2ID and p3wallOD
 c2OD=(c2width*2)+(c2gap*2)+p2OD+(p3wiggle*2)+(p3wallW*2);
-c2ID=(c2gap*2)+p2OD+(p3wiggle*2)+(p3wallW*2);
+c2ID=(c2gap*2)+p2OD+(p3wiggle*2)+(p3wallW*2);   //should this be p3wallOD+(c2gap*2)
 c2teeth=((c2OD*PI)/c2t2t);
 c2dipitch=c2teeth/(c2OD*PI);
 
