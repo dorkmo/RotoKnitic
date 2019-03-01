@@ -1,4 +1,4 @@
-int delaylegnth = 10;
+int delaylegnth = 20;
 
 void setup() {
   
