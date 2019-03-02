@@ -162,7 +162,7 @@ p3wallOD=centerlineD+(p3wallW*2)+((p2W+(p3wiggle*2)/2));
 p3wallID=centerlineD+((p2W+(p3wiggle*2)/2));
 p3base45W=p3ridgeW2+p3wiggle+p2W+p3wiggle+p3baseID2N;
 p3base45H=p3base45W; //height of 45 degree overhang
-p3needleholefactorW=2.25; //multiply width of needle tail hole in base by this
+p3needleholefactorW=1.5; //multiply width of needle tail hole in base by this
 p3endtrim=0.5;
 
 //p4
@@ -296,7 +296,7 @@ pMshelfBoltD=3;
 c2H=bottom_surface_motor_gearsH;
 c2t2t=6.858;
 c2width=50;  //depricated?
-c2gap=0.3;  //gap between c2ID and p3wallOD
+c2gap=0.25;  //gap between c2ID and p3wallOD
 c2OD=(c2width*2)+(c2gap*2)+p2OD+(p3wiggle*2)+(p3wallW*2);
 c2ID=(c2gap*2)+p2OD+(p3wiggle*2)+(p3wallW*2);   //should this be p3wallOD+(c2gap*2)
 c2teeth=((c2OD*PI)/c2t2t);
