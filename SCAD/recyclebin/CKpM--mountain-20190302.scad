@@ -46,13 +46,13 @@ mirror([1,0,0])
         
 //////
 //ends' angled cut with shelf
-//rotate([0,0,(pMd1e-pMd0)])
-//mirror([1,0,0])
-//  cube([pMID*4,pMID*4,pPspace2+pPplate2]);
-//mirror([1,0,0])
-//rotate([0,0,(pMd1e-pMd0)])
-//mirror([1,0,0])
-//  cube([pMID*4,pMID*4,pPspace2+pPplate2]);
+rotate([0,0,(pMd1e-pMd0)])
+mirror([1,0,0])
+  cube([pMID*4,pMID*4,pPspace2+pPplate2]);
+mirror([1,0,0])
+rotate([0,0,(pMd1e-pMd0)])
+mirror([1,0,0])
+  cube([pMID*4,pMID*4,pPspace2+pPplate2]);
 //
 //////
    
@@ -60,17 +60,17 @@ mirror([1,0,0])
 //////
 //shelf cuts
 
-translate([((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0)),0,pPspace2+pPplate2])
-  cube([pMID*4,pMID*4,pMH]); //c3 above shelf
+translate([((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0)),0,0])
+  cube([pMID*4,pMID*4,pPspace2+pPplate2]); //below shelf
 
 mirror([1,0,0])    
-translate([((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0)),0,pPspace2+pPplate2])
-  cube([pMID*4,pMID*4,pMH]); //c3 above shelf
+    translate([((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0)),0,0])
+  cube([pMID*4,pMID*4,pPspace2+pPplate2]); //below shelf
         
-translate([(((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0)))+pMshelfX,0,0])
+translate([(((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0)))+pMshelfX,0,pPspace2+pPplate2])
   cube([pMID*4,pMID*4,pMH]); //of shelf
 mirror([1,0,0])    
-translate([(((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0)))+pMshelfX,0,0])
+translate([(((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0)))+pMshelfX,0,pPspace2+pPplate2])
   cube([pMID*4,pMID*4,pMH]); //of shelf
 
 //chamfered cut

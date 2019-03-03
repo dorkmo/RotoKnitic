@@ -34,7 +34,7 @@ echo((c3OD-c3ID)/2);
 module CKc3(){
     
     
-    rez=p2number*p2needles*2;  //calculate desired rezolution
+    rez=p2number*p2needles*2*2;  //calculate desired rezolution
     $fn=rez; //defines resolution of circles.
     
 translate([0,-c3OD/2,0]){     //[c3OD/2,0,0]       

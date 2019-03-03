@@ -449,7 +449,7 @@ pMgrooveOR=pMgroove+(pMID/2); //center to OD of groove
     pMd0=pMp0X/glnd;     //pMgrooveD/glnd; //define later
 
 //mounting shelf and holes settings   
-    pMshelfX=pMshelfBoltD*3;  //length of shelf in mm
+    pMshelfX=pMshelfBoltD*4;  //length of shelf in mm
     pMshelfd=pMshelfX/glnd; //number of degrees of shelf
 
     pMshelfHole1X=pMshelfchamfR+(pMshelfBoltD*1.5);  //distance to hole center from main body

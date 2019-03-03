@@ -2,7 +2,7 @@ include <CKvars.scad>;
 use <CKpM--mountain.scad>
 use <CKc3--topplate.scad>
 
-    rez=p2number*p2needles*2;  //calculate desired rezolution
+    rez=p2number*p2needles*2*2;  //calculate desired rezolution
     $fn=rez; //defines resolution of circles.
 
 pi=3.1415926535897932384626433832795;
@@ -97,7 +97,36 @@ for(i=[1:c2bmounts]){
     }//end rotate mountain bearing
 
 
-}//end difference
+
+        //////
+//mounting bolt holes
+        rotate([0,0,((360/c2connectors))]){
+            //1
+translate([0,(cos(pMd1e-pMd0)*((pMID/2)+(pMshelfBoltD)+pMgroove)),0])
+translate([-((((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0)))+(pMshelfX/2)),0,0])
+  cylinder(d=pMshelfBoltD, h=pMH, $fn=36);
+            //2
+translate([0,(cos(pMd1e-pMd0)*((pMID/2)+(pMshelfBoltD)+pMgroove)),0])
+translate([-((((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0)))+(pMshelfX/2)),0,0])
+translate([0,(((((c2ID+(pMgroove*2)+(pMwallT*2))/2)/cos(pMd1e-pMd0))-((pMID/2)+(pMshelfBoltD)+pMgroove))/1.5),0])
+  cylinder(d=pMshelfBoltD, h=pMH, $fn=36);  
+                        
+        mirror([1,0,0]){
+            //1
+translate([0,(cos(pMd1e-pMd0)*((pMID/2)+(pMshelfBoltD)+pMgroove)),0])
+translate([-((((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0)))+(pMshelfX/2)),0,0])
+  cylinder(d=pMshelfBoltD, h=pMH, $fn=36);
+            //2
+translate([0,(cos(pMd1e-pMd0)*((pMID/2)+(pMshelfBoltD)+pMgroove)),0])
+translate([-((((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0)))+(pMshelfX/2)),0,0])
+translate([0,(((((c2ID+(pMgroove*2)+(pMwallT*2))/2)/cos(pMd1e-pMd0))-((pMID/2)+(pMshelfBoltD)+pMgroove))/1.5),0])
+  cylinder(d=pMshelfBoltD, h=pMH, $fn=36);        
+        } //end mirror
+    } //end rotate
+//end of bolt holes
+//////////////
+
+}//end main difference
 }//end main translate
 }//end module
 
