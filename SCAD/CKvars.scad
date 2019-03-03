@@ -343,6 +343,11 @@ c3H=upper_surfaceH;
 pMID=c2ID;
 pMODwall=c2ID+(pMgroove*2)+(pMwallT*2);
 
+//c4 paper clip connecting weight holder plate
+c4OD=p2ID-(p3ridgeW2*2)-(20*2);
+c4paperclipholeD=5;
+c4paperclipholeW=2;
+c4paperclipholetoEdge=3;
 
 
    /////////////////////////////////
@@ -593,7 +598,7 @@ echo("c1W",c1W);
 M2tipY=tipOpenX/2;  //pM2mink
 M2tipZ=(((tipOpenX/2)-(nE/2))*2)+tipHole+(tipcylD/2);
 M2tiptopC=(((tipOpenX/2)-(nE/2))*2)+tipHole+(tipcylD/2)-(pM2mink/4);
-M2inX=((((sin(pMd4s)*(pMID/2))-(aaX/2)-(0)))*2);
+M2inX=((((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0)))-pMshelfchamfR-(aaX-aaT))*2;
 M2inY=(((c2ID+(pMgroove*2)+(pMwallT*2))/2))-((p3wallID/2)-(p2needlegrooveDepthslop/2))-(nD-nY)-nD;  //(M2tipY) //(nD-nY) //tipcylD/2
 M2inZ=pM2H-pM2mink;
 M2backwallOD=((c2ID+(pMgroove*2)+(pMwallT*2))/2)+aaT;

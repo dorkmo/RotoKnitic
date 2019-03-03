@@ -1,6 +1,7 @@
 include <CKvars.scad>;
 use <CKp8--plateconnector.scad>
 use <CKpM--mountain.scad>
+use <CKc4--weightplate.scad>
 
 use <mb10.scad>;
 
@@ -17,6 +18,9 @@ TF=2;  //2 for optional maker beam holes
 
 projection(cut = false)
 CKc3();
+
+projection(cut = false)
+CKc4();
 
 /*
 translate([0,-c3OD/2,0])

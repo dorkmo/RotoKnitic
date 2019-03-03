@@ -18,13 +18,15 @@ rotate([90,0,0])
 needle();
 */
 
+wXtrans=(((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0)))-pMshelfchamfR-(aaX-aaT);  //(sin(pMd4s)*(pMID/2))-(aaX/2)
+
 module CKpM2(){
     
     difference(){
     union(){
 translate([0,-p3wallOD/2,0]){ //main translate
 
-        translate([(sin(pMd4s)*(pMID/2))-(aaX/2),((c2ID+(pMgroove*2)+(pMwallT*2))/2)-(aaX-aaT),0])
+        translate([wXtrans,((c2ID+(pMgroove*2)+(pMwallT*2))/2)-(aaX-aaT),0])
     difference(){
     minkowski(){
         union(){
@@ -42,7 +44,7 @@ sphere(d=pM2mink, $fn=10);  //,h=0.01  $fn=72
      }//end difference
  
  mirror([1,0,0])
-        translate([(sin(pMd4s)*(pMID/2))-(aaX/2),((c2ID+(pMgroove*2)+(pMwallT*2))/2)-(aaX-aaT),0])
+        translate([wXtrans,((c2ID+(pMgroove*2)+(pMwallT*2))/2)-(aaX-aaT),0])
     difference(){
     minkowski(){
         union(){
@@ -293,7 +295,7 @@ hull(){
 //cut slot for angle iron in sliding section
 translate([0,-p3wallOD/2,]){
 
-     translate([(sin(pMd4s)*(pMID/2))-(aaX/2),((c2ID+(pMgroove*2)+(pMwallT*2))/2)-(aaX-aaT),0]){
+     translate([wXtrans,((c2ID+(pMgroove*2)+(pMwallT*2))/2)-(aaX-aaT),0]){
  translate([-pM2mink,-pM2mink,pM2H])
 #        cube([aaX+(3*2),aaX+(3*2),pM2mink]);  //cube 
  
@@ -326,7 +328,7 @@ translate([0,-p3wallOD/2,]){
      } //end difference
 
 mirror([1,0,0])     
-          translate([(sin(pMd4s)*(pMID/2))-(aaX/2),((c2ID+(pMgroove*2)+(pMwallT*2))/2)-(aaX-aaT),0]){
+          translate([wXtrans,((c2ID+(pMgroove*2)+(pMwallT*2))/2)-(aaX-aaT),0]){
  translate([-pM2mink,-pM2mink,pM2H])
 #        cube([aaX+(3*2),aaX+(3*2),pM2mink]);  //cube 
  
