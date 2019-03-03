@@ -7,7 +7,9 @@ module CKp7(B){
     translate([-p7baseW/2,0,0]){
         difference(){
         union(){
-    cube([p7baseW,p7baseL,p7baseH]);
+        cube([p7baseW,p7baseL,p7baseH]);
+            
+        cube([p7baseW,p7baseL/2,p7baseH+p7mountnutH]);    
    
         translate([0,(p7baseL/2)-(p7wallW/2),0])
         cube([p7baseW,p7wallW,bearingholderZB2C+(p7mountH/2)]);
@@ -49,7 +51,15 @@ module CKp7(B){
                 cylinder(d=p7mountholeOD,h=p7baseH+0.1,$fn=36);      
             translate([p7baseW/2,p7baseL-p7mounthole2edge,p7baseH])
                 cylinder(d=p7mountholeHeadOD,h=bearingholderZB2C+(p7mountH/2),$fn=36);      
-
+        // hole 1 hex head
+            translate([p7mounthole2edge,p7mounthole2edge,p7baseH])
+            cylinder(d=p7mountnutOD,h=p7mountnutH+0.1,$fn=6);        
+        // hole 2 hex head
+            translate([p7baseW-p7mounthole2edge,p7mounthole2edge,p7baseH])
+            cylinder(d=p7mountnutOD,h=p7mountnutH+0.1,$fn=6);
+    
+    
+    
     
     } //end main difference
     

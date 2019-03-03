@@ -248,6 +248,8 @@ p7wallW=3;
 p7mountH=bearingholderZBOD-2;
 p7mountholeOD=3;
 p7mountholeHeadOD=5.68;
+p7mountnutOD=6.01;
+p7mountnutH=3;
 p7mounthole2edge=4.5;
 p7bearingfromfront=3;
 p7wiggleL=0.4;
@@ -283,6 +285,7 @@ pMgrooveD=nC+pMgrooveSlop; //Z plane diamter of groove cut
 pMgrooveAngle=45;
 pMgrooveC1=pPspace2;    //top of groove at position 1 "entrance"  pPspace2 ///////////
 pMgrooveC2=nC+pPextra;        //top of groove at position 2 "push down"  nC+2 ////////////
+echo("pushdown distance",pPspace2-(nC+pPextra));
 threadthickness=0.5;    //approx used to leave space above p2
 
 pMgrooveC3=pMgrooveC2+(pMgrooveD-nC)-(nG+threadthickness)+(p4baseH-p4basegapH)+p4rampH+p4clear+nF;       //top of groove at position 3 "top center" calc! //44.25
