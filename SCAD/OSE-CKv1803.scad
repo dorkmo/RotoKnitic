@@ -7,7 +7,6 @@ use <CKp2--inner.scad>;
 use <CKp3--outer.scad>;
 use <CKp4--yardHolder.scad>;
 use <CKp5--smallbearingholder.scad>;
-//use <CKp6--bigbearingholder.scad>;
 use <CKp7--Zbearingholder.scad>;
 use <CKp8--plateconnector.scad>;
 use <CKp9--outerconnector.scad>;

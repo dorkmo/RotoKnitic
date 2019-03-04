@@ -328,7 +328,7 @@ mirror(1,0,0)
         cube([aaX,aaX,pMgrooveC3+nA-nC-nB+aaX]);  //cube 
         cube([aaX-aaT,aaX-aaT,pMgrooveC3+nA-nC-nB+aaX]);
     } //end angle iron    
-/*    
+    
 translate([
     0,
     p3wallOD/2,
@@ -337,7 +337,7 @@ translate([
 mirror([0,0,1])
 translate([0,0,tipOpenX/2])
 CKpM2();
-*/  
+  
     
 } //end if render beam
 } //end if thread feeder style angle iron
