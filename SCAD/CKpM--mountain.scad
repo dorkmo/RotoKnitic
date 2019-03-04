@@ -458,23 +458,11 @@ module needlepathLEFT(){
     }//end hull
     }//end 1 for            
 
-    //0
-    for(i=[pMd1e:gdeg:90]){
-        hull(){        
-            translate([0,0,pMh2s+func2(pMd2e)+(tan(pMcutA)*(i-pMd1s)*glnd)])    /////needs work
-            rotate([270,0,i]) 
-            cylinder($fn=pMcutcylRez,d=pMgrooveD,h=pMgrooveOR);
-        if(i<=pMd5e){
-            translate([0,0,pMh7s+func6(pMd6e)-(tan(pMcutA)*(i-pMd5s)*glnd)])
-            rotate([270,0,i]) 
-            cylinder($fn=pMcutcylRez,d=pMgrooveD,h=pMgrooveOR);
-        } //end if
-        else{   
-            translate([0,0,0])  
-            rotate([270,0,i]) 
-            cylinder($fn=pMcutcylRez,d=pMgrooveD,h=pMgrooveOR);        
-        } //end else
-    }//end hull
+    //shelf
+    for(i=[pMd1e:gdeg:pMd1e+pMshelfd]){
+        rotate([0,0,i])
+        translate([0,pMgrooveOR/2,0])
+        #cube([pMgrooveD,pMgrooveOR,pPspace2*2],center=true);
     }//end 0 for    
     
 } //end left needle groove module
