@@ -7,16 +7,26 @@ module CKp2(){
     rez=p2number*p2needles*2;
     $fn=rez; //defines resolution of circles.
 
-    translate([p2OD/2,0,0]){
+    translate([p2OD/2,0,0]){    
     difference(){    
+union(){
+    difference(){
     cylinder(h=p2H,d=p2OD);
     cylinder(h=p2H,d=p2ID);
+    }
+        for(i=[0:p2needles+1]){
+        rotate([0,0,i*-360/p2number/p2needles])
+        translate([-(p2ID/2)-0.1,0,p2holeH-p3base45H])
+        rotate([0,90,0])
+        cylinder(h=p2p3flatD/2, d1=p2p3nutOD, d2=p2p3nutOD+p2p3flatD);
+    } 
+}
     translate([-p2OD/2,-p2OD/2,0]){    
-        cube([p2OD,p2OD/2,p2H]);
+        cube([p2OD,p2OD/2,p2H]); //trim side
     }
     rotate([0,0,-360/p2number]){
         translate([-p2OD/2,0,0])    
-        cube([p2OD,p2OD/2,p2H]);        
+        cube([p2OD,p2OD/2,p2H]); //trim other side       
     }
     for(i=[1:p2needles]){
         rotate([0,0,(360/p2number/p2needles/2)-(360/p2number/p2needles*i)]){
@@ -25,59 +35,19 @@ module CKp2(){
         }
     }
 
-        rotate([0,0,-360/p2number/p2needles]){
+    for(i=[0:p2needles+1]){
+        rotate([0,0,i*-360/p2number/p2needles])
         translate([-p2OD/2-0.2,0,p2holeH-p3base45H])
-            rotate([0,90,0]){
-                union(){
-                    cylinder(h=p2OD-p2ID+0.2, d=p2holeD);
-                    translate([0,0,((p2OD-p2ID)/2)-p2holeCSL]){ 
-                        cylinder(h=p2holeCSL+2, d=p2holeCSD); 
-                    }
-                }  //end union
-            }
-        }
-                
-        rotate([0,0,-360/p2number/p2needles*(p2needles-1)]){
-        translate([-p2OD/2-0.2,0,p2holeH-p3base45H])
-            rotate([0,90,0]){
-                union(){
-                    cylinder(h=p2OD-p2ID+0.2, d=p2holeD);
-                    translate([0,0,((p2OD-p2ID)/2)-p2holeCSL]){ 
-                        cylinder(h=p2holeCSL+2, d=p2holeCSD); 
-                    }
-                }  //end union
-            }
-        }           
+        rotate([0,90,0])
+        cylinder(h=p2OD-p2ID+0.2, d=p2p3flatD);
+    }
+        
+               
 
 echo(((((360/p2number/p2needles/2)/360*(p2OD*PI))-(needleWidth/2))/((360/p2number/p2needles/2)/360*(p2OD*PI)))*(360/p2number/p2needles/2));
         
 //firstcenter=(((((360/p2number/p2needles/2)/360*(p2OD*PI))-(needleWidth/2))/((360/p2number/p2needles/2)/360*(p2OD*PI)))*(360/p2number/p2needles/2))/2; not using         
 
-// 2nd hole
-        rotate([0,0,-(360/p2number/p2needles)*2]){
-        translate([-p2OD/2-0.2,0,p2holeH-p3base45H])
-            rotate([0,90,0]){
-                union(){
-                    cylinder(h=p2OD-p2ID+0.2, d=p2holeD);
-                    translate([0,0,((p2OD-p2ID)/2)-p2holeCSL]){ 
-                        cylinder(h=p2holeCSL+2, d=p2holeCSD); 
-                   }
-                }  //end union
-            }
-        } 
-        
-//3rd hole
-        rotate([0,0,-360/p2number+((360/p2number/p2needles)*2)]){
-        translate([-p2OD/2-0.2,0,p2holeH-p3base45H])
-            rotate([0,90,0]){
-                union(){
-                    cylinder(h=p2OD-p2ID+0.2, d=p2holeD);
-                    translate([0,0,((p2OD-p2ID)/2)-p2holeCSL]){ 
-                        cylinder(h=p2holeCSL+2, d=p2holeCSD); 
-                    }
-                }  //end union
-            }
-        } //end rotate
         //end hole
         
         //p4 mount holes

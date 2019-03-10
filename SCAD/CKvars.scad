@@ -125,11 +125,25 @@ p2needlegrooveDepth=nY+p2needlegrooveDepthslop;
 p2W=p2needlegroovefromID+p2needlegrooveDepth;
 p2OD=p2ID+(p2W*2);
 //p2holeH calculated below
-p2holeD=2;
-p2holeCSD=4.01726;
-p2holeCSL=1.5;
-p2endtrim=0.5;
+p2holeD=2;  //depricate
+p2holeCSD=4.01726;  //depricate
+p2holeCSL=1.5;  //depricate
+p2endtrim=0.5;  //trim end of wall to give room between p2's
+p2p3boltType=2;  //1 = reg cap screw, 2 = flat cap screw
+//type 1
+p2p3boltD=3;
+p2p3boltHH=3;
+p2p3boltHD=5.68;
+//type 2
+p2p3flatD=3;
+p2p3flatHA=90;
+p2p3flatHD=6;  //listed as 6.72 max 5.54 min
 
+p2p3nutOD=6.01;
+
+
+
+echo("p2 lower bolt L",p2W+p3upperwallW+0); //fix
 echo("p2ID", p2ID);
 
 //p3 - outer needle wall slide
@@ -299,7 +313,7 @@ pMshelfBoltD=3;
 c2H=bottom_surface_motor_gearsH;
 c2t2t=6.858;
 c2width=50;  //depricated?
-c2gap=0.25;  //gap between c2ID and p3wallOD
+c2gap=0.35;  //gap between c2ID and p3wallOD
 c2OD=(c2width*2)+(c2gap*2)+p2OD+(p3wiggle*2)+(p3wallW*2);
 c2ID=(c2gap*2)+p2OD+(p3wiggle*2)+(p3wallW*2);   //should this be p3wallOD+(c2gap*2)
 c2teeth=((c2OD*PI)/c2t2t);
@@ -593,6 +607,8 @@ echo("c3OD",c3OD);
 
 echo("c1W",c1W);
 
+//p2 flat socket head screw
+p2p3flatORmax=((c2ID+sqrt((-4*(p2p3flatHD/2)*(p2p3flatHD/2))+((c2ID)*(c2ID))))/2)/2; //maximum radius to be within c2ID
 
 //thread feeder
 M2tipY=tipOpenX/2;  //pM2mink
