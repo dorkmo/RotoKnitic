@@ -54,8 +54,9 @@ echo("p3/p2 Socket Cap Screws","Size: M",p2holeD,"x",p3upperwallW+p2W-p2holeCSL+
 //see p3
 
 //p4 - yard holder at top
-//M2 Socket Cap Srews
-echo("p4 Socket Cap Screws","Size: M",p2holeD,"x",((p4baseOD-p4baseID)/2)-p2holeCSL,"mm","Count:",p2number*2);
+//M2 Flat Socket Cap Srews
+echo("p4 Flat Socket Cap Screws","Size: M",p2p4flatD,"x",
+((p4baseOD-p4baseID)/2)+p2p4nutH,"mm","Count:",p2number*2);
 
 
 //p7 Z

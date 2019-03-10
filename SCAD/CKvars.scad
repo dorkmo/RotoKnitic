@@ -137,11 +137,16 @@ p2p3boltHD=5.68;
 //type 2
 p2p3flatD=3;
 p2p3flatHA=90;
-p2p3flatHD=6;  //listed as 6.72 max 5.54 min
-
+p2p3flatHD=6.72;  //listed as 6.72 max 5.54 min
+p2p3flatHH=1.86;
+p2p3nutH=4;
 p2p3nutOD=6.01;
 
-
+p2p4flatD=3;
+p2p4flatHA=90;
+p2p4flatHD=6.72;  //listed as 6.72 max 5.54 min
+p2p4flatHH=1.86;
+p2p4nutH=4;
 
 echo("p2 lower bolt L",p2W+p3upperwallW+0); //fix
 echo("p2ID", p2ID);
@@ -189,13 +194,13 @@ p4rampC1=10;
 p4rampC2=40;
 p4rampC2transX=10;
 p4rampC2transZ=3.82;
-p4baseH=13;
-p4basegapH=8;
+p4basegapH=max(p2p4flatD*3,8);
+p4baseH=p4basegapH+nD;  //sin(45) of angle from front of needle??
 p4baseW=11.2;
 p4basegapW=p2W+0.2; //5.09
 p4clawW=min((needle2needle-(nX*2)),9);
 p4holesnumber=3;
-p4holeH=5;
+p4holeH=p4basegapH/2;
 p4rampW=max(min(p4clawW-3,4),2.5);
 p4clear=-0.5;  //distance above top of p4 from flipper in down position //need to fix -0.5?
 p4endtrim=0.5;

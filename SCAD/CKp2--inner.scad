@@ -18,7 +18,7 @@ union(){
         rotate([0,0,i*-360/p2number/p2needles])
         translate([-(p2ID/2)-0.1,0,p2holeH-p3base45H])
         rotate([0,90,0])
-        cylinder(h=p2p3flatD/2, d1=p2p3nutOD, d2=p2p3nutOD+p2p3flatD);
+        cylinder(h=p2p3flatD/6, d1=p2p3nutOD+p2p3flatD, d2=p2p3nutOD,$fn=36);
     } 
 }
     translate([-p2OD/2,-p2OD/2,0]){    
@@ -39,7 +39,7 @@ union(){
         rotate([0,0,i*-360/p2number/p2needles])
         translate([-p2OD/2-0.2,0,p2holeH-p3base45H])
         rotate([0,90,0])
-        cylinder(h=p2OD-p2ID+0.2, d=p2p3flatD);
+        cylinder(h=p2OD-p2ID+0.2, d=p2p3flatD,$fn=36);
     }
         
                
@@ -55,7 +55,7 @@ echo(((((360/p2number/p2needles/2)/360*(p2OD*PI))-(needleWidth/2))/((360/p2numbe
         rotate([0,0,-(360/p2number/p2needles)*2]){
         translate([-p2OD/2-0.2,0,p2H-(p4basegapH-p4holeH)])
             rotate([0,90,0]){
-                cylinder(h=p2OD-p2ID+0.2, d=p2holeD);
+                cylinder(h=p2OD-p2ID+0.2, d=p2p4flatD,$fn=36);
             }
         } 
         
@@ -64,7 +64,7 @@ echo(((((360/p2number/p2needles/2)/360*(p2OD*PI))-(needleWidth/2))/((360/p2numbe
         rotate([0,0,-(360/p2number/p2needles)*3]){
         translate([-p2OD/2-0.2,0,p2H-(p4basegapH-p4holeH)])
             rotate([0,90,0]){
-                #cylinder(h=p2OD-p2ID+0.2, d=p2holeD);
+                #cylinder(h=p2OD-p2ID+0.2, d=p2p4flatD,$fn=36);
             }
         } 
 

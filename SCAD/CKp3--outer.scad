@@ -126,21 +126,50 @@ for(i=[1:p3baseholenumber]){
     //p2 mounting holes
 for(i=[0:(p2number*p2needles)]){
   rotate([0,0,(i*-360/(p2number*p2needles))]){
+
+    translate([p3upperwallW+(p3wallID/2),0,p2holeH])
+    rotate([0,270,0])
+translate([0,0,0])
+union(){
+cylinder(d1=p2p3flatHD,d2=0,h=(p2p3flatHD/2)/tan(45),$fn=36);
+//translate([0,0,-(p2p3flatHD)/tan(45)])
+//cylinder(d1=p2p3flatHD*3,d2=p2p3flatHD,h=(p2p3flatHD)/tan(45),$fn=36);
+//cylinder(d=p2p3flatD,h=p3upperwallW+(p2W+(p3wiggle*2)/2)+p2p3nutH,$fn=36);
+}
+
+//p2 mounting holes flat chamfers
+for(i=[3:(p2needles*p2number/p3number)-3]){
+  rotate([0,0,(i*-360/(p2number*p2needles))]){
+
+    translate([p3upperwallW+(p3wallID/2),0,p2holeH])
+    rotate([0,270,0])
+translate([0,0,0])
+union(){
+translate([0,0,-(p2p3flatHD)/tan(45)])
+cylinder(d1=p2p3flatHD*3,d2=p2p3flatHD,h=(p2p3flatHD)/tan(45),$fn=36);
+cylinder(d=p2p3flatD,h=p3upperwallW+(p2W+(p3wiggle*2)/2)+p2p3nutH,$fn=36);
+}
+}
+}
+
     translate([((-centerlineD-(p3wallW*2)-((p2W+(p3wiggle*2)/2)))/2)-0.1,0,p2holeH])
     rotate([0,90,0]){
       cylinder(h=p2OD-p2ID+0.2, d=p2holeD,$fn=18);
+
     }  //end rotate
   } //end rotate       
 } //end for
-        
+  
+/*
 for(i=[0:(p2number/p3number)-1]){
   rotate([0,0,(-360/p2number/p2needles*(p2needles-1))+(i*-360/p2number)]){
     translate([((-centerlineD-(p3wallW*2)-((p2W+(p3wiggle*2)/2)))/2)-0.1,0,p2holeH])
     rotate([0,90,0]){
-      cylinder(h=p2OD-p2ID+0.2, d=p2holeD, $fn=18);
+      #cylinder(h=p2OD-p2ID+0.2, d=p2holeD, $fn=18);
     }
   } 
 }//end for
+*/
     //end middle holes
         
 
