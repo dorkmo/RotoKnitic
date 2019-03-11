@@ -293,7 +293,7 @@ p8H=pPspace2;
 echo("suggested boltL for spacer", ceil((upper_surfaceH+pPspace2+bottom_surface_motor_gearsH+p8nutH)/5)*5   );  //20,22,25,30 commonly availabble
 
 //p9 outer connector
-p9thickness=2;
+p9thickness=3;
 p9H=10;
 
 //mountain
