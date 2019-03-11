@@ -46,8 +46,8 @@ echo("p3 Bolts","Size: M",p3baseholeD,"x",ceil((p3baseH+table_surface+p3basehole
 echo("p3 Nuts","Size: M",p3baseholeD,"Count:",(p3number*p3baseholenumber));
 
 
-echo("p3/p9 Socket Cap Screws","Size: M",p2holeD,"x",p3upperwallW+p2W-p2holeCSL+p9thickness+p2holeD,"mm","Count:",p3number*4);
-echo("p3/p2 Socket Cap Screws","Size: M",p2holeD,"x",p3upperwallW+p2W-p2holeCSL+p2holeD,"mm","Count:",(p2number*2)-(p3number*2));
+echo("p3/p9 Socket Cap Screws","Size: M",p2holeD,"x",p9thickness+p3upperwallW+p2W+(p2p3flatD/6)-0.1+p2p3nutH,"mm","Count:",p3number*4);
+echo("p3/p2 Socket Cap Screws","Size: M",p2holeD,"x",p3upperwallW+p2W+(p2p3flatD/6)-0.1+p2p3nutH,"mm","Count:",(p2number*2)-(p3number*2));
 
 
 //p9 - connector for p3
