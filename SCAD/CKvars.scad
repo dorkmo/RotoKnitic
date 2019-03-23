@@ -51,6 +51,7 @@ tipOpenZ=10;
 tipcylD=1.75;  //1.5
 tipcy2D=tipcylD*1.5;
 
+
 //-(tipOpenX/2)+(tipcylD/2)
 
 upper_surfaceH=3.4;  //thickness of upper rotating plate  ///5  //6.35= 1/4"inch
@@ -314,6 +315,26 @@ pMshelfH=4; //thickness of shelf resting on top of c3
 pMshelfchamfR=6; //radius of chamfer at join shelf/wall
 pMshelfBoltD=3;
 
+pM3c2c=(pMH-(aaboltHD/2)-5)-((pPspace2+pPplate2+1)+(aaboltHD/2)+bearingholderZBOD);
+pM3c2e=min(
+pMH-(pMH-(aaboltHD/2)-5)
+,
+((pPspace2+pPplate2+1)+(aaboltHD/2)+bearingholderZBOD)
+-(pMshelfchamfR+pPspace2+pPplate2)
+);
+//distance between bolts + 2X the min distance from bolt to top or bolt to bottom
+pM3H=(
+pM3c2c
++(2*min(
+pMH-(pMH-(aaboltHD/2)-5)
+,
+((pPspace2+pPplate2+1)+(aaboltHD/2)+bearingholderZBOD)
+-(pMshelfchamfR+pPspace2+pPplate2)
+))
+);
+pM3mink=6;
+pM3slop=0.25;
+
 //c2 geared plate - clean up below, not used to generate gear
 c2H=bottom_surface_motor_gearsH;
 c2t2t=6.858;
@@ -398,6 +419,7 @@ pMgrooveOR=pMgroove+(pMID/2); //center to OD of groove
     
     pMgrooveturnR=14; //radius of upper curved path in groove 15
     pMgrooveturnR2=7; //radius of lower curved path in groove 7
+    pMgrooveturnR3=7; // radius of entrance curved path
  
     pMp3X=3;  //length of flat area of section 3
     pMcutRez=2; //cuts per degree
@@ -462,15 +484,23 @@ pMgrooveOR=pMgroove+(pMID/2); //center to OD of groove
 
 //1
     pMh1s=pMh2e;
-    pMh1e=pMgrooveC1-(pMgrooveD/2); //-(pMgrooveD/2)
-    pMp1X=(pMh1e-pMh1s)*tan(90-pMcutA);
+    pMh1e=pMgrooveC1-(pMgrooveD/2);  //-(cos(pMcutA)*pMgrooveturnR3); //-(pMgrooveD/2)
+    pMp1X=(pMh1e-(pMh1s-(pMgrooveD/2)))*tan(90-pMcutA);
     pMd1=pMp1X/glnd;
     pMd1s=pMd2e;
     pMd1e=pMd2e+pMd1;
 
 //0
-    pMp0X=pMgrooveD/2;  //pMgrooveD
-    pMd0=pMp0X/glnd;     //pMgrooveD/glnd; //define later
+//    pMp0X=pMgrooveD/2;  //pMgrooveD
+//    pMd0=pMp0X/glnd;     //pMgrooveD/glnd; //define later
+
+    pMp0X=cos(90-pMcutA)*pMgrooveturnR3; 
+    pMd0=pMp0X/glnd;
+    pMd0s=pMd1e;
+    pMd0e=pMd1e+pMd0;
+    function func0(i) = (pMgrooveturnR3*cos(asin(((i-pMd0e)*(pMp0X/pMd0))/pMgrooveturnR3))-pMgrooveturnR3);
+    pMh0s=pMh1e;
+    pMh0e=pMh1e+func0(pMd0e);
 
 //mounting shelf and holes settings   
     pMshelfX=pMshelfBoltD*4;  //length of shelf in mm

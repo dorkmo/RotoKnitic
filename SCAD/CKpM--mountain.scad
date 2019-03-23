@@ -2,6 +2,7 @@ include <CKvars.scad>;
 
 use <mb10.scad>;
 use <CKpM2--mountainfeeder.scad>;
+use <CKpM3--anglebracket.scad>;
 
 //TO DO//
 //*add integrated yarn feeder based on needle height
@@ -14,7 +15,7 @@ use <CKpM2--mountainfeeder.scad>;
 //render thread feeder stand using  0=none  1=angle iron  2=makerbeamm
 //render beam angle of the feed holder yes == 1, no == 0
 rotate([-90,0,0])
-CKpM(1,1,1); 
+CKpM(1,0,0); 
 
 
 module CKpM(G,TF,RenderBeam){
@@ -337,6 +338,10 @@ translate([
 mirror([0,0,1])
 translate([0,0,tipOpenX/2])
 CKpM2();
+    
+
+translate([(((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0)))-pMshelfchamfR-(aaX-aaT),((c2ID+(pMgroove*2)+(pMwallT*2))/2)-(aaX-aaT),pPspace2+pPplate2+pMshelfchamfR])    
+CKpM3();    
   
     
 } //end if render beam
@@ -444,7 +449,7 @@ module needlepathLEFT(){
         hull(){        
             translate([0,0,pMh2s+func2(pMd2e)+(tan(pMcutA)*(i-pMd1s)*glnd)])    /////needs work
             rotate([270,0,i]) 
-            cylinder($fn=pMcutcylRez,d=pMgrooveD,h=pMgrooveOR);
+            #cylinder($fn=pMcutcylRez,d=pMgrooveD,h=pMgrooveOR);
         if(i<=pMd5e){
             translate([0,0,pMh7s+func6(pMd6e)-(tan(pMcutA)*(i-pMd5s)*glnd)])
             rotate([270,0,i]) 
@@ -458,11 +463,32 @@ module needlepathLEFT(){
     }//end hull
     }//end 1 for            
 
+/*
+    //0    
+    for(i=[pMd0s:gdeg:pMd0e]){
+        hull(){
+            translate([0,0,pMh0s-func0(i)])
+            rotate([270,0,i])
+            #cylinder($fn=pMcutcylRez,d=pMgrooveD,h=pMgrooveOR);
+        if(i<=pMd5e){
+            translate([0,0,pMh7s+func6(pMd6e)-(tan(pMcutA)*(i-pMd5s)*glnd)])
+            rotate([270,0,i]) 
+            cylinder($fn=pMcutcylRez,d=pMgrooveD,h=pMgrooveOR);
+        } //end if
+        else{        
+            translate([0,0,0])    
+            rotate([270,0,i]) 
+            cylinder($fn=pMcutcylRez,d=pMgrooveD,h=pMgrooveOR);       
+        } //end else
+    } //end hull
+    }//end 2 for
+*/
+/*
     //shelf
     for(i=[pMd1e:gdeg:pMd1e+pMshelfd]){
         rotate([0,0,i])
         translate([0,pMgrooveOR/2,0])
-        #cube([pMgrooveD,pMgrooveOR,pPspace2*2],center=true);
+        cube([pMgrooveD,pMgrooveOR,pPspace2*2],center=true);
     }//end 0 for    
-    
+*/  
 } //end left needle groove module
