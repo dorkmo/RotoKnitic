@@ -337,15 +337,15 @@ pM3slop=0.25;
 
 //c2 geared plate - clean up below, not used to generate gear
 c2H=bottom_surface_motor_gearsH;
+c2gap=0.5;  //gap between c2ID and p3wallOD  // 0.7?  0.5?  0.35? how low can you go?
 c2t2t=6.858;
 c2width=50;  //depricated?
-c2gap=0.35;  //gap between c2ID and p3wallOD
 c2OD=(c2width*2)+(c2gap*2)+p2OD+(p3wiggle*2)+(p3wallW*2);
 c2ID=(c2gap*2)+p2OD+(p3wiggle*2)+(p3wallW*2);   //should this be p3wallOD+(c2gap*2)
 c2teeth=((c2OD*PI)/c2t2t);
 c2dipitch=c2teeth/(c2OD*PI);
 
-cWiggle=0.1; //extra height on mountaint cutout for c3 to sit in
+cWiggle=0.1; //extra height on mountaint cutout for c3 to sit in  ?? is this used ??
 
 /////////////////////
 //calculated settings
@@ -484,8 +484,8 @@ pMgrooveOR=pMgroove+(pMID/2); //center to OD of groove
 
 //1
     pMh1s=pMh2e;
-    pMh1e=pMgrooveC1-(pMgrooveD/2);  //-(cos(pMcutA)*pMgrooveturnR3); //-(pMgrooveD/2)
-    pMp1X=(pMh1e-(pMh1s-(pMgrooveD/2)))*tan(90-pMcutA);
+    pMh1e=pMgrooveC1-(pMgrooveD)+1.4;  //-(cos(pMcutA)*pMgrooveturnR3); //-(pMgrooveD/2)
+    pMp1X=((pMh1e)-(pMh1s))*tan(90-pMcutA);
     pMd1=pMp1X/glnd;
     pMd1s=pMd2e;
     pMd1e=pMd2e+pMd1;
@@ -505,7 +505,9 @@ pMgrooveOR=pMgroove+(pMID/2); //center to OD of groove
 //mounting shelf and holes settings   
     pMshelfX=pMshelfBoltD*4;  //length of shelf in mm
     pMshelfd=pMshelfX/glnd; //number of degrees of shelf
-
+    pMdS=(pMgrooveD/2)/glnd; //to trim half
+    pMdSs=pMd1e+pMdS;    
+    
     pMshelfHole1X=pMshelfchamfR+(pMshelfBoltD*1.5);  //distance to hole center from main body
     pMshelfHole1d=(pMshelfHole1X/glen)*gdeg; //number of degrees from edge to hole center
 
