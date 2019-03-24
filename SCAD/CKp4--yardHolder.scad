@@ -15,31 +15,45 @@ module CKp4(){
     cylinder(h=p4baseH,d=p4baseOD-(p4basegapW*2)-((p4baseW-p4basegapW)/2*2));            
             
             //ramps
+           
+            
             for(i=[1:p2needles*(p2number/p4number)]){
         rotate([0,0,(360/p2number/p2needles)-(360/p2number/p2needles*i)-(((360/p2number/p2needles))/2)]){        
+           
+
             
             difference(){
+            minkowski(){
             union(){
-            translate([-p4baseOD/2+p4rampfromOD,p4rampW/2,p4rampH+p4baseH-(p4rampC1/2)])
+            translate([-p4baseOD/2+p4rampfromOD,p4rampWm/2,p4rampH+p4baseH-(p4rampC1/2)])
             rotate([90,0,0])
-            cylinder(h=p4rampW,d=p4rampC1);
+            cylinder(h=p4rampWm,d=p4rampC1);
             
             intersection(){
             translate([-10,0,3.82])
-            translate([-p4baseOD/2+p4rampfromOD,p4rampW/2,p4rampH+p4baseH-(p4rampC2/2)])
+            translate([-p4baseOD/2+p4rampfromOD,p4rampWm/2,p4rampH+p4baseH-(p4rampC2/2)])
             rotate([90,0,0])
-            cylinder(h=p4rampW,d=p4rampC2);
+            cylinder(h=p4rampWm,d=p4rampC2);
                 
                             translate([-7,0,-2.86/2])
-            translate([-p4baseOD/2+p4rampfromOD,p4rampW/2,p4rampH+p4baseH-(p4rampC2/2)])
+            translate([-p4baseOD/2+p4rampfromOD,p4rampWm/2,p4rampH+p4baseH-(p4rampC2/2)])
             cube([p4rampC2,p4rampC2,p4rampC2],center=true);
             
             }
         }//end union
         
+difference(){
+translate([-p4rampMinkD/2,0,0])
+cylinder(d=p4rampMinkD,h=0.01, $fn=36);
+translate([-p4rampMinkD,0,-0.01])
+cube([p4rampMinkD,p4rampMinkD,0.02], center=true);    
+} //end diff
+
+} //end mink
+        
        translate([-p4rampC2/2,0,0])
        translate([-p4baseOD/2+p4rampfromOD,p4rampW/2,p4rampH+p4baseH-(p4rampC2/2)])
-       cube([p4rampC2,p4rampC2,p4rampC2],center=true);
+       #cube([p4rampC2,p4rampC2,p4rampC2+1],center=true);
         
        translate([0,0,0])
        translate([-p4baseOD/2+p4rampfromOD,p4rampW/2,p4baseH-(p4rampC2/2)-0.1])
@@ -60,9 +74,14 @@ module CKp4(){
         
         
     }//end ramps difference
+    
+
+    
 } //end for rotate
     
-}//end for
+} //end for
+
+
     
             //claws
             

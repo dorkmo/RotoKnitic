@@ -203,6 +203,8 @@ p4clawW=min((needle2needle-(nX*2)),9);
 p4holesnumber=3;
 p4holeH=p4basegapH/2;
 p4rampW=max(min(p4clawW-3,4),2.5);
+p4rampMinkD=(p4rampW/3)*2;  //minkoski diameter 
+p4rampWm=p4rampW-p4rampMinkD;
 p4clear=-0.5;  //distance above top of p4 from flipper in down position //need to fix -0.5?
 p4endtrim=0.5;
 
@@ -300,9 +302,9 @@ p9H=10;
 //mountain
 pMwallT=9;  //min thickness from groove to back wall  //7.5  //10
 pMgroove=nH-nY-p3wallW+1;  //depth of groove
-pMgrooveSlop=2;  //height slop of groove
+pMgrooveSlop=0.5;  //height slop of groove
 pMgrooveD=nC+pMgrooveSlop; //Z plane diamter of groove cut 
-pMgrooveAngle=45;
+pMgrooveAngle=45;  // only 45 is working
 pMgrooveC1=pPspace2;    //top of groove at position 1 "entrance"  pPspace2 ///////////
 pMgrooveC2=nC+pPextra;        //top of groove at position 2 "push down"  nC+2 ////////////
 echo("pushdown distance",pPspace2-(nC+pPextra));

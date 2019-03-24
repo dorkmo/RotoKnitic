@@ -470,9 +470,9 @@ multrez=10;
             translate([0,0,pMh2s+func2(pMd2e)+(tan(pMcutA)*(i-pMd1s)*glnd)])    /////needs work
             rotate([270,0,i])
             union(){
-            cylinder($fn=pMcutcylRez,d=pMgrooveD,h=pMgrooveOR);
+            #cylinder($fn=36*2,d=pMgrooveD,h=pMgrooveOR);
             translate([0,pMgrooveD/2,0])
-            cube([pMgrooveD/8,pMgrooveD,pMgrooveOR]);    
+            #cube([pMgrooveD/2,pMgrooveD,pMgrooveOR]);    
             }
         if(i<=pMd5e){
             translate([0,0,pMh7s+func6(pMd6e)-(tan(pMcutA)*(i-pMd5s)*glnd)])
