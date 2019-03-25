@@ -465,7 +465,7 @@ module needlepathLEFT(){
 
 multrez=10;    
     //1
-    for(i=[pMd1s:gdeg/multrez:pMd1e]){
+    for(i=[pMd1s:gdeg/multrez:pMd1e-(gdeg/2)]){
         hull(){        
             translate([0,0,pMh2s+func2(pMd2e)+(tan(pMcutA)*(i-pMd1s)*glnd)])    /////needs work
             rotate([270,0,i])
