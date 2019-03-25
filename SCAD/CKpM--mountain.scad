@@ -15,7 +15,7 @@ use <CKpM3--anglebracket.scad>;
 //render thread feeder stand using  0=none  1=angle iron  2=makerbeamm
 //render beam angle of the feed holder yes == 1, no == 0
 rotate([-90,0,0])
-CKpM(0,0,0); 
+CKpM(1,0,0); 
 
 
 module CKpM(G,TF,RenderBeam){
@@ -465,13 +465,13 @@ module needlepathLEFT(){
 
 multrez=10;    
     //1
-    for(i=[pMd1s:gdeg/multrez:pMd1e]){
+    for(i=[pMd1s:gdeg/multrez:pMd1e-(gdeg/2)]){
         hull(){        
             translate([0,0,pMh2s+func2(pMd2e)+(tan(pMcutA)*(i-pMd1s)*glnd)])    /////needs work
             rotate([270,0,i])
             union(){
             #cylinder($fn=36*2,d=pMgrooveD,h=pMgrooveOR);
-            translate([0,pMgrooveD/2,0])
+            translate([-pMgrooveD/2,-pMgrooveD/2,0])
             #cube([pMgrooveD/2,pMgrooveD,pMgrooveOR]);    
             }
         if(i<=pMd5e){

@@ -486,7 +486,7 @@ pMgrooveOR=pMgroove+(pMID/2); //center to OD of groove
 
 //1
     pMh1s=pMh2e;
-    pMh1e=pMgrooveC1-(pMgrooveD)+sin(pMcutA)*(pMgrooveD/2);  //-(cos(pMcutA)*pMgrooveturnR3); //-(pMgrooveD/2)
+    pMh1e=pMgrooveC1-(pMgrooveD)+((pMgrooveD/2)-(sin(pMcutA)*(pMgrooveD/2)));  //-(cos(pMcutA)*pMgrooveturnR3); //-(pMgrooveD/2)
     pMp1X=((pMh1e)-(pMh1s))*tan(90-pMcutA);  //-sin(45)*grooveD/2  ??
     pMd1=pMp1X/glnd;
     pMd1s=pMd2e;
