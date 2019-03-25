@@ -15,7 +15,7 @@ use <CKpM3--anglebracket.scad>;
 //render thread feeder stand using  0=none  1=angle iron  2=makerbeamm
 //render beam angle of the feed holder yes == 1, no == 0
 rotate([-90,0,0])
-CKpM(1,0,0); 
+CKpM(0,0,0); 
 
 
 module CKpM(G,TF,RenderBeam){

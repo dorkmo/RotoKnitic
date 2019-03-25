@@ -3,27 +3,27 @@
 //select needle size file that will be used
 include <CKneedleVars-KH260.scad>;  
 
-//number of "p2" parts around circle                          //Jan2019
-p2number=12;                //12                //36  ///36   //12
+//number of "p2" parts around circle                          //Jan2019  //small
+p2number=8;                //12                //36  ///36   //12       //8
 
 //number of needles mounted on each "p2" part
-p2needles=5;                //5                 //10  ///5    //5
+p2needles=7;                //5                 //10  ///5    //5        //5
 
 //number of "p3" parts around circle
-p3number=4;                 //4                 //18  ///4    //4
+p3number=2;                 //4                 //18  ///4    //4        //2
 
 //number of "p4" parts around circle
-p4number=4;                 //4                 //18  ///4    //4
+p4number=2;                 //4                 //18  ///4    //4        //2
 
 //distance from the inside face of one needle to the next
-needle2needle=13.5334;     //default=14.35615  //try 8.414   //13.5334
+needle2needle=9.25;     //default=14.35615  //try 8.414          //13.5334  //9.25
 
 //calculated diameter from inside edge of needles
 p2needlegrooveID=((needle2needle*p2number*p2needles)/PI);
 
 
 //nnumber of Z bearing mounts
-c1zmounts=p3number;
+c1zmounts=4;                                                  //p3number  //4
 
 c1steppersnumber=2;  //number of stepper motors driving the gear
 
@@ -218,9 +218,9 @@ pPspace2=nC+(p4baseH-p4basegapH)+pPextra; //space between geared plate and mount
 //p5 small bearing holder
 p5boltHeadOD=8; //look up sales drawing - used to cut mountain
 p5boltHeadH=3.65;  //look up sales drawing - used to cut mountain
-p5nutH=5;
+p5nutH=3;  //jam nut
 p5boltD=5;
-p5boltL=30;  //bolt to hold bearings
+p5boltL=25;  //bolt to hold bearings
 p5wingW=7;
 p5wingL=p5boltHeadH+p5boltL;
 p5wingH=3;
@@ -241,7 +241,7 @@ echo("pPspace1",pPspace1);
 
 p1H=pPspace1+pPplate1+1;
 
-//p6 big bearing holder
+//p6 big bearing holder - depricated
 p6wingW=30;
 p6wingL=25;
 p6wingH=3;
@@ -339,7 +339,7 @@ pM3slop=0.25;
 
 //c2 geared plate - clean up below, not used to generate gear
 c2H=bottom_surface_motor_gearsH;
-c2gap=0.5;  //gap between c2ID and p3wallOD  // 0.7?  0.5?  0.35? how low can you go?
+c2gap=0.6;  //gap between c2ID and p3wallOD  // 0.7?  0.5?  0.35? how low can you go?
 c2t2t=6.858;
 c2width=50;  //depricated?
 c2OD=(c2width*2)+(c2gap*2)+p2OD+(p3wiggle*2)+(p3wallW*2);
@@ -419,7 +419,7 @@ pMgrooveOR=pMgroove+(pMID/2); //center to OD of groove
 
     echo("pMgrooveC3", pMgrooveC3);
     
-    pMgrooveturnR=14; //radius of upper curved path in groove 15
+    pMgrooveturnR=10; //radius of upper curved path in groove 14  //10
     pMgrooveturnR2=7; //radius of lower curved path in groove 7
     pMgrooveturnR3=7; // radius of entrance curved path
  
@@ -430,7 +430,7 @@ pMgrooveOR=pMgroove+(pMID/2); //center to OD of groove
     pMcutA=45;    //angle of cut path
 
 //7
-    pMp7X=3;  //half of length of plateu of groove. preferably whole number 
+    pMp7X=2;  //half of length of plateu of groove. preferably whole number  //3  //2
     pMd7=pMp7X/glnd; //number of degrees for entire groove7
     pMd7s=0;                          //degree turn to center of groove
     pMd7e=pMd7;                       //highest degree turn for section 7
@@ -468,7 +468,7 @@ pMgrooveOR=pMgroove+(pMID/2); //center to OD of groove
     pMh4s=func4(pMd4s);
 
 //3    
-    pMp3X=2.5;            //length of lower plateu of groove  2.5 
+    pMp3X=2;            //length of lower plateu of groove  2.5 
     pMd3=pMp3X/glnd;      //number of degrees for groove section 3
     pMd3s=pMd4e;          //degree turn to center of groove
     pMd3e=pMd4e+pMd3;     //highest degree turn for section 7
@@ -486,11 +486,13 @@ pMgrooveOR=pMgroove+(pMID/2); //center to OD of groove
 
 //1
     pMh1s=pMh2e;
-    pMh1e=pMgrooveC1-(pMgrooveD)+1.4;  //-(cos(pMcutA)*pMgrooveturnR3); //-(pMgrooveD/2)
-    pMp1X=((pMh1e)-(pMh1s))*tan(90-pMcutA);
+    pMh1e=pMgrooveC1-(pMgrooveD)+sin(pMcutA)*(pMgrooveD/2);  //-(cos(pMcutA)*pMgrooveturnR3); //-(pMgrooveD/2)
+    pMp1X=((pMh1e)-(pMh1s))*tan(90-pMcutA);  //-sin(45)*grooveD/2  ??
     pMd1=pMp1X/glnd;
     pMd1s=pMd2e;
     pMd1e=pMd2e+pMd1;
+
+echo("extra to subtract??",sin(pMcutA)*(pMgrooveD/2));
 
 //0
 //    pMp0X=pMgrooveD/2;  //pMgrooveD
