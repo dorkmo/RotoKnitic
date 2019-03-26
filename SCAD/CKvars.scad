@@ -49,6 +49,11 @@ c1steppersnumber=UPc1steppersnumber;  //number of stepper motors driving the gea
 
 ////MATERIALS////
 
+//thread diameter
+threadD=UPthreadD;
+//approx fabric circumference
+echo("estimated fabric circumference", threadD*2*1.3*p2number*p2needles);
+
 //thread feeder stand above mountain
 TF=UPTF;    //  0=none  1=angle iron  2=makerbeamm
 TFW=60;  //distance between outside edge of makerbream

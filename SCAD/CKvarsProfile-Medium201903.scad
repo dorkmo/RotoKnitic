@@ -40,6 +40,9 @@ UPpMp7X=3;          //half of length of top plateu of groove //3  //2
 /////////////
 // MATERIALS
 
+//thread diameter
+UPthreadD=2.5;
+
 //number of stepper motors driving the geared plate
 UPc1steppersnumber=2;  
 

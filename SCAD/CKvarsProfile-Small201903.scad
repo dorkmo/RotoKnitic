@@ -12,12 +12,16 @@
 //  you can now open then render each part file with these settings
 /////////////
 
+//File Notes - Small201903
+// attempting to get near sock dimensions
+// looks like need about 1.5 to 1.0 thread diameter
+// approx example 20loops/54mm   170mm circumference
 
 /////////////
 // DIMENSIONS
 
 //number of "p2" needle guides around circle                    //Jan2019  //small
-UPp2number=8;                //12                //36  ///36   //12       //8
+UPp2number=6;                //12                //36  ///36   //12       //8
 
 //number of needles mounted on each "p2" part
 UPp2needles=7;                //5                 //10  ///5    //5        //7
@@ -39,6 +43,9 @@ UPpMp7X=2;  //half of length of top plateu of groove //3  //2
 
 /////////////
 // MATERIALS
+
+//thread diameter
+UPthreadD=1.5;
 
 //number of stepper motors driving the geared plate
 UPc1steppersnumber=2;  
