@@ -1,39 +1,59 @@
-////MAIN SETTINGS////
 
-//select needle size file that will be used
-include <CKneedleVars-KH260.scad>;  
+//////////////////////////////////////
+///// Circular Knitic Variables //////
+//////////////////////////////////////
+
+
+//////////////////////////////////////
+///////  CHOOSE MAIN SETTINGS  ///////
+
+//select the needle size file that will be used
+include <CKneedleVars-KH260.scad>;
+
+//select the settings profile file
+include <CKvarsProfile-Small201903.scad>;
+
+//////////////////////////////////////
+
+
+
+
+
+
+//////////////////////////////////////
+///////   ADVANCED SETTINGS    ///////
 
 //number of "p2" parts around circle                          //Jan2019  //small
-p2number=12;                //12                //36  ///36   //12       //8
+p2number=UPp2number;        //12                //36  ///36   //12       //8
 
 //number of needles mounted on each "p2" part
-p2needles=5;                //5                 //10  ///5    //5        //7
+p2needles=UPp2needles;      //5                 //10  ///5    //5        //7
 
 //number of "p3" parts around circle
-p3number=4;                 //4                 //18  ///4    //4        //2
+p3number=UPp3number;        //4                 //18  ///4    //4        //2
 
 //number of "p4" parts around circle
-p4number=4;                 //4                 //18  ///4    //4        //2
+p4number=UPp4number;        //4                 //18  ///4    //4        //2
 
 //distance from the inside face of one needle to the next
-needle2needle=13.5334;     //default=14.35615  //try 8.414       //13.5334  //9.25
+needle2needle=UPneedle2needle; //default=14.35615             //13.5334  //9.25
 
 //calculated diameter from inside edge of needles
 p2needlegrooveID=((needle2needle*p2number*p2needles)/PI);
 
 
 //nnumber of Z bearing mounts
-c1zmounts=4;                                                  //p3number  //4
+c1zmounts=max(p3number,4);           //p3number  //4
 
-c1steppersnumber=2;  //number of stepper motors driving the gear
+c1steppersnumber=UPc1steppersnumber;  //number of stepper motors driving the gear
 
 ////MATERIALS////
 
 //thread feeder stand above mountain
-TF=1;    //  0=none  1=angle iron  2=makerbeamm
+TF=UPTF;    //  0=none  1=angle iron  2=makerbeamm
 TFW=60;  //distance between outside edge of makerbream
-aaX=12.7;   //12.7 = 1/2in
-aaT=1.5875;    //1.5875 = 1/16in
+aaX=UPaaX;   //12.7 = 1/2in
+aaT=UPaaT;    //1.5875 = 1/16in
 aaboltD=3;
 aaboltHD=5.68;
 aaboltHH=3;
@@ -54,12 +74,17 @@ tipcy2D=tipcylD*1.5;
 
 //-(tipOpenX/2)+(tipcylD/2)
 
-upper_surfaceH=3.4;  //thickness of upper rotating plate  ///5  //6.35= 1/4"inch
-bottom_surface_motor_gearsH=3.4;  //thickness of geared rotating plate
-table_surface=3.4;  //thickness of plate of main table
+//thickness of upper rotating plate  ///5  //6.35= 1/4"inch
+upper_surfaceH=UPupper_surfaceH;  
+//thickness of geared rotating plate
+bottom_surface_motor_gearsH=UPbottom_surface_motor_gearsH;  
+//thickness of plate of main table
+table_surface=UPtable_surface;  
+//thickness of support board below main table
+table_support=UPtable_support;
 
-woodbeamW=25.4; //table leg wood beam width  1.0 inch
-woodbeamScrewOD=6.32;   // 1/4" screw hole
+woodbeamW=UPwoodbeamW; //table leg wood beam width  1.0 inch
+woodbeamScrewOD=UPwoodbeamScrewOD;   // 1/4" screw hole
 
 ////PART SETTINGS////
 
@@ -419,18 +444,19 @@ pMgrooveOR=pMgroove+(pMID/2); //center to OD of groove
 
     echo("pMgrooveC3", pMgrooveC3);
     
-    pMgrooveturnR=10; //radius of upper curved path in groove //14  //10
-    pMgrooveturnR2=7; //radius of lower curved path in groove //7
-    pMgrooveturnR3=7; // radius of entrance curved path
+    //radius of upper curved path in groove //14  //10
+    pMgrooveturnR=UPpMgrooveturnR; 
+    //radius of lower curved path in groove //7
+    pMgrooveturnR2=UPpMgrooveturnR2; 
+    pMgrooveturnR3=7; // radius of entrance curved path - not used
  
-    pMp3X=3;  //length of flat area of section 3
     pMcutRez=2; //cuts per degree
     pMcutcylRez=36;  //number of sides on groove cutting clylinder
 
     pMcutA=45;    //angle of cut path
 
 //7
-    pMp7X=2;  //half of length of plateu of groove. preferably whole number  //3  //2
+    pMp7X=UPpMp7X;  //half of length of plateu of groove. preferably whole number  //3  //2
     pMd7=pMp7X/glnd; //number of degrees for entire groove7
     pMd7s=0;                          //degree turn to center of groove
     pMd7e=pMd7;                       //highest degree turn for section 7
@@ -468,7 +494,7 @@ pMgrooveOR=pMgroove+(pMID/2); //center to OD of groove
     pMh4s=func4(pMd4s);
 
 //3    
-    pMp3X=2;            //length of lower plateu of groove  //2.5   //2
+    pMp3X=UPpMp3X;            //length of lower plateu of groove  //2.5   //2
     pMd3=pMp3X/glnd;      //number of degrees for groove section 3
     pMd3s=pMd4e;          //degree turn to center of groove
     pMd3e=pMd4e+pMd3;     //highest degree turn for section 7
