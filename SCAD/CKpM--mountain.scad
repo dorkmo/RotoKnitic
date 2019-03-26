@@ -471,7 +471,7 @@ multrez=10;
             rotate([270,0,i])
             union(){
             #cylinder($fn=36*2,d=pMgrooveD,h=pMgrooveOR);
-            translate([0,pMgrooveD/2,0])
+            translate([-pMgrooveD/2,-pMgrooveD/2,0])
             #cube([pMgrooveD/2,pMgrooveD,pMgrooveOR]);    
             }
         if(i<=pMd5e){
