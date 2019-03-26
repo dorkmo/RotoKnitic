@@ -7,7 +7,7 @@ include <CKneedleVars-KH260.scad>;
 p2number=12;                //12                //36  ///36   //12       //8
 
 //number of needles mounted on each "p2" part
-p2needles=5;                //5                 //10  ///5    //5        //7
+p2needles=5;                //5                 //10  ///5    //5        //5
 
 //number of "p3" parts around circle
 p3number=4;                 //4                 //18  ///4    //4        //2
@@ -16,7 +16,7 @@ p3number=4;                 //4                 //18  ///4    //4        //2
 p4number=4;                 //4                 //18  ///4    //4        //2
 
 //distance from the inside face of one needle to the next
-needle2needle=13.5334;     //default=14.35615  //try 8.414       //13.5334  //9.25
+needle2needle=13.5334;     //default=14.35615  //try 8.414          //13.5334  //9.25
 
 //calculated diameter from inside edge of needles
 p2needlegrooveID=((needle2needle*p2number*p2needles)/PI);
@@ -313,7 +313,7 @@ threadthickness=0.5;    //approx used to leave space above p2
 pMgrooveC3=pMgrooveC2+(pMgrooveD-nC)-(nG+threadthickness)+(p4baseH-p4basegapH)+p4rampH+p4clear+nF;       //top of groove at position 3 "top center" calc! //44.25
 pMwallHextra=5.75;      //extra height above groove at heighest point
 pMH=pMwallHextra+pMgrooveC3; //total height of mountain
-pMshelfH=4; //thickness of shelf resting on top of c3 - depricated
+pMshelfH=4; //thickness of shelf resting on top of c3
 pMshelfchamfR=6; //radius of chamfer at join shelf/wall
 pMshelfBoltD=3;
 
@@ -419,8 +419,8 @@ pMgrooveOR=pMgroove+(pMID/2); //center to OD of groove
 
     echo("pMgrooveC3", pMgrooveC3);
     
-    pMgrooveturnR=10; //radius of upper curved path in groove //14  //10
-    pMgrooveturnR2=7; //radius of lower curved path in groove //7
+    pMgrooveturnR=10; //radius of upper curved path in groove 14  //10
+    pMgrooveturnR2=7; //radius of lower curved path in groove 7
     pMgrooveturnR3=7; // radius of entrance curved path
  
     pMp3X=3;  //length of flat area of section 3
@@ -468,7 +468,7 @@ pMgrooveOR=pMgroove+(pMID/2); //center to OD of groove
     pMh4s=func4(pMd4s);
 
 //3    
-    pMp3X=2;            //length of lower plateu of groove  //2.5   //2
+    pMp3X=2;            //length of lower plateu of groove  2.5 
     pMd3=pMp3X/glnd;      //number of degrees for groove section 3
     pMd3s=pMd4e;          //degree turn to center of groove
     pMd3e=pMd4e+pMd3;     //highest degree turn for section 7
@@ -498,13 +498,6 @@ echo("extra to subtract??",sin(pMcutA)*(pMgrooveD/2));
 //    pMp0X=pMgrooveD/2;  //pMgrooveD
 //    pMd0=pMp0X/glnd;     //pMgrooveD/glnd; //define later
 
-    pMp0X=0; 
-    pMd0=pMp0X/glnd;
-    pMd0s=pMd1e;
-    pMd0e=pMd1e+pMd0;
-
-//pM0 attempt to make curve below
-/*
     pMp0X=cos(90-pMcutA)*pMgrooveturnR3; 
     pMd0=pMp0X/glnd;
     pMd0s=pMd1e;
@@ -512,7 +505,6 @@ echo("extra to subtract??",sin(pMcutA)*(pMgrooveD/2));
     function func0(i) = (pMgrooveturnR3*cos(asin(((i-pMd0e)*(pMp0X/pMd0))/pMgrooveturnR3))-pMgrooveturnR3);
     pMh0s=pMh1e;
     pMh0e=pMh1e+func0(pMd0e);
-*/
 
 //mounting shelf and holes settings   
     pMshelfX=pMshelfBoltD*4;  //length of shelf in mm
