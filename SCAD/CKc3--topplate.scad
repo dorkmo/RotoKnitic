@@ -7,18 +7,18 @@ use <mb10.scad>;
 
 TF=2;  //2 for optional maker beam holes
 
-//projection(cut = false)
+projection(cut = false)
 CKc3();
 
-//projection(cut = false)
+projection(cut = false)
 CKc4();
 
-
+/*
 translate([0,-c3OD/2,0])
 translate([0,p3wallOD/2,-pPspace2])
 rotate([0,0,0])
 CKpM(0,0,0);
-
+*/
 
 //translate([0,0,c3H])
 //rotate([0,0,-90])
