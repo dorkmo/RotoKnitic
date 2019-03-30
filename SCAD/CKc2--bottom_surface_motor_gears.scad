@@ -18,6 +18,8 @@ translate([0,p3wallOD/2,c2H])
 CKpM(0);
 */
 
+TF=2;  //2 for optional maker beam holes
+
 projection(cut = false)
 CKc2();
 
@@ -103,28 +105,38 @@ for(i=[1:c2bmounts]){
         rotate([0,0,((360/c2connectors))]){
             //1
 translate([0,(cos(pMd1e-pMd0)*((pMID/2)+(pMshelfBoltD)+pMgroove)),0])
-translate([-((((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0)))+(pMshelfX/2)),0,0])
+translate([(pMbodyXr+(pMshelfX/2)),0,0])
   cylinder(d=pMshelfBoltD, h=pMH, $fn=36);
             //2
-translate([0,(cos(pMd1e-pMd0)*((pMID/2)+(pMshelfBoltD)+pMgroove)),0])
-translate([-((((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0)))+(pMshelfX/2)),0,0])
-translate([0,(((((c2ID+(pMgroove*2)+(pMwallT*2))/2)/cos(pMd1e-pMd0))-((pMID/2)+(pMshelfBoltD)+pMgroove))/1.5),0])
+translate([0,(c2ID/2)+pMgroove+pMwallT-(pMshelfBoltD*1.5),0])
+translate([(pMbodyXr+(pMshelfX/2)),0,0])
   cylinder(d=pMshelfBoltD, h=pMH, $fn=36);  
                         
         mirror([1,0,0]){
             //1
 translate([0,(cos(pMd1e-pMd0)*((pMID/2)+(pMshelfBoltD)+pMgroove)),0])
-translate([-((((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0)))+(pMshelfX/2)),0,0])
+translate([(pMbodyXr+(pMshelfX/2)),0,0])
   cylinder(d=pMshelfBoltD, h=pMH, $fn=36);
             //2
-translate([0,(cos(pMd1e-pMd0)*((pMID/2)+(pMshelfBoltD)+pMgroove)),0])
-translate([-((((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0)))+(pMshelfX/2)),0,0])
-translate([0,(((((c2ID+(pMgroove*2)+(pMwallT*2))/2)/cos(pMd1e-pMd0))-((pMID/2)+(pMshelfBoltD)+pMgroove))/1.5),0])
+translate([0,(c2ID/2)+pMgroove+pMwallT-(pMshelfBoltD*1.5),0])
+translate([(pMbodyXr+(pMshelfX/2)),0,0])
   cylinder(d=pMshelfBoltD, h=pMH, $fn=36);        
         } //end mirror
     } //end rotate
 //end of bolt holes
 //////////////
+
+
+    if(TF==2){
+                rotate([0,0,((360/c2connectors))])
+translate([(TFW/2)-(10/2),((c2ID+(pMgroove*2)+(pMwallT*2))/2)+(10/2),0])
+
+        cylinder(d=3, h=pMH, $fn=36);
+                rotate([0,0,((360/c2connectors))])
+mirror([1,0,0])
+    translate([(TFW/2)-(10/2),((c2ID+(pMgroove*2)+(pMwallT*2))/2)+(10/2),0])
+        cylinder(d=3, h=pMH, $fn=36);
+    }
 
 }//end main difference
 }//end main translate

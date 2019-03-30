@@ -18,7 +18,7 @@ rotate([90,0,0])
 needle();
 */
 
-wXtrans=(((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0)))-pMshelfchamfR-(aaX-aaT);  //(sin(pMd4s)*(pMID/2))-(aaX/2)
+wXtrans=pMbodyXr-pMshelfchamfR-(aaX-aaT);  //(sin(pMd4s)*(pMID/2))-(aaX/2)
 
 module CKpM2(){
     

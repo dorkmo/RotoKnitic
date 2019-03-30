@@ -344,7 +344,7 @@ pMgrooveC3=pMgrooveC2+(pMgrooveD-nC)-(nG+threadthickness)+(p4baseH-p4basegapH)+p
 pMwallHextra=5.75;      //extra height above groove at heighest point
 pMH=pMwallHextra+pMgrooveC3; //total height of mountain
 pMshelfH=4; //thickness of shelf resting on top of c3 - depricated
-pMshelfchamfR=6; //radius of chamfer at join shelf/wall
+pMshelfchamfR=3; //radius of chamfer at join shelf/wall
 pMshelfBoltD=3;
 
 pM3c2c=(pMH-(aaboltHD/2)-5)-((pPspace2+pPplate2+1)+(aaboltHD/2)+bearingholderZBOD);
@@ -559,13 +559,15 @@ echo("extra to subtract??",sin(pMcutA)*(pMgrooveD/2));
 
     pMextman=0.0002; //increase size of filler piece to make part manifold correctly
 
+pMbodyXr=(((c2ID+(pMgroove*2))/2)*cos(90-(pMd1e-pMd0)));  //half the X of back wall
+
 //END MOUNTAIN VARS
 ///////////////////////
 
 //c3 - redo with extra mountian tab/shelf distance
 c3OD=
 max(
-((pow((pow(((((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0)))+pMshelfX),2)+pow((((c2ID+(pMgroove*2)+(pMwallT*2))/2)),2)),1/2))*2)+((p7mountL+p7boltHeadH)*2)
+((pow((pow((pMbodyXr+pMshelfX),2)+pow((((c2ID+(pMgroove*2)+(pMwallT*2))/2)),2)),1/2))*2)+((p7mountL+p7boltHeadH)*2)
 ,
 ((((p3baseOD/2)+1+p5wingL+1+p7bearingfromfront+(p7wiggleL/2)+bearingholderZBW))*2)
 );
@@ -577,11 +579,11 @@ max(
 //MAX() of distance from mountain, and distance from plate spacers bolts
 //need to consider tooth size on plate c2 ??
 
-echo("X", ((((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0)))+pMshelfX));
+echo("X", (pMbodyXr+pMshelfX));
 echo("Y", ((c2ID+(pMgroove*2)+(pMwallT*2))/2));
 echo("c3OD=", c3OD);
 
-
+echo("pMID less pMbodyXr*2",pMID-(pMbodyXr*2)); //needs to be positive
 
 
 

@@ -1,33 +1,24 @@
 include <CKvars.scad>;
 use <CKp8--plateconnector.scad>
-use <CKpM--mountain.scad>
+use <CKpM1--mountain.scad>
 use <CKc4--weightplate.scad>
 
 use <mb10.scad>;
 
-//////
-//TODO
-//
-//*spacer mount holes should be further out from ID
-//*mounting holes for mountain tabs
-//*test place mountain for fit
-//*openbeam holes
-//
-//////
 TF=2;  //2 for optional maker beam holes
 
-projection(cut = false)
+//projection(cut = false)
 CKc3();
 
-projection(cut = false)
+//projection(cut = false)
 CKc4();
 
-/*
+
 translate([0,-c3OD/2,0])
 translate([0,p3wallOD/2,-pPspace2])
 rotate([0,0,0])
-CKpM(0);
-*/
+CKpM(0,0,0);
+
 
 //translate([0,0,c3H])
 //rotate([0,0,-90])
@@ -64,40 +55,38 @@ translate([0,-c3OD/2,0]){     //[c3OD/2,0,0]
         
         //mountain cutout
     rotate([0,0,0]){
-    translate([-(((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0))),0,0])
-      cube([((((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0)))*2),((c2ID+(pMgroove*2)+(pMwallT*2))/2),c3H]);
+    translate([-pMbodyXr,0,0])
+      cube([(pMbodyXr*2),((c2ID+(pMgroove*2)+(pMwallT*2))/2),c3H]);
 
-translate([-(((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0))),((c2ID+(pMgroove*2)+(pMwallT*2))/2),0])
+translate([-(pMbodyXr),((c2ID+(pMgroove*2)+(pMwallT*2))/2),0])
         translate([pMshelfBoltD/2,0,0])
         cylinder(d=pMshelfBoltD, h=pMH, $fn=36);
         
         mirror([1,0,0])
-        translate([-(((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0))),((c2ID+(pMgroove*2)+(pMwallT*2))/2),0])
+        translate([-(pMbodyXr),((c2ID+(pMgroove*2)+(pMwallT*2))/2),0])
         translate([pMshelfBoltD/2,0,0])
         cylinder(d=pMshelfBoltD, h=pMH, $fn=36);
     }
         //////
-//mounting bolt holes
+//mountain bolt holes
         rotate([0,0,0]){
             //1
 translate([0,(cos(pMd1e-pMd0)*((pMID/2)+(pMshelfBoltD)+pMgroove)),0])
-translate([-((((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0)))+(pMshelfX/2)),0,0])
+translate([(pMbodyXr+(pMshelfX/2)),0,0])
   cylinder(d=pMshelfBoltD, h=pMH, $fn=36);
             //2
-translate([0,(cos(pMd1e-pMd0)*((pMID/2)+(pMshelfBoltD)+pMgroove)),0])
-translate([-((((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0)))+(pMshelfX/2)),0,0])
-translate([0,(((((c2ID+(pMgroove*2)+(pMwallT*2))/2)/cos(pMd1e-pMd0))-((pMID/2)+(pMshelfBoltD)+pMgroove))/1.5),0])
+translate([0,(c2ID/2)+pMgroove+pMwallT-(pMshelfBoltD*1.5),0])
+translate([(pMbodyXr+(pMshelfX/2)),0,0])
   cylinder(d=pMshelfBoltD, h=pMH, $fn=36);  
                         
         mirror([1,0,0]){
             //1
 translate([0,(cos(pMd1e-pMd0)*((pMID/2)+(pMshelfBoltD)+pMgroove)),0])
-translate([-((((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0)))+(pMshelfX/2)),0,0])
+translate([(pMbodyXr+(pMshelfX/2)),0,0])
   cylinder(d=pMshelfBoltD, h=pMH, $fn=36);
             //2
-translate([0,(cos(pMd1e-pMd0)*((pMID/2)+(pMshelfBoltD)+pMgroove)),0])
-translate([-((((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0)))+(pMshelfX/2)),0,0])
-translate([0,(((((c2ID+(pMgroove*2)+(pMwallT*2))/2)/cos(pMd1e-pMd0))-((pMID/2)+(pMshelfBoltD)+pMgroove))/1.5),0])
+translate([0,(c2ID/2)+pMgroove+pMwallT-(pMshelfBoltD*1.5),0])
+translate([(pMbodyXr+(pMshelfX/2)),0,0])
   cylinder(d=pMshelfBoltD, h=pMH, $fn=36);        
         } //end mirror
     } //end rotate
