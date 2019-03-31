@@ -8,7 +8,7 @@
 //  for example CKvarsProfile-Small2019.scad
 //  then open the file named CKvars.scad in the "SCAD" folder
 //  find the "include" commands at the begining of the file
-//  change this information to the new file's name, then save
+//  change this information to this new file's name, then save
 //  you can now open then render each part file with these settings
 /////////////
 
