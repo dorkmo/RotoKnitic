@@ -26,6 +26,8 @@ UPp2number=6;                //12                //36  ///36   //12       //8
 //number of needles mounted on each "p2" part
 UPp2needles=6;                //5                 //10  ///5    //5        //7
 
+//Note: UPp2number * UPp2needles = total needles
+
 //number of "p3" parts around circle
 UPp3number=2;                 //4                 //18  ///4    //4        //2
 
