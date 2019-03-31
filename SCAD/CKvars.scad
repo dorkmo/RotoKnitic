@@ -237,6 +237,7 @@ p4rampMinkD=(p4rampW/3)*2;  //minkoski diameter
 p4rampWm=p4rampW-p4rampMinkD;
 p4clear=-0.5;  //distance above top of p4 from flipper in down position //need to fix -0.5?
 p4endtrim=0.5;
+p4clawWslanttop=1;   //0 = slant to rampW, p4rampW = no slant
 
 echo("rampW", p4rampW);
 

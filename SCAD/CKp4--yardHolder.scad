@@ -2,6 +2,7 @@ include <CKvars.scad>;
 
 CKp4();
 
+
 module CKp4(){
     
     rez=p2number*p2needles*2;
@@ -53,7 +54,7 @@ cube([p4rampMinkD,p4rampMinkD,0.02], center=true);
         
        translate([-p4rampC2/2,0,0])
        translate([-p4baseOD/2+p4rampfromOD,p4rampW/2,p4rampH+p4baseH-(p4rampC2/2)])
-       #cube([p4rampC2,p4rampC2,p4rampC2+1],center=true);
+       cube([p4rampC2,p4rampC2,p4rampC2+1],center=true);
         
        translate([0,0,0])
        translate([-p4baseOD/2+p4rampfromOD,p4rampW/2,p4baseH-(p4rampC2/2)-0.1])
@@ -87,8 +88,13 @@ cube([p4rampMinkD,p4rampMinkD,0.02], center=true);
             
         for(i=[1:p2needles*(p2number/p4number)]){
         rotate([0,0,(360/p2number/p2needles)-(360/p2number/p2needles*i)-(((360/p2number/p2needles))/2)]){
+            hull(){
             translate([-p4baseOD/2,-p4clawW/2,0])
-            cube([(p4baseOD-p4baseID)/2,p4clawW,p4baseH]);
+              #cube([(p4baseOD-p4baseID)/2,p4clawW,p4basegapH]);
+            translate([-p4baseOD/2,-((p4rampW+p4clawWslanttop)/2),p4baseH-0.1])
+              #cube([(p4baseOD-p4baseID)/2,p4rampW+p4clawWslanttop,0.1]);
+
+            } //end hull
         }
     }//end for
             
