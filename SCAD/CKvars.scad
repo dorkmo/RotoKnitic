@@ -11,7 +11,7 @@
 include <CKvarsNeedle-KH260.scad>;
 
 //select the settings profile file
-include <CKvarsProfile-Small201903.scad>;
+include <CKvarsProfile-SockTest201904.scad>;
 
 //////////////////////////////////////
 
@@ -697,7 +697,7 @@ p2p3flatORmax=((c2ID+sqrt((-4*(p2p3flatHD/2)*(p2p3flatHD/2))+((c2ID)*(c2ID))))/2
 M2tipY=tipOpenX/2;  //pM2mink
 M2tipZ=(((tipOpenX/2)-(nE/2))*2)+tipHole+(tipcylD/2);
 M2tiptopC=(((tipOpenX/2)-(nE/2))*2)+tipHole+(tipcylD/2)-(pM2mink/4);
-M2inX=((((c2ID+(pMgroove*2)+(pMwallT*2))/2)*cos(90-(pMd1e-pMd0)))-pMshelfchamfR-(aaX-aaT))*2;
+M2inX=((((c2ID+(pMgroove*2))/2)*cos(90-(pMd1e-pMd0)))-pMshelfchamfR-(aaX-aaT))*2;
 M2inY=(((c2ID+(pMgroove*2)+(pMwallT*2))/2))-((p3wallID/2)-(p2needlegrooveDepthslop/2))-(nD-nY)-nD;  //(M2tipY) //(nD-nY) //tipcylD/2
 M2inZ=pM2H-pM2mink;
 M2backwallOD=((c2ID+(pMgroove*2)+(pMwallT*2))/2)+aaT;
