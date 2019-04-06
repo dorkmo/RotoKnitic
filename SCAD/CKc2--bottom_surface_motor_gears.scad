@@ -39,8 +39,10 @@ cylinder(h=c2H+2,d=c3ID);  // donut hole
 //calculate number of holes to skip in for() using arc of mountain?
 
     //plate connector holes
-for(i=[2:c2connectors]){
-    rotate([0,0,((360/c2connectors)*i)]){          
+if(atan((((((c2ID+(pMgroove*2))/2)*cos(90-(pMd1e-pMd0)))+(pMshelfX/2)))/((cos(pMd1e-pMd0)*((pMID/2)+(pMshelfBoltD)+pMgroove)))) > 45){
+
+for(i=[1:2]){
+    rotate([0,0,(360/c2connectors)+(90*i)+45]){          
             translate([0,p8innerboltO2C,-0.1])
                 cylinder(d=p8holeD,h=c2H+0.2,$fn=36);
             translate([0,p8outerboltO2C,-0.1])
@@ -49,7 +51,48 @@ for(i=[2:c2connectors]){
 } //end for
 
 
+}else
+{    
+for(i=[2:c2connectors]){
+    rotate([0,0,((360/c2connectors)*i)]){          
+            translate([0,p8innerboltO2C,-0.1])
+                cylinder(d=p8holeD,h=c2H+0.2,$fn=36);
+            translate([0,p8outerboltO2C,-0.1])
+                cylinder(d=p8holeD,h=c2H+0.2,$fn=36);
+    } //end rotate i
+} //end for
+} //end else
+
+echo("mountain shelf end cut",atan((((((c2ID+(pMgroove*2))/2)*cos(90-(pMd1e-pMd0)))+(pMshelfX/2)))/((cos(pMd1e-pMd0)*((pMID/2)+(pMshelfBoltD)+pMgroove)))));
+
     //small bearing holder
+if(atan((((((c2ID+(pMgroove*2))/2)*cos(90-(pMd1e-pMd0)))+(pMshelfX/2)))/((cos(pMd1e-pMd0)*((pMID/2)+(pMshelfBoltD)+pMgroove)))) > 45){
+    
+for(i=[1:3]){
+    rotate([0,0,(360/c2connectors)+(90*i)]){
+        translate([0,((p3baseOD/2)+1),0]){ 
+            
+    //smallbearingholder holes
+                translate([-(p5wingW+p5bodyW+p5wingW)/2,0,0]){
+        translate([p5wingW+p5bodyW,0,0]){            
+        //wing right holes
+            translate([p5wingW/2,p5mounthole2back,0])
+                cylinder(d=p5mountholeOD,h=c2H+0.1,$fn=36);
+                translate([p5wingW/2,p5wingL-p5mounthole2front,0])
+                cylinder(d=p5mountholeOD,h=c2H+0.1,$fn=36);
+        } //end wing right translate  
+        
+        //wing left holes
+            translate([p5wingW/2,p5mounthole2back,0])
+                cylinder(d=p5mountholeOD,h=c2H+0.1,$fn=36);
+                translate([p5wingW/2,p5wingL-p5mounthole2front,0])
+                cylinder(d=p5mountholeOD,h=c2H+0.1,$fn=36);
+    }//end translate - center X of holes
+        }//end translate to ring
+    }//end for rotate
+}//end small bearing holder for    
+}else
+{
 for(i=[1:c2bmounts]){
     rotate([0,0,-((360/c2connectors)/2)+((360/c2bmounts)*i)]){
         translate([0,((p3baseOD/2)+1),0]){ 
@@ -73,7 +116,7 @@ for(i=[1:c2bmounts]){
         }//end translate to ring
     }//end for rotate
 }//end small bearing holder for
-
+} //end if-else
 
     //small bearing holder - under mountain
     rotate([0,0,((360/c2connectors))]){
@@ -101,7 +144,7 @@ for(i=[1:c2bmounts]){
 
 
         //////
-//mounting bolt holes
+//mountain bolt holes
         rotate([0,0,((360/c2connectors))]){
             //1
 translate([0,(cos(pMd1e-pMd0)*((pMID/2)+(pMshelfBoltD)+pMgroove)),0])
