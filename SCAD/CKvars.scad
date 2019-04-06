@@ -604,7 +604,7 @@ pMnum=floor(pMmaxNum/2);
 echo("pMnum",pMnum);
 
 //number of sets of bearings mounted to geared plated
-c2bmounts=pMnum;   //p3number  //probably should be higher
+c2bmounts=max(3,pMnum);   //p3number  //probably should be higher
 
 echo("c2bmounts",c2bmounts);
 
@@ -616,7 +616,7 @@ c2bmounts*1.3,
 echo("p7number", p7number);
 
 //number of plate connectors
-c2connectors=c2bmounts*3; // need to tweak so does not overlap mountain footprint
+c2connectors=pMnum*3; // need to tweak so does not overlap mountain footprint
 
 
     /////gear calcs/////
