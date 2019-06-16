@@ -20,19 +20,19 @@
 // DIMENSIONS
 
 //number of "p2" needle guides around circle                    //Jan2019  //small
-UPp2number=24;                //12                //36  ///36   //12       //8
+UPp2number=30;                //12                //36  ///36   //12       //8
 
 //number of needles mounted on each "p2" part
-UPp2needles=7;                //5                 //10  ///5    //5        //7
+UPp2needles=5;                //5                 //10  ///5    //5        //7
 
 //number of "p3" parts around circle
-UPp3number=8;                 //4                 //18  ///4    //4        //2
+UPp3number=10;                 //4                 //18  ///4    //4        //2
 
 //number of "p4" parts around circle
-UPp4number=8;                 //4                 //18  ///4    //4        //2
+UPp4number=10;                 //4                 //18  ///4    //4        //2
 
 //distance from the inside face of one needle to the next
-UPneedle2needle=13.5334;     //default=14.35615  //try 8.414    //13.5334  //9.25
+UPneedle2needle=10.0000;     //default=14.35615  //try 8.414    //13.5334  //9.25
 
 //mountain settings
 UPpMgrooveturnR=14; //radius of upper curved path in groove //14  //10

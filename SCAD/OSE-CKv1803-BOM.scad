@@ -110,7 +110,7 @@ echo("pM Top Plate Connector","Size: M",pMshelfBoltD,"x",ceil((pMshelfH+pMshelfB
     //If using angle iron
 //Bolt Through Mountain
 echo("pM angle iron Mount Bolts","Size: M",p8boltD,"x",ceil((((((pMID/2)-(cos(pMd4s)*(pMID/2)))+pMwallT+pMgroove)-(sin(pMd4s)*(aaboltHD))-2-aaboltHH)+p8boltD+aaT)/2)*2,"mm","Count:",2);
-//Bolt Through Peg
+//Bolt Through Peg - remove if new mount works
 echo("pM angle iron TopMount Bolts","Size: M",p8boltD,"x",ceil((aaX+p8boltD)/2)*2,"mm","Count:",2);
 
     

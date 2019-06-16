@@ -11,7 +11,7 @@
 include <CKvarsNeedle-KH260.scad>;
 
 //select the settings profile file
-include <CKvarsProfile-SockTest201904.scad>;
+include <CKvarsProfile-Large201903.scad>;
 
 //////////////////////////////////////
 
