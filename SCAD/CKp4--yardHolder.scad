@@ -121,11 +121,12 @@ difference(){
     cylinder(h=p4basegapH,d=p4basegapID);    
 }
 
-
-    //mounting holes        
+//bolt holes        
             for(i=[0:(p2number/p4number)-1]){
          rotate([0,0,(-360/p2number/p2needles*0.5)+(i*-360/p2number)]){
              
+
+if(p2p4type==1){
     translate([-(p4baseOD/2)+((p4baseOD-p4baseID)/2),0,p4holeH])
     rotate([0,270,0])
 translate([0,0,0])
@@ -134,7 +135,20 @@ cylinder(d1=p2p4flatHD,d2=0,h=(p2p4flatHD/2)/tan(45),$fn=36);
 translate([0,0,-(p2p4flatHD)/tan(45)])
 cylinder(d1=p2p4flatHD*3,d2=p2p4flatHD,h=(p2p4flatHD)/tan(45),$fn=36);
 cylinder(d=p2p4flatD,h=((p4baseOD-p4baseID)/2)+2,$fn=36);
-}
+}//end union
+}//end if
+if(p2p4type==0){
+    translate([-(p4baseOD/2)+((p4baseOD-p4baseID)/2),0,p4holeH])
+    rotate([0,270,0])
+translate([0,0,0])
+union(){
+translate([0,0,-p2p4boltHH/2])
+cylinder(d=p2p4boltHD,h=p2p4boltHH,$fn=36);
+cylinder(d=p2p4boltD,h=((p4baseOD-p4baseID)/2)+2,$fn=36);
+}//end union
+}//end if
+
+
 }
 }
 
@@ -142,6 +156,7 @@ cylinder(d=p2p4flatD,h=((p4baseOD-p4baseID)/2)+2,$fn=36);
        for(i=[0:(p2number/p3number)-1]){
         rotate([0,0,-(360/p2number/p2needles*0.5)+(360/p2number/p2needles)+(i*-360/p2number)+(-360/p2number)]){
  
+if(p2p4type==1){  // if flat socket
     translate([-(p4baseOD/2)+((p4baseOD-p4baseID)/2),0,p4holeH])
     rotate([0,270,0])
 translate([0,0,0])
@@ -150,10 +165,23 @@ cylinder(d1=p2p4flatHD,d2=0,h=(p2p4flatHD/2)/tan(45),$fn=36);
 translate([0,0,-(p2p4flatHD)/tan(45)])
 cylinder(d1=p2p4flatHD*3,d2=p2p4flatHD,h=(p2p4flatHD)/tan(45),$fn=36);
 cylinder(d=p2p4flatD,h=((p4baseOD-p4baseID)/2)+2,$fn=36);
-}
-}
-}
+}//end union
+}//end if
+if(p2p4type==0){  // if regular socket
+    translate([-(p4baseOD/2)+((p4baseOD-p4baseID)/2),0,p4holeH])
+    rotate([0,270,0])
+translate([0,0,0])
+union(){
+translate([0,0,-p2p4boltHH/2])
+cylinder(d=p2p4boltHD,h=p2p4boltHH,$fn=36);
+cylinder(d=p2p4boltD,h=((p4baseOD-p4baseID)/2)+2,$fn=36);
+}//end union
+}//end if
+
+} //end rotate
+} //end for
 //end mounting holes
+
  
     //trim end       
     if(p4number>1){
