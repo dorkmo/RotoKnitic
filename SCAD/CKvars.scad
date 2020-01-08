@@ -8,10 +8,10 @@
 ///////  CHOOSE MAIN SETTINGS  ///////
 
 //select the needle size file that will be used
-include <CKvarsNeedle-KH260.scad>;
+include <CKvarsNeedle-KH820.scad>;
 
 //select the settings profile file
-include <CKvarsProfile-Large201903.scad>;
+include <CKvarsProfile-Medium202001.scad>;
 
 //////////////////////////////////////
 
