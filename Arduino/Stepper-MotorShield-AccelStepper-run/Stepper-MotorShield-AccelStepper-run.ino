@@ -27,9 +27,7 @@ void setup()
   stepper.setSpeed(40);
  
   stepper.setAcceleration(50);
-  stepper.moveTo(1200);
- 
- 
+  
 }
 
 void loop(){ 
