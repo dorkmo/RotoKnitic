@@ -7,6 +7,7 @@ const int pwmB = 11;
 const int brakeA = 8;
 const int brakeB = 9;
 
+int switchStateForward = digitalRead(7);  
 
 void setup()
 { 
@@ -25,20 +26,15 @@ void setup()
  
   stepper.setMaxSpeed(40);
   stepper.setSpeed(40);
+  //stepper.runSpeed();
  
   stepper.setAcceleration(50);
+
   
 }
 
 void loop(){ 
 
-int switchStateForward = digitalRead(7);
-
-while(switchStateForward == LOW){
   stepper.run();
-}
-while(switchStateForward == HIGH){
-  stepper.stop();  
-}
 
 }

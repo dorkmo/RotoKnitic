@@ -7,9 +7,11 @@ const int pwmB = 11;
 const int brakeA = 8;
 const int brakeB = 9;
 
+int switchStateForward = digitalRead(7);  
 
 void setup()
 { 
+
  
   pinMode(pwmA, OUTPUT);
   pinMode(pwmB, OUTPUT);
@@ -21,11 +23,11 @@ void setup()
   digitalWrite(brakeA, LOW);
   digitalWrite(brakeB, LOW);
  
-  stepper.setMaxSpeed(40);
-  stepper.setSpeed(40);
+  stepper.setMaxSpeed(120);
+  stepper.setSpeed(110);
  
-  stepper.setAcceleration(50);
-  stepper.moveTo(1200);
+  stepper.setAcceleration(80);
+  stepper.moveTo(999999999);
  
  
 }
@@ -39,4 +41,8 @@ void loop(){
   }
   stepper.run();
 
-}
+  if(switchStateForward == HIGH){
+  stepper.stop();
+  }
+    
+  }
