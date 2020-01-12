@@ -15,7 +15,9 @@ void setup()
   pinMode(pwmB, OUTPUT);
   pinMode(brakeA, OUTPUT);
   pinMode(brakeB, OUTPUT);
- 
+
+  pinMode(7,INPUT_PULLUP);
+   
   digitalWrite(pwmA, HIGH);
   digitalWrite(pwmB, HIGH);
   digitalWrite(brakeA, LOW);
@@ -32,11 +34,13 @@ void setup()
 
 void loop(){ 
 
-  if (stepper.distanceToGo() == 0) {
-    stepper.run();                   // let the AccelStepper to disable motor current after stop
-    delay(2000);                     // wait 2 sec in final position
-    stepper.moveTo(-stepper.currentPosition());
-  }
+int switchStateForward = digitalRead(7);
+
+while(switchStateForward == LOW){
   stepper.run();
+}
+while(switchStateForward == HIGH){
+  stepper.stop();  
+}
 
 }
