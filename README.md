@@ -2,6 +2,9 @@ Roto Knitic
 ===============
 
 Open Source Ecology's CircularKnitic fork that tweaks the method of rotation of needles.
+* Design overview https://wiki.opensourceecology.org/wiki/RotoKnitic_v19.01#Design
+* Current developing version https://wiki.opensourceecology.org/wiki/RotoKnitic_v20.06
+* Past work https://wiki.opensourceecology.org/wiki/Knitic_Genealogy
 
 ---
 
