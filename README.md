@@ -1,7 +1,9 @@
-Circular knitic
+Roto Knitic
 ===============
 
-Open Source Ecology's CircularKnitic project page: https://wiki.opensourceecology.org/wiki/OSE_CircularKnitic_v18.03
+Open Source Ecology's CircularKnitic fork that tweaks the method of rotation of needles.
+
+---
 
 Circular Knitic, an open hardware knitting machine. 
 * Project video: https://www.youtube.com/watch?v=-GFXAGRynNM
