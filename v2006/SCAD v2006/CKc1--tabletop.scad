@@ -42,7 +42,7 @@ translate([0,0,0]){
       } //end diff      
                
         cylinder(h=c1H+2,d=p3baseID);  // donut hole
-
+/*
 //leg mounting holes
 for(i=[1:c1Sides]){
 rotate([0,0,((360/c1Sides)*i)+(360/c1Sides)])
@@ -59,6 +59,7 @@ rotate([0,0,((360/c1Sides)*i)+(360/c1Sides)])
 translate([(c1polyOD/2)-(woodbeamW/2)-(woodbeamScrewOD*4),-((tan(360/(c1Sides*2))*(c1polyOD/2))/2),0]) 
 #cylinder(d=woodbeamScrewOD,h=c1H);    
 }
+      */
 
     //small bearing holder
 if(atan((((((c2ID+(pMgroove*2))/2)*cos(90-(pMd1e-pMd0)))+(pMshelfX/2)))/((cos(pMd1e-pMd0)*((pMID/2)+(pMshelfBoltD)+pMgroove)))) > 45){
@@ -89,7 +90,7 @@ for(i=[1:4]){
 }else
 {
 for(i=[1:c2bmounts]){
-    rotate([0,0,((360/c2bmounts)*i)]){
+    rotate([0,0,((360/c2bmounts)*i)+(360/c2bmounts/2)]){
         translate([0,((p3baseOD/2)+1),0]){ 
             
     //smallbearingholder holes
@@ -115,6 +116,7 @@ for(i=[1:c2bmounts]){
     
     //base mounting holes
 
+/*
 //spacer mounts
 for(i=[1:max(4,c1steppersnumber)]){
     rotate([0,0,((360/(max(4,c1steppersnumber)))/2)+((360/(max(4,c1steppersnumber)))*i)]){
@@ -129,6 +131,7 @@ translate([0,(p8dID/2)+(((p8dOD-p8dID)/2)/2),0])
 cylinder(d=p8dboltD,h=c1H, $fn=36);
     }
 }
+*/
 
 
         //Stepper Mount
@@ -148,6 +151,7 @@ translate([-NEMAboltDis/2,-NEMAboltDis/2,0])
     
 }
 
+/*
 //mounting wood beams
     for(i=[1:4]){
 translate([(((c1W+(c1W/5))/5)*i)-((c1W+(c1W/5))/2),-(c1OD/2)+(woodbeamW/2),0])
@@ -180,6 +184,7 @@ translate([(c1W/2)-(woodbeamW/2),-(((c1W+(c1W/5))/5)*i)+((c1OD+(c1W/5))/2),0])
 cylinder(d=woodbeamScrewOD,h=c1H);
     }
     }
+*/
            
     }  //end main difference
 }  //end main translate

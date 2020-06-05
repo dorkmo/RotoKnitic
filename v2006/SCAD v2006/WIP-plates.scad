@@ -10,7 +10,7 @@ use <CKp5--smallbearingholder.scad>;
 use <CKp8--plateconnector.scad>;
 use <CKp8b--plateconnector-p5.scad>;
 use <CKp8d--plateconnector-bottomStand.scad>;
-use <CKp9--outerconnector.scad>;
+//use <CKp9--outerconnector.scad>;
 //use <CKpM1--mountain.scad>;
 //use <CKpS1--gearedRiser.scad>;
 
@@ -169,7 +169,7 @@ CKp5(1); //small bearing holder
 }
 else{
 for(i=[1:c2bmounts]){
-    rotate([0,0,((360/c2bmounts)*i)]){
+    rotate([0,0,((360/c2bmounts)*i)+(360/c2bmounts/2)]){
         translate([0,(p3baseOD/2)+1,pPspace1]){ 
             mirror([0,0,1])
 CKp5(1); //small bearing holder
@@ -192,7 +192,7 @@ else
 {    
     
 for(i=[1:c2bmounts]){
-    rotate([0,0,((360/c2bmounts)*i)]){
+    rotate([0,0,((360/c2bmounts)*i)+(360/c2bmounts/2)]){
         translate([0,(p3baseOD/2)+1,-c2H-pPspace1]){ 
             mirror([0,0,0])
 CKp5(1); //small bearing holder

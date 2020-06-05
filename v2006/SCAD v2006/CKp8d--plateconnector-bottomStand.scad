@@ -1,5 +1,27 @@
 include <CKvars.scad>;
 
+CKp8d(); //small bearing holder
+
+
+module CKp8d(){
+    translate([0,0,0]){
+        difference(){
+            
+ //           cube([p8baseW,p8baseL,pPspace2]);
+
+            cylinder(d=p8dD,h=pPspace1+pPplate2+pPspace1,$fn=36);
+            
+            translate([0,0,-0.1])
+            cylinder(d=p8dholeD,h=(pPspace1+pPplate2+pPspace1)+0.2,$fn=36);
+            
+        } //end main difference
+    } //end translate
+} //end main module
+
+/*
+
+include <CKvars.scad>;
+
 translate([0,-p8dOD/2,0])
 CKp8d(); //bottom stand
 
@@ -77,3 +99,5 @@ cylinder(d=p8dboltD,h=p8dH, $fn=36);
 
     
 } //end module
+
+*/

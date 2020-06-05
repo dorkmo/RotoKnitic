@@ -85,6 +85,10 @@ tipcylD=1.75;  //1.5
 tipcy2D=tipcylD*1.5;
 
 
+//p8d
+p8dholeD=5;
+p8dD=15;
+
 //-(tipOpenX/2)+(tipcylD/2)
 
 //thickness of upper rotating plate  ///5  //6.35= 1/4"inch
