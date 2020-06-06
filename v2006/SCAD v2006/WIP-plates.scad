@@ -169,7 +169,7 @@ CKp5(1); //small bearing holder
 }
 else{
 for(i=[1:c2bmounts]){
-    rotate([0,0,((360/c2bmounts)*i)+(360/c2bmounts/2)]){
+    rotate([0,0,((360/c2bmounts)*i)]){
         translate([0,(p3baseOD/2)+1,pPspace1]){ 
             mirror([0,0,1])
 CKp5(1); //small bearing holder
