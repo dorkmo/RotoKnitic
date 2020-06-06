@@ -86,6 +86,7 @@ tipcy2D=tipcylD*1.5;
 
 
 //p8d
+p8dboltD=5;
 p8dholeD=5;
 p8dD=15;
 

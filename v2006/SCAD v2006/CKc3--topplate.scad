@@ -82,6 +82,7 @@ translate([0,-c3OD/2,0]){     //[c3OD/2,0,0]
         */
     }//end else
 
+/*
 //small bearing holder holes to optionally connect through
     if(atan((((((c2ID+(pMgroove*2))/2)*cos(90-(pMd1e-pMd0)))+(pMshelfX/2)))/((cos(pMd1e-pMd0)*((pMID/2)+(pMshelfBoltD)+pMgroove)))) > 45){
     
@@ -166,7 +167,7 @@ for(i=[1:c2bmounts]){
 } //end if-else
 
 //end bearing holders
-
+*/
         
         //mountain cutout
 for(i=[1:numberMountain]){
