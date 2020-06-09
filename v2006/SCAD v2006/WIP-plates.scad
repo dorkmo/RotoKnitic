@@ -8,7 +8,7 @@ include <CKvars.scad>;
 //use <CKp4--yardHolder.scad>;
 use <CKp5--smallbearingholder.scad>;
 use <CKp8--plateconnector.scad>;
-use <CKp8b--plateconnector-p5.scad>;
+//use <CKp8b--plateconnector-p5.scad>;
 use <CKp8d--plateconnector-bottomStand.scad>;
 //use <CKp9--outerconnector.scad>;
 //use <CKpM1--mountain.scad>;

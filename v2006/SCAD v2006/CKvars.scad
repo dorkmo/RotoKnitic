@@ -85,10 +85,10 @@ tipcylD=1.75;  //1.5
 tipcy2D=tipcylD*1.5;
 
 
-//p8d
-p8dboltD=5;
-p8dholeD=5;
-p8dD=15;
+//p8f
+
+p8fholeD=5;
+p8fOD=15;
 
 //-(tipOpenX/2)+(tipcylD/2)
 
