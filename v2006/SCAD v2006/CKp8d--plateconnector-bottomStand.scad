@@ -12,7 +12,7 @@ module CKp8f(){
             cylinder(d=p8fOD,h=pPspace1+pPplate2+pPspace1,$fn=36);
             
             translate([0,0,-0.1])
-            cylinder(d=p8fholeD,h=(pPspace1+pPplate2+pPspace1)+0.2,$fn=36);
+            cylinder(d=p8fboltD,h=(pPspace1+pPplate2+pPspace1)+0.2,$fn=36);
             
         } //end main difference
     } //end translate
