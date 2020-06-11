@@ -154,9 +154,9 @@ translate([-NEMAboltDis/2,-NEMAboltDis/2,0])
 //WIP p8f
 for(i=[1:c1steppersnumber]){
 rotate([0,0,((360/c1steppersnumber)*i)-(90)])
-translate([-(CKp1_pitch_radius+CKc2_pitch_radius),0,0]){
-translate([20,20,0])
-cylinder(d=p8fholeD,h=c1H);
+translate([-((p8fOD/2)+CKc2_pitch_radius),0,0]){
+translate([0,CKp1_pitch_radius+(p8fOD),0])
+cylinder(d=p8fboltD,h=c1H);
 }
 }
 
