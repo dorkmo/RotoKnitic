@@ -157,6 +157,9 @@ rotate([0,0,((360/c1steppersnumber)*i)-(90)])
 translate([-((p8fOD/2)+CKc2_pitch_radius),0,0]){
 translate([0,CKp1_pitch_radius+(p8fOD),0])
 cylinder(d=p8fboltD,h=c1H);
+translate([0,-(CKp1_pitch_radius+(p8fOD)),0])
+cylinder(d=p8fboltD,h=c1H);
+
 }
 }
 
