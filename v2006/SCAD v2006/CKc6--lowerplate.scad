@@ -53,8 +53,24 @@ translate([0,-c6OD/2,0]){     //[c3OD/2,0,0]
  
         
 
+
+
+
+//WIP p8f
+for(i=[1:c1steppersnumber]){
+rotate([0,0,((360/c1steppersnumber)*i)-(90)])
+translate([-((p8fOD/2)+CKc2_pitch_radius),0,0]){
+translate([0,CKp1_pitch_radius+(p8fOD),0])
+cylinder(d=p8fboltD,h=c1H);
+translate([0,-(CKp1_pitch_radius+(p8fOD)),0])
+cylinder(d=p8fboltD,h=c1H);
+
+}
+}
         
         //plate connector holes
+
+
         
         if(atan((((((c2ID+(pMgroove*2))/2)*cos(90-(pMd1e-pMd0)))+(pMshelfX/2)))/((cos(pMd1e-pMd0)*((pMID/2)+(pMshelfBoltD)+pMgroove)))) > 45){
             
